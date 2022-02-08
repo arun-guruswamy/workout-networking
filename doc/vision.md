@@ -19,16 +19,24 @@
 
 Primary actor - Users (All content is user generated)
 
-Users: 
-1. Can create a workout profile with stats, interests, experience, goals
-2. Can post workout videos, moments, schedules, specific exercises
-3. Can follow people or groups they are interested in and have a feed tailored to interests.
-4. Can search for specific workouts of interest through various filters
+##Users:
+
+## Producers:
+- Can create a workout profile with stats, interests, experience, goals
+- Can post workout videos, moments, schedules, specific exercises
+
+## Lurkers:
+- Can follow people or groups they are interested in and have a feed tailored to interests. 
+- Can search for specific workouts of interest through various filters
+
+## Self-Documenter:
+- Integrate with third party apps like smartwatches or strava. 
+- Leaderboards for friends and groups
+
+
 5. Message other users (Maybe)
 6. Live stream workouts
-7. Form workout groups 
-8. Leaderboards for friends and groups
-9. Integrate with third party apps like smartwatches or strava.
+7. Form workout groups
 10. Monetize with a subscription
 
 
