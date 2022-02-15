@@ -9,9 +9,6 @@
 ##Stakeholders and interests: 
 - **User**: wants a fast and reliable way to set up an account that will 
 not take too long or ask for unneeded private information
-- **Managers of App**: want to reliably store the information of the user 
-once the new profile is created, keep profile information 
-in a way that is easy to access 
 
 ##Preconditions: 
 - User confirms that they are a certain age via birthday

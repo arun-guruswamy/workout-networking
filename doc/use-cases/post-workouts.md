@@ -8,7 +8,6 @@
 
 ##Stakeholders and interest: 
 - **Producers**: Post content and gain followers
-- **Managers of app**: Want content on the app, people stay engaged with their product
 
 ##Preconditions: 
 Grant permission to storage for media
