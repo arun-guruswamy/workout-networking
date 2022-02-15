@@ -35,6 +35,9 @@ not take too long or ask for unneeded private information
 - Workout interests
 - Experience level
 - Goals
+- Bio
+- Stats
+- Goals
 ###6. Update system with new user
 
 ##Extensions: 
