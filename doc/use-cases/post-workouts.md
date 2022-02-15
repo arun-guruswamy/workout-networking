@@ -29,7 +29,7 @@ Grant permission to storage for media
 ###5. System adds post once it is confirmed
 
 ##Extensions: 
-
+### 2a. Return error if size of the media 
 ##Special requirements: 
 
 ##Technology and data variation: 

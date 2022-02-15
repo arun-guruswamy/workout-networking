@@ -33,10 +33,10 @@ Primary actor - Users (All content is user generated)
 - Integrate with third party apps like smartwatches or strava. 
 - Leaderboards for friends and groups
 
-
-5. Message other users (Maybe)
-6. Live stream workouts
-7. Form workout groups
-10. Monetize with a subscription
+## Bonus features for all users
+- Message other users (Maybe)
+- Live stream workouts 
+- Form workout groups
+- Monetize with a subscription
 
 
