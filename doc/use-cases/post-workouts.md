@@ -7,11 +7,10 @@
 ##Primary Actor: Producers
 
 ##Stakeholders and interest: 
-- **Producers**: Post content regularly and gain followers
+- **Producers**: 
 - **Managers of app**: 
 
 ##Preconditions: 
-###Permission to storage must be granted.
 
 ##Post-conditions: 
 
@@ -27,7 +26,6 @@
 ###5. System adds post once it is confirmed
 
 ##Extensions: 
-###2a If the size of the file is too large, then error pops up to re-upload smaller file
 
 ##Special requirements: 
 
