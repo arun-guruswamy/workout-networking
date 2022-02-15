@@ -7,12 +7,15 @@
 ##Primary Actor: Producers
 
 ##Stakeholders and interest: 
-- **Producers**: 
-- **Managers of app**: 
+- **Producers**: Post content and gain followers
+- **Managers of app**: Want content on the app, people stay engaged with their product
 
 ##Preconditions: 
+Grant permission to storage for media
 
 ##Post-conditions: 
+- new post is available on someone's profile
+- Data of post is stored
 
 ##Main Success Scenario:
 ###1. Select option to post
