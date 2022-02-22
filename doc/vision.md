@@ -3,12 +3,12 @@
 ### Communication medium - Text, Zoom
 ### Meeting time - Tuesday, Thursday mornings (Zoom or Sanders)
 
-###Introduction:
+### Introduction:
 We envision an app that allows people around the world to engage in 
 a community of fitness enthusiasts that are looking to help each other achieve their fitness goals
 
-###Business Case:
-1. Only social media app that focuses primarily on workouts and fitness
+### Business Case:
+1. Unlike Strava, it is app that has a broader and more complete focus on workouts and fitness
 2. Apart from social features, can be an effective and dynamic journal
 3. Encourages sharing of all kinds of workouts for every fitness level.
 

@@ -1,36 +1,36 @@
-#Posting workouts
+# Posting workouts
 
-##Scope: Workout app
+## Scope: Workout app
 
-##Level: User Goal
+## Level: User Goal
 
-##Primary Actor: Producers
+## Primary Actor: Producers
 
-##Stakeholders and interest: 
+## Stakeholders and interest: 
 - **Producers**: Post content and gain followers
 
-##Preconditions: 
+## Preconditions: 
 Grant permission to storage for media
 
-##Post-conditions: 
+## Post-conditions: 
 - new post is available on someone's profile
 - Data of post is stored
 
-##Main Success Scenario:
-###1. Select option to post
-###2. Select type of media to post
+## Main Success Scenario:
+### 1. Select option to post
+### 2. Select type of media to post
 - Workout video 
 - Photo
 - Text post
-###3. Ask permission for files or camera roll
-###4. Allow photo or media to be edited
+### 3. Ask permission for files or camera roll
+### 4. Allow photo or media to be edited
 - Add caption
-###5. System adds post once it is confirmed
+### 5. System adds post once it is confirmed
 
-##Extensions: 
+## Extensions: 
 ### 2a. Return error if size of the media 
-##Special requirements: 
+## Special requirements: 
 
-##Technology and data variation: 
+## Technology and data variation: 
 
 
