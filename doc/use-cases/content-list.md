@@ -16,14 +16,15 @@
 List of workouts presented that match User's interest
 
 ## Main Success Scenario
-### 1. Click on feed or complete search to see list of workouts
-### 2. Filter or sort workouts through various conditions
-### 3. Scrolling down constantly generates new recommended workouts  
+### 1. Initial feed is auto-generated based on any workout in reverse chronological order 
+### 2. Click search bar to enter workout filters
+### 3. System presents workouts that best match filters used
+### 4. Scrolling down constantly generates new recommended workouts  
 
 
 ## Extensions:
 ### 1a. If not following any profiles, present random workouts 
-### 2a. If no workouts match filters, take user back to full list
+### 3a. If no workouts match filters, take user back to initial list
 
 ## Special Requirements
 

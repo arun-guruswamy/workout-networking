@@ -10,6 +10,7 @@
 - **Lurkers, Producers**: Want to see different workouts of their interest
 
 ## Preconditions:
+Existence of followers for user to produce intial feed
 
 ## Post-conditions
 List of workouts presented that match User's interest

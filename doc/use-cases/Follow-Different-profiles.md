@@ -18,8 +18,8 @@
 - Lurker is saved as a follower of producer and producer is saved as followed for Lurker
 
 ## Main success Scenario
-### 1. Lurker indicates that they want to follow a producer
-### 2. System allows lurker to follow producer
+### 1. If lurker likes a specific workout, can click on producer of workout to access their profile
+### 2. At the profile, lurker will have opportunity to follow producer by clicking on follow button
 ### 3. System saves Lurker as follower of producer and producer as followed for lurker
 ### 4. Lurker now sees Produces posts on their feed
 
