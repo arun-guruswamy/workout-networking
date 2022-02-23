@@ -62,6 +62,37 @@ deactivate Post
 @enduml
 ```
 
+### Searching content
+```plantuml 
+@startuml
+hide footbox
+actor Lurker as lurker
+participant "UI" as ui
+participant "SearchFilter" as search
+participant "list : List" as list 
+
+lurker -> ui : search(date, type, length, difficulty) 
+ui -> search : filterList(date, type, length, difficulty) 
+search -->> list :  list = createList(date, type, length, difficulty)
+@enduml
+```
+### Seeing a list 
+```plantuml 
+@startuml
+hide footbox
+participant "list : List" as list 
+participant "UI" as ui
+actor "User" as user 
+
+
+[o-> list : list = createList(date, type, length, difficulty) 
+list -> ui : displayList(list)
+ui -> user : displayList(list)
+
+@enduml
+```
+ 
+
 ```plantuml
 @startuml
 class Post {
