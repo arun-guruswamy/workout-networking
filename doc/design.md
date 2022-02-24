@@ -52,10 +52,14 @@ SearchFilter "1" - "1" List : \tCreates\t\t
 hide footbox
 actor Producer as producer
 participant ": Post" as Post
+participant ": Workout" as workout
 
 producer -> Post : createPost(caption, type, length, difficulty)
 activate Post
 deactivate Post
+workout -> Post : AddWorkout()
+activate workout
+deactivate workout
 producer <- Post : getPostInfo()
 activate Post
 deactivate Post
@@ -92,6 +96,8 @@ ui -> user : displayList(list)
 @enduml
 ```
  
+
+
 
 ```plantuml
 @startuml
