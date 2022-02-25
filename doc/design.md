@@ -137,7 +137,7 @@ createWorkout()
 
 class Feed {
 --
--Filter() : Stack<Posts> 
+-Filter(length: int, difficulty : int, type: ) : Stack<Post> 
 +toString() : String
 }
 
@@ -148,7 +148,7 @@ class Controller {
 -showPost()
 }
 
-Feed *-"(1..*)\n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
+Feed *-"(1..*) Posts \n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
 Post -> "1 (workout)" Workout : \t\t\t
 Workout <|-- CardioWorkout
 Workout <|-- StrengthWorkout
