@@ -97,13 +97,62 @@ ui -> user : displayList(list)
 ```
  
 
-
+## Class Diagram 
 
 ```plantuml
 @startuml
+'skinparam classAttributeIconSize 0
 class Post {
-Produce : Name
-{method} Some method
+-String producer_ID
+-String Caption
+-{Static} int WRK_Limit
+{method} -addWorkout(type) 
+{method} -addCaption()
+{method} +toString() : String
 }
+
+abstract class Workout {
+-int length 
+-int difficulty 
+-String Description
+{method} {abstract} -createWorkout()
+}
+
+class CardioWorkout {
+-Boolean EnduranceFocus
+-Boolean AgilityFocus 
+-Boolean SpeedFocus
+--
+createWorkout() 
+}
+
+class StrengthWorkout {
+-Boolean UpperbodyFocus
+-Boolean LowerbodyFocus 
+-Boolean FullbodyFocus
+-Boolean BodyweightFocus 
+--
+createWorkout() 
+}
+
+class Feed {
+--
+-Filter() : Stack<Posts> 
++toString() : String
+}
+
+class Controller {
+--
+-Filter() 
+-createPost() : Post 
+-showPost()
+}
+
+Feed *-"(1..*)\n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
+Post -> "1 (workout)" Workout : \t\t\t
+Workout <|-- CardioWorkout
+Workout <|-- StrengthWorkout
+Controller -- Post 
+Controller -- Feed
 @enduml
 ```
