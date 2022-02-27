@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Workout {
+public abstract class Workout {
     int length;
     int difficulty;
     String workout;
