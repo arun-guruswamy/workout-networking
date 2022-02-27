@@ -57,6 +57,6 @@ public class Post {
     }
 
     public String toString() {
-        return "\nWorkout: " + workout.toString() + "\n\n" + caption;
+        return "\n" + this.prod_id + "\nWorkout: " + workout.toString() + "\n\n" + caption;
     }
 }
