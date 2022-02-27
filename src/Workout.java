@@ -5,20 +5,20 @@ public class Workout {
     int difficulty;
     String workout;
 
-    public String createWorkout() {
+    public void createWorkout() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please Enter a description for the workout");
-        workout = scan.next();
-        return workout;
+        workout = scan.nextLine();
     }
 
-    public void setAttribute(Boolean attribute, String name) {
+    public boolean setAttribute(String name) {
+        boolean attribute = false;
         Scanner scan = new Scanner(System.in);
-        System.out.println("Is your workout focussed on" + name + "? (yes or no)");
-        if (scan.equals("yes"))
+        System.out.println("Is your workout focused on " + name + "? (yes or no)");
+        String a = scan.next();
+        if (a.equals("yes"))
             attribute = true;
-        else
-            attribute = false;
+        return attribute;
     }
 
     public void setAllAttributes() {}

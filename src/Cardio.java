@@ -1,19 +1,19 @@
 import java.util.*;
 
 public class Cardio extends Workout {
-    Boolean EnduranceFocus;
-    Boolean AgilityFocus;
-    Boolean SpeedFocus;
+    boolean EnduranceFocus;
+    boolean AgilityFocus;
+    boolean SpeedFocus;
 
     public void setAllAttributes() {
-        setAttribute(EnduranceFocus, "Endurance");
-        setAttribute(AgilityFocus, "Agility");
-        setAttribute(SpeedFocus, "Speed");
+        EnduranceFocus = setAttribute("Endurance");
+        AgilityFocus = setAttribute( "Agility");
+        SpeedFocus = setAttribute( "Speed");
     }
 
     public String toString() {
-        return workout + "\n\n" + "Workout attributes:" + "\n Endurance Focus: " + EnduranceFocus
-                + "\n Agility Focus: " + AgilityFocus + "\n SpeedFocus: " + SpeedFocus;
+        return workout + "\n\n" + "Workout attributes:" + "\nEndurance Focus: " + EnduranceFocus
+                + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
     }
 
 }

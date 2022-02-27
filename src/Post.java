@@ -14,7 +14,7 @@ public class Post {
     public void addWorkout() {
         Workout w;
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter what type of workout you want to add (Cardio or Strength");
+        System.out.println("Please enter what type of workout you want to add (Cardio or Strength)");
         String type = scan.next();
         if (type.equals("Cardio"))
             w = new Cardio();
@@ -26,14 +26,13 @@ public class Post {
         workout = w;
     }
 
-    public String addCaption() {
+    public void addCaption() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter your caption for the post");
-        String caption = scan.next();
-        return "";
+        caption = scan.nextLine();
     }
 
     public String toString() {
-        return workout.toString() + "\n\n" + caption;
+        return "\nWorkout: " + workout.toString() + "\n\n" + caption;
     }
 }
