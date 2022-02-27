@@ -25,9 +25,9 @@ public class Post {
         System.out.println("Please enter what type of workout you want to add (Cardio or Strength)");
         String type = scan.next();
         while(w == null) {
-            if (type.equalsIgnoreCase("CARDIO"))
+            if (type.equalsIgnoreCase("cardio"))
                 w = new Cardio();
-            else if (type.equalsIgnoreCase("STRENGTH"))
+            else if (type.equalsIgnoreCase("strength"))
                 w = new Strength();
             else {
                 System.out.println("Please enter an acceptable workout type (Cardio or Strength");
@@ -36,8 +36,9 @@ public class Post {
         }
 
         w.createWorkout();
-        w.setAllAttributes();
-        workout = w;
+        w.setGeneralAttributes();
+        w.setSpecificAttributes();
+        this.workout = w;
 
         this.WRKnum = 1;
 
@@ -48,6 +49,7 @@ public class Post {
             System.out.println("This post already has a caption");
             return;
         }
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter your caption for the post");
         this.caption = scan.nextLine();

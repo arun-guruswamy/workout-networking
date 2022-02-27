@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class Strength extends Workout {
     boolean UpperBodyFocus;
@@ -6,7 +5,9 @@ public class Strength extends Workout {
     boolean FullBodyFocus;
     boolean BodyWeightFocus;
 
-    public void setAllAttributes() {
+    Strength() {}
+
+    public void setSpecificAttributes() {
         UpperBodyFocus = setAttribute( "Upper Body");
         LowerBodyFocus = setAttribute( "Lower Body");
         FullBodyFocus = setAttribute( "Full Body");

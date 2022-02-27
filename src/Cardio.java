@@ -1,11 +1,12 @@
-import java.util.*;
 
 public class Cardio extends Workout {
     boolean EnduranceFocus;
     boolean AgilityFocus;
     boolean SpeedFocus;
 
-    public void setAllAttributes() {
+    public Cardio() {}
+
+    public void setSpecificAttributes() {
         EnduranceFocus = setAttribute("Endurance");
         AgilityFocus = setAttribute( "Agility");
         SpeedFocus = setAttribute( "Speed");
