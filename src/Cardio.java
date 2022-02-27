@@ -13,7 +13,7 @@ public class Cardio extends Workout {
     }
 
     public String toString() {
-        return workout + "\n\n" + "Workout attributes: " + this.length + ", " + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
+        return workout + "\n\n" + "Length: " + this.length + ", Difficulty" + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
                 + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
     }
 

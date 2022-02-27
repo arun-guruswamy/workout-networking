@@ -7,7 +7,7 @@ public class Controller {
         System.out.println("Do you want to view or post workouts? (view or post)");
         String choice = scan.next();
 
-        if (choice.equals("post")) {
+        if (choice.equalsIgnoreCase("post")) {
             Post p = new Post();
             p.addWorkout();
             p.addCaption();

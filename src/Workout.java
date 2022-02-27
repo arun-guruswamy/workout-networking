@@ -42,7 +42,7 @@ public abstract class Workout {
         Scanner scan = new Scanner(System.in);
         System.out.println("Is your workout focused on " + name + "? (yes or no)");
         String a = scan.next();
-        if (a.equals("yes"))
+        if (a.equalsIgnoreCase("yes"))
             attribute = true;
         return attribute;
     }
