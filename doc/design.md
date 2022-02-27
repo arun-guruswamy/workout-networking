@@ -78,6 +78,7 @@ participant "list : List" as list
 lurker -> ui : search(date, type, length, difficulty) 
 ui -> search : filterList(date, type, length, difficulty) 
 search -->> list :  list = createList(date, type, length, difficulty)
+list -> lurker : displayList(workout)
 @enduml
 ```
 ### Seeing a list 
