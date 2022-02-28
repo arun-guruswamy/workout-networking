@@ -15,7 +15,7 @@ public class Strength extends Workout {
     }
 
     public String toString() {
-        return workout + "\n\n" + "Length:" + this.length + ", Difficulty: " + this.difficulty + "\n UpperBody Focus: " + UpperBodyFocus
+        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + "\n UpperBody Focus: " + UpperBodyFocus
                 + "\n LowerBody Focus: " + LowerBodyFocus + "\n FullBodyFocus: " + FullBodyFocus
                 + "\n BodyWeight Focus: " + BodyWeightFocus;
     }

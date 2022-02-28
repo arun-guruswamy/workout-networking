@@ -1,18 +1,22 @@
 import java.util.Stack;
 
 public class Feed {
-    Stack<Post> feed = new Stack<Post>();
-    Stack<Post> filteredFeed = new Stack<Post>();
+    Stack<Post> feed;
+    Stack<Post> filteredFeed = new Stack<>();
 
-    public Feed() {}
+    public Feed() {
+        feed = new Stack<>();
+    }
 
     public String toString() {
         String res = "";
 
-        for(int i= 0; i < feed.size(); i++) {
-            res += feed.get(i).toString() + "\n\n";
+        for (Post post : feed) {
+            res += post.toString() + "\n\n";
         }
 
         return res;
     }
+
+
 }
