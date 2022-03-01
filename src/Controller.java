@@ -1,40 +1,36 @@
-import java.util.*;
-
 public class Controller {
 
     Controller() {}
 
     public static void main(String[] args) {
         Feed f = new Feed();
-        System.out.println("Welcome to the ultimate Social Workout App!!");
-        Scanner scan = new Scanner(System.in);
+        UI ui = new UI();
+        ui.intro();
         while (true) {
-            System.out.println("Do you want to view or post workouts? (view or post)");
-            String choice = scan.next();
+            String choice = ui.action();
 
             if (choice.equalsIgnoreCase("post")) {
-                f = addPost(f);
+                f = addPost(f, ui);
             } else if (choice.equalsIgnoreCase("view")) {
-                displayPosts(f);
+                displayPosts(f, ui);
             }
             else if (choice.equalsIgnoreCase("quit")) {
-                System.out.println("Bye!");
+                ui.outro();
                 break;
             }
-            // Need to flesh out view aspect through feed class
         }
     }
 
-    static Feed addPost(Feed f) {
+    static Feed addPost(Feed f, UI ui) {
         Post p = new Post();
         p.addWorkout();
         p.addCaption();
         f.feed.push(p);
-        System.out.println("Post successfully added\n");
+        ui.successfulPost();
         return f;
     }
 
-    static void displayPosts(Feed f) {
-        System.out.println(f);
+    static void displayPosts(Feed f, UI ui) {
+     ui.showFeed(f);
     }
 }
