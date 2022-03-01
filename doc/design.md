@@ -60,7 +60,7 @@ deactivate Post
 workout -> Post : AddWorkout()
 activate workout
 deactivate workout
-producer <- Post : getPostInfo()
+producer <- Post : toString()
 activate Post
 deactivate Post
 @enduml
@@ -72,27 +72,27 @@ deactivate Post
 hide footbox
 actor Lurker as lurker
 participant "UI" as ui
-participant "SearchFilter" as search
-participant "list : List" as list 
+participant "Filter" as filter
+participant "feed : Feed" as feed 
 
-lurker -> ui : search(date, type, length, difficulty) 
-ui -> search : filterList(date, type, length, difficulty) 
-search -->> list :  list = createList(date, type, length, difficulty)
-list -> lurker : displayList(workout)
+lurker -> ui : Filter(date, type, length, difficulty) 
+ui -> filter : filterList(date, type, length, difficulty) 
+filter -->> feed : filteredFeed(date, type, length, difficulty)
+feed -> lurker : toString(workout)
 @enduml
 ```
-### Seeing a list 
+### Seeing the Feed 
 ```plantuml 
 @startuml
 hide footbox
-participant "list : List" as list 
+participant "feed : Feed" as feed
 participant "UI" as ui
 actor "User" as user 
 
 
-[o-> list : list = createList(date, type, length, difficulty) 
-list -> ui : displayList(list)
-ui -> user : displayList(list)
+[o-> feed : feed = createList(date, type, length, difficulty) 
+feed -> ui : toString()
+ui -> user : toString()
 
 @enduml
 ```

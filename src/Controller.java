@@ -21,7 +21,6 @@ public class Controller {
                 System.out.println("Bye!");
                 break;
             }
-            // Need to flesh out view aspect through feed class
         }
     }
 
@@ -37,4 +36,6 @@ public class Controller {
     static void displayPosts(Feed f) {
         System.out.println(f);
     }
+
+
 }

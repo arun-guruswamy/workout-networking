@@ -1,6 +1,6 @@
 ### High Priority Tasks
 - Posting Text Content - Important to initiate workout sharing and community development
-- Access feed - Allow workouts content to be seen
+- Access feed - Allow workouts content to be seen and apply basic filter
 
 ### Medium Priority Tasks
 - Posting multimedia content - Complex but necessary for actual workout sharing

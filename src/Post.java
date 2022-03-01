@@ -10,7 +10,7 @@ public class Post {
     Workout workout;
 
     public Post() {
-        this.prod_id = "test";
+        this.prod_id = "Prod_ID here";
         WRKnum = 0;
     }
 
