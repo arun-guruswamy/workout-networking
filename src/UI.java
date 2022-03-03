@@ -67,4 +67,31 @@ public class UI {
         System.out.println("Please enter your caption for the post");
         return scan.next();
     }
+
+    String workoutDescription() {
+        System.out.println("Please Enter a description for the workout");
+        scan.nextLine();
+        String description = scan.nextLine();
+        return description;
+    }
+
+    String getWorkoutLength() {
+        System.out.println("How long is your workout? (Enter as a number in the format: 000 " +
+                "with the first digit being hours and the last two digits minutes)");
+        return scan.next();
+    }
+
+    void lengthInputError() {
+        System.out.println("Please enter a valid length");
+    }
+
+    String getWorkoutDifficulty() {
+        System.out.println("How do you rate the difficulty of this workout? (A number from 1 to 5)");
+            return scan.next();
+        }
+
+    void difficultyInputError() {
+        System.out.println("Please enter a valid difficulty");
+    }
+
 }

@@ -1,10 +1,6 @@
-import java.util.*;
-
 public class Post {
-    String prod_id;
+    private String prod_id;
     String caption;
-    static int workout_limit = 1;
-    static int caption_limit = 1;
     int WRKnum;
     int CAPnum;
     Workout workout;
@@ -15,7 +11,7 @@ public class Post {
         CAPnum = 0;
     }
 
-    public void addWorkout(String type) {
+    public Workout addWorkout(String type) {
         Workout w;
 
             if (type.equalsIgnoreCase("cardio"))
@@ -23,17 +19,29 @@ public class Post {
             else
                 w = new Strength();
 
-        w.createWorkout();
-        w.setGeneralAttributes();
         w.setSpecificAttributes();
         this.workout = w;
 
         this.WRKnum = 1;
+
+        return w;
     }
 
     public void addCaption(String caption) {
         this.caption = caption;
         this.CAPnum = 1;
+    }
+
+    void addWorkoutDescription(Workout w, String description) {
+        w.createWorkout(description);
+    }
+
+    void addWorkoutLength(Workout w, int length) {
+        w.setLength(length);
+    }
+
+    void addWorkoutDifficulty(Workout w, int difficulty) {
+        w.setDifficulty(difficulty);
     }
 
     public String toString() {

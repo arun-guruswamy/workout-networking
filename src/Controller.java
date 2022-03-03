@@ -37,7 +37,35 @@ public class Controller {
                 String type = ui.askWorkoutType();
                 while (true) {
                     if (type.equalsIgnoreCase("cardio") || type.equalsIgnoreCase("Strength")) {
-                        p.addWorkout(type);
+                       Workout w = p.addWorkout(type);
+                       String description = ui.workoutDescription();
+                       p.addWorkoutDescription(w, description);
+
+                       while (true) {
+                           String length = ui.getWorkoutLength();
+                           try {
+                               int l = Integer.parseInt(length);
+                               p.addWorkoutLength(w, l);
+                               break;
+                           }
+                           catch(NumberFormatException e) {
+                               ui.lengthInputError();
+                           }
+
+                       }
+                        while(true) {
+                            String difficulty = ui.getWorkoutDifficulty();
+
+                            try {
+                                int d = Integer.parseInt(difficulty);
+                                p.addWorkoutDifficulty(w, d);
+                                break;
+                            } catch (NumberFormatException e) {
+                                ui.difficultyInputError();
+                            }
+                        }
+
+
                         ui.successfulWorkout();
                         break;
 
@@ -49,8 +77,10 @@ public class Controller {
                 continue;
 
             } else if (action.equalsIgnoreCase("caption")) {
-                if (p.CAPnum == 1)
+                if (p.CAPnum == 1) {
                     ui.captionLimitWarning();
+                    continue;
+                }
 
                 String caption = ui.askCaption();
                 p.addCaption(caption);
