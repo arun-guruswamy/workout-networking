@@ -1,8 +1,8 @@
 
 public class Cardio extends Workout {
-    boolean EnduranceFocus = false;
-    boolean AgilityFocus = false;
-    boolean SpeedFocus = false;
+    private boolean EnduranceFocus = false;
+    private boolean AgilityFocus = false;
+    private boolean SpeedFocus = false;
 
     public Cardio() {}
 

@@ -1,12 +1,10 @@
-import java.util.Scanner;
-
 public abstract class Workout {
-    int length;
-    int difficulty;
-    String workout;
+    protected int length;
+    protected int difficulty;
+    protected String workout;
 
     public void createWorkout(String description) {
-        workout = description;
+        this.workout = description;
     }
 
     public void setLength(int length) {

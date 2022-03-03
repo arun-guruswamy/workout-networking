@@ -29,7 +29,7 @@ public class Controller {
 
             if (action.equalsIgnoreCase("workout")) {
 
-                if (p.WRKnum == 1) {
+                if (p.getWRKnum() == 1) {
                     ui.workoutLimitWarning();
                     continue;
                 }
@@ -78,7 +78,7 @@ public class Controller {
                 continue;
 
             } else if (action.equalsIgnoreCase("caption")) {
-                if (p.CAPnum == 1) {
+                if (p.getCAPnum() == 1) {
                     ui.captionLimitWarning();
                     continue;
                 }

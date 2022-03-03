@@ -1,9 +1,9 @@
 public class Post {
     private String prod_id;
-    String caption;
-    int WRKnum;
-    int CAPnum;
-    Workout workout;
+    private String caption;
+    private int WRKnum;
+    private int CAPnum;
+    private Workout workout;
 
     public Post() {
         this.prod_id = "test";
@@ -44,5 +44,13 @@ public class Post {
 
     public String toString() {
         return "\n" + this.prod_id + "\nWorkout: " + workout + "\n\n" + caption;
+    }
+
+    public int getCAPnum() {
+        return CAPnum;
+    }
+
+    public int getWRKnum() {
+        return WRKnum;
     }
 }

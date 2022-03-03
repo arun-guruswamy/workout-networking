@@ -1,9 +1,9 @@
 
 public class Strength extends Workout {
-    boolean UpperBodyFocus;
-    boolean LowerBodyFocus;
-    boolean FullBodyFocus;
-    boolean BodyWeightFocus;
+    private boolean UpperBodyFocus;
+    private boolean LowerBodyFocus;
+    private boolean FullBodyFocus;
+    private boolean BodyWeightFocus;
 
     Strength() {}
 
