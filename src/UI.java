@@ -28,7 +28,35 @@ public class UI {
         System.out.println(f);
     }
 
-    void addPost() {
+    String askWorkoutType() {
+        System.out.println("Please enter what type of workout you want to add (Cardio or Strength)");
+        return scan.next();
 
+    }
+
+    void workoutLimitWarning() {
+        System.out.println("This post already has a workout added");
+    }
+
+    void captionLimitWarning() {
+
+    }
+
+    void typeWarning() {
+        System.out.println("Please enter a valid type of workout(Cardio or Strength)");
+    }
+
+    void successfulWorkout(){
+        System.out.println("Workout successfully added");
+    }
+
+    String postOptions() {
+        System.out.println("Do you want to add a workout(workout) or add a caption (caption)? \n\t Enter \"view" +
+                "done\" when post is ready");
+        return scan.next();
+    }
+
+    void postOptionWarning() {
+        System.out.println("Specify a valid action for a post");
     }
 }

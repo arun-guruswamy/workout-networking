@@ -12,28 +12,16 @@ public class Post {
     public Post() {
         this.prod_id = "test";
         WRKnum = 0;
+        CAPnum = 0;
     }
 
-    public void addWorkout() {
-        if(WRKnum == workout_limit) {
-            System.out.println("This post already has a workout added");
-            return;
-        }
+    public void addWorkout(String type) {
+        Workout w;
 
-        Workout w = null;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter what type of workout you want to add (Cardio or Strength)");
-        String type = scan.next();
-        while(w == null) {
             if (type.equalsIgnoreCase("cardio"))
                 w = new Cardio();
-            else if (type.equalsIgnoreCase("strength"))
+            else
                 w = new Strength();
-            else {
-                System.out.println("Please enter an acceptable workout type (Cardio or Strength");
-                type = scan.next();
-            }
-        }
 
         w.createWorkout();
         w.setGeneralAttributes();
@@ -41,7 +29,6 @@ public class Post {
         this.workout = w;
 
         this.WRKnum = 1;
-
     }
 
     public void addCaption() {

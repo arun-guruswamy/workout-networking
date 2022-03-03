@@ -10,7 +10,7 @@ public class Controller {
             String choice = ui.action();
 
             if (choice.equalsIgnoreCase("post")) {
-                f = addPost(f, ui);
+                addPost(f, ui);
             } else if (choice.equalsIgnoreCase("view")) {
                 displayPosts(f, ui);
             }
@@ -21,13 +21,44 @@ public class Controller {
         }
     }
 
-    static Feed addPost(Feed f, UI ui) {
+    static void addPost(Feed f, UI ui) {
         Post p = new Post();
-        p.addWorkout();
-        p.addCaption();
-        f.feed.push(p);
-        ui.successfulPost();
-        return f;
+
+        while (true) {
+            String action = ui.postOptions();
+
+            if (action.equalsIgnoreCase("workout")) {
+
+                if (p.WRKnum == 1) {
+                    ui.workoutLimitWarning();
+                    continue;
+                }
+
+                String type = ui.askWorkoutType();
+                while (true) {
+                    if (type.equalsIgnoreCase("cardio") || type.equalsIgnoreCase("Strength")) {
+                        p.addWorkout(type);
+                        ui.successfulWorkout();
+                        break;
+
+                    } else {
+                        ui.typeWarning();
+                        type = ui.askWorkoutType();
+                    }
+                }
+                continue;
+            } else if (action.equalsIgnoreCase("caption")) {
+                p.addCaption();
+                continue;
+            } else if (action.equalsIgnoreCase("done")) {
+                f.feed.push(p);
+                ui.successfulPost();
+                break;
+            } else {
+                ui.postOptionWarning();
+                continue;
+            }
+        }
     }
 
     static void displayPosts(Feed f, UI ui) {
