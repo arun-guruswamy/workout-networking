@@ -3,7 +3,7 @@ public class Post {
     private String caption;
     private int WRKnum;
     private int CAPnum;
-    private Workout workout;
+    public Workout workout;
 
     public Post() {
         this.prod_id = "Prod_ID here";

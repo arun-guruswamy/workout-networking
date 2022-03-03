@@ -1,7 +1,7 @@
-import java.util.Stack;
+import java.util.ArrayList;
 
 public interface Filter {
-    public Stack<Post> filter(Feed f, int predicate);
+    public ArrayList<Post> filter(Feed f, int predicate);
 //    public static void filter(Feed f) {
 //        Scanner scan = new Scanner(System.in);
 //        System.out.println("Would you like to apply any filters to your feed? (yes or no)");

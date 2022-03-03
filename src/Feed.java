@@ -1,11 +1,11 @@
-import java.util.Stack;
+import java.util.ArrayList;
 
 public class Feed {
-    Stack<Post> feed;
-    Stack<Post> filteredFeed = new Stack<>();
+    ArrayList<Post> feed;
+    ArrayList<Post> filteredFeed = new ArrayList<>();
 
     public Feed() {
-        feed = new Stack<>();
+        feed = new ArrayList<>();
     }
 
     public String toString() {

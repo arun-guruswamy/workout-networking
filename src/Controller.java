@@ -88,7 +88,7 @@ public class Controller {
                 continue;
 
             } else if (action.equalsIgnoreCase("done")) {
-                f.feed.push(p);
+                f.feed.add(p);
                 ui.successfulPost();
                 break;
 
