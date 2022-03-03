@@ -51,7 +51,7 @@ public class UI {
     }
 
     String postOptions() {
-        System.out.println("Do you want to add a workout(workout) or add a caption (caption)? \n\t Enter \"done\" when post is ready");
+        System.out.println("Do you want to add a workout (workout) or add a caption (caption)? \n\t Enter \"done\" when post is ready");
         return scan.next();
     }
 
@@ -71,8 +71,7 @@ public class UI {
     String workoutDescription() {
         System.out.println("Please Enter a description for the workout");
         scan.nextLine();
-        String description = scan.nextLine();
-        return description;
+        return scan.nextLine();
     }
 
     String getWorkoutLength() {
@@ -93,5 +92,20 @@ public class UI {
     void difficultyInputError() {
         System.out.println("Please enter a valid difficulty");
     }
+
+    String askSpecificAttributeCardio() {
+        System.out.println("Which focus do you want to set? (Endurance, Agility, Speed) \n Type \"done\" when done setting attributes");
+        return scan.next();
+    }
+
+    String askSpecificAttributeStrength() {
+        System.out.println("Which focus do you want to set? (Upper, Lower, Full, Body)");
+        return scan.next();
+    }
+
+    void atrWarning() {
+        System.out.println("Pick a valid type of attribute");
+    }
+
 
 }

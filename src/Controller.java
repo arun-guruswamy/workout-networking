@@ -38,6 +38,7 @@ public class Controller {
                 while (true) {
                     if (type.equalsIgnoreCase("cardio") || type.equalsIgnoreCase("Strength")) {
                        Workout w = p.addWorkout(type);
+
                        String description = ui.workoutDescription();
                        p.addWorkoutDescription(w, description);
 
@@ -64,7 +65,7 @@ public class Controller {
                                 ui.difficultyInputError();
                             }
                         }
-
+                        addSpecificAttributes(w, ui);
 
                         ui.successfulWorkout();
                         break;
@@ -106,4 +107,51 @@ public class Controller {
 
      ui.showFeed(f);
     }
-}
+
+    static void addSpecificAttributes(Workout w, UI ui) {
+        if (w instanceof Cardio) {
+            while (true) {
+                String cardioATR = ui.askSpecificAttributeCardio();
+                if (cardioATR.equalsIgnoreCase("endurance")) {
+                    ((Cardio) w).setEnduranceFocus(true);
+                } else if (cardioATR.equalsIgnoreCase("agility")) {
+                    ((Cardio) w).setAgilityFocus(true);
+                } else if (cardioATR.equalsIgnoreCase("speed")) {
+                    ((Cardio) w).setSpeedFocus(true);
+                }
+                else if (cardioATR.equalsIgnoreCase("done")) {
+                    break;
+                }
+                else {
+                    ui.atrWarning();
+                }
+            }
+        }
+        else {
+            while (true) {
+                String strengthATR = ui.askSpecificAttributeStrength();
+                if (strengthATR.equalsIgnoreCase("Upper")) {
+                    ((Strength) w).setUpperBodyFocus(true);
+                } else if (strengthATR.equalsIgnoreCase("lower")) {
+                    ((Strength) w).setLowerBodyFocus(true);
+                } else if (strengthATR.equalsIgnoreCase("full")) {
+                    ((Strength) w).setBodyWeightFocus(true);
+                }
+                else if (strengthATR.equalsIgnoreCase("body")) {
+                    ((Strength) w).setBodyWeightFocus(true);
+                }
+                else if (strengthATR.equalsIgnoreCase("done")) {
+                    break;
+                }
+                else {
+                    ui.atrWarning();
+                }
+            }
+        }
+
+    }
+    }
+
+
+
+

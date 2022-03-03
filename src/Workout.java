@@ -17,17 +17,15 @@ public abstract class Workout {
         this.difficulty = difficulty;
     }
 
-    public boolean setAttribute(String name) {
-        boolean attribute = false;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Is your workout focused on " + name + "? (yes or no)");
-        String a = scan.next();
-        if (a.equalsIgnoreCase("yes"))
-            attribute = true;
-        return attribute;
-    }
+   // public boolean setAttribute(String name) {
+     //  boolean attribute = false;
+       // String a = scan.next();
+        //if (a.equalsIgnoreCase("yes"))
+          //  attribute = true;
+        //return attribute;
+    //}
 
-    abstract void setSpecificAttributes();
+   // abstract void setSpecificAttributes();
 
     abstract public String toString();
 }

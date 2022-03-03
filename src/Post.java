@@ -18,10 +18,7 @@ public class Post {
                 w = new Cardio();
             else
                 w = new Strength();
-
-        w.setSpecificAttributes();
         this.workout = w;
-
         this.WRKnum = 1;
 
         return w;
@@ -43,6 +40,7 @@ public class Post {
     void addWorkoutDifficulty(Workout w, int difficulty) {
         w.setDifficulty(difficulty);
     }
+
 
     public String toString() {
         return "\n" + this.prod_id + "\nWorkout: " + workout + "\n\n" + caption;

@@ -7,11 +7,20 @@ public class Strength extends Workout {
 
     Strength() {}
 
-    public void setSpecificAttributes() {
-        UpperBodyFocus = setAttribute( "Upper Body");
-        LowerBodyFocus = setAttribute( "Lower Body");
-        FullBodyFocus = setAttribute( "Full Body");
-        BodyWeightFocus = setAttribute( "Body weight exercises");
+    public void setBodyWeightFocus(boolean bodyWeightFocus) {
+        BodyWeightFocus = bodyWeightFocus;
+    }
+
+    public void setFullBodyFocus(boolean fullBodyFocus) {
+        FullBodyFocus = fullBodyFocus;
+    }
+
+    public void setLowerBodyFocus(boolean lowerBodyFocus) {
+        LowerBodyFocus = lowerBodyFocus;
+    }
+
+    public void setUpperBodyFocus(boolean upperBodyFocus) {
+        UpperBodyFocus = upperBodyFocus;
     }
 
     public String toString() {
