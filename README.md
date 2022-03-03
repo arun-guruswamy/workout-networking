@@ -2,7 +2,7 @@
 
 Questions to ask:
 
-Correctness Sequence diagrams
-UI class content
-Filter class vs method 
-privacy
+- Correctness class/Sequence diagrams
+- UI class content
+- Filter classes vs method
+- privacy keywords
