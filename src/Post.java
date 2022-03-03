@@ -31,19 +31,12 @@ public class Post {
         this.WRKnum = 1;
     }
 
-    public void addCaption() {
-        if(caption_limit == CAPnum) {
-            System.out.println("This post already has a caption");
-            return;
-        }
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter your caption for the post");
-        this.caption = scan.nextLine();
+    public void addCaption(String caption) {
+        this.caption = caption;
         this.CAPnum = 1;
     }
 
     public String toString() {
-        return "\n" + this.prod_id + "\nWorkout: " + workout.toString() + "\n\n" + caption;
+        return "\n" + this.prod_id + "\nWorkout: " + workout + "\n\n" + caption;
     }
 }

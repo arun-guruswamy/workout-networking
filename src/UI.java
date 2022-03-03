@@ -39,7 +39,7 @@ public class UI {
     }
 
     void captionLimitWarning() {
-
+        System.out.println("This post already has a caption");
     }
 
     void typeWarning() {
@@ -51,12 +51,20 @@ public class UI {
     }
 
     String postOptions() {
-        System.out.println("Do you want to add a workout(workout) or add a caption (caption)? \n\t Enter \"view" +
-                "done\" when post is ready");
+        System.out.println("Do you want to add a workout(workout) or add a caption (caption)? \n\t Enter \"done\" when post is ready");
         return scan.next();
     }
 
     void postOptionWarning() {
         System.out.println("Specify a valid action for a post");
+    }
+
+    void emptyFeed() {
+        System.out.println("There are no posts");
+    }
+
+    String askCaption() {
+        System.out.println("Please enter your caption for the post");
+        return scan.next();
     }
 }

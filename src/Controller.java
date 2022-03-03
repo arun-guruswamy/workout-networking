@@ -47,13 +47,20 @@ public class Controller {
                     }
                 }
                 continue;
+
             } else if (action.equalsIgnoreCase("caption")) {
-                p.addCaption();
+                if (p.CAPnum == 1)
+                    ui.captionLimitWarning();
+
+                String caption = ui.askCaption();
+                p.addCaption(caption);
                 continue;
+
             } else if (action.equalsIgnoreCase("done")) {
                 f.feed.push(p);
                 ui.successfulPost();
                 break;
+
             } else {
                 ui.postOptionWarning();
                 continue;
@@ -62,6 +69,11 @@ public class Controller {
     }
 
     static void displayPosts(Feed f, UI ui) {
+
+        if(f.feed.size() == 0){
+            ui.emptyFeed();
+        }
+
      ui.showFeed(f);
     }
 }
