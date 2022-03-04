@@ -95,7 +95,7 @@ public class Controller {
                 } else if (cardioATR.equalsIgnoreCase("speed")) {
                     ((Cardio) w).setSpeedFocus(true);
                 }
-                else if (cardioATR.equalsIgnoreCase("done")) {
+                else  {
                     break;
                 }
             }
