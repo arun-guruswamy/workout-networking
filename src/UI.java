@@ -72,7 +72,7 @@ public class UI {
                 return option;
             }
             else {
-                System.out.println("Pick a valid option for the post (workout, caption, done");
+                System.out.println("Pick a valid option for the post (workout, caption, done)");
             }
         }
 
@@ -84,7 +84,8 @@ public class UI {
 
     String askCaption() {
         System.out.println("Please enter your caption for the post");
-        return scan.next();
+        scan.nextLine();
+        return scan.nextLine();
     }
 
     void successfulCaption() {
@@ -103,7 +104,8 @@ public class UI {
         while (true) {
             try {
                 int l = Integer.parseInt(scan.next());
-                if (l > 999 || l < 0) {
+                if (l > 999 || l < 1) {
+                    System.out.println("Enter a valid length");
                     continue;
                 }
                 return l;
@@ -120,7 +122,8 @@ public class UI {
         while(true) {
             try {
                 int d = Integer.parseInt(scan.next());
-                if (d > 5 || d < 0){
+                if (d > 5 || d < 1){
+                    System.out.println("Enter a valid difficulty (A number between 1 and 5)");
                     continue;
                 }
                 return d;
