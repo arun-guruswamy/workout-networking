@@ -51,16 +51,20 @@ SearchFilter "1" - "1" List : \tCreates\t\t
 @startuml
 hide footbox
 actor Producer as producer
+participant ": UI" as ui 
+participant ": Controller" as controller 
 participant ": Post" as Post
 participant ": Workout" as workout
 
-producer -> Post : createPost(caption, type, length, difficulty)
+producer -> ui : create 
+ui -> controller : getPostInfo()
+controller -> Post : createPost(caption, type, length, difficulty)
 activate Post
 deactivate Post
 workout -> Post : AddWorkout()
 activate workout
 deactivate workout
-producer <- Post : toString()
+ui <- Post : toString()
 activate Post
 deactivate Post
 @enduml
@@ -72,12 +76,14 @@ deactivate Post
 hide footbox
 actor Lurker as lurker
 participant "UI" as ui
+participant "Controller" as controller 
 participant "Filter" as filter
 participant "feed : Feed" as feed 
 
-lurker -> ui : Filter(date, type, length, difficulty) 
-ui -> filter : filterList(date, type, length, difficulty) 
-filter -->> feed : filteredFeed(date, type, length, difficulty)
+lurker -> ui : getFilterCond(length, difficulty) 
+ui -> controller: filterList(length, difficulty) 
+controller -> filter : filter()
+filter <<-- feed : filteredFeed(length, difficulty)
 feed -> lurker : toString(workout)
 @enduml
 ```
@@ -85,14 +91,16 @@ feed -> lurker : toString(workout)
 ```plantuml 
 @startuml
 hide footbox
+actor "User" as user 
+participant "Post" as post
 participant "feed : Feed" as feed
 participant "UI" as ui
-actor "User" as user 
 
 
-[o-> feed : feed = createList(date, type, length, difficulty) 
+
+post -> feed : toString()
 feed -> ui : toString()
-ui -> user : toString()
+ui -> user : displayFeed()
 
 @enduml
 ```
@@ -107,16 +115,16 @@ class Post {
 -String producer_ID
 -String Caption
 -{Static} int WRK_Limit
-{method} -addWorkout(type) 
-{method} -addCaption()
+{method} +addWorkout(type) 
+{method} +addCaption()
 {method} +toString() : String
 }
 
 abstract class Workout {
--int length 
--int difficulty 
--String Description
-{method} {abstract} -createWorkout()
+#int length 
+#int difficulty 
+#String Description
+{method} {abstract} +createWorkout()
 }
 
 class CardioWorkout {
@@ -149,11 +157,15 @@ class Controller {
 -showPost()
 }
 
+class UI {
+}
+
 Feed *-"(1..*) Posts \n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
 Post -> "1 (workout)" Workout : \t\t\t
 Workout <|-- CardioWorkout
 Workout <|-- StrengthWorkout
 Controller -- Post 
 Controller -- Feed
+UI -- Controller
 @enduml
 ```
