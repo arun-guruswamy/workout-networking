@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Controller {
 
     Controller() {}
@@ -12,6 +14,18 @@ public class Controller {
             if (choice.equalsIgnoreCase("post")) {
                 addPost(f, ui);
             } else if (choice.equalsIgnoreCase("view")) {
+                f.filteredFeed = f.feed;
+                Scanner scan1 = new Scanner(System.in);
+                System.out.println("What is your preferred difficulty (1 to 5, 0 if no preference)");
+                int d = scan1.nextInt();
+                //Scanner scan2 = new Scanner(System.in);
+//                System.out.println("What is your preferred length for the workout (000 (Hour and minutes), 000 if no preference");
+//                int l = scan2.nextInt();
+//                Length len = new Length(l);
+                Difficulty dif = new Difficulty(d, f);
+                //len.filter(f);
+                f.filteredFeed = dif.filter();
+                f.feed = f.filteredFeed;
                 displayPosts(f, ui);
             }
             else if (choice.equalsIgnoreCase("quit")) {

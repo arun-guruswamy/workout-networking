@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
 public interface Filter {
-    public ArrayList<Post> filter(Feed f, int predicate);
+    public ArrayList<Post> filter();
+
+    //Make constructor for each subclass that sets attributes
+
 //    public static void filter(Feed f) {
 //        Scanner scan = new Scanner(System.in);
 //        System.out.println("Would you like to apply any filters to your feed? (yes or no)");

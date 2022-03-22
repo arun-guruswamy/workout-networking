@@ -51,16 +51,21 @@ SearchFilter "1" - "1" List : \tCreates\t\t
 @startuml
 hide footbox
 actor Producer as producer
+participant ": UI" as ui
+participant ": Controller" as controller
 participant ": Post" as Post
 participant ": Workout" as workout
 
-producer -> Post : createPost(caption, type, length, difficulty)
+
+producer -> ui : create
+ui -> controller : getPostinfo()
+controller -> Post : createPost(caption, type, length, difficulty)
 activate Post
 deactivate Post
 workout -> Post : AddWorkout()
 activate workout
 deactivate workout
-producer <- Post : toString()
+ui <- Post : toString()
 activate Post
 deactivate Post
 @enduml
@@ -72,12 +77,14 @@ deactivate Post
 hide footbox
 actor Lurker as lurker
 participant "UI" as ui
+participant "Controller " as controller
 participant "Filter" as filter
 participant "feed : Feed" as feed 
 
-lurker -> ui : Filter(date, type, length, difficulty) 
-ui -> filter : filterList(date, type, length, difficulty) 
-filter -->> feed : filteredFeed(date, type, length, difficulty)
+lurker -> ui : getFilterCond(length, difficulty) 
+ui -> controller : filterList(length, difficulty) 
+controller -> filter : filter()
+filter <<-- feed : filteredFeed(length, difficulty)
 feed -> lurker : toString(workout)
 @enduml
 ```
@@ -85,14 +92,13 @@ feed -> lurker : toString(workout)
 ```plantuml 
 @startuml
 hide footbox
-participant "feed : Feed" as feed
-participant "UI" as ui
 actor "User" as user 
+participant "UI" as ui
+participant "feed : Feed" as feed
 
-
-[o-> feed : feed = createList(date, type, length, difficulty) 
+Post -> feed : toString() 
 feed -> ui : toString()
-ui -> user : toString()
+ui -> user : displayFeed()
 
 @enduml
 ```
