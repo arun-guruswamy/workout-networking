@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Controller {
 
     Controller() {}
@@ -8,31 +6,20 @@ public class Controller {
         Feed f = new Feed();
         UI ui = new UI();
         ui.intro();
-        while (true) {
-            String choice = ui.action();
 
-            if (choice.equalsIgnoreCase("post")) {
-                addPost(f, ui);
-            } else if (choice.equalsIgnoreCase("view")) {
-                f.filteredFeed = f.feed;
-                Scanner scan1 = new Scanner(System.in);
-                System.out.println("What is your preferred difficulty (1 to 5, 0 if no preference)");
-                int d = scan1.nextInt();
-                //Scanner scan2 = new Scanner(System.in);
-//                System.out.println("What is your preferred length for the workout (000 (Hour and minutes), 000 if no preference");
-//                int l = scan2.nextInt();
-//                Length len = new Length(l);
-                Difficulty dif = new Difficulty(d, f);
-                //len.filter(f);
-                f.filteredFeed = dif.filter();
-                f.feed = f.filteredFeed;
-                displayPosts(f, ui);
+
+            while (true) {
+                String choice = ui.action();
+                if (choice.equalsIgnoreCase("post")) {
+                    addPost(f, ui);
+                } else if (choice.equalsIgnoreCase("view")) {
+                    displayPosts(f, ui);
+                } else {
+                    ui.outro();
+                    break;
+                }
             }
-            else if (choice.equalsIgnoreCase("quit")) {
-                ui.outro();
-                break;
-            }
-        }
+
     }
 
     static void addPost(Feed f, UI ui) {
@@ -49,46 +36,23 @@ public class Controller {
                 }
 
                 String type = ui.askWorkoutType();
-                while (true) {
-                    if (type.equalsIgnoreCase("cardio") || type.equalsIgnoreCase("Strength")) {
+
                        Workout w = p.addWorkout(type);
 
                        String description = ui.workoutDescription();
                        p.addWorkoutDescription(w, description);
 
-                       while (true) {
-                           String length = ui.getWorkoutLength();
-                           try {
-                               int l = Integer.parseInt(length);
-                               p.addWorkoutLength(w, l);
-                               break;
-                           }
-                           catch(NumberFormatException e) {
-                               ui.lengthInputError();
-                           }
+                        int length = ui.getWorkoutLength();
+                        p.addWorkoutLength(w, length);
 
-                       }
-                        while(true) {
-                            String difficulty = ui.getWorkoutDifficulty();
+                        int difficulty = ui.getWorkoutDifficulty();
+                        p.addWorkoutDifficulty(w, difficulty);
 
-                            try {
-                                int d = Integer.parseInt(difficulty);
-                                p.addWorkoutDifficulty(w, d);
-                                break;
-                            } catch (NumberFormatException e) {
-                                ui.difficultyInputError();
-                            }
-                        }
                         addSpecificAttributes(w, ui);
 
-                        ui.successfulWorkout();
-                        break;
+                ui.successfulWorkout();
 
-                    } else {
-                        ui.typeWarning();
-                        type = ui.askWorkoutType();
-                    }
-                }
+
                 continue;
 
             } else if (action.equalsIgnoreCase("caption")) {
@@ -99,16 +63,14 @@ public class Controller {
 
                 String caption = ui.askCaption();
                 p.addCaption(caption);
+                ui.successfulCaption();
                 continue;
 
-            } else if (action.equalsIgnoreCase("done")) {
+            } else  {
                 f.feed.add(p);
                 ui.successfulPost();
                 break;
 
-            } else {
-                ui.postOptionWarning();
-                continue;
             }
         }
     }
@@ -133,11 +95,8 @@ public class Controller {
                 } else if (cardioATR.equalsIgnoreCase("speed")) {
                     ((Cardio) w).setSpeedFocus(true);
                 }
-                else if (cardioATR.equalsIgnoreCase("done")) {
+                else  {
                     break;
-                }
-                else {
-                    ui.atrWarning();
                 }
             }
         }
@@ -154,11 +113,8 @@ public class Controller {
                 else if (strengthATR.equalsIgnoreCase("body")) {
                     ((Strength) w).setBodyWeightFocus(true);
                 }
-                else if (strengthATR.equalsIgnoreCase("done")) {
-                    break;
-                }
                 else {
-                    ui.atrWarning();
+                    break;
                 }
             }
         }

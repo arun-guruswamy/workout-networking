@@ -11,8 +11,19 @@ public class UI {
     }
 
     String action() {
-        System.out.println("Do you want to view or post workouts? (view or post)");
-        return scan.next();
+        System.out.println("Do you want to view or post workouts? (view or post)" +
+                "\n\t (quit) to exit");
+
+        while(true) {
+            String action = scan.next();
+            if (action.equalsIgnoreCase("view") || action.equalsIgnoreCase("post") || action.equalsIgnoreCase("quit")) {
+                return action;
+            }
+            else {
+                System.out.println("Enter a valid action (post, view, quit)");
+            }
+        }
+
 
     }
 
@@ -30,8 +41,15 @@ public class UI {
 
     String askWorkoutType() {
         System.out.println("Please enter what type of workout you want to add (Cardio or Strength)");
-        return scan.next();
 
+        while (true) {
+            String type =  scan.next();
+            if (type.equalsIgnoreCase("cardio") || type.equalsIgnoreCase("Strength"))
+                return type;
+            else {
+                System.out.println("Please enter a valid type of workout(Cardio or Strength)");
+            }
+        }
     }
 
     void workoutLimitWarning() {
@@ -42,21 +60,22 @@ public class UI {
         System.out.println("This post already has a caption");
     }
 
-    void typeWarning() {
-        System.out.println("Please enter a valid type of workout(Cardio or Strength)");
-    }
-
     void successfulWorkout(){
         System.out.println("Workout successfully added");
     }
 
     String postOptions() {
-        System.out.println("Do you want to add a workout (workout) or add a caption (caption)? \n\t Enter \"done\" when post is ready");
-        return scan.next();
-    }
+        System.out.println("Do you want to add a workout (workout) or add a caption (caption) to your post? \n\t Enter \"done\" when post is ready");
+        while (true) {
+            String option = scan.next();
+            if (option.equalsIgnoreCase("workout") || option.equalsIgnoreCase("caption") || option.equalsIgnoreCase("done")) {
+                return option;
+            }
+            else {
+                System.out.println("Pick a valid option for the post (workout, caption, done)");
+            }
+        }
 
-    void postOptionWarning() {
-        System.out.println("Specify a valid action for a post");
     }
 
     void emptyFeed() {
@@ -65,7 +84,12 @@ public class UI {
 
     String askCaption() {
         System.out.println("Please enter your caption for the post");
-        return scan.next();
+        scan.nextLine();
+        return scan.nextLine();
+    }
+
+    void successfulCaption() {
+        System.out.println("Caption successfully added");
     }
 
     String workoutDescription() {
@@ -74,33 +98,66 @@ public class UI {
         return scan.nextLine();
     }
 
-    String getWorkoutLength() {
+    int getWorkoutLength() {
         System.out.println("How long is your workout? (Enter as a number in the format: 000 " +
                 "with the first digit being hours and the last two digits minutes)");
-        return scan.next();
-    }
+        while (true) {
+            try {
+                int l = Integer.parseInt(scan.next());
+                if (l > 999 || l < 1) {
+                    System.out.println("Enter a valid length");
+                    continue;
+                }
+                return l;
+            }
+            catch(NumberFormatException e) {
+                System.out.println("Please enter a valid length");
+            }
 
-    void lengthInputError() {
-        System.out.println("Please enter a valid length");
-    }
-
-    String getWorkoutDifficulty() {
-        System.out.println("How do you rate the difficulty of this workout? (A number from 1 to 5)");
-            return scan.next();
         }
-
-    void difficultyInputError() {
-        System.out.println("Please enter a valid difficulty");
     }
+
+    int getWorkoutDifficulty() {
+        System.out.println("How do you rate the difficulty of this workout? (A number from 1 to 5)");
+        while(true) {
+            try {
+                int d = Integer.parseInt(scan.next());
+                if (d > 5 || d < 1){
+                    System.out.println("Enter a valid difficulty (A number between 1 and 5)");
+                    continue;
+                }
+                return d;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid difficulty");
+            }
+        }
+        }
 
     String askSpecificAttributeCardio() {
         System.out.println("Which focus do you want to set? (Endurance, Agility, Speed) \n Type \"done\" when done setting attributes");
-        return scan.next();
+
+
+        while (true) {
+            String atr = scan.next();
+            if (atr.equalsIgnoreCase("endurance") || atr.equalsIgnoreCase("agility") || atr.equalsIgnoreCase("speed") || atr.equalsIgnoreCase("done")) {
+                return atr;
+            } else {
+                atrWarning();
+            }
+        }
     }
 
     String askSpecificAttributeStrength() {
-        System.out.println("Which focus do you want to set? (Upper, Lower, Full, Body)");
-        return scan.next();
+        System.out.println("Which focus do you want to set? (Upper, Lower, Full, Body) \n Type \"done\" when done setting attributes");
+
+        while (true) {
+            String atr = scan.next();
+            if (atr.equalsIgnoreCase("upper") || atr.equalsIgnoreCase("lower") || atr.equalsIgnoreCase("full") || atr.equalsIgnoreCase("body") || atr.equalsIgnoreCase("done")) {
+                return atr;
+            } else {
+                atrWarning();
+            }
+        }
     }
 
     void atrWarning() {
