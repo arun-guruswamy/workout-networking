@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WorkoutApp</string>
+    <string name="postButton">Post</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="createPost">Create Post</string>
+    <string name="addWorkoutButton">Add Workout</string>
+    <string name="caption">Add Caption:</string>
+    <string name="captionTextBox">caption</string>
 </resources>
