@@ -37,18 +37,18 @@ public class Controller {
 
                 String type = ui.askWorkoutType();
 
-                       Workout w = p.addWorkout(type);
+                Workout w = p.addWorkout(type);
 
-                       String description = ui.workoutDescription();
-                       p.addWorkoutDescription(w, description);
+                String description = ui.workoutDescription();
+                p.addWorkoutDescription(w, description);
 
-                        int length = ui.getWorkoutLength();
-                        p.addWorkoutLength(w, length);
+                int length = ui.getWorkoutLength();
+                p.addWorkoutLength(w, length);
 
-                        int difficulty = ui.getWorkoutDifficulty();
-                        p.addWorkoutDifficulty(w, difficulty);
+                int difficulty = ui.getWorkoutDifficulty();
+                p.addWorkoutDifficulty(w, difficulty);
 
-                        addSpecificAttributes(w, ui);
+                addSpecificAttributes(w, ui);
 
                 ui.successfulWorkout();
 
