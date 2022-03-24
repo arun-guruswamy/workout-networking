@@ -41,6 +41,8 @@ public class Post {
         w.setDifficulty(difficulty);
     }
 
+    // void addWorkoutSport(Workout w, String s) { w.setSport(s); }
+
 
     public String toString() {
         return "\n" + this.prod_id + "\nWorkout: " + workout + "\n\n" + caption;
