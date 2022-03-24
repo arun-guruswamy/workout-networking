@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Controller {
 
     Controller() {}
@@ -81,7 +83,18 @@ public class Controller {
             ui.emptyFeed();
         }
 
-     ui.showFeed(f);
+//        f.filteredFeed = f.feed;
+//        Scanner scan1 = new Scanner(System.in);
+//        System.out.println("What is your preferred difficulty (1 to 5, 0 if no preference)");
+//        int d = scan1.nextInt();
+//        Difficulty dif = new Difficulty(d, f);
+//        f.filteredFeed = dif.filter();
+//        Scanner scan2 = new Scanner(System.in);
+//        System.out.println("What is your preferred length for the workout (000 (Hour and minutes), 000 if no preference)");
+//        int l = scan2.nextInt();
+//        Length len = new Length(l, f);
+//        f.filteredFeed = dif.filter();
+        ui.showFeed(f);
     }
 
     static void addSpecificAttributes(Workout w, UI ui) {

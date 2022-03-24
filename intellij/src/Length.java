@@ -11,7 +11,7 @@ public class Length implements Filter {
     }
 
     public ArrayList<Post> filter() {
-        filtered.removeIf(post -> post.workout.difficulty != length && length != 0);
+        filtered.removeIf(post -> post.workout.length != length && length != 0);
         return filtered;
     }
 }
