@@ -1,14 +1,16 @@
-package edu.vassar.cmpu203.workoutapp;
+package edu.vassar.cmpu203.workoutapp.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AddWorkout extends AppCompatActivity {
+import edu.vassar.cmpu203.workoutapp.R;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_workout);
+        setContentView(R.layout.activity_main);
     }
 }

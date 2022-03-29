@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp">
         <activity
-            android:name=".AddWorkout"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
