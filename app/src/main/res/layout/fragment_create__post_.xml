@@ -75,8 +75,8 @@
 
         <EditText
             android:id="@+id/postWorkout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="391dp"
+            android:layout_height="133dp"
             android:layout_marginStart="11dp"
             android:layout_marginEnd="11dp"
             android:ems="10"
@@ -84,17 +84,6 @@
             android:minHeight="48dp"
             android:rotationX="0"
             android:text="@string/postWorkout" />
-
-        <EditText
-            android:id="@+id/captionTextBox"
-            android:layout_width="391dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="1dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/captionTextBox" />
 
     </LinearLayout>
 
@@ -106,28 +95,18 @@
         android:layout_marginBottom="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="289dp"
-            android:layout_marginBottom="228dp"
             android:text="@string/caption"
             android:textColor="@color/purple_700"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/captionButton"
-            android:layout_width="159dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="236dp"
-            android:text="@string/captionButton" />
 
         <EditText
             android:id="@+id/postCaption"
@@ -141,6 +120,22 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/postCaption" />
+
+        <EditText
+            android:id="@+id/captionTextBox"
+            android:layout_width="391dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/captionTextBox" />
+
+        <Button
+            android:id="@+id/captionButton"
+            android:layout_width="159dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="236dp"
+            android:text="@string/captionButton" />
 
     </LinearLayout>
 
