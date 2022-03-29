@@ -7,7 +7,6 @@
     <string name="caption">Add Caption:</string>
     <string name="captionTextBox">caption</string>
     <string name="titleWorkout">Add a Workout</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="length_label">Workout Length</string>
     <string name="diff_label">Workout Difficulty</string>
@@ -15,4 +14,6 @@
     <string name="diff_input">1 to 5</string>
     <string name="workout_description">Workout description:</string>
     <string name="input_workout">Describe workout here</string>
+    <string name="profileButton">Profile</string>
+    <string name="feedButton">Feed</string>
 </resources>
