@@ -7,91 +7,141 @@
     android:layout_height="match_parent"
     tools:context=".View.Create_Post_Fragment">
 
+    <Button
+        android:id="@+id/postButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/postButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cancelButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/postButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
     <TextView
         android:id="@+id/createPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="18dp"
         android:fontFamily="sans-serif"
         android:text="@string/createPost"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textColor="@color/purple_700"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="191dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/postButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/cancelButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="301dp"
-        android:text="@string/addWorkoutButton"
+        app:layout_constraintBottom_toTopOf="@+id/workoutLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="256dp"
-        android:layout_marginBottom="363dp"
-        android:text="@string/caption"
-        android:textColor="@color/purple_700"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+    <LinearLayout
+        android:id="@+id/workoutLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="383dp"
-        android:layout_height="247dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="105dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/captionTextBox"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <Button
+            android:id="@+id/addWorkoutButton"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="284dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/addWorkoutButton"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/postWorkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="11dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:rotationX="0"
+            android:text="@string/postWorkout" />
+
+        <EditText
+            android:id="@+id/captionTextBox"
+            android:layout_width="391dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="1dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/captionTextBox" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/captionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="289dp"
+            android:layout_marginBottom="228dp"
+            android:text="@string/caption"
+            android:textColor="@color/purple_700"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/captionButton"
+            android:layout_width="159dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="236dp"
+            android:text="@string/captionButton" />
+
+        <EditText
+            android:id="@+id/postCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="185dp"
+            android:layout_marginBottom="7dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/postCaption" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

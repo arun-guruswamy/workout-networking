@@ -5,7 +5,7 @@
     <string name="createPost">Create Post</string>
     <string name="addWorkoutButton">Add Workout</string>
     <string name="caption">Add Caption:</string>
-    <string name="captionTextBox">caption</string>
+    <string name="captionTextBox">Enter Caption</string>
     <string name="titleWorkout">Add a Workout</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="length_label">Workout Length</string>
@@ -16,4 +16,7 @@
     <string name="input_workout">Describe workout here</string>
     <string name="profileButton">Profile</string>
     <string name="feedButton">Feed</string>
+    <string name="postCaption">Caption</string>
+    <string name="postWorkout">Workout</string>
+    <string name="captionButton">Add</string>
 </resources>
