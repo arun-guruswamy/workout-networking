@@ -5,7 +5,7 @@
     <string name="createPost">Create Post</string>
     <string name="addWorkoutButton">Add Workout</string>
     <string name="caption">Add Caption:</string>
-    <string name="captionTextBox">caption</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="captionTextBox">Enter Caption</string>
+    <string name="feedButton">Feed</string>
+    <string name="profileButton">Profile</string>
 </resources>
