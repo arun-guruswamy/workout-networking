@@ -27,7 +27,6 @@ public class CreatePostView implements ICreatePostView{
                 postCaptionEditable.clear();
 
                 CreatePostView.this.listener.onAddedCaption(postCaption);
-                updateCaption(postCaption);
 
             }
         });
