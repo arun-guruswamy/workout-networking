@@ -9,5 +9,6 @@ public interface ICreatePostView {
 
     interface Listener{void onAddedCaption(String caption); }
     View getRootView();
+    void updateCaption(String caption);
 
 }
