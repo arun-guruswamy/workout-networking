@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onAddedCaption(String caption) {
         post.addCaption(caption);
     }
+
+//    @Override
+//    public void onAddedWorkout(int length, int difficulty) {
+//
+//    }
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
-    tools:context=".AddWorkout">
+    tools:context=".View.AddWorkoutFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -48,15 +48,13 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="174dp"
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@string/diff_input" />
+            android:max="10" />
+
     </LinearLayout>
 
     <LinearLayout
