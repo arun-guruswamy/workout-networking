@@ -17,7 +17,7 @@ public class CreatePostView implements ICreatePostView{
         this.binding = FragmentCreatePostBinding.inflate(LayoutInflater.from(context));
         this.listener = listener;
 
-        this.binding.createPost.setOnClickListener(new View.OnClickListener() {
+        this.binding.captionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
@@ -27,6 +27,7 @@ public class CreatePostView implements ICreatePostView{
                 postCaptionEditable.clear();
 
                 CreatePostView.this.listener.onAddedCaption(postCaption);
+                updateCaption(postCaption);
 
             }
         });
@@ -35,6 +36,12 @@ public class CreatePostView implements ICreatePostView{
     @Override
     public View getRootView(){
         return binding.getRoot();
+    }
+
+    @Override
+    public void updateCaption(String caption) {
+
+        this.binding.postCaption.setText(caption);
     }
 
 }
