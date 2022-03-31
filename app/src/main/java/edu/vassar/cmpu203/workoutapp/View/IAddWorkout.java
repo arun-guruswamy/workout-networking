@@ -8,9 +8,10 @@ import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
 public interface IAddWorkout {
 
-    interface Listener{ void onAddedWorkout(int length, int diff, String desc); }
+    interface Listener{
+        void onAddedWorkout(Workout w, IAddWorkout AddWorkout);
+    }
 
-    View getRootView();
     void updatePost(Workout w);
 
 }

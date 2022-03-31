@@ -45,6 +45,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
                 Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this);
 
+
             }
         });
 

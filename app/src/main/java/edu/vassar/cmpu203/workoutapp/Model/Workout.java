@@ -1,9 +1,9 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
 public abstract class Workout {
-    protected int length;
-    protected int difficulty;
-    protected String workout;
+    public int length;
+    public int difficulty;
+    public String workout;
     protected String sportFocus;
 
     public void createWorkout(String description) {
