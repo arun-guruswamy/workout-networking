@@ -19,11 +19,6 @@ import edu.vassar.cmpu203.workoutapp.databinding.FragmentAddWorkoutBinding;
 
 import edu.vassar.cmpu203.workoutapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddWorkoutFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private FragmentAddWorkoutBinding binding;
@@ -82,7 +77,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                 w.difficulty = workoutDifficulty;
 
 
-                // let view listener know that it should add a new item
+                // let view listener know that it should add a new workout
                 AddWorkoutFragment.this.listener.onAddedWorkout(w, AddWorkoutFragment.this);
             }
         });

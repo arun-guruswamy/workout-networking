@@ -15,7 +15,7 @@ import edu.vassar.cmpu203.workoutapp.View.MainView;
 
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener {
 
-    private Post post;
+    private Post post = new Post();
     private IMainView mainView;
 
 
