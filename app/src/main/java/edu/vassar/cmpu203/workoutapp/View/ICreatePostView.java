@@ -7,8 +7,10 @@ import edu.vassar.cmpu203.workoutapp.Model.*;
 public interface ICreatePostView {
 
 
-    interface Listener{void onAddedCaption(String caption); }
-    View getRootView();
+    interface Listener{
+        void onAddedCaption(String caption, ICreatePostView createPostView);
+        void onWorkoutButton();
+    }
     void updateCaption(String caption);
 
 }

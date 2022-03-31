@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import edu.vassar.cmpu203.workoutapp.R;
+import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
 import edu.vassar.cmpu203.workoutapp.View.Create_Post_Fragment;
 import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
 import edu.vassar.cmpu203.workoutapp.View.IMainView;
@@ -24,16 +24,22 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         this.mainView = new MainView(this);
 
         setContentView(this.mainView.getRootView());
-        this.mainView.displayFragment(new Create_Post_Fragment(), true);
+        this.mainView.displayFragment(new Create_Post_Fragment(this), true);
     }
 
     @Override
-    public void onAddedCaption(String caption) {
+    public void onAddedCaption(String caption, ICreatePostView createPostView) {
         post.addCaption(caption);
+        createPostView.updateCaption(caption);
     }
 
 //    @Override
 //    public void onAddedWorkout(int length, int difficulty) {
 //
 //    }
+
+    @Override
+    public void onWorkoutButton() {
+        this.mainView.displayFragment(new AddWorkoutFragment(), true);
+    }
 }
