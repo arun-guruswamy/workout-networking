@@ -85,13 +85,26 @@
             android:rotationX="0"
             android:text="@string/postWorkout" />
 
+        <EditText
+            android:id="@+id/postCaption"
+            android:layout_width="222dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="185dp"
+            android:layout_marginBottom="7dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/postCaption" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/captionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="400dp"
         android:layout_marginBottom="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,24 +115,11 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="39dp"
             android:text="@string/caption"
             android:textColor="@color/purple_700"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/postCaption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="185dp"
-            android:layout_marginBottom="7dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@string/postCaption" />
 
         <EditText
             android:id="@+id/captionTextBox"
@@ -131,8 +131,8 @@
 
         <Button
             android:id="@+id/captionButton"
-            android:layout_width="159dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="236dp"
             android:text="@string/captionButton" />
