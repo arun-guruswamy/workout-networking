@@ -1,14 +1,15 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
 public class Post {
+
     private String prod_id;
     private String caption;
     private int WRKnum;
     private int CAPnum;
     public Workout workout;
 
-    public Post() {
-        this.prod_id = "Prod_ID here";
+    public Post(Profile profile) {
+        this.prod_id = profile.getUsername();
         WRKnum = 0;
         CAPnum = 0;
     }
