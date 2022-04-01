@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private Profile p = new Profile();
     private Post post = new Post(p);
     private IMainView mainView;
+    private ICreatePostView createPostView;
 
 
     @Override
@@ -39,9 +40,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedWorkout(Workout w, IAddWorkout AddWorkoutFragment) {
-        this.mainView.displayFragment(new Create_Post_Fragment(this), true);
-        AddWorkoutFragment.updatePost(w);
+    public void onAddedWorkout(int length, int difficulty, String descr) {
+        Workout w = new Cardio();
+        w.workout = descr;
+        w.length = length;
+        w.difficulty = difficulty;
+        this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
     }
 
     @Override

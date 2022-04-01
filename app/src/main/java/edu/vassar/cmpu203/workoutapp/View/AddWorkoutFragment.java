@@ -22,7 +22,6 @@ import edu.vassar.cmpu203.workoutapp.R;
 public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private FragmentAddWorkoutBinding binding;
-    private FragmentCreatePostBinding binding2;
     private IAddWorkout.Listener listener;
 
 
@@ -70,21 +69,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                 workoutLengthEditable.clear();
                 workoutDescEditable.clear();
 
-                //Create Workout from values
-                Workout w = new Cardio();
-                w.workout = workoutDescStr;
-                w.length = workoutLength;
-                w.difficulty = workoutDifficulty;
+
 
 
                 // let view listener know that it should add a new workout
-                AddWorkoutFragment.this.listener.onAddedWorkout(w, AddWorkoutFragment.this);
+                AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr);
             }
         });
     }
 
-    public void updatePost(Workout w){
-        this.binding2.postWorkout.setText(w.toString()); // update the line items display
-    }
+
 
 }

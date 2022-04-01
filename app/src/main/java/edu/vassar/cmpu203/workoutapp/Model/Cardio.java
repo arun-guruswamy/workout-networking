@@ -19,9 +19,13 @@ public class Cardio extends Workout {
         SpeedFocus = speedFocus;
     }
 
+//    public String toString() {
+//        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
+//                + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
+//    }
+
     public String toString() {
-        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
-                + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
+        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty;
     }
 
 }

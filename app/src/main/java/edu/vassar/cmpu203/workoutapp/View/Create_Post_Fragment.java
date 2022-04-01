@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.vassar.cmpu203.workoutapp.Model.*;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreatePostBinding;
 
@@ -18,9 +19,15 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
     private FragmentCreatePostBinding binding;
     private ICreatePostView.Listener listener;
+    private Workout w = new Cardio();
 
     public Create_Post_Fragment(Listener listener) {
         this.listener = listener;
+    }
+
+    public Create_Post_Fragment(Listener listener, Workout w) {
+        this.listener = listener;
+        this.w = w;
     }
 
     @Override
@@ -33,6 +40,8 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+
+        this.binding.postWorkout.setText(w.toString());
 
         this.binding.captionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,4 +76,5 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
         this.binding.postCaption.setText(caption);
     }
+
 }
