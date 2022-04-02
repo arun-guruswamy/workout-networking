@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="41dp"
             android:text="@string/userText"
             android:textColor="#3949AB"
@@ -53,36 +53,24 @@
             app:layout_constraintStart_toEndOf="@+id/UserText"
             app:layout_constraintTop_toBottomOf="@+id/createProfileText" />
 
-        <Button
-            android:id="@+id/confirmUsernameButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/UsernameButton"
-            app:layout_constraintEnd_toStartOf="@+id/UsernameText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/UserText" />
-
         <TextView
             android:id="@+id/passwordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="66dp"
             android:layout_marginEnd="21dp"
             android:text="@string/PasswordText"
             android:textColor="#5E35B1"
             app:layout_constraintEnd_toStartOf="@+id/passwordEditText"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmUsernameButton" />
+            app:layout_constraintTop_toBottomOf="@+id/UserText" />
 
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="65dp"
             android:ems="10"
@@ -90,33 +78,20 @@
             android:minHeight="48dp"
             android:text="@string/passText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/confirmPasswordButton"
             app:layout_constraintTop_toBottomOf="@+id/UsernameText" />
-
-        <Button
-            android:id="@+id/confirmPasswordButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="7dp"
-            android:text="@string/PasswordButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
         <TextView
             android:id="@+id/bioText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="54dp"
             android:layout_marginEnd="335dp"
             android:layout_marginBottom="11dp"
             android:text="@string/bioText"
             android:textColor="@color/purple_500"
             app:layout_constraintBottom_toTopOf="@+id/bioEditText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordButton" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/bioEditText"
@@ -131,18 +106,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bioText" />
-
-        <Button
-            android:id="@+id/bioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="301dp"
-            android:text="@string/bioButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bioEditText" />
 
         <Button
             android:id="@+id/createButton"

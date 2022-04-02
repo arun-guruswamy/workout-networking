@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
 
@@ -35,50 +37,40 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
-        this.binding.confirmUsernameButton.setOnClickListener(new View.OnClickListener(){
+        this.binding.createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //For Username
                 Editable profileUsernameEditable = CreateProfileFragment.this.binding.UsernameText.getText();
                 String username = profileUsernameEditable.toString();
 
                 profileUsernameEditable.clear();
 
                 CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
-            }
 
-        });
-
-        this.binding.confirmPasswordButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+                //For Password
                 Editable profilePasswordEditable = CreateProfileFragment.this.binding.passwordEditText.getText();
                 String password = profilePasswordEditable.toString();
 
                 profilePasswordEditable.clear();
 
-                CreateProfileFragment.this.listener.onAddedPassword(password, CreateProfileFragment.this);
-            }
-
-        });
-
-
-        this.binding.bioButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
+                //For Bio information
                 Editable profileBioEditable = CreateProfileFragment.this.binding.bioEditText.getText();
                 String bio = profileBioEditable.toString();
 
                 profileBioEditable.clear();
 
+                if (username.length() == 0 || password.length() == 0 || bio.length() == 0){
+                    Snackbar.make(v, "Username, password, and bio are mandatory!", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
+                CreateProfileFragment.this.listener.onAddedPassword(password, CreateProfileFragment.this);
                 CreateProfileFragment.this.listener.onAddedBio(bio, CreateProfileFragment.this);
-            }
-
-        });
-
-        this.binding.createButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
                 CreateProfileFragment.this.listener.onCreateButton();
+
+
             }
 
         });
