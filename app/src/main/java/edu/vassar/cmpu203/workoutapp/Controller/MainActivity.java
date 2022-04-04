@@ -9,17 +9,20 @@ import android.os.Bundle;
 import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
 import edu.vassar.cmpu203.workoutapp.View.CreateProfileFragment;
 import edu.vassar.cmpu203.workoutapp.View.Create_Post_Fragment;
+import edu.vassar.cmpu203.workoutapp.View.FeedFragment;
 import edu.vassar.cmpu203.workoutapp.View.IAddWorkout;
 import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
 import edu.vassar.cmpu203.workoutapp.View.ICreateProfileView;
+import edu.vassar.cmpu203.workoutapp.View.IFeedView;
 import edu.vassar.cmpu203.workoutapp.View.IMainView;
 import edu.vassar.cmpu203.workoutapp.View.MainView;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener {
 
     private Profile p = new Profile();
     private Post post = new Post(p);
     private IMainView mainView;
+    private Feed feed;
     private ICreatePostView createPostView;
 
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         super.onCreate(savedInstanceState);
 
         this.mainView = new MainView(this);
+        this.feed = new Feed();
 
         setContentView(this.mainView.getRootView());
         this.mainView.displayFragment(new CreateProfileFragment(this), false);
@@ -71,5 +75,10 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onCreateButton() {
         this.mainView.displayFragment(new Create_Post_Fragment(this), false);
+    }
+
+    @Override
+    public void onAddPost() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), true);
     }
 }

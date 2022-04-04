@@ -43,4 +43,8 @@
     <string name="LowerBodyFocus">Lower Body Focus</string>
     <string name="BodyWeightFocus">Body Weight Focus</string>
     <string name="FullBodyFocus">Full Body Focus</string>
+    <string name="Post1">Post</string>
+    <string name="Post2">Post</string>
+    <string name="Post3">Post</string>
+    <string name="addButton">Add Post</string>
 </resources>
