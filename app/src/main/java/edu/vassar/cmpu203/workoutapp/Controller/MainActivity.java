@@ -9,6 +9,8 @@ import android.os.Bundle;
 import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
 import edu.vassar.cmpu203.workoutapp.View.CreateProfileFragment;
 import edu.vassar.cmpu203.workoutapp.View.Create_Post_Fragment;
+import edu.vassar.cmpu203.workoutapp.View.CardioFragment;
+import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
 import edu.vassar.cmpu203.workoutapp.View.IAddWorkout;
 import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
 import edu.vassar.cmpu203.workoutapp.View.ICreateProfileView;
@@ -73,6 +75,16 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onCreateButton() {
         this.mainView.displayFragment(new Create_Post_Fragment(this), false);
+    }
+
+    @Override
+    public void CardioButton() {
+        this.mainView.displayFragment(new CardioFragment(this), false);
+    }
+
+    @Override
+    public void StrengthButton() {
+        this.mainView.displayFragment(new StrengthFragment(this), false);
     }
 
     @Override

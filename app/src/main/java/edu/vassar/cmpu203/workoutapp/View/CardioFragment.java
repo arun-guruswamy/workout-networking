@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCardioBinding;
 
@@ -20,8 +21,8 @@ public class CardioFragment extends Fragment implements IWorkoutType {
     private IWorkoutType.Listener listener;
     private Boolean[] AttributeList  = new Boolean[3];
 
-    public CardioFragment() {
-        // Required empty public constructor
+    public CardioFragment(Listener listener) {
+        this.listener = listener;
     }
 
 

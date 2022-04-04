@@ -76,8 +76,24 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                 AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr);
             }
         });
+
+        this.binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AddWorkoutFragment.this.listener.CardioButton();
+
+            }
+        });
+
+        this.binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AddWorkoutFragment.this.listener.StrengthButton();
+
+            }
+        });
     }
-
-
 
 }
