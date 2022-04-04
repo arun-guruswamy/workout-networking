@@ -13,9 +13,11 @@ import edu.vassar.cmpu203.workoutapp.View.IAddWorkout;
 import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
 import edu.vassar.cmpu203.workoutapp.View.ICreateProfileView;
 import edu.vassar.cmpu203.workoutapp.View.IMainView;
+import edu.vassar.cmpu203.workoutapp.View.IWorkoutType;
 import edu.vassar.cmpu203.workoutapp.View.MainView;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener,
+                                                                ICreateProfileView.Listener, IWorkoutType.Listener {
 
     private Profile p = new Profile();
     private Post post = new Post(p);
@@ -71,5 +73,10 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onCreateButton() {
         this.mainView.displayFragment(new Create_Post_Fragment(this), false);
+    }
+
+    @Override
+    public void onAddedAttributes(Boolean[] Attributes) {
+        this.mainView.displayFragment(new AddWorkoutFragment(this), false);
     }
 }
