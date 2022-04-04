@@ -74,11 +74,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onCreateButton() {
-        this.mainView.displayFragment(new Create_Post_Fragment(this), false);
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 
     @Override
     public void onAddPost() {
-        this.mainView.displayFragment(new FeedFragment(this, feed), true);
+        Workout w = new Cardio();
+        this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
     }
 }
