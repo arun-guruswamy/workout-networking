@@ -9,15 +9,18 @@ import android.os.Bundle;
 import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
 import edu.vassar.cmpu203.workoutapp.View.CreateProfileFragment;
 import edu.vassar.cmpu203.workoutapp.View.Create_Post_Fragment;
+import edu.vassar.cmpu203.workoutapp.View.CardioFragment;
+import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
 import edu.vassar.cmpu203.workoutapp.View.FeedFragment;
 import edu.vassar.cmpu203.workoutapp.View.IAddWorkout;
 import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
 import edu.vassar.cmpu203.workoutapp.View.ICreateProfileView;
 import edu.vassar.cmpu203.workoutapp.View.IFeedView;
 import edu.vassar.cmpu203.workoutapp.View.IMainView;
+import edu.vassar.cmpu203.workoutapp.View.IWorkoutType;
 import edu.vassar.cmpu203.workoutapp.View.MainView;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener {
 
     private Profile p = new Profile();
     private Post post = new Post(p);
@@ -81,5 +84,20 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onAddPost() {
         Workout w = new Cardio();
         this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
+    }
+
+    @Override
+    public void CardioButton() {
+        this.mainView.displayFragment(new CardioFragment(this), false);
+    }
+
+    @Override
+    public void StrengthButton() {
+        this.mainView.displayFragment(new StrengthFragment(this), false);
+    }
+
+    @Override
+    public void onAddedAttributes(Boolean[] Attributes) {
+        this.mainView.displayFragment(new AddWorkoutFragment(this), false);
     }
 }

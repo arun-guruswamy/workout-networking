@@ -10,6 +10,8 @@ public interface IAddWorkout {
 
     interface Listener{
         void onAddedWorkout(int length, int difficulty, String description);
+        void CardioButton();
+        void StrengthButton();
     }
 
 }
