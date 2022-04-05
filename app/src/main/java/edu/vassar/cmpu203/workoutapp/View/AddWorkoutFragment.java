@@ -25,6 +25,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private Listener listener;
     private boolean[] WorkoutAttributes;
     private int workoutType = 0;
+    int workoutLength = 0;
     private Workout workout;
     private Post post;
 
@@ -77,7 +78,14 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                     return;
                 }
 
-                int workoutLength = Integer.parseInt(workoutLengthStr);
+                while(true) {
+                    try {
+                        workoutLength = Integer.parseInt(workoutLengthStr);
+                        break;
+                    } catch (Exception e) {
+                        Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
+                    }
+                }
 
                 workoutLengthEditable.clear();
                 workoutDescEditable.clear();

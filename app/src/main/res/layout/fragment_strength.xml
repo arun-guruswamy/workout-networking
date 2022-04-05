@@ -8,7 +8,6 @@
     tools:context=".View.StrengthFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <TextView
         android:id="@+id/createPost"
         android:layout_width="wrap_content"
@@ -30,8 +29,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
         android:orientation="vertical"
@@ -63,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/FullBodyFocus" />
+
     </LinearLayout>
 
     <Button
