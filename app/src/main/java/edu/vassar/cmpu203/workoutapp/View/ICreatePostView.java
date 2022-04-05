@@ -9,8 +9,9 @@ public interface ICreatePostView {
 
     interface Listener{
         void onAddedCaption(String caption, ICreatePostView createPostView, Post p);
-        void onWorkoutButton();
+        void onWorkoutButton(Workout workout, Post post);
         void onPostButton();
+        void onCancelButton();
     }
     void updateCaption(String caption);
 

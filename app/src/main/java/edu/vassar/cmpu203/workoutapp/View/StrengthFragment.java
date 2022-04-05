@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
+import edu.vassar.cmpu203.workoutapp.Model.Post;
+import edu.vassar.cmpu203.workoutapp.Model.Workout;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentStrengthBinding;
 
@@ -20,9 +22,13 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
     private FragmentStrengthBinding binding;
     private IWorkoutType.Listener listener;
     private boolean[] AttributeList  = new boolean[4];
+    private Post post;
+    private Workout workout;
 
-    public StrengthFragment(Listener listener) {
+    public StrengthFragment(Listener listener, Post post, Workout workout) {
         this.listener = listener;
+        this.post = post;
+        this.workout = workout;
     }
 
 
@@ -50,7 +56,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
 
 
                 // let view listener know that it should add a new workout
-                StrengthFragment.this.listener.onAddedAttributes(AttributeList, 2);
+                StrengthFragment.this.listener.onAddedAttributes(AttributeList, 2, post);
             }
         });
     }

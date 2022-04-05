@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
+import edu.vassar.cmpu203.workoutapp.Model.Post;
+import edu.vassar.cmpu203.workoutapp.Model.Workout;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCardioBinding;
 
@@ -20,9 +22,13 @@ public class CardioFragment extends Fragment implements IWorkoutType {
     private FragmentCardioBinding binding;
     private IWorkoutType.Listener listener;
     private boolean[] AttributeList  = new boolean[3];
+    private Post post;
+    private Workout workout;
 
-    public CardioFragment(Listener listener) {
+    public CardioFragment(Listener listener, Post post, Workout workout) {
         this.listener = listener;
+        this.post = post;
+        this.workout = workout;
     }
 
 
@@ -49,7 +55,7 @@ public class CardioFragment extends Fragment implements IWorkoutType {
 
 
                 // let view listener know that it should add a new workout
-                CardioFragment.this.listener.onAddedAttributes(AttributeList, 1);
+                CardioFragment.this.listener.onAddedAttributes(AttributeList, 1, post);
             }
         });
     }

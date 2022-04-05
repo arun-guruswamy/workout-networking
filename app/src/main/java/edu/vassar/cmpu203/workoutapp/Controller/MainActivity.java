@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private IMainView mainView;
     private Feed feed;
     private ICreatePostView createPostView;
-    private Workout w;
 
 
     @Override
@@ -47,30 +46,35 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes) {
-        if (workoutType == 1) {
-            w = new Cardio(WorkoutAttributes);
+    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes, Post post, Workout workout) {
+       if (workoutType == 1) {
+            workout = new Cardio(WorkoutAttributes);
         }
-        else
-            w = new Strength(WorkoutAttributes);
+      else
+            workout = new Strength(WorkoutAttributes);
         //w.workout = descr;
-        w.createWorkout(descr);
+        workout.createWorkout(descr);
         //w.length = length;
-        w.setLength(length);
+        workout.setLength(length);
         //w.difficulty = difficulty;
-        w.setDifficulty(difficulty);
-        this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
+        workout.setDifficulty(difficulty);
+        this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
     }
 
     @Override
-    public void onWorkoutButton() {
+    public void onWorkoutButton(Workout workout, Post post) {
 
-        this.mainView.displayFragment(new AddWorkoutFragment(this), true);
+        this.mainView.displayFragment(new AddWorkoutFragment(this, workout, post), true);
     }
 
     @Override
     public void onPostButton() {
         this.mainView.displayFragment(new FeedFragment(this, feed), true);
+    }
+
+    @Override
+    public void onCancelButton() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 
     @Override
@@ -96,21 +100,22 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onAddPost() {
         Post post = new Post(this.p);
-        this.mainView.displayFragment(new Create_Post_Fragment(this, post), true);
+        Workout workout = new Workout();
+        this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
     }
 
     @Override
-    public void CardioButton() {
-        this.mainView.displayFragment(new CardioFragment(this), false);
+    public void CardioButton(Workout workout, Post post) {
+        this.mainView.displayFragment(new CardioFragment(this, post, workout), false);
     }
 
     @Override
-    public void StrengthButton() {
-        this.mainView.displayFragment(new StrengthFragment(this), false);
+    public void StrengthButton(Workout workout, Post post) {
+        this.mainView.displayFragment(new StrengthFragment(this, post, workout), false);
     }
 
     @Override
-    public void onAddedAttributes(boolean[] Attributes, int workoutType) {
-        this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes, workoutType), false);
+    public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
+        this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes, workoutType, post), false);
     }
 }

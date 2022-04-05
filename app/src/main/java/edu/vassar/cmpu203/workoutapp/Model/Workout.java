@@ -1,6 +1,6 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
-public abstract class Workout {
+public class Workout {
     public int length;
     public int difficulty;
     public String workout;
@@ -30,5 +30,7 @@ public abstract class Workout {
 
    // abstract void setSpecificAttributes();
 
-    abstract public String toString();
+    public String toString() {
+        return this.workout + "\n" + this.length + "\n" + this.difficulty;
+    }
 }
