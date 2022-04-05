@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
+    public void onPostButton() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), true);
+    }
+
+    @Override
     public void onAddedUsername(String username, ICreateProfileView createProfileView) {
         p.setUsername(username);
     }
