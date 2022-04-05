@@ -19,7 +19,7 @@ public class CardioFragment extends Fragment implements IWorkoutType {
 
     private FragmentCardioBinding binding;
     private IWorkoutType.Listener listener;
-    private Boolean[] AttributeList  = new Boolean[3];
+    private boolean[] AttributeList  = new boolean[3];
 
     public CardioFragment(Listener listener) {
         this.listener = listener;

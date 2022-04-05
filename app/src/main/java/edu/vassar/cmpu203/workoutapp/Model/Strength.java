@@ -6,7 +6,14 @@ public class Strength extends Workout {
     private boolean FullBodyFocus;
     private boolean BodyWeightFocus;
 
-    Strength() {}
+    public Strength() {}
+
+    public Strength(boolean[] Attributes) {
+        UpperBodyFocus = Attributes[0];
+        LowerBodyFocus = Attributes[1];
+        BodyWeightFocus = Attributes[2];
+        FullBodyFocus = Attributes[3];
+    }
 
     public void setBodyWeightFocus(boolean bodyWeightFocus) {
         BodyWeightFocus = bodyWeightFocus;

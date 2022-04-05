@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private IMainView mainView;
     private Feed feed;
     private ICreatePostView createPostView;
+    private Workout w;
 
 
     @Override
@@ -47,8 +48,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedWorkout(int length, int difficulty, String descr) {
-        Workout w = new Cardio();
+    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes) {
+        if (workoutType == 1) {
+            w = new Cardio(WorkoutAttributes);
+        }
+        else
+            w = new Strength(WorkoutAttributes);
         w.workout = descr;
         w.length = length;
         w.difficulty = difficulty;
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedAttributes(Boolean[] Attributes) {
+    public void onAddedAttributes(boolean[] Attributes) {
         this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes), false);
     }
 }

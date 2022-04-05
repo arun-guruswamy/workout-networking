@@ -23,14 +23,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private FragmentAddWorkoutBinding binding;
     private IAddWorkout.Listener listener;
-    private Boolean[] WorkoutAttributes;
+    private boolean[] WorkoutAttributes;
+    private int workoutType = 0;
 
 
     public AddWorkoutFragment(Listener listener) {
         this.listener = listener;
     }
 
-    public AddWorkoutFragment(Listener listener, Boolean[] WorkoutAttributes) {
+    public AddWorkoutFragment(Listener listener, boolean[] WorkoutAttributes) {
         this.WorkoutAttributes = WorkoutAttributes;
     }
 
@@ -78,14 +79,17 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
                 // let view listener know that it should add a new workout
-                AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr);
+                if(workoutType == 1)
+                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes);
+                else if(workoutType == 2)
+                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes);
             }
         });
 
         this.binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                workoutType = 1;
                 AddWorkoutFragment.this.listener.CardioButton();
 
             }
@@ -94,7 +98,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                workoutType = 2;
                 AddWorkoutFragment.this.listener.StrengthButton();
 
             }

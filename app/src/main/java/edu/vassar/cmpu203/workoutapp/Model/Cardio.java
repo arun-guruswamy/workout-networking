@@ -7,6 +7,12 @@ public class Cardio extends Workout {
 
     public Cardio() {}
 
+    public Cardio(boolean[] Attributes) {
+        AgilityFocus = Attributes[0];
+        EnduranceFocus = Attributes[1];
+        SpeedFocus = Attributes[2];
+    }
+
     public void setAgilityFocus(boolean agilityFocus) {
         AgilityFocus = agilityFocus;
     }
@@ -19,13 +25,9 @@ public class Cardio extends Workout {
         SpeedFocus = speedFocus;
     }
 
-//    public String toString() {
-//        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
-//                + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
-//    }
-
     public String toString() {
-        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty;
+        return workout + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + "\nEndurance Focus: " + EnduranceFocus
+                + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
     }
 
 }

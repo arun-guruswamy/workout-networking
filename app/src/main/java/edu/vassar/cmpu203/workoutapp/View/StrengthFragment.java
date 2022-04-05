@@ -19,7 +19,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
 
     private FragmentStrengthBinding binding;
     private IWorkoutType.Listener listener;
-    private Boolean[] AttributeList  = new Boolean[4];
+    private boolean[] AttributeList  = new boolean[4];
 
     public StrengthFragment(Listener listener) {
         this.listener = listener;
