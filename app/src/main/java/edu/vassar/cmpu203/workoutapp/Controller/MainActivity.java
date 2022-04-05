@@ -98,6 +98,6 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onAddedAttributes(Boolean[] Attributes) {
-        this.mainView.displayFragment(new AddWorkoutFragment(this), false);
+        this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes), false);
     }
 }
