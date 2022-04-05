@@ -31,8 +31,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.listener = listener;
     }
 
-    public AddWorkoutFragment(Listener listener, boolean[] WorkoutAttributes) {
+    public AddWorkoutFragment(Listener listener, boolean[] WorkoutAttributes, int workoutType) {
         this.WorkoutAttributes = WorkoutAttributes;
+        this.workoutType = workoutType;
     }
 
 
@@ -83,13 +84,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                     AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes);
                 else if(workoutType == 2)
                     AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes);
+                else
+                    Snackbar.make(v, "Choosing a workout type is mandatory!", Snackbar.LENGTH_LONG).show();
+
             }
         });
 
         this.binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workoutType = 1;
                 AddWorkoutFragment.this.listener.CardioButton();
 
             }
@@ -98,7 +101,6 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                workoutType = 2;
                 AddWorkoutFragment.this.listener.StrengthButton();
 
             }

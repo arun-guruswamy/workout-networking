@@ -10,6 +10,6 @@ public interface IWorkoutType {
 
 
     interface Listener{
-        void onAddedAttributes(boolean[] Attributes);
+        void onAddedAttributes(boolean[] Attributes, int workoutType);
     }
 }
