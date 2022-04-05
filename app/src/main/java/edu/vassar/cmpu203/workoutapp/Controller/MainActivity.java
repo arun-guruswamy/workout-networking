@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedAttributes(boolean[] Attributes) {
-        this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes), false);
+    public void onAddedAttributes(boolean[] Attributes, int workoutType) {
+        this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes, workoutType), false);
     }
 }
