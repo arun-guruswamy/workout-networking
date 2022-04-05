@@ -23,7 +23,6 @@ import edu.vassar.cmpu203.workoutapp.View.MainView;
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener {
 
     private Profile p = new Profile();
-    private Post post = new Post(p);
     private IMainView mainView;
     private Feed feed;
     private ICreatePostView createPostView;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedCaption(String caption, ICreatePostView createPostView) {
+    public void onAddedCaption(String caption, ICreatePostView createPostView, Post post) {
         post.addCaption(caption);
         createPostView.updateCaption(caption);
     }
@@ -54,14 +53,18 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         }
         else
             w = new Strength(WorkoutAttributes);
-        w.workout = descr;
-        w.length = length;
-        w.difficulty = difficulty;
+        //w.workout = descr;
+        w.createWorkout(descr);
+        //w.length = length;
+        w.setLength(length);
+        //w.difficulty = difficulty;
+        w.setDifficulty(difficulty);
         this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
     }
 
     @Override
     public void onWorkoutButton() {
+
         this.mainView.displayFragment(new AddWorkoutFragment(this), true);
     }
 
@@ -92,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onAddPost() {
-        Workout w = new Cardio();
-        this.mainView.displayFragment(new Create_Post_Fragment(this, w), true);
+        Post post = new Post(this.p);
+        this.mainView.displayFragment(new Create_Post_Fragment(this, post), true);
     }
 
     @Override

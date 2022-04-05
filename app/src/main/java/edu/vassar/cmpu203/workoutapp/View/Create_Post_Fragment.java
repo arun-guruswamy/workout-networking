@@ -19,14 +19,15 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
     private FragmentCreatePostBinding binding;
     private ICreatePostView.Listener listener;
     private Workout w = new Cardio();
+    private Post post;
 
     public Create_Post_Fragment(Listener listener) {
         this.listener = listener;
     }
 
-    public Create_Post_Fragment(Listener listener, Workout w) {
+    public Create_Post_Fragment(Listener listener, Post post) {
         this.listener = listener;
-        this.w = w;
+        this.post = post;
     }
 
     @Override
@@ -51,7 +52,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
                 postCaptionEditable.clear();
 
-                Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this);
+                Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this, post);
 
 
             }
@@ -65,6 +66,13 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
             }
 
+        });
+
+        this.binding.postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Create_Post_Fragment.this.listener.onPostButton();
+            }
         });
 
 
