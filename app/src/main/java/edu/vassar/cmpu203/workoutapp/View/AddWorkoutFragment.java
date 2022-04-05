@@ -23,10 +23,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private FragmentAddWorkoutBinding binding;
     private IAddWorkout.Listener listener;
+    private Boolean[] WorkoutAttributes;
 
 
     public AddWorkoutFragment(Listener listener) {
         this.listener = listener;
+    }
+
+    public AddWorkoutFragment(Listener listener, Boolean[] WorkoutAttributes) {
+        this.WorkoutAttributes = WorkoutAttributes;
     }
 
 
