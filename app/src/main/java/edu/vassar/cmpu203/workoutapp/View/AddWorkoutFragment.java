@@ -22,7 +22,7 @@ import edu.vassar.cmpu203.workoutapp.R;
 public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private FragmentAddWorkoutBinding binding;
-    private IAddWorkout.Listener listener;
+    private Listener listener;
     private boolean[] WorkoutAttributes;
     private int workoutType = 0;
 
@@ -32,6 +32,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     }
 
     public AddWorkoutFragment(Listener listener, boolean[] WorkoutAttributes, int workoutType) {
+        this.listener = listener;
         this.WorkoutAttributes = WorkoutAttributes;
         this.workoutType = workoutType;
     }
