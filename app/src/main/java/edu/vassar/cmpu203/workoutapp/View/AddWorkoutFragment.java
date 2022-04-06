@@ -72,19 +72,18 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                 // retrieve item's quantity
                 int workoutDifficulty = binding.seekBar2.getProgress();
 
+
                 // confirm we have both name and qty
                 if (workoutLengthStr.length() == 0 || workoutDifficulty == 0 || workoutDescStr.length() == 0){
                     Snackbar.make(v, "Both length and difficulty are mandatory!", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                while(true) {
-                    try {
-                        workoutLength = Integer.parseInt(workoutLengthStr);
-                        break;
-                    } catch (Exception e) {
-                        Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
-                    }
+                try {
+                    workoutLength = Integer.parseInt(workoutLengthStr);
+                } catch (NumberFormatException e) {
+                    Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
+                    return;
                 }
 
                 workoutLengthEditable.clear();
