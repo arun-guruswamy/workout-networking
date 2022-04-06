@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         workout.setLength(length);
         //w.difficulty = difficulty;
         workout.setDifficulty(difficulty);
+        post.setWorkout(workout);
         this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
     }
 
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onPostButton() {
+    public void onPostButton(Post post) {
+        this.feed.feed.add(post);
         this.mainView.displayFragment(new FeedFragment(this, feed), true);
     }
 

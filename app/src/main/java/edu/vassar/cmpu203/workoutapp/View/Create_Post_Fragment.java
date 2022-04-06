@@ -72,7 +72,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
         this.binding.postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Create_Post_Fragment.this.listener.onPostButton();
+                Create_Post_Fragment.this.listener.onPostButton(post);
             }
         });
 

@@ -14,17 +14,23 @@ public class Post {
         CAPnum = 0;
     }
 
-    public Workout addWorkout(String type) {
-        Workout w;
+//    public Workout addWorkout(String type) {
+//        Workout w;
+//
+//            if (type.equalsIgnoreCase("cardio"))
+//                w = new Cardio();
+//            else
+//                w = new Strength();
+//        this.workout = w;
+//        this.WRKnum = 1;
+//
+//        return w;
+//    }
 
-            if (type.equalsIgnoreCase("cardio"))
-                w = new Cardio();
-            else
-                w = new Strength();
-        this.workout = w;
+
+    public void setWorkout(Workout workout){
+        this.workout = workout;
         this.WRKnum = 1;
-
-        return w;
     }
 
     public void addCaption(String caption) {

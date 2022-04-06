@@ -36,12 +36,28 @@ public class FeedFragment extends Fragment implements IFeedView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
 
-//            Post p = feed.feed.get(0);
-//            this.binding.Post1.setText(p.toString());
-//            Post p2 = feed.feed.get(1);
-//            this.binding.Post1.setText(p2.toString());
-//            Post p3 = feed.feed.get(2);
-//            this.binding.Post1.setText(p3.toString());
+            if (this.feed.feed.size() == 1) {
+                Post p = this.feed.feed.get(0);
+                this.binding.Post1.setText(p.toString());
+            }
+
+            if (this.feed.feed.size() == 2) {
+                Post p = this.feed.feed.get(0);
+                this.binding.Post1.setText(p.toString());
+                Post p2 = this.feed.feed.get(1);
+                this.binding.Post2.setText(p2.toString());
+            }
+
+            if (this.feed.feed.size() == 3) {
+                Post p = this.feed.feed.get(0);
+                this.binding.Post1.setText(p.toString());
+                Post p2 = this.feed.feed.get(1);
+                this.binding.Post2.setText(p2.toString());
+                Post p3 = this.feed.feed.get(2);
+                this.binding.Post3.setText(p3.toString());
+            }
+
+
 
 
         this.binding.addButton.setOnClickListener(new View.OnClickListener() {
