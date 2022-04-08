@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
       else
             workout = new Strength(WorkoutAttributes);
         //w.workout = descr;
-        workout.createWorkout(descr);
+        workout.setDescription(descr);
         //w.length = length;
         workout.setLength(length);
         //w.difficulty = difficulty;

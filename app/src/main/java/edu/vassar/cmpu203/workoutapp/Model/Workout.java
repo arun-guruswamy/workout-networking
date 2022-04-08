@@ -3,11 +3,13 @@ package edu.vassar.cmpu203.workoutapp.Model;
 public class Workout {
     public int length;
     public int difficulty;
-    public String workout;
+    public String description;
     protected String sportFocus;
 
-    public void createWorkout(String description) {
-        this.workout = description;
+    public Workout() {};
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     //public void setSport(String sport) { this.sportFocus = sport;}
@@ -31,6 +33,6 @@ public class Workout {
    // abstract void setSpecificAttributes();
 
     public String toString() {
-        return this.workout + "\n" + this.length + "\n" + this.difficulty;
+        return this.description + "\n" + this.length + "\n" + this.difficulty;
     }
 }

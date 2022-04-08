@@ -39,7 +39,7 @@ public class Post {
     }
 
     void addWorkoutDescription(Workout w, String description) {
-        w.createWorkout(description);
+        w.setDescription(description);
     }
 
     void addWorkoutLength(Workout w, int length) {
