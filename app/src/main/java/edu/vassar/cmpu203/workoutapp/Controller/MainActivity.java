@@ -6,21 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
-import edu.vassar.cmpu203.workoutapp.View.CreateProfileFragment;
-import edu.vassar.cmpu203.workoutapp.View.Create_Post_Fragment;
-import edu.vassar.cmpu203.workoutapp.View.CardioFragment;
-import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
-import edu.vassar.cmpu203.workoutapp.View.FeedFragment;
-import edu.vassar.cmpu203.workoutapp.View.IAddWorkout;
-import edu.vassar.cmpu203.workoutapp.View.ICreatePostView;
-import edu.vassar.cmpu203.workoutapp.View.ICreateProfileView;
-import edu.vassar.cmpu203.workoutapp.View.IFeedView;
-import edu.vassar.cmpu203.workoutapp.View.IMainView;
-import edu.vassar.cmpu203.workoutapp.View.IWorkoutType;
-import edu.vassar.cmpu203.workoutapp.View.MainView;
+import edu.vassar.cmpu203.workoutapp.View.*;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener {
 
     private Profile p = new Profile();
     private IMainView mainView;
@@ -119,5 +107,15 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
         this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes, workoutType, post), false);
+    }
+
+    @Override
+    public void onFilter() {
+        this.mainView.displayFragment(new FilterFragment(this), false);
+    }
+
+    @Override
+    public void onSetFilter() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 }

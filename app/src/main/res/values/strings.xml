@@ -47,4 +47,14 @@
     <string name="Post2">Post</string>
     <string name="Post3">Post</string>
     <string name="addButton">Add Post</string>
+    <string name="filterTitle">Filters</string>
+    <string name="lengthFilter">Length</string>
+    <string name="DiffFilter">Difficulty</string>
+    <string-array name="diff_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>
