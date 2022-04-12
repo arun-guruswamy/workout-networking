@@ -56,11 +56,12 @@
         android:id="@+id/FeedFilter"
         android:layout_width="109dp"
         android:layout_height="48dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="28dp"
         android:text="@string/filterTitle"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RemoveFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Post3" />
 
@@ -68,15 +69,28 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="28dp"
         android:text="@string/addButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/FeedFilter"
+        app:layout_constraintStart_toEndOf="@+id/RemoveFilter"
         app:layout_constraintTop_toBottomOf="@+id/Post3" />
+
+    <Button
+        android:id="@+id/RemoveFilter"
+        android:layout_width="115dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="34dp"
+        android:text="@string/RemoveFilter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintStart_toEndOf="@+id/FeedFilter"
+        app:layout_constraintTop_toBottomOf="@+id/Post3"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

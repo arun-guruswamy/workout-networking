@@ -1,7 +1,6 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Difficulty implements Filter {
     int difficulty;
@@ -9,7 +8,7 @@ public class Difficulty implements Filter {
 
     public Difficulty(int difficulty, Feed f) {
         this.difficulty = difficulty;
-        filtered = f.filteredFeed;
+        filtered = f.feed;
     }
 
     public ArrayList<Post> filter() {

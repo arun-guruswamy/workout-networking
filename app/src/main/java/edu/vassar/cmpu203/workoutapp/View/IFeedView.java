@@ -5,5 +5,6 @@ public interface IFeedView {
     interface Listener{
         void onAddPost();
         void onFilter();
+        void removeFilters();
     }
 }

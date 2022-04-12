@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Feed {
     public ArrayList<Post> feed;
-    public ArrayList<Post> filteredFeed = new ArrayList<>();
 
     public Feed() {
         feed = new ArrayList<>();

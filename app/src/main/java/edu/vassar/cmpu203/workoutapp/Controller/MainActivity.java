@@ -8,12 +8,16 @@ import android.os.Bundle;
 
 import edu.vassar.cmpu203.workoutapp.View.*;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener {
 
     private Profile p = new Profile();
     private IMainView mainView;
     private Feed feed;
     private ICreatePostView createPostView;
+    private Feed filteredFeed = new Feed();
+
 
 
     @Override
@@ -115,7 +119,17 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onSetFilter() {
+    public void onSetFilter(int length, int difficulty) {
+        filteredFeed.feed = new ArrayList(feed.feed);
+        Filter len = new Length(length, filteredFeed);
+        filteredFeed.feed = len.filter();
+        Filter diff = new Difficulty(difficulty, filteredFeed);
+        filteredFeed.feed = diff.filter();
+        this.mainView.displayFragment(new FeedFragment(this, filteredFeed), false);
+    }
+
+    @Override
+    public void removeFilters() {
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 }
