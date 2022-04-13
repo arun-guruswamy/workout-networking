@@ -391,10 +391,10 @@ public class AddPostInstTest {
         Workout workout = new Workout();
 
         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+        postCapEdVi.perform(ViewActions.replaceText("This is pretty chill"));
         ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
         captionButtonVi.perform(ViewActions.click());
-        post.addCaption("A fun workout");
+        post.addCaption("This is pretty chill");
 
         ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
         postButtonVi.perform(ViewActions.click());
@@ -407,6 +407,61 @@ public class AddPostInstTest {
 
     @Test
     public void addPostNoCaption() {
+        ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
+        createButtonVi.perform(ViewActions.click());
+        Profile profile = new Profile();
+        profile.setUsername("Username");
+
+        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+        addPostButtonVi.perform(ViewActions.click());
+        Post post = new Post(profile);
+        Workout workout = new Workout();
+
+        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+
+        ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));
+        addWorkoutButtonVi.perform(ViewActions.click());
+
+        ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button2));
+        cardioButtonVi.perform(ViewActions.click());
+
+        ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton4));
+        enduranceButtonVi.perform(ViewActions.click());
+        ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton5));
+        speedButtonVi.perform(ViewActions.click());
+
+        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.button3));
+        setVi.perform(ViewActions.click());
+        boolean[] values = new boolean[3];
+        values[1] = true;
+        values[2] =true;
+        workout = new Cardio(values);
+
+        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName));
+        lengthVi.perform(ViewActions.replaceText("100"));
+        workout.setLength(100);
+
+        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.seekBar2));
+        difficultyVi.perform(ViewActions.swipeRight());
+        workout.setDifficulty(5);
+
+        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName4));
+        workoutDescriptionVi.perform(ViewActions.replaceText("A super hard sprint marathon"));
+        workout.setDescription("A super hard sprint marathon");
+
+        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button6));
+        createWorkoutButtonVi.perform(ViewActions.click());
+        post.setWorkout(workout);
+
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+
+        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+        postButtonVi.perform(ViewActions.click());
+
+        post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
 
     }
 
