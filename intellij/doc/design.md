@@ -46,65 +46,89 @@ SearchFilter "1" - "1" List : \tCreates\t\t
 
 # Sequence Diagrams
 
+### Creating a profile:
+```plantuml
+@startuml
+hide footbox
+actor User as user
+participant ": View" as view 
+participant ": Controller" as controller 
+participant ": Profile" as profile
+
+user -> view : CreateProfile
+view -> controller : onCreateButton()
+controller ->  profile : Profile()
+controller -> profile : onAddedPassword
+controller -> profile : onAddedUsername
+controller -> profile : onAddedBio
+Profile -> view : Display Feed (Profile Created)
+@enduml
+```
+
 ### Posting a workout:
 ```plantuml
 @startuml
 hide footbox
 actor Producer as producer
-participant ": UI" as ui 
+participant ": View" as view 
 participant ": Controller" as controller 
 participant ": Post" as Post
 participant ": Workout" as workout
 
-producer -> ui : create 
-ui -> controller : getPostInfo()
-controller -> Post : createPost(caption, type, length, difficulty)
+producer -> view : AddPost 
+view -> controller : onAddPost()
+controller -> Post : Post(caption, type, length, difficulty)
 activate Post
 deactivate Post
-workout -> Post : AddWorkout()
+workout -> Post : onAddedWorkout()
 activate workout
 deactivate workout
-ui <- Post : toString()
+view <- Post : toString()
 activate Post
 deactivate Post
 @enduml
 ```
 
-### Searching content
-```plantuml 
-@startuml
-hide footbox
-actor Lurker as lurker
-participant "UI" as ui
-participant "Controller" as controller 
-participant "Filter" as filter
-participant "feed : Feed" as feed 
-
-lurker -> ui : getFilterCond(length, difficulty) 
-ui -> controller: filterList(length, difficulty) 
-controller -> filter : filter()
-filter <<-- feed : filteredFeed(length, difficulty)
-feed -> lurker : toString(workout)
-@enduml
-```
-### Seeing the Feed 
+### Seeing the Feed
 ```plantuml 
 @startuml
 hide footbox
 actor "User" as user 
 participant "Post" as post
 participant "feed : Feed" as feed
-participant "UI" as ui
+participant "View" as view
 
 
+user -> view : Feed
+view <- feed : toString()
+feed <- post : toString()
 
-post -> feed : toString()
-feed -> ui : toString()
-ui -> user : displayFeed()
 
 @enduml
 ```
- 
+
+### Filtering content
+```plantuml 
+@startuml
+hide footbox
+actor Lurker as lurker
+participant "view" as view
+participant "Controller" as controller 
+participant "Filter" as filter
+participant "Length" as length
+participant "Difficulty" as difficulty
+participant "feed : Feed" as feed 
+
+lurker -> view : Filter 
+view -> controller: onFilter() 
+controller -> length: Length(length, feed)
+controller -> difficulty: Difficulty(difficulty, feed)
+controller <- length: filter()
+controller <- difficulty: filter()
+controller -> feed : filteredFeed(length, difficulty)
+feed -> view : toString()
+@enduml
+```
 
 ## Class Diagram 
 
