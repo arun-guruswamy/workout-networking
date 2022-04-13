@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import org.hamcrest.Matcher;
 
 import edu.vassar.cmpu203.workoutapp.Model.Cardio;
+import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
@@ -122,5 +123,18 @@ public class AddMiscThings {
         profile.setUsername("Username");
 
         return profile;
+    }
+
+    public static Post addPost(Profile profile, Workout workout) {
+        Post post = new Post(profile);
+        //create post screen, checks that default caption text is there
+        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+
+        // checks that the default workout text is there
+        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+
+        return post;
     }
 }
