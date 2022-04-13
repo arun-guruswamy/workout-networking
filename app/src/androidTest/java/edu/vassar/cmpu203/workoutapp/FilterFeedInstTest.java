@@ -28,7 +28,7 @@ import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
 
-public class FilterFeedInstTest {
+public class FilterFeedInstTest extends AddMiscThings{
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
