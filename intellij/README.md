@@ -1,7 +1,17 @@
 # Team H
 
-Questions to ask:
+##Functionality 
+- Added a basic filter for sorting by length and difficulty 
+- Added a profile screen so a user can create a profile 
 
-- Show UI, attributes
-- Filter for iteration 2
-- Iteration 2 suggestions
+##Limitations 
+- Only ran and tested on API 26 
+- When creating workouts, must add attributes for specific kind of workout before entering other fields or they will disappear due to lack of data persistence
+- Feed can only show 3 posts at this time, any additional posts won't show up
+
+
+##Other
+- When adding a workout, pick type first {Strength or Cardio} and select attributes. Your choices will be saved despite lack of visual confirmation 
+- Creating profile does not have much purpose other than displaying username above posts
+- In the filter screen, if a value is left at 0, this means that that field won't be used to filter
+- Difficulty is a scale of 1-5, length is in minutes 

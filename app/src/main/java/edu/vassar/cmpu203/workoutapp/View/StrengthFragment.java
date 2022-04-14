@@ -52,7 +52,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
                 AttributeList[0] = StrengthFragment.this.binding.radioButton3.isChecked();
                 AttributeList[1] = StrengthFragment.this.binding.radioButton4.isChecked();
                 AttributeList[2] = StrengthFragment.this.binding.radioButton5.isChecked();
-                //AttributeList[3] = StrengthFragment.this.binding.radioButton.isChecked();
+                AttributeList[3] = StrengthFragment.this.binding.fullbodyFocusButton.isChecked();
 
 
                 // let view listener know that it should add a new workout

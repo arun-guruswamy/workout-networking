@@ -57,9 +57,11 @@ public class AddPostInstTest extends AddMiscThings {
         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
 
+        //create the values for the workout to be passed
         boolean[] values = new boolean[3];
         values[0] = true;
 
+        //create and add the workout
         workout = addWorkoutTests(1, workout,values,"50",3,"A hard workout");
         post.setWorkout(workout);
 
@@ -82,7 +84,6 @@ public class AddPostInstTest extends AddMiscThings {
         postButtonVi.perform(ViewActions.click());
 
         //checks to see if the post1 text in the feed is the same as the post that was just created
-        post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
         post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
 
     }
@@ -136,7 +137,6 @@ public class AddPostInstTest extends AddMiscThings {
         postButtonVi.perform(ViewActions.click());
 
         //checks to see if the post1 text in the feed is the same as the post that was just created
-        post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
         post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
 
     }
@@ -145,10 +145,7 @@ public class AddPostInstTest extends AddMiscThings {
     public void addMultiplePostsTest() {
         //create profile screen -> leaves default values and clicks create
         //creates a new Profile and sets the Username to default
-        ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
-        createButtonVi.perform(ViewActions.click());
-        Profile profile = new Profile();
-        profile.setUsername("Username");
+        Profile profile = createProfile();
 
         ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
         post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
@@ -165,46 +162,12 @@ public class AddPostInstTest extends AddMiscThings {
         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
 
-        ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));
-        addWorkoutButtonVi.perform(ViewActions.click());
 
-        ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button2));
-        cardioButtonVi.perform(ViewActions.click());
-
-        //cardio screen, clicks on the agility radio button
-        ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton3));
-        agilityVi.perform(ViewActions.click());
-
-        //clicks on the set button
-        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.button3));
-        setVi.perform(ViewActions.click());
         boolean[] values = new boolean[3];
-        values[0] = true;
-        workout = new Cardio(values);
+        values[1] = true;
+        values[2] = true;
 
-        //create workout screen, enters the workout length
-        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName));
-        lengthVi.perform(ViewActions.typeText("5"));
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
-        workout.setLength(5);
-
-        //enters the workout difficulty
-        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.seekBar2));
-        difficultyVi.perform(ViewActions.swipeRight());
-        workout.setDifficulty(5);
-
-        //checks that the default description is present
-        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName4));
-        workoutDescriptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.input_workout)));
-
-        //enters a new description
-        workoutDescriptionVi.perform(ViewActions.replaceText("Five mile run"));
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
-        workout.setDescription("Five mile run");
-
-        // clicks on the create workout button
-        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button6));
-        createWorkoutButtonVi.perform(ViewActions.click());
+        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints");
         post.setWorkout(workout);
 
         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
@@ -213,21 +176,19 @@ public class AddPostInstTest extends AddMiscThings {
         //enter new caption
         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
         postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
+        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
 
         //click the caption button and checks to see that the caption text has changed
         ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
         captionButtonVi.perform(ViewActions.click());
-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
-        post.addCaption("A fun workout");
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("Did some sprints today")));
+        post.addCaption("Did some sprints today");
 
         // clicks on the post button
         ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
         postButtonVi.perform(ViewActions.click());
 
         //checks to see if the post1 text in the feed is the same as the post that was just created
-        post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
         post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
 
         // START OF SECOND POST
@@ -239,62 +200,63 @@ public class AddPostInstTest extends AddMiscThings {
         Post post1 = new Post(profile);
         Workout workout1;
 
-        addWorkoutButtonVi.perform(ViewActions.click());
-
-        //click on the strength button
-        ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button));
-        strengthButtonVi.perform(ViewActions.click());
-
-        //click on multiple radio buttons
-        ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton3));
-        upperBodyButtonVi.perform(ViewActions.click());
-        ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton5));
-        bodyweightButtonVi.perform(ViewActions.click());
-        ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.button3));
-        setButton.perform(ViewActions.click());
         boolean[] values1 = new boolean[4];
         values1[0] = true;
         values1[2] = true;
         workout1 = new Strength(values1);
 
-        //create workout screen, enters the workout length
-        lengthVi.perform(ViewActions.replaceText("5"));
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
-        workout1.setLength(5);
-
-        //enters the workout difficulty
-        difficultyVi.perform(ViewActions.swipeRight());
-        workout1.setDifficulty(5);
-
-
-        //enters a new description
-        workoutDescriptionVi.perform(ViewActions.replaceText("Five mile run"));
-        workout1.setDescription("Five mile run");
-
-        // clicks on the create workout button
-        createWorkoutButtonVi.perform(ViewActions.click());
+        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups");
         post1.setWorkout(workout1);
 
         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
 
         //create post screen, check to see of default text for caption is there
         //enter new caption
-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
+        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
 
         //click the caption button and checks to see that the caption text has changed
         captionButtonVi.perform(ViewActions.click());
-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
-        post1.addCaption("A fun workout");
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
+        post1.addCaption("My arms are sore");
 
         // clicks on the post button
         postButtonVi.perform(ViewActions.click());
 
         //checks to see if the post1 text in the feed is the same as the post that was just created
-        post2Vi = Espresso.onView(ViewMatchers.withId(R.id.Post2));
         post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
 
+        // START OF THIRD POST
 
+        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withId(R.id.Post3));
+        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post3)));
+        addPostButtonVi.perform(ViewActions.click());
+        Post post2 = new Post(profile);
+        Workout workout2;
+
+        boolean[] values2 = new boolean[4];
+        values2[1] = true;
+        values2[3] = true;
+        workout2 = new Strength(values2);
+
+        workout2 = addWorkoutTests(2, workout2, values2, "30", 4, "Some good weights and what not");
+        post2.setWorkout(workout2);
+
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
+
+        //create post screen, check to see of default text for caption is there
+        //enter new caption
+        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
+
+        //click the caption button and checks to see that the caption text has changed
+        captionButtonVi.perform(ViewActions.click());
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
+        post2.addCaption("My arms are sore");
+
+        // clicks on the post button
+        postButtonVi.perform(ViewActions.click());
+
+        //checks to see if the post1 text in the feed is the same as the post that was just created
+        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(post2.toString())));
     }
 
     @Test
@@ -382,6 +344,11 @@ public class AddPostInstTest extends AddMiscThings {
 
         post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
         post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+
+    }
+
+    @Test
+    public void testSnackBars(){
 
     }
 

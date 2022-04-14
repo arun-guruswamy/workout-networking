@@ -14,7 +14,6 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import org.hamcrest.Matcher;
 
 import edu.vassar.cmpu203.workoutapp.Model.Cardio;
-import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
@@ -69,7 +68,7 @@ public class AddMiscThings {
             }
 
             if(values[3]){
-                ViewInteraction fullBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton));
+                ViewInteraction fullBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.fullbodyFocusButton));
                 fullBodyButtonVi.perform(ViewActions.click());
             }
 
@@ -125,16 +124,22 @@ public class AddMiscThings {
         return profile;
     }
 
-    public static Post addPost(Profile profile, Workout workout) {
-        Post post = new Post(profile);
-        //create post screen, checks that default caption text is there
-        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+   /* public static Post addPostCaption(Post post, String caption) {
 
-        // checks that the default workout text is there
-        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+      //create post screen, check to see of default text for caption is there
+        //enter new caption
+        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
+        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+        postCapEdVi.perform(ViewActions.replaceText(caption));
+
+        //click the caption button and checks to see that the caption text has changed
+        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
+        captionButtonVi.perform(ViewActions.click());
+        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(caption)));
+        post.addCaption(caption);
+
 
         return post;
-    }
+    }*/
 }

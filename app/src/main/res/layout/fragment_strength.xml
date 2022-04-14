@@ -58,7 +58,7 @@
             android:text="@string/BodyWeightFocus" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/fullbodyFocusButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/FullBodyFocus" />
