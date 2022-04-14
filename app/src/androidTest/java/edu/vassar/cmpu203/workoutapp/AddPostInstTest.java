@@ -556,7 +556,46 @@ public class AddPostInstTest extends AddMiscThings {
 
         SystemClock.sleep(3500);
 
+    }
 
+    /**
+     * A test to make sure the cancel button works
+     */
+    @Test
+    public void cancelButtonTest(){
+        //create profile screen -> leaves default values and clicks create
+        //creates a new Profile and sets the Username to default
+        Profile profile = createProfile();
+
+        //clcik on the add post button
+        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+        addPostButtonVi.perform(ViewActions.click());
+        Post post = new Post(profile);
+        Workout workout = new Workout();
+
+        //create post screen, checks that default caption text is there
+        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+
+        // checks that the default workout text is there
+        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+
+        //create the values for the workout to be passed
+        boolean[] values = new boolean[3];
+        values[2] = true;
+
+        //create and add the workout
+        workout = addWorkoutTests(1, workout,values,"50",5,"workout");
+        post.setWorkout(workout);
+
+        //click on the cancel button
+        ViewInteraction cancelButtonVi = Espresso.onView(ViewMatchers.withId(R.id.cancelButton));
+        cancelButtonVi.perform(ViewActions.click());
+
+        //show that nothing has changed in the feed
+        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
 
     }
 
