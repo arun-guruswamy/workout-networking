@@ -80,9 +80,10 @@ view -> controller : onAddPost()
 controller -> Post : Post(caption, type, length, difficulty)
 activate Post
 deactivate Post
-workout -> Post : onAddedWorkout()
+workout <- Post : onWorkoutButton()
 activate workout
 deactivate workout
+workout -> Post : onAddedWorkout()
 view <- Post : toString()
 activate Post
 deactivate Post
