@@ -59,4 +59,5 @@
         <item>5</item>
     </string-array>
     <string name="RemoveFilter">Remove Filters</string>
+    <string name="FilterInfo">Leave field as zero if no preference</string>
 </resources>
