@@ -170,6 +170,7 @@ createWorkout()
 }
 
 class Feed {
+ArrayList<Post> feed
 --
 -Filter(length: int, difficulty : int, type: ) : Stack<Post> 
 +toString() : String
@@ -177,12 +178,35 @@ class Feed {
 
 class Controller {
 --
--Filter() 
--createPost() : Post 
--showPost()
 }
 
-class UI {
+class View {
+}
+
+class Profile {
+String username
+String password
+Feed posts
+String bio
+--
+}
+
+interface Filter {
+filter()
+}
+
+class Length {
+int length
+Array<post> feed
+--
+filter()
+}
+
+class Difficulty {
+int difficulty
+Array<post> feed
+--
+filter()
 }
 
 Feed *-"(1..*) Posts \n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
@@ -191,6 +215,12 @@ Workout <|-- CardioWorkout
 Workout <|-- StrengthWorkout
 Controller -- Post 
 Controller -- Feed
-UI -- Controller
+Controller -- Profile
+Profile -- Feed
+View -- Controller
+Filter <|-- Length
+Filter <|-- Difficulty
+Filter -- Feed
+Controller -- Filter
 @enduml
 ```

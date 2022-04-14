@@ -45,14 +45,14 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        this.binding.button3.setOnClickListener(new View.OnClickListener() {
+        this.binding.StrengthSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // retrieve item's name
-                AttributeList[0] = StrengthFragment.this.binding.radioButton3.isChecked();
-                AttributeList[1] = StrengthFragment.this.binding.radioButton4.isChecked();
-                AttributeList[2] = StrengthFragment.this.binding.radioButton5.isChecked();
-                AttributeList[3] = StrengthFragment.this.binding.fullbodyFocusButton.isChecked();
+                AttributeList[0] = StrengthFragment.this.binding.UpperBodyOption.isChecked();
+                AttributeList[1] = StrengthFragment.this.binding.LowerBodyOption.isChecked();
+                AttributeList[2] = StrengthFragment.this.binding.BodyWeightOption.isChecked();
+                AttributeList[3] = StrengthFragment.this.binding.FullBodyOption.isChecked();
 
 
                 // let view listener know that it should add a new workout

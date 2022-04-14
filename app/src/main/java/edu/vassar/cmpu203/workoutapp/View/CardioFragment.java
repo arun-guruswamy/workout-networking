@@ -45,13 +45,13 @@ public class CardioFragment extends Fragment implements IWorkoutType {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        this.binding.button3.setOnClickListener(new View.OnClickListener() {
+        this.binding.CardioSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // retrieve item's name
-                AttributeList[0] = CardioFragment.this.binding.radioButton3.isChecked();
-                AttributeList[1] = CardioFragment.this.binding.radioButton4.isChecked();
-                AttributeList[2] = CardioFragment.this.binding.radioButton5.isChecked();
+                AttributeList[0] = CardioFragment.this.binding.AgilityOption.isChecked();
+                AttributeList[1] = CardioFragment.this.binding.EnduranceOption.isChecked();
+                AttributeList[2] = CardioFragment.this.binding.SpeedOption.isChecked();
 
 
                 // let view listener know that it should add a new workout

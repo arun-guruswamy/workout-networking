@@ -59,18 +59,18 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         // onViewCreated is responsible for wiring up the event handlers
 
         // add listener to be called when the add button is pressed
-        this.binding.button6.setOnClickListener(new View.OnClickListener() {
+        this.binding.AddWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // retrieve item's name
-                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.editTextTextPersonName.getText();
+                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
                 String workoutLengthStr = workoutLengthEditable.toString();
 
-                Editable workoutDescEditable = AddWorkoutFragment.this.binding.editTextTextPersonName4.getText();
+                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
                 String workoutDescStr = workoutDescEditable.toString();
 
                 // retrieve item's quantity
-                int workoutDifficulty = binding.seekBar2.getProgress();
+                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
 
 
                 // confirm we have both name and qty
@@ -103,7 +103,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
-        this.binding.button2.setOnClickListener(new View.OnClickListener() {
+        this.binding.CardioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddWorkoutFragment.this.listener.CardioButton(workout, post);
@@ -111,7 +111,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
-        this.binding.button.setOnClickListener(new View.OnClickListener() {
+        this.binding.StrengthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddWorkoutFragment.this.listener.StrengthButton(workout, post);

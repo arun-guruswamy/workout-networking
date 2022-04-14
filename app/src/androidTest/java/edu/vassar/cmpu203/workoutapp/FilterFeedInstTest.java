@@ -13,6 +13,10 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import static org.hamcrest.Matchers.anything;
 
 
+import android.os.SystemClock;
+import android.view.View;
+
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
@@ -364,6 +368,36 @@ public class FilterFeedInstTest extends AddMiscThings{
         onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
         onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
         onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
+    }
+
+    /**
+     * Test to make sure that the snackbar will pop up
+     * when length is left empty
+     */
+    @Test
+    public void testFilterSnackbar() {
+        //Enter a blank length input
+        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.LengthInput));
+        lengthVi.perform(ViewActions.replaceText(""));
+        ViewInteraction setButtonVi = Espresso.onView(ViewMatchers.withId(R.id.FilterSet));
+        setButtonVi.perform(ViewActions.click());
+
+        //the snackbar matcher
+        Matcher<View> snackbarMatcher = ViewMatchers.withText("Input for length mandatory!");
+        ViewInteraction snackBarVi = Espresso.onView(snackbarMatcher);
+        snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
+
+
+        //Test for a non-numeric input
+        lengthVi.perform(ViewActions.replaceText("This shouldn't be here"));
+        setButtonVi.perform(ViewActions.click());
+
+        //the snackbar matcher
+        snackbarMatcher = ViewMatchers.withText("Please enter a number for length");
+        snackBarVi = Espresso.onView(snackbarMatcher);
+        snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
+
+
     }
 
 }

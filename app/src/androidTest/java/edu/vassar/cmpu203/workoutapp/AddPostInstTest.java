@@ -166,11 +166,11 @@ public class AddPostInstTest extends AddMiscThings {
         cardioButtonVi.perform(ViewActions.click());
 
         //cardio screen, clicks on the agility radio button
-        ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.UpperBodyOption));
+        ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.AgilityOption));
         agilityVi.perform(ViewActions.click());
 
         //clicks on the set button
-        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthSetButton));
+        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));
         setVi.perform(ViewActions.click());
         boolean[] values = new boolean[3];
         values[0] = true;
@@ -240,11 +240,11 @@ public class AddPostInstTest extends AddMiscThings {
         strengthButtonVi.perform(ViewActions.click());
 
         //click on multiple radio buttons
-        ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.UpperBodyOption));
+        ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AgilityOption));
         upperBodyButtonVi.perform(ViewActions.click());
-        ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.BodyWeightOption));
+        ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.SpeedOption));
         bodyweightButtonVi.perform(ViewActions.click());
-        ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthSetButton));
+        ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));
         setButton.perform(ViewActions.click());
         boolean[] values1 = new boolean[4];
         values1[0] = true;
@@ -341,12 +341,12 @@ public class AddPostInstTest extends AddMiscThings {
         ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
         cardioButtonVi.perform(ViewActions.click());
 
-        ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.LowerBodyOption));
+        ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.EnduranceOption));
         enduranceButtonVi.perform(ViewActions.click());
-        ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.BodyWeightOption));
+        ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.SpeedOption));
         speedButtonVi.perform(ViewActions.click());
 
-        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthSetButton));
+        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));
         setVi.perform(ViewActions.click());
         boolean[] values = new boolean[3];
         values[1] = true;

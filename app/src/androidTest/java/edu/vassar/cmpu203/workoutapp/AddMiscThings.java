@@ -39,77 +39,77 @@ public class AddMiscThings {
 
         //if the workout type is a cardio workout and adds the correct values
         if(type == 1) {
-            ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button2));
+            ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
             cardioButtonVi.perform(ViewActions.click());
 
 
             if(values[0]){
-                ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton3));
+                ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.AgilityOption));
                 agilityVi.perform(ViewActions.click());
             }
 
             if(values[1]){
-                ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton4));
+                ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.EnduranceOption));
                 enduranceButtonVi.perform(ViewActions.click());
             }
 
             if(values[2]) {
-                ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton5));
+                ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.SpeedOption));
                 speedButtonVi.perform(ViewActions.click());
             }
 
-            ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.button3));
+            ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));
             setVi.perform(ViewActions.click());
             workout = new Cardio(values);
         }
         // if the workout is a strength workout
         else {
-            ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button));
+            ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
             strengthButtonVi.perform(ViewActions.click());
 
             if(values[0]){
-                ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton3));
+                ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.UpperBodyOption));
                 upperBodyButtonVi.perform(ViewActions.click());
             }
 
             if(values[1]){
-                ViewInteraction lowerBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton4));
+                ViewInteraction lowerBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.LowerBodyOption));
                 lowerBodyButtonVi.perform(ViewActions.click());
             }
 
             if(values[2]) {
-                ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.radioButton5));
+                ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.BodyWeightOption));
                 bodyweightButtonVi.perform(ViewActions.click());
             }
 
             if(values[3]){
-                ViewInteraction fullBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.fullbodyFocusButton));
+                ViewInteraction fullBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.FullBodyOption));
                 fullBodyButtonVi.perform(ViewActions.click());
             }
 
-            ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.button3));
+            ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthSetButton));
             setButton.perform(ViewActions.click());
             workout = new Strength(values);
         }
 
         // add the length
-        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName));
+        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutLengthInput));
         lengthVi.perform(ViewActions.replaceText(length));
         workout.setLength(Integer.parseInt(length));
 
         //add the difficulty
-        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.seekBar2));
+        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDifficultyInput));
         difficultyVi.perform(setProgress(difficulty));
         workout.setDifficulty(difficulty);
 
         // add the description
-        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.editTextTextPersonName4));
+        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDescriptionInput));
         workoutDescriptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.input_workout)));
         workoutDescriptionVi.perform(ViewActions.replaceText(description));
         workout.setDescription(description);
 
         //click the create workout button on the add workout screen
-        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.button6));
+        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));
         createWorkoutButtonVi.perform(ViewActions.click());
 
         return workout;
