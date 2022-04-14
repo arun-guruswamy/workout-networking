@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class PostTest {
 
+    /**
+     * Testing that the toString works for a Post
+     */
     @Test
     void testToString() {
+        //creating a post to test against
         Profile profile = new Profile();
         profile.setUsername("CoolDude");
         Post post = new Post(profile);
@@ -19,6 +23,7 @@ class PostTest {
         post.setWorkout(workout);
 
 
+        //seeing that the created post matches what is expected
         assertEquals("\nCoolDude\nWorkout: FUN\n5\n2\n\nNice workout",post.toString());
     }
 }

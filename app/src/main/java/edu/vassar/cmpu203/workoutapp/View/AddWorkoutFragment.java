@@ -75,7 +75,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
                 // confirm we have both name and qty
                 if (workoutLengthStr.length() == 0 || workoutDifficulty == 0 || workoutDescStr.length() == 0){
-                    Snackbar.make(v, "Both length and difficulty are mandatory!", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(v, "Length, difficulty and description are mandatory!", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
