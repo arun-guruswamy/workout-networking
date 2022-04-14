@@ -40,25 +40,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/UpperBodyOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/UpperBodyFocus" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/LowerBodyOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/LowerBodyFocus" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/BodyWeightOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/BodyWeightFocus" />
 
         <RadioButton
-            android:id="@+id/fullbodyFocusButton"
+            android:id="@+id/FullBodyOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/FullBodyFocus" />
@@ -66,7 +66,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/StrengthSetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"

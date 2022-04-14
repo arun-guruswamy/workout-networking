@@ -15,3 +15,4 @@
 - Creating profile does not have much purpose other than displaying username above posts
 - In the filter screen, if a value is left at 0, this means that that field won't be used to filter
 - Difficulty is a scale of 1-5, length is in minutes 
+- Cardio and Strength were left as separate screens to account for the possibility of adding more features for the specific type of workout
