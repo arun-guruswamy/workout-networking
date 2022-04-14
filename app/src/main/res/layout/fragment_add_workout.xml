@@ -78,7 +78,7 @@
 
         <EditText
             android:id="@+id/WorkoutLengthInput"
-            android:layout_width="161dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -106,7 +106,7 @@
 
         <Button
             android:id="@+id/StrengthButton"
-            android:layout_width="wrap_content"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/strengthButton" />

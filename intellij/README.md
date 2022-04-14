@@ -5,7 +5,7 @@
 - Added a profile screen so a user can create a profile 
 
 ##Limitations 
-- Only ran and tested on API 26 
+- Only ran and tested on API 32 
 - When creating workouts, must add attributes for specific kind of workout before entering other fields or they will disappear due to lack of data persistence
 - Feed can only show 3 posts at this time, any additional posts won't show up
 
