@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 public class FilterTest {
 
+    /**
+     * Adds three posts and then uses filter() to filter through the posts and check if the remaining post is the expected one
+     */
     @Test
     void testFilteredFeed() {
         Feed f = new Feed();
