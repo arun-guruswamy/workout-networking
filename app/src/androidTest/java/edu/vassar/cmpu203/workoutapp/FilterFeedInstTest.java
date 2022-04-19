@@ -376,6 +376,11 @@ public class FilterFeedInstTest extends AddMiscThings{
      */
     @Test
     public void testFilterSnackbar() {
+        Profile profile = createProfile();
+
+        ViewInteraction feedVi = Espresso.onView(ViewMatchers.withId(R.id.FeedFilter));
+        feedVi.perform(ViewActions.click());
+
         //Enter a blank length input
         ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.LengthInput));
         lengthVi.perform(ViewActions.replaceText(""));
