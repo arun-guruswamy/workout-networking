@@ -17,3 +17,15 @@
 - Difficulty is a scale of 1-5, length is in minutes 
 - Cardio and Strength were left as separate screens to account for the possibility of adding more features for the specific type of workout
 - Difficulty ranges from 1 to 5.
+
+
+Task list:
+-Save state between workout types
+-Save state for feed
+-Add scrollview for feed
+-Create a new Profile screen that has user info, his posts, and statistics
+-Home Screen that has log in and sign up option
+-Update Create Profile screen to a Sign-up Screen
+-Flesh out filter with more options
+-Add Mobility Workout Type with its respective screen
+
