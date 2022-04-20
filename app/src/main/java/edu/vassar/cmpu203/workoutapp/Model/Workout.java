@@ -5,6 +5,7 @@ public class Workout {
     public int difficulty;
     public String description;
     protected String sportFocus;
+    int workoutType;
 
     public Workout() {};
 
@@ -21,6 +22,8 @@ public class Workout {
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
+
+    public void setType(int type) { workoutType = type; }
 
    // public boolean setAttribute(String name) {
      //  boolean attribute = false;

@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="300dp"
-        android:layout_marginBottom="300dp"
+        android:layout_marginBottom="350dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
             android:textSize="20sp" />/>
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/diffOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/diff_array"
@@ -90,21 +90,44 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="250dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/TypeFilter"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:text="@string/workoutType"
+            android:textColor="#9C27B0"
+            android:textSize="20sp" />/>
+
+        <Spinner
+            android:id="@+id/TypeOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/typeArray"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/FilterSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="43dp"
         android:layout_marginEnd="160dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/SetButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"

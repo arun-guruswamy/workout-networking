@@ -12,7 +12,7 @@ public class Difficulty implements Filter {
     }
 
     public ArrayList<Post> filter() {
-        filtered.removeIf(post -> post.workout.difficulty != difficulty && difficulty != 0);
+        filtered.removeIf(post -> (post.workout == null) || (post.workout.difficulty != difficulty && difficulty != 0));
         return filtered;
     }
 }

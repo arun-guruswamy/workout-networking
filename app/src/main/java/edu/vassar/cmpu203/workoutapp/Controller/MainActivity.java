@@ -44,11 +44,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         }
       else
             workout = new Strength(WorkoutAttributes);
-        //w.workout = descr;
         workout.setDescription(descr);
-        //w.length = length;
         workout.setLength(length);
-        //w.difficulty = difficulty;
+        workout.setType(workoutType);
         workout.setDifficulty(difficulty);
         post.setWorkout(workout);
         this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
@@ -119,12 +117,14 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onSetFilter(int length, int difficulty) {
+    public void onSetFilter(int length, int difficulty, int workoutType) {
         filteredFeed.feed = new ArrayList(feed.feed);
         Filter len = new Length(length, filteredFeed);
         filteredFeed.feed = len.filter();
         Filter diff = new Difficulty(difficulty, filteredFeed);
         filteredFeed.feed = diff.filter();
+        Filter type = new Type(workoutType, filteredFeed);
+        filteredFeed.feed = type.filter();
         this.mainView.displayFragment(new FeedFragment(this, filteredFeed), false);
     }
 

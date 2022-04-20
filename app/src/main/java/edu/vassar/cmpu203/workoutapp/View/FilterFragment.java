@@ -40,11 +40,13 @@ public class FilterFragment extends Fragment implements IFilterView {
         this.binding.FilterSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Editable workoutLengthEditable = FilterFragment.this.binding.LengthInput.getText();
                 String workoutLengthStr = workoutLengthEditable.toString();
 
                 // retrieve item's quantity
-                String workoutDifficulty = binding.spinner.getSelectedItem().toString();
+                String workoutDifficulty = binding.diffOptions.getSelectedItem().toString();
+                int workoutType = binding.TypeOptions.getSelectedItemPosition();
 
                 int workoutDif = Integer.parseInt(workoutDifficulty);
 
@@ -63,7 +65,7 @@ public class FilterFragment extends Fragment implements IFilterView {
 
                 workoutLengthEditable.clear();
 
-                FilterFragment.this.listener.onSetFilter(workoutLength, workoutDif);
+                FilterFragment.this.listener.onSetFilter(workoutLength, workoutDif, workoutType);
             }
         });
 

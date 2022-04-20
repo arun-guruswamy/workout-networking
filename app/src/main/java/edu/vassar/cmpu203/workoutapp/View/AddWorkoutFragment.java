@@ -56,6 +56,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+
         // onViewCreated is responsible for wiring up the event handlers
 
         // add listener to be called when the add button is pressed
@@ -93,9 +94,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
                 // let view listener know that it should add a new workout
-                if(workoutType == 1)
-                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes, post, workout);
-                else if(workoutType == 2)
+                if(workoutType == 1 || workoutType == 2)
                     AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr,workoutType, WorkoutAttributes, post, workout);
                 else
                     Snackbar.make(v, "Choosing a workout type is mandatory!", Snackbar.LENGTH_LONG).show();
@@ -118,6 +117,14 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
             }
         });
+
+        this.binding.WorkoutDifficultyInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.DiffDisplay.setText(binding.WorkoutDifficultyInput.getProgress());
+            }
+        });
+
     }
 
 }

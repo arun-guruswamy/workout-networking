@@ -50,6 +50,8 @@
     <string name="filterTitle">Filters</string>
     <string name="lengthFilter">Length</string>
     <string name="DiffFilter">Difficulty</string>
+    <string name="empty"></string>
+    <string name="sport">Sport Focus</string>
     <string-array name="diff_array">
         <item>0</item>
         <item>1</item>
@@ -58,10 +60,29 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string-array name="sport_array">
+        <item>None</item>
+        <item>Tennis</item>
+        <item>Lacrosse</item>
+        <item>Baseball</item>
+        <item>Soccer</item>
+        <item>Track and Field</item>
+        <item>Basketball</item>
+        <item>Rugby</item>
+        <item>Rowing</item>
+        <item>Swimming</item>
+    </string-array>
     <string name="RemoveFilter">Remove Filters</string>
     <string name="FilterInfo">Leave field as zero if no preference</string>
     <string name="WelcomeMessage">Hello and Welcome to the Greatest Workout App Ever!!!!!!</string>
     <string name="SignUpButton">Sign Up</string>
     <string name="LogInButton">Log In</string>
     <string name="NewUserMessage">Don\'t have an account?</string>
+    <string name="workoutType">Workout Type</string>
+    <string-array name="typeArray">
+        <item>Any</item>
+        <item>Cardio</item>
+        <item>Strength</item>
+        <item>Mobility</item>
+    </string-array>
 </resources>

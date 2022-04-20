@@ -121,7 +121,8 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/captionTextBox" />
+            android:text="@string/empty"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/captionButton"

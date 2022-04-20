@@ -13,25 +13,16 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import static org.hamcrest.Matchers.anything;
 
 
-import android.os.SystemClock;
 import android.view.View;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
-import edu.vassar.cmpu203.workoutapp.AddPostInstTest;
-import edu.vassar.cmpu203.workoutapp.CreateProfileInstTest;
-import edu.vassar.cmpu203.workoutapp.Model.Cardio;
-import edu.vassar.cmpu203.workoutapp.Model.Difficulty;
 import edu.vassar.cmpu203.workoutapp.Model.Feed;
-import edu.vassar.cmpu203.workoutapp.Model.Filter;
-import edu.vassar.cmpu203.workoutapp.Model.Length;
 import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
-import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
-import edu.vassar.cmpu203.workoutapp.AddMiscThings;
 
 
 public class FilterFeedInstTest extends AddMiscThings{
@@ -240,7 +231,7 @@ public class FilterFeedInstTest extends AddMiscThings{
 
 
         //enters the difficulty filter
-        ViewInteraction filterDifficultyVi = onView(withId(R.id.spinner));
+        ViewInteraction filterDifficultyVi = onView(withId(R.id.diffOptions));
         filterDifficultyVi.perform(ViewActions.click());
         onData(anything()).atPosition(3).perform(ViewActions.click());
         filterDifficultyVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText("3")));
@@ -353,7 +344,7 @@ public class FilterFeedInstTest extends AddMiscThings{
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
 
         //enters the difficulty filter
-        ViewInteraction filterDifficultyVi = onView(withId(R.id.spinner));
+        ViewInteraction filterDifficultyVi = onView(withId(R.id.diffOptions));
         filterDifficultyVi.perform(ViewActions.click());
         onData(anything()).atPosition(3).perform(ViewActions.click());
         filterDifficultyVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText("3")));
