@@ -9,45 +9,41 @@
 
     <TextView
         android:id="@+id/Post1"
-        android:layout_width="388dp"
-        android:layout_height="165dp"
-        android:layout_marginStart="7dp"
+        android:layout_width="386dp"
+        android:layout_height="187dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="13dp"
         android:ems="10"
         android:text="@string/Post1"
-        app:layout_constraintBottom_toTopOf="@+id/Post2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Post2"
-        android:layout_width="388dp"
-        android:layout_height="165dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="399dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="13dp"
         android:ems="10"
         android:text="@string/Post2"
-        app:layout_constraintBottom_toTopOf="@+id/Post3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Post1" />
 
     <TextView
         android:id="@+id/Post3"
-        android:layout_width="385dp"
-        android:layout_height="164dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="388dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:text="@string/Post3"
-        app:layout_constraintBottom_toTopOf="@+id/FeedFilter"
+        app:layout_constraintBottom_toTopOf="@+id/RemoveFilter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Post2" />
@@ -57,40 +53,31 @@
         android:layout_width="109dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/filterTitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/RemoveFilter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Post3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/addButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/RemoveFilter"
-        app:layout_constraintTop_toBottomOf="@+id/Post3" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/RemoveFilter"
         android:layout_width="115dp"
         android:layout_height="52dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/RemoveFilter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintStart_toEndOf="@+id/FeedFilter"
-        app:layout_constraintTop_toBottomOf="@+id/Post3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/FeedFilter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener {
 
     private Profile p = new Profile();
     private IMainView mainView;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         this.feed = new Feed();
 
         setContentView(this.mainView.getRootView());
-        this.mainView.displayFragment(new CreateProfileFragment(this), false);
+        this.mainView.displayFragment(new HomeScreenFragment(this), false);
     }
 
     @Override
@@ -130,6 +130,16 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void removeFilters() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    }
+
+    @Override
+    public void onSignUp(){
+        this.mainView.displayFragment(new CreateProfileFragment(this), false);
+    }
+
+    @Override
+    public void onLogIn() {
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 }

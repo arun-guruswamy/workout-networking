@@ -60,4 +60,8 @@
     </string-array>
     <string name="RemoveFilter">Remove Filters</string>
     <string name="FilterInfo">Leave field as zero if no preference</string>
+    <string name="WelcomeMessage">Hello and Welcome to the Greatest Workout App Ever!!!!!!</string>
+    <string name="SignUpButton">Sign Up</string>
+    <string name="LogInButton">Log In</string>
+    <string name="NewUserMessage">Don\'t have an account?</string>
 </resources>
