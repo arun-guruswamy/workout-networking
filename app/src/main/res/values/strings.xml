@@ -35,6 +35,7 @@
     <string name="strengthButton">Strength</string>
     <string name="CardioTitle">Cardio Workout</string>
     <string name="StrengthTitle">Strength Workout</string>
+    <string name="MobilityTitle">Mobility Workout</string>
     <string name="AgilityFocus">Agility Focus</string>
     <string name="EnduranceFocus">Endurance Focus</string>
     <string name="SpeedFocus">Speed Focus</string>
@@ -85,4 +86,8 @@
         <item>Strength</item>
         <item>Mobility</item>
     </string-array>
+    <string name="mobility">Mobility</string>
+    <string name="yoga">Yoga</string>
+    <string name="dynamic">Dynamic Stretching</string>
+    <string name="staticStretching">Static Stretching</string>
 </resources>

@@ -47,6 +47,7 @@ public class FilterFragment extends Fragment implements IFilterView {
                 // retrieve item's quantity
                 String workoutDifficulty = binding.diffOptions.getSelectedItem().toString();
                 int workoutType = binding.TypeOptions.getSelectedItemPosition();
+                String sport = binding.sportOptions.getSelectedItem().toString();
 
                 int workoutDif = Integer.parseInt(workoutDifficulty);
 
@@ -65,7 +66,7 @@ public class FilterFragment extends Fragment implements IFilterView {
 
                 workoutLengthEditable.clear();
 
-                FilterFragment.this.listener.onSetFilter(workoutLength, workoutDif, workoutType);
+                FilterFragment.this.listener.onSetFilter(workoutLength, workoutDif, workoutType, sport);
             }
         });
 

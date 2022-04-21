@@ -13,7 +13,7 @@ public class Workout {
         this.description = description;
     }
 
-    //public void setSport(String sport) { this.sportFocus = sport;}
+    public void setSport(String sport) { this.sportFocus = sport;}
 
     public void setLength(int length) {
         this.length = length;
@@ -24,6 +24,7 @@ public class Workout {
     }
 
     public void setType(int type) { workoutType = type; }
+
 
    // public boolean setAttribute(String name) {
      //  boolean attribute = false;

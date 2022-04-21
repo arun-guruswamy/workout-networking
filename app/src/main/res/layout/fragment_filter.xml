@@ -116,6 +116,32 @@
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="150dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/SportFilter"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sport"
+            android:textColor="#9C27B0"
+            android:textSize="20sp" />/>
+
+        <Spinner
+            android:id="@+id/sportOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/sport_array"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/FilterSet"
         android:layout_width="wrap_content"

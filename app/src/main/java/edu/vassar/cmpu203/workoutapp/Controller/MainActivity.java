@@ -38,16 +38,18 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes, Post post, Workout workout) {
-       if (workoutType == 1) {
+    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes, Post post, Workout workout, String sport) {
+       if (workoutType == 1)
             workout = new Cardio(WorkoutAttributes);
-        }
-      else
+      else if (workoutType == 2)
             workout = new Strength(WorkoutAttributes);
+      else
+          workout = new Mobility(WorkoutAttributes);
         workout.setDescription(descr);
         workout.setLength(length);
         workout.setType(workoutType);
         workout.setDifficulty(difficulty);
+        workout.setSport(sport);
         post.setWorkout(workout);
         this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
     }
@@ -107,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
+    public void MobilityButton(Workout workout, Post post) {
+        this.mainView.displayFragment(new MobilityFragment(this, post, workout), false);
+    }
+
+    @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
         this.mainView.displayFragment(new AddWorkoutFragment(this, Attributes, workoutType, post), false);
     }
@@ -117,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onSetFilter(int length, int difficulty, int workoutType) {
+    public void onSetFilter(int length, int difficulty, int workoutType, String sport) {
         filteredFeed.feed = new ArrayList(feed.feed);
         Filter len = new Length(length, filteredFeed);
         filteredFeed.feed = len.filter();
@@ -125,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         filteredFeed.feed = diff.filter();
         Filter type = new Type(workoutType, filteredFeed);
         filteredFeed.feed = type.filter();
+        Filter sprt = new Sport(sport, filteredFeed);
+        filteredFeed.feed = sprt.filter();
         this.mainView.displayFragment(new FeedFragment(this, filteredFeed), false);
     }
 

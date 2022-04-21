@@ -63,15 +63,16 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.binding.AddWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // retrieve item's name
+
                 Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
                 String workoutLengthStr = workoutLengthEditable.toString();
 
                 Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
                 String workoutDescStr = workoutDescEditable.toString();
 
-                // retrieve item's quantity
                 int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
+
+                String workoutSport = binding.spinner2.getSelectedItem().toString();
 
 
                 // confirm we have both name and qty
@@ -94,8 +95,8 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
                 // let view listener know that it should add a new workout
-                if(workoutType == 1 || workoutType == 2)
-                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr,workoutType, WorkoutAttributes, post, workout);
+                if(workoutType == 1 || workoutType == 2 || workoutType == 3)
+                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr,workoutType, WorkoutAttributes, post, workout, workoutSport);
                 else
                     Snackbar.make(v, "Choosing a workout type is mandatory!", Snackbar.LENGTH_LONG).show();
 
@@ -117,6 +118,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
             }
         });
+
+        this.binding.MobilityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddWorkoutFragment.this.listener.MobilityButton(workout, post);
+            }
+        });
+
+
 
         this.binding.WorkoutDifficultyInput.setOnClickListener(new View.OnClickListener() {
             @Override

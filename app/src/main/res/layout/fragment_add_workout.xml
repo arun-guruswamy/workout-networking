@@ -136,17 +136,24 @@
 
         <Button
             android:id="@+id/CardioButton"
-            android:layout_width="75dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cardioButton" />
 
         <Button
             android:id="@+id/StrengthButton"
-            android:layout_width="79dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/strengthButton" />
+
+        <Button
+            android:id="@+id/MobilityButton"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mobility" />
     </LinearLayout>
 
     <LinearLayout
