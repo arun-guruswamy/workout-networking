@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import edu.vassar.cmpu203.workoutapp.Model.Feed;
 import edu.vassar.cmpu203.workoutapp.Model.Post;
@@ -36,26 +39,14 @@ public class FeedFragment extends Fragment implements IFeedView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
 
-            if (this.feed.feed.size() == 1) {
-                Post p = this.feed.feed.get(0);
-                this.binding.Post1.setText(p.toString());
-            }
+        LinearLayout linearLayout = this.binding.feedLayout;
 
-            if (this.feed.feed.size() == 2) {
-                Post p = this.feed.feed.get(0);
-                this.binding.Post1.setText(p.toString());
-                Post p2 = this.feed.feed.get(1);
-                this.binding.Post2.setText(p2.toString());
-            }
+        for(Post post : feed.feed) {
+            TextView tv = new TextView(getContext());
+            tv.setText(post.toString());
+            linearLayout.addView(tv);
+        }
 
-            if (this.feed.feed.size() == 3) {
-                Post p = this.feed.feed.get(0);
-                this.binding.Post1.setText(p.toString());
-                Post p2 = this.feed.feed.get(1);
-                this.binding.Post2.setText(p2.toString());
-                Post p3 = this.feed.feed.get(2);
-                this.binding.Post3.setText(p3.toString());
-            }
 
 
 
