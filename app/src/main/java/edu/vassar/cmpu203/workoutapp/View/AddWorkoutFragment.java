@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -128,12 +130,22 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
 
-        this.binding.WorkoutDifficultyInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.DiffDisplay.setText(binding.WorkoutDifficultyInput.getProgress());
-            }
-        });
+//        this.binding.WorkoutDifficultyInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        }
 
     }
 

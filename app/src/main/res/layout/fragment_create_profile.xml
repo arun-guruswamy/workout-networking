@@ -20,19 +20,21 @@
             android:layout_marginBottom="704dp"
             android:text="@string/createProfileText"
             android:textColor="#3949AB"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.671"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/UserText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="84dp"
             android:layout_marginEnd="41dp"
             android:text="@string/userText"
             android:textColor="#3949AB"
@@ -45,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -71,13 +73,13 @@
             android:id="@+id/passwordEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="36dp"
-            android:layout_marginEnd="60dp"
             android:ems="10"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:text="@string/passText"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/passwordText"
             app:layout_constraintTop_toBottomOf="@+id/UsernameText" />
 
         <TextView
@@ -85,25 +87,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="335dp"
             android:layout_marginBottom="11dp"
             android:text="@string/bioText"
             android:textColor="@color/purple_500"
             app:layout_constraintBottom_toTopOf="@+id/bioEditText"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/bioEditText"
             android:layout_width="382dp"
             android:layout_height="123dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="11dp"
-            android:layout_marginEnd="14dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/bioEdit"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bioText" />
 

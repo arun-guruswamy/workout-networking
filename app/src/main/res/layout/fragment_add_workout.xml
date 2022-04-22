@@ -82,7 +82,7 @@
             android:max="5" />
 
         <EditText
-            android:id="@+id/Diff_display"
+            android:id="@+id/DiffDisplay"
             android:layout_width="15dp"
             android:layout_height="48dp"
             android:layout_weight="1"

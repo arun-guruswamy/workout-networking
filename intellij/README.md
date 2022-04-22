@@ -25,7 +25,7 @@ Task list:
 -Add scrollview for feed
 -Create a new Profile screen that has user info, his posts, and statistics
 -Home Screen that has log in and sign up option
--Update Create Profile screen to a Sign-up Screen
--Flesh out filter with more options
--Add Mobility Workout Type with its respective screen
+-Update Create Profile screen to a Sign-up Screen 
+-Flesh out filter with more options (Almost Complete)
+-Add Mobility Workout Type with its respective screen (Complete)
 
