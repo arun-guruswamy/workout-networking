@@ -90,4 +90,11 @@
     <string name="yoga">Yoga</string>
     <string name="dynamic">Dynamic Stretching</string>
     <string name="staticStretching">Static Stretching</string>
+    <string name="profile">Profile</string>
+    <string name="Posts">Posts</string>
+    <string name="Followers">Followers</string>
+    <string name="Following">Following</string>
+    <string name="goback">Go Back</string>
+    <string name="EditProfile">Edit Profile</string>
+    <string name="LikedPostsButton">View Liked Posts</string>
 </resources>
