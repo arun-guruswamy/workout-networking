@@ -26,32 +26,35 @@ public class WorkoutAppFragFactory extends FragmentFactory {
         this.controller = controller;
     }
 
-//    @NonNull
-//    @Override
-//    public Fragment instantiate(@NonNull ClassLoader classLoader, @NonNull String className){
-//
-//        Class<? extends Fragment> fragClass = loadFragmentClass(classLoader, className);
-//
-//        if(fragClass == AddWorkoutFragment.class)
-//            return new AddWorkoutFragment(controller);
-//        if(fragClass == FeedFragment.class)
-//            return new FeedFragment(controller);
-//        if(fragClass == Create_Post_Fragment.class)
-//            return new Create_Post_Fragment(controller);
-//''      if(fragClass == FilterFragment.class)
-//            return new FilterFragment(controller);
-//        if(fragClass == HomeScreenFragment.class)
-//            return new HomeScreenFragment(controller);
-//        if(fragClass == CreateProfileFragment.class)
-//            return new CreateProfileFragment(controller);
-//        if(fragClass == CardioFragment.class)
-//            return new CardioFragment(controller);
-//        if(fragClass == StrengthFragment.class)
-//            return new StrengthFragment(controller);
-//        if(fragClass == MobilityFragment.class)
-//            return new MobilityFragment(controller);
-//        if(fragClass == ViewProfileFragment.class)
+    @NonNull
+    @Override
+    public Fragment instantiate(@NonNull ClassLoader classLoader, @NonNull String className){
+
+        Class<? extends Fragment> fragClass = loadFragmentClass(classLoader, className);
+
+        if(fragClass == AddWorkoutFragment.class)
+            return new AddWorkoutFragment(controller);
+        else if(fragClass == FeedFragment.class)
+            return new FeedFragment(controller);
+        else if(fragClass == Create_Post_Fragment.class)
+            return new Create_Post_Fragment(controller);
+        else if(fragClass == FilterFragment.class)
+            return new FilterFragment(controller);
+        else if(fragClass == HomeScreenFragment.class)
+            return new HomeScreenFragment(controller);
+        else if(fragClass == CreateProfileFragment.class)
+            return new CreateProfileFragment(controller);
+        else if(fragClass == CardioFragment.class)
+            return new CardioFragment(controller);
+        else if(fragClass == StrengthFragment.class)
+            return new StrengthFragment(controller);
+        else if(fragClass == MobilityFragment.class)
+            return new MobilityFragment(controller);
+//        else if(fragClass == ViewProfileFragment.class)
 //            return new ViewProfileFragment(controller);
-//    }
+        else
+            return super.instantiate(classLoader, className);
+
+    }
 
 }

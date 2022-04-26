@@ -6,5 +6,6 @@ public interface IFeedView {
         void onAddPost();
         void onFilter();
         void removeFilters();
+        void viewProfile();
     }
 }

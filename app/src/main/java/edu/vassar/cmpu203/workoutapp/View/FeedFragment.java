@@ -75,5 +75,13 @@ public class FeedFragment extends Fragment implements IFeedView {
                 FeedFragment.this.listener.removeFilters();
             }
         });
+
+        this.binding.ViewProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FeedFragment.this.listener.viewProfile();
+            }
+        });
     }
 }

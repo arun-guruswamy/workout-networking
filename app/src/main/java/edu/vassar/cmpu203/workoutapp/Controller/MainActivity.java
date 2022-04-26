@@ -10,7 +10,7 @@ import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener {
 
     private Profile p = new Profile();
     private IMainView mainView;
@@ -154,4 +154,10 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onLogIn() {
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
+
+    @Override
+    public void viewProfile() {
+        this.mainView.displayFragment(new ViewProfileFragment(this), false);
+    }
 }
+
