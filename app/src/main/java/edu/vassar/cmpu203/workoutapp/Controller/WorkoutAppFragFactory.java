@@ -50,8 +50,8 @@ public class WorkoutAppFragFactory extends FragmentFactory {
             return new StrengthFragment(controller);
         else if(fragClass == MobilityFragment.class)
             return new MobilityFragment(controller);
-//        else if(fragClass == ViewProfileFragment.class)
-//            return new ViewProfileFragment(controller);
+        else if(fragClass == ViewProfileFragment.class)
+            return new ViewProfileFragment(controller);
         else
             return super.instantiate(classLoader, className);
 
