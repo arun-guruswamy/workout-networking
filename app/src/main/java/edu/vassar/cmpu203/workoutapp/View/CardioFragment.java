@@ -31,6 +31,10 @@ public class CardioFragment extends Fragment implements IWorkoutType {
         this.workout = workout;
     }
 
+    public CardioFragment(Listener listener){
+        this.listener = listener;
+    }
+
 
 
     @Override

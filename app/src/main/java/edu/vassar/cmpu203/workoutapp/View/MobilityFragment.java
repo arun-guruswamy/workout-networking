@@ -32,6 +32,8 @@ public class MobilityFragment extends Fragment implements IWorkoutType {
         this.workout = workout;
     }
 
+    public MobilityFragment(Listener listener){this.listener = listener;}
+
 
 
     @Override

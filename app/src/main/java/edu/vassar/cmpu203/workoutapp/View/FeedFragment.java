@@ -26,6 +26,8 @@ public class FeedFragment extends Fragment implements IFeedView {
        this.feed = feed;
     }
 
+    public FeedFragment(Listener listener){this.listener = listener;}
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -31,7 +31,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
         this.workout = workout;
     }
 
-
+    public StrengthFragment(Listener listener){this.listener= listener;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

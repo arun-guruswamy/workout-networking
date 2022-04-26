@@ -31,6 +31,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private Workout workout;
     private Post post;
 
+    public AddWorkoutFragment(Listener listener) {
+        this.listener = listener;
+    }
 
     public AddWorkoutFragment(Listener listener, Workout workout, Post post) {
         this.listener = listener;
