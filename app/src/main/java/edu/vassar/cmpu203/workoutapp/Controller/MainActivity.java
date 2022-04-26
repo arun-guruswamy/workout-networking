@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getSupportFragmentManager().setFragmentFactory(new WorkoutAppFragFactory(this));
+
         super.onCreate(savedInstanceState);
 
         this.mainView = new MainView(this);
