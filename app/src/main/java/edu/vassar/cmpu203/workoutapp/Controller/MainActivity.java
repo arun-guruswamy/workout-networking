@@ -159,5 +159,10 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void viewProfile() {
         this.mainView.displayFragment(new ViewProfileFragment(this), false);
     }
+
+    @Override
+    public void onEditProfile() {
+        this.mainView.displayFragment(new EditProfileFragment(this), false);
+    }
 }
 

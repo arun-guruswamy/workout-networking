@@ -6,7 +6,7 @@ import edu.vassar.cmpu203.workoutapp.Model.Workout;
 public interface IViewProfileView {
 
     interface Listener{
-        //OnViewLikedWorkouts()
+        void onEditProfile();
 
     }
 }

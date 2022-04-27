@@ -36,7 +36,11 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-
-
+        this.binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewProfileFragment.this.listener.onEditProfile();
+            }
+        });
     }
 }
