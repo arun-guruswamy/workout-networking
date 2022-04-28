@@ -34,6 +34,10 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private boolean workoutSet = false;
     private final static String WRK_SET = "WRK_SET";
+    private final static  String WRK = "WRK";
+    private final static String POST = "POST";
+    private final static String ATRB = "ATRB";
+    private final static String TYPE = "TYPE";
 
     public AddWorkoutFragment(Listener listener) {
         this.listener = listener;
@@ -54,8 +58,16 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     public static Bundle makeArgsBundle(Workout workout, Post post){
         Bundle args = new Bundle();
-        args.putSerializable("WRK", workout);
-        args.putSerializable("POST", post);
+        args.putSerializable(WRK, workout);
+        args.putSerializable(POST, post);
+        return args;
+    }
+
+    public static Bundle makeArgsBundle2(boolean[] workoutAttributes, int workoutType, Post post){
+        Bundle args = new Bundle();
+        args.putSerializable(POST, post);
+        args.putBooleanArray(ATRB, workoutAttributes);
+        args.putInt(TYPE, workoutType);
         return args;
     }
 
@@ -67,6 +79,8 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         if(args != null){
             this.workout = (Workout) args.getSerializable("WRK");
             this.post = (Post) args.getSerializable("POST");
+            this.WorkoutAttributes = args.getBooleanArray("ATRB");
+            this.workoutType = args.getInt("TYPE");
         }
     }
 
