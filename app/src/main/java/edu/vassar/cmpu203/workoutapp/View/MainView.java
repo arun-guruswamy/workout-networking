@@ -1,4 +1,5 @@
 package edu.vassar.cmpu203.workoutapp.View;
+import android.os.Bundle;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -35,6 +36,21 @@ public class MainView implements IMainView{
 
         ft.commit();
     }
+
+    @Override
+    public void displayFragment(Class<? extends Fragment> fragment, Bundle fragArgs, boolean b) {
+        FragmentManager fm = this.activity.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(this.binding.fragmentContainerView.getId(), fragment, fragArgs);
+        if (b) ft.addToBackStack(null);
+        ft.commit();
+
+    }
+
+/*    @Override
+    public Fragment getCurrentFragment() {
+        return this.binding.fragmentContainerView.getFragment();
+    }*/
 
 
 }

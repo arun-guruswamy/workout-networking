@@ -1,6 +1,8 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
-public class Workout {
+import java.io.Serializable;
+
+public class Workout implements Serializable {
     public int length;
     public int difficulty;
     public String description;

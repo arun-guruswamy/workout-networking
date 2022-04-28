@@ -2,7 +2,9 @@ package edu.vassar.cmpu203.workoutapp.Controller;
 
 import edu.vassar.cmpu203.workoutapp.Model.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
@@ -10,12 +12,11 @@ import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener {
 
-    private Profile p = new Profile();
+    private Profile p;
     private IMainView mainView;
     private Feed feed;
-    private ICreatePostView createPostView;
     private Feed filteredFeed = new Feed();
 
 
@@ -27,11 +28,19 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
         super.onCreate(savedInstanceState);
 
-        this.mainView = new MainView(this);
-        this.feed = new Feed();
+        if(savedInstanceState == null) {
+            this.feed = new Feed();
+        }
+        else {
+            this.feed = (Feed) savedInstanceState.getSerializable("FEED");
+            this.p = (Profile) savedInstanceState.getSerializable("CUR_USER");
+        }
 
+        this.mainView = new MainView(this);
         setContentView(this.mainView.getRootView());
-        this.mainView.displayFragment(new HomeScreenFragment(this), false);
+
+        if(savedInstanceState == null || !savedInstanceState.getBoolean("IN_PROGRESS"))
+        this.mainView.displayFragment(HomeScreenFragment.class, null, false);
     }
 
     @Override
@@ -60,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onWorkoutButton(Workout workout, Post post) {
 
-        this.mainView.displayFragment(new AddWorkoutFragment(this, workout, post), true);
+        Bundle fragArgs = AddWorkoutFragment.makeArgsBundle(workout, post);
+        this.mainView.displayFragment(AddWorkoutFragment.class, fragArgs, false);
     }
 
     @Override
@@ -75,22 +85,26 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedUsername(String username, ICreateProfileView createProfileView) {
+    public void onEditedUsername(String username, IEditProfileView editProfileView) {
         p.setUsername(username);
     }
 
     @Override
-    public void onAddedPassword(String password, ICreateProfileView createProfileView) {
+    public void onEditedPassword(String password, IEditProfileView editProfileView) {
         p.setPassword(password);
     }
 
     @Override
-    public void onAddedBio(String bio, ICreateProfileView createProfileView) {
+    public void onEditedBio(String bio, IEditProfileView editProfileView) {
         p.setBio(bio);
     }
 
     @Override
-    public void onCreateButton() {
+    public void onCreateButton(String username, String password, String bio) {
+        p = new Profile();
+        p.setPassword(username);
+        p.setPassword(password);
+        p.setBio(bio);
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 
@@ -151,8 +165,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onLogIn() {
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    public void onLogIn() { this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 
     @Override
@@ -163,6 +176,19 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onEditProfile() {
         this.mainView.displayFragment(new EditProfileFragment(this), false);
+    }
+
+    @Override
+    public void onDoneButton(){
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("IN_PROGRESS", true);
+        outState.putSerializable("FEED", this.feed);
+        outState.putSerializable("CUR_USER", p);
     }
 }
 

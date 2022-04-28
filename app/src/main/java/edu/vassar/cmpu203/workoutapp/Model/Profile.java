@@ -1,7 +1,9 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
 
-public class Profile {
+import java.io.Serializable;
+
+public class Profile implements Serializable {
     private String username;
     private String password;
     private Feed posts;

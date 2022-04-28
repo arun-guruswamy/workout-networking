@@ -3,6 +3,7 @@ package edu.vassar.cmpu203.workoutapp.View;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -31,6 +32,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private Workout workout;
     private Post post;
 
+    private boolean workoutSet = false;
+    private final static String WRK_SET = "WRK_SET";
+
     public AddWorkoutFragment(Listener listener) {
         this.listener = listener;
     }
@@ -48,6 +52,23 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.post = post;
     }
 
+    public static Bundle makeArgsBundle(Workout workout, Post post){
+        Bundle args = new Bundle();
+        args.putSerializable("WRK", workout);
+        args.putSerializable("POST", post);
+        return args;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        Bundle args = this.getArguments();
+        if(args != null){
+            this.workout = (Workout) args.getSerializable("WRK");
+            this.post = (Post) args.getSerializable("POST");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -100,8 +121,10 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
                 // let view listener know that it should add a new workout
-                if(workoutType == 1 || workoutType == 2 || workoutType == 3)
-                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr,workoutType, WorkoutAttributes, post, workout, workoutSport);
+                if(workoutType == 1 || workoutType == 2 || workoutType == 3) {
+                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes, post, workout, workoutSport);
+                    workoutSet = true;
+                }
                 else
                     Snackbar.make(v, "Choosing a workout type is mandatory!", Snackbar.LENGTH_LONG).show();
 
@@ -131,8 +154,6 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
-
-
 //        this.binding.WorkoutDifficultyInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 //            @Override
 //            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -150,6 +171,33 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 //            }
 //        }
 
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(WRK_SET, this.workoutSet); // save paid state on bundle
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState != null){
+            this.workoutSet = savedInstanceState.getBoolean(WRK_SET);
+        }
+
+        if(workoutSet) {
+           onWorkoutSelected();
+        }
+
+    }
+
+    @Override
+    public void onWorkoutSelected() {
+        this.binding.CardioButton.setEnabled(false);
+        this.binding.StrengthButton.setEnabled(false);
+        this.binding.MobilityButton.setEnabled(false);
     }
 
 }

@@ -1,6 +1,8 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
 
     private String prod_id;
     private String caption;

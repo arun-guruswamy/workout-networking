@@ -1,8 +1,9 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Feed {
+public class Feed implements Serializable {
     public ArrayList<Post> feed;
 
     public Feed() {

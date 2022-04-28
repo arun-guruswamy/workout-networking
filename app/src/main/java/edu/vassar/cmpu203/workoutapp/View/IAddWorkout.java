@@ -16,4 +16,5 @@ public interface IAddWorkout {
         void MobilityButton(Workout workout, Post post);
     }
 
+    void onWorkoutSelected();
 }

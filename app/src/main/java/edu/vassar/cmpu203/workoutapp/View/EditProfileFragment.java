@@ -17,10 +17,10 @@ import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentEditProfileBinding;
 
 
-public class EditProfileFragment extends Fragment implements ICreateProfileView {
+public class EditProfileFragment extends Fragment implements IEditProfileView {
 
     private FragmentEditProfileBinding binding;
-    private ICreateProfileView.Listener listener;
+    private IEditProfileView.Listener listener;
 
     public EditProfileFragment(Listener listener) {
         this.listener = listener;
@@ -48,7 +48,7 @@ public class EditProfileFragment extends Fragment implements ICreateProfileView 
 
                 profileUsernameEditable.clear();
 
-                EditProfileFragment.this.listener.onAddedUsername(username, EditProfileFragment.this);
+                EditProfileFragment.this.listener.onEditedUsername(username, EditProfileFragment.this);
             }
         });
 
@@ -61,7 +61,7 @@ public class EditProfileFragment extends Fragment implements ICreateProfileView 
 
                 profilePasswordEditable.clear();
 
-                EditProfileFragment.this.listener.onAddedPassword(password, EditProfileFragment.this);
+                EditProfileFragment.this.listener.onEditedPassword(password, EditProfileFragment.this);
             }
         });
 
@@ -74,14 +74,14 @@ public class EditProfileFragment extends Fragment implements ICreateProfileView 
 
                 profileBioEditable.clear();
 
-                EditProfileFragment.this.listener.onAddedBio(bio, EditProfileFragment.this);
+                EditProfileFragment.this.listener.onEditedBio(bio, EditProfileFragment.this);
             }
         });
 
         this.binding.doneButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                EditProfileFragment.this.listener.onCreateButton();
+                EditProfileFragment.this.listener.onDoneButton();
             }
         });
     }

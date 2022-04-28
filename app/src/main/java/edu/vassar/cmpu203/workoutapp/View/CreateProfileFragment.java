@@ -46,7 +46,7 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
 
                 profileUsernameEditable.clear();
 
-                CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
+                //CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
 
                 //For Password
                 Editable profilePasswordEditable = CreateProfileFragment.this.binding.passwordEditText.getText();
@@ -65,10 +65,10 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
                     return;
                 }
 
-                CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
+/*                CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
                 CreateProfileFragment.this.listener.onAddedPassword(password, CreateProfileFragment.this);
-                CreateProfileFragment.this.listener.onAddedBio(bio, CreateProfileFragment.this);
-                CreateProfileFragment.this.listener.onCreateButton();
+                CreateProfileFragment.this.listener.onAddedBio(bio, CreateProfileFragment.this);*/
+                CreateProfileFragment.this.listener.onCreateButton(username, password, bio);
 
 
             }
