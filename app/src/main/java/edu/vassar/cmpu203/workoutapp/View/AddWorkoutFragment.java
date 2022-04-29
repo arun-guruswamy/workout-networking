@@ -38,6 +38,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private final static String POST = "POST";
     private final static String ATRB = "ATRB";
     private final static String TYPE = "TYPE";
+    private final static  String LENGTH = "LENGTH";
+    private final static String DESC = "DESC";
+    private final static String DIFF = "DIFF";
 
     public AddWorkoutFragment(Listener listener) {
         this.listener = listener;
@@ -81,6 +84,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             this.post = (Post) args.getSerializable("POST");
             this.WorkoutAttributes = args.getBooleanArray("ATRB");
             this.workoutType = args.getInt("TYPE");
+
         }
     }
 
@@ -96,6 +100,14 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+ /*          if(savedInstanceState != null) {
+               String length = savedInstanceState.getString(LENGTH);
+               this.binding.WorkoutLengthInput.setText(length);
+               String description = savedInstanceState.getString(DESC);
+               this.binding.WorkoutDescriptionInput.setText(description);
+               int difficulty = savedInstanceState.getInt(DIFF);
+               this.binding.WorkoutDifficultyInput.setProgress(difficulty);
+           }*/
 
         // onViewCreated is responsible for wiring up the event handlers
 
@@ -190,7 +202,20 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(WRK_SET, this.workoutSet); // save paid state on bundle
+        outState.putBoolean(WRK_SET, this.workoutSet);
+
+        Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
+        String workoutLengthStr = workoutLengthEditable.toString();
+        outState.putString(LENGTH, workoutLengthStr);
+
+        Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
+        String workoutDescStr = workoutDescEditable.toString();
+        outState.putString(DESC, workoutDescStr);
+
+        int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
+        outState.putInt(DIFF, workoutDifficulty);
+
+
     }
 
     @Override
@@ -199,6 +224,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
         if (savedInstanceState != null){
             this.workoutSet = savedInstanceState.getBoolean(WRK_SET);
+
         }
 
         if(workoutSet) {

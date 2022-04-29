@@ -28,4 +28,5 @@ public class Profile implements Serializable {
     public String getUsername() {
         return this.username;
     }
+
 }

@@ -1,5 +1,6 @@
 package edu.vassar.cmpu203.workoutapp.View;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -44,6 +46,12 @@ public class FeedFragment extends Fragment implements IFeedView {
         LinearLayout linearLayout = this.binding.feedLayout;
 
         for(Post post : feed.feed) {
+            Button b = new Button(getContext());
+            b.setBackgroundColor(Color.BLUE);
+            b.setText(post.getProd_id());
+            b.setTextColor(Color.WHITE);
+            b.setId(View.generateViewId());
+            linearLayout.addView(b);
             TextView tv = new TextView(getContext());
             tv.setText(post.toString());
             linearLayout.addView(tv);

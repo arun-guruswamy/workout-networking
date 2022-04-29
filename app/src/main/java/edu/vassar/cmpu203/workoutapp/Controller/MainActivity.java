@@ -134,8 +134,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
 
         Bundle fragArgs = AddWorkoutFragment.makeArgsBundle2(Attributes, workoutType, post);
-        Fragment addWorkoutFragment = new AddWorkoutFragment(this);
+        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this);
         this.mainView.displayFragment(addWorkoutFragment.getClass(), fragArgs, false);
+        //addWorkoutFragment.onWorkoutSelected();
     }
 
     @Override
