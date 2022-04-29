@@ -96,7 +96,8 @@
     <string name="Following">Following</string>
     <string name="goback">Go Back</string>
     <string name="EditProfile">Edit Profile</string>
-    <string name="LikedPostsButton">View Liked Posts</string>
+    <string name="FollowRequests">View Follow Requests</string>
+    <string name="RequestFollow">Request Follow</string>
     <string name="setUsername">Set Username</string>
     <string name="setPassword">Set Password</string>
     <string name="setBio">Set Bio</string>
