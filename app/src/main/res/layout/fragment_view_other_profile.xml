@@ -115,7 +115,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/viewUsername"
+            android:id="@+id/OtherProfileUsername"
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -144,7 +144,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/ProfileViewBio"
+            android:id="@+id/OtherProfileViewBio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/bioText" />
@@ -166,7 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/FollowRequests" />
+            android:text="@string/RequestFollow" />
     </LinearLayout>
 
     <LinearLayout
@@ -186,12 +186,6 @@
             android:layout_weight="1"
             android:text="@string/goback" />
 
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/EditProfile" />
     </LinearLayout>
 
 
