@@ -51,6 +51,15 @@ public class FeedFragment extends Fragment implements IFeedView {
             b.setText(post.getProd_id());
             b.setTextColor(Color.WHITE);
             b.setId(View.generateViewId());
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // match the text of button to prod_id of a user
+                    String prod_ID =  (String) b.getText();
+                    FeedFragment.this.listener.onProfileClick(prod_ID);
+                    // display new screen of their profile
+                }
+            });
             linearLayout.addView(b);
             TextView tv = new TextView(getContext());
             tv.setText(post.toString());

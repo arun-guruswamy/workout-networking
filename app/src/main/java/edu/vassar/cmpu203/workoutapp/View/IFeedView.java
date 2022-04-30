@@ -7,5 +7,6 @@ public interface IFeedView {
         void onFilter();
         void removeFilters();
         void viewProfile();
+        void onProfileClick(String prod_ID);
     }
 }

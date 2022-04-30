@@ -178,6 +178,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
+    public void onProfileClick(String prod_ID) {
+        //find prod_ID in the database
+        //this.mainView.displayFragment(new ViewProfileFragment(this));
+    }
+
+    @Override
     public void onEditProfile() {
         this.mainView.displayFragment(new EditProfileFragment(this), false);
     }
