@@ -3,7 +3,7 @@ package edu.vassar.cmpu203.workoutapp.View;
 public interface IHomeScreenView {
 
     interface Listener{
-        void onLogIn();
+        void onLogIn(String username);
         void onSignUp();
     }
 }

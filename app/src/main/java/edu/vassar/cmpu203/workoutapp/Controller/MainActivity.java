@@ -169,7 +169,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onLogIn() { this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    public void onLogIn(String username) {
+        p.setUsername(username);
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 
     @Override
