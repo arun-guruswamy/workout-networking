@@ -43,31 +43,6 @@ public class FeedFragment extends Fragment implements IFeedView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
 
-        LinearLayout linearLayout = this.binding.feedLayout;
-
-        for(Post post : feed.feed) {
-            Button b = new Button(getContext());
-            b.setBackgroundColor(Color.BLUE);
-            b.setText(post.getProd_id());
-            b.setTextColor(Color.WHITE);
-            b.setId(View.generateViewId());
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // match the text of button to prod_id of a user
-                    String prod_ID =  (String) b.getText();
-                    FeedFragment.this.listener.onProfileClick(prod_ID);
-                    // display new screen of their profile
-                }
-            });
-            linearLayout.addView(b);
-            TextView tv = new TextView(getContext());
-            tv.setText(post.toString());
-            linearLayout.addView(tv);
-        }
-
-
-
 
 
         this.binding.addButton.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +75,31 @@ public class FeedFragment extends Fragment implements IFeedView {
                 FeedFragment.this.listener.viewProfile();
             }
         });
+    }
+
+    @Override
+    public void onFeedUpdated(Feed feed) {
+        LinearLayout linearLayout = this.binding.feedLayout;
+
+        for(Post post : feed.feed) {
+            Button b = new Button(getContext());
+            b.setBackgroundColor(Color.BLUE);
+            b.setText(post.getProd_id());
+            b.setTextColor(Color.WHITE);
+            b.setId(View.generateViewId());
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // match the text of button to prod_id of a user
+                    String prod_ID =  (String) b.getText();
+                    FeedFragment.this.listener.onProfileClick(prod_ID);
+                    // display new screen of their profile
+                }
+            });
+            linearLayout.addView(b);
+            TextView tv = new TextView(getContext());
+            tv.setText(post.toString());
+            linearLayout.addView(tv);
+        }
     }
 }

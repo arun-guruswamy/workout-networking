@@ -47,10 +47,10 @@ public class MainView implements IMainView{
 
     }
 
-/*    @Override
+    @Override
     public Fragment getCurrentFragment() {
         return this.binding.fragmentContainerView.getFragment();
-    }*/
+    }
 
 
 }

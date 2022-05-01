@@ -1,5 +1,7 @@
 package edu.vassar.cmpu203.workoutapp.View;
 
+import edu.vassar.cmpu203.workoutapp.Model.Feed;
+
 public interface IFeedView {
 
     interface Listener{
@@ -9,4 +11,6 @@ public interface IFeedView {
         void viewProfile();
         void onProfileClick(String prod_ID);
     }
+
+    void onFeedUpdated(Feed feed);
 }

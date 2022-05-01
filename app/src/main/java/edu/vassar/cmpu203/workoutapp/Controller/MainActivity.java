@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
+import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
 import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private IMainView mainView;
     private Feed feed;
     private Feed filteredFeed = new Feed();
+
+    private IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
 
 
@@ -35,6 +39,21 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             this.feed = (Feed) savedInstanceState.getSerializable("FEED");
             this.p = (Profile) savedInstanceState.getSerializable("CUR_USER");
         }
+
+        this.persistenceFacade.retrieveFeed(new IPersistenceFacade.DataListener<Feed>() {
+            @Override
+            public void onDataReceived(@NonNull Feed feed) {
+                MainActivity.this.feed = feed;
+                Fragment curFrag = mainView.getCurrentFragment();
+                if(curFrag instanceof IFeedView)
+                    ((IFeedView) curFrag).onFeedUpdated(feed);
+            }
+
+            @Override
+            public void onNoDataFound() {
+
+            }
+        });
 
         this.mainView = new MainView(this);
         setContentView(this.mainView.getRootView());

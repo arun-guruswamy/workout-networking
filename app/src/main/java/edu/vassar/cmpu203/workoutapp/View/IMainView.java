@@ -8,5 +8,5 @@ public interface IMainView {
     public View getRootView();
     public void displayFragment(Fragment fragment, boolean allowBack);
     void displayFragment(Class<? extends  Fragment> fragment, Bundle fragArgs, boolean b);
-   // Fragment getCurrentFragment();
+   Fragment getCurrentFragment();
 }
