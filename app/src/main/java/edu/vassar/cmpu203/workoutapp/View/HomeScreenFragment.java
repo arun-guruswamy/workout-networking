@@ -53,7 +53,7 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
                 usernameEditable.clear();
                 passwordEditable.clear();
 
-                HomeScreenFragment.this.listener.onLogIn();
+                HomeScreenFragment.this.listener.onLogIn(username);
             }
         });
 
