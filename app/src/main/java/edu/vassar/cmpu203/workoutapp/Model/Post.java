@@ -70,4 +70,14 @@ public class Post implements Serializable {
     public String getProd_id() {
         return prod_id;
     }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public Workout getWorkout() {
+        return workout;
+    }
+
+
 }

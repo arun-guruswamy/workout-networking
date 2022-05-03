@@ -109,6 +109,10 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
                this.binding.WorkoutDifficultyInput.setProgress(difficulty);
            }*/
 
+        if (this.post.getWRKnum() == 1) {
+            onWorkoutSelected();
+        }
+
         // onViewCreated is responsible for wiring up the event handlers
 
         // add listener to be called when the add button is pressed

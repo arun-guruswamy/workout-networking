@@ -52,7 +52,7 @@ public class FirestoreFacade implements IPersistenceFacade {
 
     @Override
     public void savePost(Post post) {
-
+        db.collection(POST_COLLECTION).add(post);
     }
 
     public void saveProfile(Profile p) {

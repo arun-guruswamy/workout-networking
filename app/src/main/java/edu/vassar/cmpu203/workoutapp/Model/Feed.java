@@ -2,9 +2,10 @@ package edu.vassar.cmpu203.workoutapp.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Feed implements Serializable {
-    public ArrayList<Post> feed;
+    public List<Post> feed;
 
     public Feed() {
         feed = new ArrayList<>();
@@ -24,7 +25,7 @@ public class Feed implements Serializable {
         this.feed.add(post);
     }
 
-
-
-
+    public List<Post> getFeed() {
+        return feed;
+    }
 }

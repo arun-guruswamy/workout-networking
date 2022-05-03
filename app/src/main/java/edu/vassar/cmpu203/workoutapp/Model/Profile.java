@@ -28,5 +28,7 @@ public class Profile implements Serializable {
     public String getUsername() {
         return this.username;
     }
-
+    public String getPassword() { return password;}
+    public Feed getPosts(){return this.posts;}
+    public String bio(){return this.bio;}
 }

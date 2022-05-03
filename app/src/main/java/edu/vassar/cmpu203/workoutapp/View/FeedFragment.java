@@ -43,7 +43,7 @@ public class FeedFragment extends Fragment implements IFeedView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
 
-
+        onFeedUpdated(this.feed);
 
         this.binding.addButton.setOnClickListener(new View.OnClickListener() {
             @Override

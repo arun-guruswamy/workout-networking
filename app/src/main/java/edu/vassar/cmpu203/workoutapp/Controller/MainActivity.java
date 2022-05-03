@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onPostButton(Post post) {
         this.feed.feed.add(post);
-        this.mainView.displayFragment(new FeedFragment(this, feed), true);
+        this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
+        this.persistenceFacade.savePost(post);
     }
 
     @Override
@@ -171,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         Bundle fragArgs = AddWorkoutFragment.makeArgsBundle2(Attributes, workoutType, post);
         AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this);
         this.mainView.displayFragment(addWorkoutFragment.getClass(), fragArgs, false);
-        //addWorkoutFragment.onWorkoutSelected();
     }
 
     @Override

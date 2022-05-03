@@ -8,6 +8,7 @@ public class Workout implements Serializable {
     public String description;
     protected String sportFocus;
     int workoutType;
+    private boolean typePicked;
 
     public Workout() {};
 
@@ -40,5 +41,16 @@ public class Workout implements Serializable {
 
     public String toString() {
         return this.description + "\n" + this.length + "\n" + this.difficulty;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+    public int getLength() {return this.length;}
+    public String getDescription(){return this.description;}
+    public String getSportFocus(){return this.sportFocus;}
+
+    public int getWorkoutType() {
+        return workoutType;
     }
 }
