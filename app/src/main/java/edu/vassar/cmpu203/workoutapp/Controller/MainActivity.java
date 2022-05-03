@@ -55,6 +55,21 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             }
         });
 
+//        this.persistenceFacade.addProfile(new IPersistenceFacade.DataListener<Profile>() {
+//            @Override
+//            public void onDataReceived(@NonNull Profile p) {
+//                MainActivity.this.p = p;
+//                Fragment curFrag = mainView.getCurrentFragment();
+//                if(curFrag instanceof ICreateProfileView)
+//                    ((ICreateProfileView) curFrag).onProfileUpdated(feed);
+//            }
+//
+//            @Override
+//            public void onNoDataFound() {
+//
+//            }
+//        });
+
         this.mainView = new MainView(this);
         setContentView(this.mainView.getRootView());
 
@@ -124,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         p.setPassword(username);
         p.setPassword(password);
         p.setBio(bio);
+        persistenceFacade.saveProfile(p);
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
 

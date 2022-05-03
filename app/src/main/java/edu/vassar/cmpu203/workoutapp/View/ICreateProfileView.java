@@ -1,5 +1,7 @@
 package edu.vassar.cmpu203.workoutapp.View;
 
+import edu.vassar.cmpu203.workoutapp.Model.Feed;
+
 public interface ICreateProfileView {
 
     interface Listener{
@@ -9,4 +11,5 @@ public interface ICreateProfileView {
         void onCreateButton(String username, String password, String bio);
     }
 
+    //void onProfileUpdated(Feed feed);
 }

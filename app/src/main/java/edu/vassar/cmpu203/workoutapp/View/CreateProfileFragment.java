@@ -1,5 +1,6 @@
 package edu.vassar.cmpu203.workoutapp.View;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,9 +10,14 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import edu.vassar.cmpu203.workoutapp.Model.Feed;
+import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
 
@@ -75,4 +81,30 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
 
         });
     }
+
+//    @Override
+//    public void onProfileUpdated(Feed feed) {
+//        LinearLayout linearLayout = this.binding.feedLayout;
+//
+//        for(Post post : feed.feed) {
+//            Button b = new Button(getContext());
+//            b.setBackgroundColor(Color.BLUE);
+//            b.setText(post.getProd_id());
+//            b.setTextColor(Color.WHITE);
+//            b.setId(View.generateViewId());
+//            b.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    // match the text of button to prod_id of a user
+//                    String prod_ID =  (String) b.getText();
+//                    FeedFragment.this.listener.onProfileClick(prod_ID);
+//                    // display new screen of their profile
+//                }
+//            });
+//            linearLayout.addView(b);
+//            TextView tv = new TextView(getContext());
+//            tv.setText(post.toString());
+//            linearLayout.addView(tv);
+//        }
+//    }
 }
