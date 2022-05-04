@@ -10,6 +10,8 @@ public class Post implements Serializable {
     private int CAPnum;
     public Workout workout;
 
+    public Post(){}
+
     public Post(Profile profile) {
         this.prod_id = profile.getUsername();
         WRKnum = 0;

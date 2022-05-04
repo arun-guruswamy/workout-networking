@@ -16,13 +16,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener {
 
-    private Profile p;
     private IMainView mainView;
     private Feed feed;
     private Feed filteredFeed = new Feed();
-    private Workout w;
+    private Profile curUser;
 
     private IPersistenceFacade persistenceFacade = new FirestoreFacade();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +37,14 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         }
         else {
             this.feed = (Feed) savedInstanceState.getSerializable("FEED");
-            this.p = (Profile) savedInstanceState.getSerializable("CUR_USER");
+            this.curUser = (Profile) savedInstanceState.getSerializable("CUR_USER");
         }
 
         this.persistenceFacade.retrieveFeed(new IPersistenceFacade.DataListener<Feed>() {
             @Override
             public void onDataReceived(@NonNull Feed feed) {
                 MainActivity.this.feed = feed;
-                Fragment curFrag = mainView.getCurrentFragment();
+                Fragment curFrag = MainActivity.this.mainView.getCurrentFragment();
                 if(curFrag instanceof IFeedView)
                     ((IFeedView) curFrag).onFeedUpdated(feed);
             }
@@ -109,8 +110,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onPostButton(Post post) {
         this.feed.feed.add(post);
-        this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
+        this.curUser.posts.addPosts(post);
         this.persistenceFacade.savePost(post);
+        this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
     }
 
     @Override
@@ -120,58 +122,67 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onEditedUsername(String username, IEditProfileView editProfileView) {
-        p.setUsername(username);
+        curUser.setUsername(username);
     }
 
     @Override
     public void onEditedPassword(String password, IEditProfileView editProfileView) {
-        p.setPassword(password);
+        curUser.setPassword(password);
     }
 
     @Override
     public void onEditedBio(String bio, IEditProfileView editProfileView) {
-        p.setBio(bio);
+        curUser.setBio(bio);
     }
 
     @Override
-    public void onCreateButton(String username, String password, String bio) {
-        p = new Profile();
-        p.setPassword(username);
+    public void onCreateButton(String username, String password, String bio, ICreateProfileView createProfileView) {
+        Profile p = new Profile();
+        p.setUsername(username);
         p.setPassword(password);
         p.setBio(bio);
-        persistenceFacade.saveProfile(p);
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.persistenceFacade.addProfile(p, new IPersistenceFacade.BinaryResultListener() {
+            @Override
+            public void onYesResult() {
+                MainActivity.this.curUser = p;
+                createProfileView.onCreateSuccess();
+                MainActivity.this.mainView.displayFragment(new FeedFragment(MainActivity.this, feed), false);
+            }
+
+            @Override
+            public void onNoResult() {
+                createProfileView.onUserAlreadyExists();
+            }
+        });
     }
 
     @Override
     public void onAddPost() {
-        Post post = new Post(this.p);
+        Post post = new Post(this.curUser);
         Workout workout = new Workout();
         this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
     }
 
     @Override
     public void CardioButton(Workout workout, Post post) {
-        w = workout;
         this.mainView.displayFragment(new CardioFragment(this, post, workout), false);
     }
 
     @Override
     public void StrengthButton(Workout workout, Post post) {
-        w = workout;
         this.mainView.displayFragment(new StrengthFragment(this, post, workout), false);
     }
 
     @Override
     public void MobilityButton(Workout workout, Post post) {
-        w = workout;
         this.mainView.displayFragment(new MobilityFragment(this, post, workout), false);
     }
 
     @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
+
         Bundle fragArgs = AddWorkoutFragment.makeArgsBundle2(Attributes, workoutType, post);
-        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this, w);
+        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this);
         this.mainView.displayFragment(addWorkoutFragment.getClass(), fragArgs, false);
     }
 
@@ -205,10 +216,25 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onLogIn(String username) {
-        p = new Profile();
-        p.setUsername(username);
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    public void onLogIn(String username, String password, IHomeScreenView homeScreenView) {
+        //p.setUsername(username);
+
+        persistenceFacade.retrieveProfile(username, new IPersistenceFacade.DataListener<Profile>() {
+            @Override
+            public void onDataReceived(@NonNull Profile data) {
+                if (data.validatePassword(password)) {
+                    MainActivity.this.curUser = data;
+                    MainActivity.this.mainView.displayFragment(new FeedFragment(MainActivity.this, feed), false);
+                } else {
+                    homeScreenView.onInvalidCredentials();
+                }
+            }
+
+            @Override
+            public void onNoDataFound() {
+                homeScreenView.onInvalidCredentials();
+            }
+        });
     }
 
     @Override
@@ -247,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         super.onSaveInstanceState(outState);
         outState.putBoolean("IN_PROGRESS", true);
         outState.putSerializable("FEED", this.feed);
-        outState.putSerializable("CUR_USER", p);
+        outState.putSerializable("CUR_USER", curUser);
     }
 }
 

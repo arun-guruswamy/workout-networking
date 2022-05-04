@@ -1,6 +1,8 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
-public class Strength extends Workout {
+import java.io.Serializable;
+
+public class Strength extends Workout implements Serializable {
     private boolean UpperBodyFocus;
     private boolean LowerBodyFocus;
     private boolean FullBodyFocus;
@@ -35,5 +37,21 @@ public class Strength extends Workout {
         return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nUpperBody Focus: " + UpperBodyFocus
                 + "\nLowerBody Focus: " + LowerBodyFocus + "\nFullBodyFocus: " + FullBodyFocus
                 + "\nBodyWeight Focus: " + BodyWeightFocus;
+    }
+
+    public boolean isBodyWeightFocus() {
+        return BodyWeightFocus;
+    }
+
+    public boolean isFullBodyFocus() {
+        return FullBodyFocus;
+    }
+
+    public boolean isLowerBodyFocus() {
+        return LowerBodyFocus;
+    }
+
+    public boolean isUpperBodyFocus() {
+        return UpperBodyFocus;
     }
 }

@@ -19,13 +19,8 @@ public interface IPersistenceFacade {
     }
 
     void retrieveFeed(@NonNull DataListener<Feed> listener);
-    //void addProfile(@NonNull DataListener<Profile> listener);
+    void addProfile(@NonNull Profile profile, @NonNull BinaryResultListener listener);
     void savePost(Post post);
     void saveProfile(@NonNull Profile p);
-    // void getProfile(@NonNull String prof_id);
-
-    // authentication related
-//    void createUserIfNotExists(@NonNull User user, @NonNull BinaryResultListener listener);
-    void retrieveUser(@NonNull String username, @NonNull DataListener<Profile> listener);
-
+    void retrieveProfile(@NonNull String Username, @NonNull DataListener<Profile> listener);
 }

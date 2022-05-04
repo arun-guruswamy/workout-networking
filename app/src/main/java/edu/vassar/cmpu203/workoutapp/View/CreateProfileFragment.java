@@ -71,10 +71,10 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
                     return;
                 }
 
-/*                CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
+/*              CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
                 CreateProfileFragment.this.listener.onAddedPassword(password, CreateProfileFragment.this);
                 CreateProfileFragment.this.listener.onAddedBio(bio, CreateProfileFragment.this);*/
-                CreateProfileFragment.this.listener.onCreateButton(username, password, bio);
+                CreateProfileFragment.this.listener.onCreateButton(username, password, bio, CreateProfileFragment.this);
 
 
             }
@@ -107,4 +107,18 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
 //            linearLayout.addView(tv);
 //        }
 //    }
+
+    @Override
+    public void onCreateSuccess(){
+        displayMessage(R.string.CreationSuccessful);
+    }
+
+    @Override
+    public void onUserAlreadyExists() {
+        displayMessage(R.string.userExists);
+    }
+
+    private void displayMessage(int msgRid){
+        Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
+    }
 }

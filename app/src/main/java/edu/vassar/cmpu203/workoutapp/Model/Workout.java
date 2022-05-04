@@ -8,7 +8,6 @@ public class Workout implements Serializable {
     public String description = "";
     protected String sportFocus;
     int workoutType;
-    private boolean typePicked;
 
     public Workout() {};
 

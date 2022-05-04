@@ -38,25 +38,58 @@ public class FirestoreFacade implements IPersistenceFacade {
                 });
     }
 
-//    public void addProfile(DataListener<Profile> listener) {
-//        db.collection(PROFILE_COLLECTION).get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot qsnap) {
-//                        Profile p = new Profile();
-//                        for(DocumentSnapshot dsnap : qsnap){
-//                            p = dsnap.toObject(Profile.class);
-//                        }
-//                        listener.onDataReceived(p);
-//                    }
-//                });
-//    }
+    @Override
+    public void addProfile(@NonNull Profile profile, @NonNull BinaryResultListener listener) {
+        String username = profile.getUsername();
+
+        this.retrieveProfile(username, new DataListener<Profile>() {
+            @Override
+            public void onDataReceived(@NonNull Profile data) {
+                listener.onNoResult();
+            }
+
+            @Override
+            public void onNoDataFound() {
+                db.collection(PROFILE_COLLECTION).document(username).
+                        set(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        listener.onYesResult();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onNoResult();
+                    }
+                });
+            }
+        });
+    }
 
     @Override
     public void savePost(Post post) {
         db.collection(POST_COLLECTION).add(post);
     }
 
+    @Override
+    public void retrieveProfile(@NonNull String username, @NonNull DataListener<Profile> listener) {
+
+        db.collection(PROFILE_COLLECTION).document(username).get().
+                addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()){
+                            Profile profile = documentSnapshot.toObject(Profile.class);
+                            listener.onDataReceived(profile);
+                        }
+                        else {
+                            listener.onNoDataFound();
+                        }
+                    }
+                });
+    }
+
+    @Override
     public void saveProfile(Profile p) {
         db.collection(PROFILE_COLLECTION).add(p);
     }
@@ -109,7 +142,7 @@ public class FirestoreFacade implements IPersistenceFacade {
 //
 //    }
 //
-    @Override
+  /*  @Override
     public void retrieveUser(@NonNull String username, @NonNull DataListener<Profile> listener) {
 
         db.collection("Profiles").document(username).get().
@@ -125,6 +158,6 @@ public class FirestoreFacade implements IPersistenceFacade {
                                      }
                 );
 
-    }
+    }*/
 
 }

@@ -53,9 +53,7 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
                 usernameEditable.clear();
                 passwordEditable.clear();
 
-                String test = "345";
-
-                HomeScreenFragment.this.listener.onLogIn(test);
+                HomeScreenFragment.this.listener.onLogIn(username, password, HomeScreenFragment.this);
             }
         });
 
@@ -65,5 +63,14 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
                 HomeScreenFragment.this.listener.onSignUp();
             }
         });
+    }
+
+    @Override
+    public void onInvalidCredentials(){
+        displayMessage(R.string.invalidCredentials);
+    }
+
+    private void displayMessage(int msgRid){
+        Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }
 }

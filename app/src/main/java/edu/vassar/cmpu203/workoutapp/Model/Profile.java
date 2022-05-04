@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public class Profile implements Serializable {
     private String username;
-    private String password;
-    private Feed posts;
+    private AuthKey password;
+    public Feed posts;
     private String bio;
 
     public Profile() {
@@ -18,7 +18,7 @@ public class Profile implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new AuthKey(password);
     }
 
     public void setBio(String bio) {
@@ -28,7 +28,11 @@ public class Profile implements Serializable {
     public String getUsername() {
         return this.username;
     }
-    public String getPassword() { return password;}
+    public AuthKey getPassword() { return this.password;}
     public Feed getPosts(){return this.posts;}
-    public String bio(){return this.bio;}
+    public String getBio(){return this.bio;}
+
+    public boolean validatePassword(String password){
+        return this.password.validatePassword(password);
+    }
 }

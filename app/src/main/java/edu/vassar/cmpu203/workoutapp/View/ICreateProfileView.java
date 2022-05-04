@@ -8,8 +8,10 @@ public interface ICreateProfileView {
 /*        void onAddedUsername(String username, ICreateProfileView createProfileView);
         void onAddedPassword(String password, ICreateProfileView createProfileView);
         void onAddedBio(String bio, ICreateProfileView createProfileView);*/
-        void onCreateButton(String username, String password, String bio);
+        void onCreateButton(String username, String password, String bio, ICreateProfileView createProfileView);
     }
 
+    void onCreateSuccess();
+    void onUserAlreadyExists();
     //void onProfileUpdated(Feed feed);
 }

@@ -1,6 +1,8 @@
 package edu.vassar.cmpu203.workoutapp.Model;
 
-public class Cardio extends Workout {
+import java.io.Serializable;
+
+public class Cardio extends Workout implements Serializable {
     private boolean EnduranceFocus = false;
     private boolean AgilityFocus = false;
     private boolean SpeedFocus = false;
@@ -30,4 +32,15 @@ public class Cardio extends Workout {
                 + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
     }
 
+    public boolean isEnduranceFocus() {
+        return EnduranceFocus;
+    }
+
+    public boolean isAgilityFocus() {
+        return AgilityFocus;
+    }
+
+    public boolean isSpeedFocus() {
+        return SpeedFocus;
+    }
 }
