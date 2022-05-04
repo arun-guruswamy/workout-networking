@@ -91,8 +91,8 @@ public class FeedFragment extends Fragment implements IFeedView {
                 @Override
                 public void onClick(View view) {
                     // match the text of button to prod_id of a user
-                    String prod_ID =  (String) b.getText();
-                    FeedFragment.this.listener.onProfileClick(prod_ID);
+                    String prof_ID =  (String) b.getText();
+                    FeedFragment.this.listener.onProfileClick(prof_ID);
                     // display new screen of their profile
                 }
             });

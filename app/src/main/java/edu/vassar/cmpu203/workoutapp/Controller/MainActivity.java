@@ -14,16 +14,15 @@ import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener {
 
     private Profile p;
     private IMainView mainView;
     private Feed feed;
     private Feed filteredFeed = new Feed();
+    private Workout w;
 
     private IPersistenceFacade persistenceFacade = new FirestoreFacade();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,24 +152,26 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void CardioButton(Workout workout, Post post) {
+        w = workout;
         this.mainView.displayFragment(new CardioFragment(this, post, workout), false);
     }
 
     @Override
     public void StrengthButton(Workout workout, Post post) {
+        w = workout;
         this.mainView.displayFragment(new StrengthFragment(this, post, workout), false);
     }
 
     @Override
     public void MobilityButton(Workout workout, Post post) {
+        w = workout;
         this.mainView.displayFragment(new MobilityFragment(this, post, workout), false);
     }
 
     @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
-
         Bundle fragArgs = AddWorkoutFragment.makeArgsBundle2(Attributes, workoutType, post);
-        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this);
+        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this, w);
         this.mainView.displayFragment(addWorkoutFragment.getClass(), fragArgs, false);
     }
 
@@ -205,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onLogIn(String username) {
+        p = new Profile();
         p.setUsername(username);
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
@@ -216,8 +218,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onProfileClick(String prod_ID) {
-        //find prod_ID in the database
-        //this.mainView.displayFragment(new ViewProfileFragment(this));
+
+        this.mainView.displayFragment(new ViewOtherProfileFragment(this), false);
     }
 
     @Override
@@ -228,6 +230,16 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onDoneButton(){
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    }
+
+    @Override
+    public void goBack(){
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    }
+
+    @Override
+    public void requestFollow(){
+
     }
 
     @Override

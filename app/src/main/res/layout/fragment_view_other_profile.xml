@@ -162,7 +162,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/requestFollowButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -180,7 +180,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/backButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

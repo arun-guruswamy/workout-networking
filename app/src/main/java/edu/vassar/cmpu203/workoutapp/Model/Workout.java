@@ -3,9 +3,9 @@ package edu.vassar.cmpu203.workoutapp.Model;
 import java.io.Serializable;
 
 public class Workout implements Serializable {
-    public int length;
-    public int difficulty;
-    public String description;
+    public int length = 0;
+    public int difficulty = 0;
+    public String description = "";
     protected String sportFocus;
     int workoutType;
     private boolean typePicked;

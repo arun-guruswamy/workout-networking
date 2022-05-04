@@ -22,4 +22,10 @@ public interface IPersistenceFacade {
     //void addProfile(@NonNull DataListener<Profile> listener);
     void savePost(Post post);
     void saveProfile(@NonNull Profile p);
+    // void getProfile(@NonNull String prof_id);
+
+    // authentication related
+//    void createUserIfNotExists(@NonNull User user, @NonNull BinaryResultListener listener);
+    void retrieveUser(@NonNull String username, @NonNull DataListener<Profile> listener);
+
 }
