@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
 import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
 import edu.vassar.cmpu203.workoutapp.View.*;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
                 if(curFrag instanceof IFeedView)
                     ((IFeedView) curFrag).onFeedUpdated(feed);
             }
+
 
             @Override
             public void onNoDataFound() {
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         this.curUser.posts.addPosts(post);
         this.curUser.setNumPosts();
         this.persistenceFacade.savePost(post);
+        this.persistenceFacade.saveProfile(this.curUser);
         this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
     }
 
@@ -124,23 +128,28 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onEditedUsername(String username, IEditProfileView editProfileView) {
         curUser.setUsername(username);
+        // need to make sure username is not already in database
+        this.persistenceFacade.saveProfile(this.curUser);
     }
 
     @Override
     public void onEditedPassword(String password, IEditProfileView editProfileView) {
-        curUser.setPassword(password);
+        curUser.setPasswordFromString(password);
+        this.persistenceFacade.saveProfile(this.curUser);
     }
 
     @Override
     public void onEditedBio(String bio, IEditProfileView editProfileView) {
+
         curUser.setBio(bio);
+        this.persistenceFacade.saveProfile(this.curUser);
     }
 
     @Override
     public void onCreateButton(String username, String password, String bio, ICreateProfileView createProfileView) {
         Profile p = new Profile();
         p.setUsername(username);
-        p.setPassword(password);
+        p.setPasswordFromString(password);
         p.setBio(bio);
         this.persistenceFacade.addProfile(p, new IPersistenceFacade.BinaryResultListener() {
             @Override
@@ -311,6 +320,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onAccept(Profile profile) {
         this.curUser.setNumFollowers();
         profile.setNumFollowing();
+        this.persistenceFacade.saveProfile(profile);
         this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
     }
 

@@ -8,6 +8,7 @@ import edu.vassar.cmpu203.workoutapp.Model.Profile;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -92,6 +93,11 @@ public class FirestoreFacade implements IPersistenceFacade {
     @Override
     public void saveProfile(Profile p) {
         db.collection(PROFILE_COLLECTION).add(p);
+    }
+
+    public void setPostNum(Profile profile){
+        DocumentReference documentReference = db.document(""+PROFILE_COLLECTION+"/"+profile.getUsername());
+        //documentReference.set()
     }
 
 //    public void getProfile(String prof_id) {

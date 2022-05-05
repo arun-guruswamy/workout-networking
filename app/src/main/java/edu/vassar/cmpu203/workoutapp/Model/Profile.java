@@ -26,9 +26,13 @@ public class Profile implements Serializable {
         this.username = username;
     }
 
-    public void setPassword(String password) {
+    public void setPasswordFromString(String password) {
         this.password = new AuthKey(password);
     }
+    public void setPassword(AuthKey password) {
+        this.password = password;
+    }
+
 
     public void setBio(String bio) {
         this.bio = bio;
