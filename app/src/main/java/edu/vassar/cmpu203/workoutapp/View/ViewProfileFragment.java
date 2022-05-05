@@ -43,14 +43,21 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         this.binding.viewUsername.setText(curUser.getUsername());
         this.binding.ProfileViewBio.setText(curUser.getBio());
-        this.binding.FollowerDisplay.setText(curUser.getNumFollowers());
-        this.binding.FollowingDisplay.setText(curUser.getNumFollowing());
-        this.binding.PostNumberDisplay.setText(curUser.getNumPosts());
+        this.binding.FollowerDisplay.setText(""+ curUser.getNumFollowers());
+        this.binding.FollowingDisplay.setText("" + curUser.getNumFollowing());
+        this.binding.PostNumberDisplay.setText("" + curUser.getNumPosts());
 
         this.binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ViewProfileFragment.this.listener.onEditProfile();
+            }
+        });
+
+        this.binding.button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewProfileFragment.this.listener.onGoBack();
             }
         });
     }

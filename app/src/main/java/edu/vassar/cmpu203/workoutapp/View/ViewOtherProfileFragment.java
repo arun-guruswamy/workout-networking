@@ -50,9 +50,9 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         this.binding.OtherProfileUsername.setText(profile.getUsername());
         this.binding.OtherProfileViewBio.setText(profile.getBio());
-        this.binding.PostNumberDisplay.setText(profile.getNumPosts());
-        this.binding.FollowerDisplay.setText(profile.getNumFollowers());
-        this.binding.FollowingDisplay.setText(profile.getNumFollowing());
+        this.binding.PostNumberDisplay.setText(""+ profile.getNumPosts());
+        this.binding.FollowerDisplay.setText(""+profile.getNumFollowers());
+        this.binding.FollowingDisplay.setText(""+profile.getNumFollowing());
 
         this.binding.requestFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
