@@ -247,8 +247,19 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onProfileClick(String prod_ID) {
+        persistenceFacade.retrieveProfile(prod_ID, new IPersistenceFacade.DataListener<Profile>() {
+            @Override
+            public void onDataReceived(@NonNull Profile data) {
+                Profile p = data;
+                MainActivity.this.mainView.displayFragment(new ViewOtherProfileFragment(MainActivity.this, p, MainActivity.this.curUser), false);
+            }
 
-        this.mainView.displayFragment(new ViewOtherProfileFragment(this), false);
+            @Override
+            public void onNoDataFound() {
+
+            }
+        });
+
     }
 
     @Override
