@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onPostButton(Post post) {
         this.feed.feed.add(post);
         this.curUser.posts.addPosts(post);
+        this.curUser.setNumPosts();
         this.persistenceFacade.savePost(post);
         this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
     }
@@ -188,7 +189,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onFilter() {
-        this.mainView.displayFragment(new FilterFragment(this), false);
+        this.mainView.displayFragment(FilterFragment.class, null, false);
+        //this.mainView.displayFragment(new FilterFragment(this), false);
     }
 
     @Override
@@ -212,7 +214,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onSignUp(){
-        this.mainView.displayFragment(new CreateProfileFragment(this), false);
+        this.mainView.displayFragment(CreateProfileFragment.class, null, false);
+        //this.mainView.displayFragment(new CreateProfileFragment(this), false);
     }
 
     @Override
@@ -239,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void viewProfile() {
-        this.mainView.displayFragment(new ViewProfileFragment(this), false);
+        this.mainView.displayFragment(new ViewProfileFragment(this, this.curUser), false);
     }
 
     @Override

@@ -8,6 +8,9 @@ public class Profile implements Serializable {
     private AuthKey password;
     public Feed posts;
     private String bio;
+    private int numFollowers;
+    private int numFollowing;
+    private int numPosts;
 
     public Profile() {
         this.posts = new Feed();
@@ -25,12 +28,20 @@ public class Profile implements Serializable {
         this.bio = bio;
     }
 
-    public String getUsername() {
-        return this.username;
+    public void setNumPosts(){
+        numPosts++;
     }
+
+    public void setNumFollowers(){numFollowers++; }
+    public void setNumFollowing(){numFollowing++; }
+
+    public String getUsername() { return this.username; }
     public AuthKey getPassword() { return this.password;}
     public Feed getPosts(){return this.posts;}
     public String getBio(){return this.bio;}
+    public int getNumFollowers() { return numFollowers; }
+    public int getNumFollowing() { return numFollowing; }
+    public int getNumPosts(){ return this.numPosts; }
 
     public boolean validatePassword(String password){
         return this.password.validatePassword(password);

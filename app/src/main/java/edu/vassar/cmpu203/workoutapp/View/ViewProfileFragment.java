@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentStrengthBinding;
@@ -19,9 +20,14 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
 
     private IViewProfileView.Listener listener;
     private FragmentViewProfileBinding binding;
+    private Profile curUser;
 
-    public ViewProfileFragment(Listener listener) {
+    public ViewProfileFragment(Listener listener){this.listener = listener;}
+
+    public ViewProfileFragment(Listener listener, Profile curUser) {
+
         this.listener = listener;
+        this.curUser = curUser;
     }
 
 
@@ -35,8 +41,12 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-//        this.binding.viewUsername.setText(Profile.username);
-//        this.binding.ProfileViewBio.setText(Profile.bio);
+        this.binding.viewUsername.setText(curUser.getUsername());
+        this.binding.ProfileViewBio.setText(curUser.getBio());
+        this.binding.FollowerDisplay.setText(curUser.getNumFollowers());
+        this.binding.FollowingDisplay.setText(curUser.getNumFollowing());
+        this.binding.PostNumberDisplay.setText(curUser.getNumPosts());
+
         this.binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
