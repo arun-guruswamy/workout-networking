@@ -14,7 +14,7 @@ import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener, IFollowRequestView.Listener {
 
     private IMainView mainView;
     private Feed feed;
@@ -257,6 +257,16 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
+    public void onGoBack() {
+        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+    }
+
+    @Override
+    public void onFollowRequests() {
+
+    }
+
+    @Override
     public void onDoneButton(){
         this.mainView.displayFragment(new FeedFragment(this, feed), false);
     }
@@ -277,6 +287,23 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         outState.putBoolean("IN_PROGRESS", true);
         outState.putSerializable("FEED", this.feed);
         outState.putSerializable("CUR_USER", curUser);
+    }
+
+    @Override
+    public void onBack() {
+        this.mainView.displayFragment(new ViewProfileFragment(this, this.curUser), false);
+    }
+
+    @Override
+    public void onAccept(Profile profile) {
+        this.curUser.setNumFollowers();
+        profile.setNumFollowing();
+        this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
+    }
+
+    @Override
+    public void onDecline(Profile profile) {
+        this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
     }
 }
 

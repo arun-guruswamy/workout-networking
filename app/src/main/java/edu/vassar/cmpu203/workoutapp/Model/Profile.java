@@ -2,6 +2,10 @@ package edu.vassar.cmpu203.workoutapp.Model;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Profile implements Serializable {
     private String username;
@@ -11,9 +15,11 @@ public class Profile implements Serializable {
     private int numFollowers;
     private int numFollowing;
     private int numPosts;
+    private Map<String, Profile> followRequests;
 
     public Profile() {
         this.posts = new Feed();
+        this.followRequests = new LinkedHashMap<>();
     }
 
     public void setUsername(String username) {
@@ -42,6 +48,7 @@ public class Profile implements Serializable {
     public int getNumFollowers() { return numFollowers; }
     public int getNumFollowing() { return numFollowing; }
     public int getNumPosts(){ return this.numPosts; }
+    public Map<String, Profile> getFollowRequests(){return this.followRequests;}
 
     public boolean validatePassword(String password){
         return this.password.validatePassword(password);

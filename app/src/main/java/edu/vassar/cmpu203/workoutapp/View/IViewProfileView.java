@@ -7,6 +7,8 @@ public interface IViewProfileView {
 
     interface Listener{
         void onEditProfile();
+        void onGoBack();
+        void onFollowRequests();
 
     }
 }

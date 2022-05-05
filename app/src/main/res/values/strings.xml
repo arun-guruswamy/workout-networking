@@ -103,6 +103,7 @@
     <string name="setBio">Set Bio</string>
     <string name="done">Done</string>
     <string name="CreationSuccessful">Creation Successful</string>
-    <string name ="userExists">Sorry, this user already exists. Pick a new username.</string>
+    <string name="userExists">Sorry, this user already exists. Pick a new username.</string>
     <string name="invalidCredentials">Incorrect Username or Password. Try again!</string>
+    <string name="backToProfile">Back</string>
 </resources>
