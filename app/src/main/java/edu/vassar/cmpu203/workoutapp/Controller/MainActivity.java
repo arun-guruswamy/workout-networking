@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onFollowRequests() {
-
+            this.mainView.displayFragment(new FollowRequestFragment(this, this.curUser), false);
     }
 
     @Override
@@ -277,7 +277,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void requestFollow(){
+    public void requestFollow(Profile profile, IViewOtherProfileView iViewOtherProfileView){
+        profile.getFollowRequests().put(this.curUser.getUsername(), curUser);
+        iViewOtherProfileView.onRequest();
 
     }
 
