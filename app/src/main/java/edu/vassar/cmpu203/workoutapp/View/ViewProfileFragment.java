@@ -60,5 +60,12 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
                 ViewProfileFragment.this.listener.onGoBack();
             }
         });
+
+        this.binding.button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewProfileFragment.this.listener.onFollowRequests();
+            }
+        });
     }
 }

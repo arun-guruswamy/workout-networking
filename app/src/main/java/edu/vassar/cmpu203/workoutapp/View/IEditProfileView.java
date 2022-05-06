@@ -8,4 +8,6 @@ public interface IEditProfileView {
         void onEditedBio(String bio, IEditProfileView editProfileView);
         void onDoneButton();
     }
+
+    void onUsernameAlreadyExists();
 }

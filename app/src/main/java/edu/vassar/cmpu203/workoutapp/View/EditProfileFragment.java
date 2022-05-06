@@ -85,4 +85,9 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
             }
         });
     }
+
+    @Override
+    public void onUsernameAlreadyExists(){
+        Snackbar.make(this.binding.getRoot(), "This username is already take. Please choose another", Snackbar.LENGTH_LONG).show();
+    }
 }

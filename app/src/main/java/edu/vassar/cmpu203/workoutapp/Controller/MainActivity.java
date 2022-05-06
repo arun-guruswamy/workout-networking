@@ -127,9 +127,20 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onEditedUsername(String username, IEditProfileView editProfileView) {
-        curUser.setUsername(username);
-        // need to make sure username is not already in database
-        this.persistenceFacade.saveProfile(this.curUser);
+        this.persistenceFacade.retrieveProfile(username, new IPersistenceFacade.DataListener<Profile>() {
+            @Override
+            public void onDataReceived(@NonNull Profile data) {
+                editProfileView.onUsernameAlreadyExists();
+            }
+
+            @Override
+            public void onNoDataFound() {
+                curUser.setUsername(username);
+                MainActivity.this.persistenceFacade.saveProfile(MainActivity.this.curUser);
+            }
+        });
+
+
     }
 
     @Override
@@ -260,7 +271,11 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             @Override
             public void onDataReceived(@NonNull Profile data) {
                 Profile p = data;
-                MainActivity.this.mainView.displayFragment(new ViewOtherProfileFragment(MainActivity.this, p, MainActivity.this.curUser), false);
+
+                if(p.getUsername().equals(MainActivity.this.curUser.getUsername()))
+                    MainActivity.this.mainView.displayFragment(new ViewProfileFragment(MainActivity.this, MainActivity.this.curUser), false);
+                else
+                    MainActivity.this.mainView.displayFragment(new ViewOtherProfileFragment(MainActivity.this, p, MainActivity.this.curUser), false);
             }
 
             @Override
@@ -298,8 +313,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void requestFollow(Profile profile, IViewOtherProfileView iViewOtherProfileView){
-        profile.getFollowRequests().put(this.curUser.getUsername(), curUser);
         iViewOtherProfileView.onRequest();
+        profile.getFollowRequests().put(this.curUser.getUsername(), curUser);
+        this.persistenceFacade.saveProfile(profile);
 
     }
 
@@ -322,11 +338,13 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         profile.setNumFollowing();
         this.persistenceFacade.saveProfile(profile);
         this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
+        this.persistenceFacade.saveProfile(this.curUser);
     }
 
     @Override
     public void onDecline(Profile profile) {
         this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
+        this.persistenceFacade.saveProfile(this.curUser);
     }
 }
 

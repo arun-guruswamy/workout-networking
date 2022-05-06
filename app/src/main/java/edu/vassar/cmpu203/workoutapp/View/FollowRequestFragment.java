@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.collection.LLRBNode;
 
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
@@ -60,13 +61,18 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
 
         for(Profile p : this.curUser.getFollowRequests().values()) {
             TextView tv = new TextView(getContext());
-            tv.setText(p.getUsername() + "wants to follow you!");
+            tv.setText(p.getUsername() + " wants to follow you!");
+            tv.setTextSize(24);
             ll.addView(tv);
             Button accept = new Button(getContext());
             accept.setText("Accept");
+            accept.setTextSize(18);
+            accept.setTextColor(Color.WHITE);
             accept.setBackgroundColor(Color.BLUE);
             Button decline = new Button(getContext());
             decline.setText("Decline");
+            decline.setTextSize(18);
+            decline.setTextColor(Color.WHITE);
             decline.setBackgroundColor(Color.BLUE);
 
             accept.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +80,7 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
                 public void onClick(View view) {
                     FollowRequestFragment.this.listener.onAccept(p);
                     answerGiven(ll, tv, accept, decline);
+                    displayMessage(R.string.accept);
                 }
             });
             decline.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +88,12 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
                 public void onClick(View view) {
                     FollowRequestFragment.this.listener.onDecline(p);
                     answerGiven(ll, tv, accept, decline);
+                    displayMessage(R.string.decline);
                 }
             });
+
+            ll.addView(accept);
+            ll.addView(decline);
         }
 
         this.binding.backToProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +108,9 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
         ll.removeView(tv);
         ll.removeView(b1);
         ll.removeView(b2);
+    }
+
+    private void displayMessage(int msgRid){
+        Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }
 }
