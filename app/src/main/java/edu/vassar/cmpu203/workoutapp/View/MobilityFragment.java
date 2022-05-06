@@ -58,7 +58,7 @@ public class MobilityFragment extends Fragment implements IWorkoutType {
 
 
                 // let view listener know that it should add a new workout
-                MobilityFragment.this.listener.onAddedAttributes(AttributeList, 3, post);
+                MobilityFragment.this.listener.onAddedAttributes(AttributeList, 3);
             }
         });
     }

@@ -130,6 +130,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         // onViewCreated is responsible for wiring up the event handlers
 
         // add listener to be called when the add button is pressed
+
+        this.workout = this.listener.getCurWorkout();
+
         this.binding.AddWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,8 +168,8 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
 
                 // let view listener know that it should add a new workout
-                if(workoutType == 1 || workoutType == 2 || workoutType == 3) {
-                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutType, WorkoutAttributes, post, workout, workoutSport);
+                if(workout.getWorkoutType() == 1 || workout.getWorkoutType() == 2 || workout.getWorkoutType() == 3) {
+                    AddWorkoutFragment.this.listener.onAddedWorkout(workoutLength, workoutDifficulty, workoutDescStr, workoutSport);
                     workoutSet = true;
                 }
                 else
@@ -205,7 +208,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 //                workout.setDifficulty(workoutDifficulty);
 //                workout.setSport(workoutSport);
 
-                AddWorkoutFragment.this.listener.CardioButton(workout, post);
+                AddWorkoutFragment.this.listener.CardioButton();
 
             }
         });
@@ -241,7 +244,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 //                workout.setDifficulty(workoutDifficulty);
 //                workout.setSport(workoutSport);
 
-                AddWorkoutFragment.this.listener.StrengthButton(workout, post);
+                AddWorkoutFragment.this.listener.StrengthButton();
 
             }
         });
@@ -276,7 +279,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 //                workout.setDifficulty(workoutDifficulty);
 //                workout.setSport(workoutSport);
 
-                AddWorkoutFragment.this.listener.MobilityButton(workout, post);
+                AddWorkoutFragment.this.listener.MobilityButton();
             }
         });
 

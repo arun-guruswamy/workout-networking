@@ -10,6 +10,7 @@ public interface IFeedView {
         void removeFilters();
         void viewProfile();
         void onProfileClick(String prod_ID);
+        Feed getFeed();
     }
 
     void onFeedUpdated(Feed feed);

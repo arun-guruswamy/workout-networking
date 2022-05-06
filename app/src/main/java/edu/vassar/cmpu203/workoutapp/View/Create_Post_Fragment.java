@@ -42,6 +42,8 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+        w = this.listener.getCurWorkout();
+
         this.binding.postWorkout.setText(w.toString());
 
         this.binding.captionButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +55,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
                 postCaptionEditable.clear();
 
-                Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this, post);
+                Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this);
 
 
             }
@@ -63,7 +65,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
             @Override
             public void onClick(View v) {
 
-                Create_Post_Fragment.this.listener.onWorkoutButton(w, post);
+                Create_Post_Fragment.this.listener.onWorkoutButton();
 
             }
 
@@ -72,7 +74,7 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
         this.binding.postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Create_Post_Fragment.this.listener.onPostButton(post);
+                Create_Post_Fragment.this.listener.onPostButton();
             }
         });
 

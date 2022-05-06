@@ -78,7 +78,7 @@ public class Post implements Serializable {
     }
 
     public Workout getWorkout() {
-        return workout;
+          return workout;
     }
 
 

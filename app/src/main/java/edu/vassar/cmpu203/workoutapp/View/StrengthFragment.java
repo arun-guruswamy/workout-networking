@@ -56,7 +56,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
 
 
                 // let view listener know that it should add a new workout
-                StrengthFragment.this.listener.onAddedAttributes(AttributeList, 2, post);
+                StrengthFragment.this.listener.onAddedAttributes(AttributeList, 2);
             }
         });
     }

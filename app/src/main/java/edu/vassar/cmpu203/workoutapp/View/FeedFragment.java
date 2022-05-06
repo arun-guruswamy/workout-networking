@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 import edu.vassar.cmpu203.workoutapp.Model.Feed;
 import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentFeedBinding;
@@ -28,7 +29,7 @@ public class FeedFragment extends Fragment implements IFeedView {
        this.feed = feed;
     }
 
-    public FeedFragment(Listener listener){this.listener = listener;}
+    public FeedFragment(Listener listener){ this.listener = listener; }
 
 
     @Override
@@ -42,6 +43,8 @@ public class FeedFragment extends Fragment implements IFeedView {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
+
+        feed = this.listener.getFeed();
 
         onFeedUpdated(this.feed);
 

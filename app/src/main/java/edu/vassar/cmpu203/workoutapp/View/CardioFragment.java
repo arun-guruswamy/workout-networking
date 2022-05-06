@@ -59,7 +59,7 @@ public class CardioFragment extends Fragment implements IWorkoutType {
 
 
                 // let view listener know that it should add a new workout
-                CardioFragment.this.listener.onAddedAttributes(AttributeList, 1, post);
+                CardioFragment.this.listener.onAddedAttributes(AttributeList, 1);
             }
         });
     }

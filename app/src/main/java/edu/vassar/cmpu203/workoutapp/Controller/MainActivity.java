@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private Feed feed;
     private Feed filteredFeed = new Feed();
     private Profile curUser;
+    private Post curPost;
+    private Workout curWorkout;
 
     private IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
@@ -81,48 +83,48 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onAddedCaption(String caption, ICreatePostView createPostView, Post post) {
-        post.addCaption(caption);
+    public void onAddedCaption(String caption, ICreatePostView createPostView) {
+        this.curPost.addCaption(caption);
         createPostView.updateCaption(caption);
     }
 
     @Override
-    public void onAddedWorkout(int length, int difficulty, String descr, int workoutType, boolean[] WorkoutAttributes, Post post, Workout workout, String sport) {
-       if (workoutType == 1)
-            workout = new Cardio(WorkoutAttributes);
+    public void onAddedWorkout(int length, int difficulty, String descr, String sport) {
+   /*    if (workoutType == 1)
+            this.curWorkout = new Cardio(WorkoutAttributes);
       else if (workoutType == 2)
-            workout = new Strength(WorkoutAttributes);
+            this.curWorkout = new Strength(WorkoutAttributes);
       else
-          workout = new Mobility(WorkoutAttributes);
-        workout.setDescription(descr);
-        workout.setLength(length);
-        workout.setType(workoutType);
-        workout.setDifficulty(difficulty);
-        workout.setSport(sport);
-        post.setWorkout(workout);
-        this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
+          this.curWorkout = new Mobility(WorkoutAttributes);*/
+
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+       // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
+        this.curPost.setWorkout(this.curWorkout);
+        this.mainView.displayFragment(Create_Post_Fragment.class, null, false);
     }
 
     @Override
-    public void onWorkoutButton(Workout workout, Post post) {
+    public void onWorkoutButton() {
 
-        Bundle fragArgs = AddWorkoutFragment.makeArgsBundle(workout, post);
-        this.mainView.displayFragment(AddWorkoutFragment.class, fragArgs, false);
+        this.mainView.displayFragment(AddWorkoutFragment.class, null, false);
     }
 
     @Override
-    public void onPostButton(Post post) {
-        this.feed.feed.add(post);
-        this.curUser.posts.addPosts(post);
+    public void onPostButton() {
+        this.feed.feed.add(this.curPost);
+        this.curUser.posts.addPosts(this.curPost);
         this.curUser.setNumPosts();
-        this.persistenceFacade.savePost(post);
+        this.persistenceFacade.savePost(this.curPost);
         this.persistenceFacade.saveProfile(this.curUser);
-        this.mainView.displayFragment(new FeedFragment(this, this.feed), true);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
     public void onCancelButton() {
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             public void onYesResult() {
                 MainActivity.this.curUser = p;
                 createProfileView.onCreateSuccess();
-                MainActivity.this.mainView.displayFragment(new FeedFragment(MainActivity.this, feed), false);
+                MainActivity.this.mainView.displayFragment(FeedFragment.class, null, false);
             }
 
             @Override
@@ -181,30 +183,39 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onAddPost() {
         Post post = new Post(this.curUser);
         Workout workout = new Workout();
-        this.mainView.displayFragment(new Create_Post_Fragment(this, workout, post), true);
+        curPost = post;
+        curWorkout = workout;
+        this.mainView.displayFragment(Create_Post_Fragment.class, null, false);
     }
 
     @Override
-    public void CardioButton(Workout workout, Post post) {
-        this.mainView.displayFragment(new CardioFragment(this, post, workout), false);
+    public void CardioButton() {
+        this.mainView.displayFragment(CardioFragment.class, null, false);
     }
 
     @Override
-    public void StrengthButton(Workout workout, Post post) {
-        this.mainView.displayFragment(new StrengthFragment(this, post, workout), false);
+    public void StrengthButton() {
+        this.mainView.displayFragment(StrengthFragment.class, null, false);
     }
 
     @Override
-    public void MobilityButton(Workout workout, Post post) {
-        this.mainView.displayFragment(new MobilityFragment(this, post, workout), false);
+    public void MobilityButton() {
+        this.mainView.displayFragment(MobilityFragment.class, null, false);
     }
 
     @Override
-    public void onAddedAttributes(boolean[] Attributes, int workoutType, Post post) {
+    public void onAddedAttributes(boolean[] Attributes, int workoutType) {
 
-        Bundle fragArgs = AddWorkoutFragment.makeArgsBundle2(Attributes, workoutType, post);
-        AddWorkoutFragment addWorkoutFragment = new AddWorkoutFragment(this);
-        this.mainView.displayFragment(addWorkoutFragment.getClass(), fragArgs, false);
+        if (workoutType == 1)
+            this.curWorkout = new Cardio(Attributes);
+        else if (workoutType == 2)
+            this.curWorkout = new Strength(Attributes);
+        else
+            this.curWorkout = new Mobility(Attributes);
+
+        this.curWorkout.setType(workoutType);
+
+        this.mainView.displayFragment(AddWorkoutFragment.class, null, false);
     }
 
     @Override
@@ -229,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void removeFilters() {
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
@@ -247,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             public void onDataReceived(@NonNull Profile data) {
                 if (data.validatePassword(password)) {
                     MainActivity.this.curUser = data;
-                    MainActivity.this.mainView.displayFragment(new FeedFragment(MainActivity.this, feed), false);
+                    MainActivity.this.mainView.displayFragment(FeedFragment.class, null, false );
                 } else {
                     homeScreenView.onInvalidCredentials();
                 }
@@ -293,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onGoBack() {
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
@@ -303,12 +314,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onDoneButton(){
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
     public void goBack(){
-        this.mainView.displayFragment(new FeedFragment(this, feed), false);
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
@@ -345,6 +356,24 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     public void onDecline(Profile profile) {
         this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
         this.persistenceFacade.saveProfile(this.curUser);
+    }
+
+    @Override
+    public Feed getFeed() {
+        return feed;
+    }
+
+    public Post getCurPost(){
+        return curPost;
+    }
+
+    public Profile getCurUser() {
+        return curUser;
+    }
+
+    @Override
+    public Workout getCurWorkout() {
+        return curWorkout;
     }
 }
 
