@@ -33,6 +33,11 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
         this.curUser = curUser;
     }
 
+    public FollowRequestFragment(Listener listener){
+        this.listener = listener;
+        this.curUser = this.listener.getCurUser();
+    }
+
 
 
 

@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     private Profile curUser;
     private Post curPost;
     private Workout curWorkout;
+    // another profile to help view other profiles
+    private Profile user2;
 
     private IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
@@ -273,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void viewProfile() {
-        this.mainView.displayFragment(new ViewProfileFragment(this, this.curUser), false);
+        this.mainView.displayFragment(ViewProfileFragment.class, null, false);
     }
 
     @Override
@@ -281,12 +283,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         persistenceFacade.retrieveProfile(prod_ID, new IPersistenceFacade.DataListener<Profile>() {
             @Override
             public void onDataReceived(@NonNull Profile data) {
-                Profile p = data;
+                MainActivity.this.user2 = data;
 
-                if(p.getUsername().equals(MainActivity.this.curUser.getUsername()))
-                    MainActivity.this.mainView.displayFragment(new ViewProfileFragment(MainActivity.this, MainActivity.this.curUser), false);
+                if(user2.getUsername().equals(MainActivity.this.curUser.getUsername()))
+                    MainActivity.this.mainView.displayFragment(ViewProfileFragment.class, null, false);
                 else
-                    MainActivity.this.mainView.displayFragment(new ViewOtherProfileFragment(MainActivity.this, p, MainActivity.this.curUser), false);
+                    MainActivity.this.mainView.displayFragment(ViewOtherProfileFragment.class, null, false);
             }
 
             @Override
@@ -299,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onEditProfile() {
-        this.mainView.displayFragment(new EditProfileFragment(this), false);
+        this.mainView.displayFragment(EditProfileFragment.class, null, false);
     }
 
     @Override
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onFollowRequests() {
-            this.mainView.displayFragment(new FollowRequestFragment(this, this.curUser), false);
+            this.mainView.displayFragment(FollowRequestFragment.class, null, false);
     }
 
     @Override
@@ -331,6 +333,11 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
+    public Profile getUser2() {
+        return this.user2;
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putBoolean("IN_PROGRESS", true);
@@ -340,7 +347,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onBack() {
-        this.mainView.displayFragment(new ViewProfileFragment(this, this.curUser), false);
+        this.mainView.displayFragment(ViewProfileFragment.class, null, false);
     }
 
     @Override
@@ -363,10 +370,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         return feed;
     }
 
-    public Post getCurPost(){
-        return curPost;
-    }
 
+    @Override
     public Profile getCurUser() {
         return curUser;
     }

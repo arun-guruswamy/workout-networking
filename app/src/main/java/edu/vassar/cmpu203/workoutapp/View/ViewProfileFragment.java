@@ -22,7 +22,10 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
     private FragmentViewProfileBinding binding;
     private Profile curUser;
 
-    public ViewProfileFragment(Listener listener){this.listener = listener;}
+    public ViewProfileFragment(Listener listener){
+        this.listener = listener;
+        this.curUser = this.listener.getCurUser();
+    }
 
     public ViewProfileFragment(Listener listener, Profile curUser) {
 

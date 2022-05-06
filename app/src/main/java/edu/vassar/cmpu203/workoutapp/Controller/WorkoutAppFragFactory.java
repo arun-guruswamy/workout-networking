@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentFactory;
 
 import edu.vassar.cmpu203.workoutapp.View.AddWorkoutFragment;
 import edu.vassar.cmpu203.workoutapp.View.CardioFragment;
+import edu.vassar.cmpu203.workoutapp.View.EditProfileFragment;
+import edu.vassar.cmpu203.workoutapp.View.FollowRequestFragment;
 import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
 import edu.vassar.cmpu203.workoutapp.Model.*;
 import edu.vassar.cmpu203.workoutapp.View.CardioFragment;
@@ -16,6 +18,7 @@ import edu.vassar.cmpu203.workoutapp.View.FilterFragment;
 import edu.vassar.cmpu203.workoutapp.View.HomeScreenFragment;
 import edu.vassar.cmpu203.workoutapp.View.MobilityFragment;
 import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
+import edu.vassar.cmpu203.workoutapp.View.ViewOtherProfileFragment;
 import edu.vassar.cmpu203.workoutapp.View.ViewProfileFragment;
 
 public class WorkoutAppFragFactory extends FragmentFactory {
@@ -52,6 +55,12 @@ public class WorkoutAppFragFactory extends FragmentFactory {
             return new MobilityFragment(controller);
         else if(fragClass == ViewProfileFragment.class)
             return new ViewProfileFragment(controller);
+        else if(fragClass == FollowRequestFragment.class)
+            return new FollowRequestFragment(controller);
+        else if (fragClass == ViewOtherProfileFragment.class)
+            return new ViewOtherProfileFragment(controller);
+        else if (fragClass == EditProfileFragment.class)
+            return new EditProfileFragment(controller);
         else
             return super.instantiate(classLoader, className);
 

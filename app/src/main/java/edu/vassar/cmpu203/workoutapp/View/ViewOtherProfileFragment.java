@@ -28,12 +28,13 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
 
 
     public ViewOtherProfileFragment(Listener listener) {
+
         this.listener = listener;
+        this.profile = this.listener.getUser2();
     }
 
-    public ViewOtherProfileFragment(Listener listener, Profile profile, Profile curUser){
+    public ViewOtherProfileFragment(Listener listener, Profile profile){
         this.listener = listener;
-        this.curUser = curUser;
         this.profile = profile;
     }
 

@@ -7,6 +7,7 @@ public interface IViewOtherProfileView {
     interface Listener{
         void goBack();
         void requestFollow(Profile profile, IViewOtherProfileView iViewOtherProfileView);
+        Profile getUser2();
     }
 
     void onRequest();

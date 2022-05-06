@@ -8,5 +8,6 @@ public interface IFollowRequestView {
         void onBack();
         void onAccept(Profile profile);
         void onDecline(Profile profile);
+        Profile getCurUser();
     }
 }
