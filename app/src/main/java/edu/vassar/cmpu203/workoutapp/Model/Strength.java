@@ -33,6 +33,7 @@ public class Strength extends Workout implements Serializable {
         UpperBodyFocus = upperBodyFocus;
     }
 
+    @Override
     public String toString() {
         return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nUpperBody Focus: " + UpperBodyFocus
                 + "\nLowerBody Focus: " + LowerBodyFocus + "\nFullBodyFocus: " + FullBodyFocus

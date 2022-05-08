@@ -326,6 +326,10 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void requestFollow(Profile profile, IViewOtherProfileView iViewOtherProfileView){
+        // what if I already follow this person
+        if(profile.getFollowRequests().containsKey(this.curUser.getUsername()))
+            iViewOtherProfileView.onAlreadyFollowing();
+
         iViewOtherProfileView.onRequest();
         profile.getFollowRequests().put(this.curUser.getUsername(), curUser);
         this.persistenceFacade.saveProfile(profile);

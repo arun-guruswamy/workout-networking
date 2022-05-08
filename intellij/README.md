@@ -20,9 +20,9 @@
 
 
 Task list:
-- Dynamic State (bundles etc)
-- Persistent State (FireStore)
-- Following profiles functionality/ Screen (follow requests, accepting followers, )
-- authentication
+- Dynamic State (bundles etc) - the filitered feed in the main activity is the only one we need this for now
+- Persistent State (FireStore) - error when retrieving the feed from the database, uses the general workout to string instead of the specfic workout ones 
+- maybe some state stuff with the the workout screen (buttons and fields staying if inputted before the workout type is selected)
+
 
 

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
@@ -95,5 +97,11 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
     @Override
     public void onRequest(){
         this.binding.requestFollowButton.setEnabled(false);
+    }
+
+    @Override
+    public void onAlreadyFollowing(){
+        this.binding.requestFollowButton.setEnabled(false);
+        Snackbar.make(this.binding.getRoot(), "You already follow this profile", Snackbar.LENGTH_LONG).show();
     }
 }

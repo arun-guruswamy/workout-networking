@@ -27,6 +27,7 @@ public class Cardio extends Workout implements Serializable {
         SpeedFocus = speedFocus;
     }
 
+    @Override
     public String toString() {
         return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nEndurance Focus: " + EnduranceFocus
                 + "\nAgility Focus: " + AgilityFocus + "\nSpeed Focus: " + SpeedFocus;
