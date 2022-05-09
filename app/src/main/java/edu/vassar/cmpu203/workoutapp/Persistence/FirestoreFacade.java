@@ -131,4 +131,5 @@ public class FirestoreFacade implements IPersistenceFacade {
         db.collection(PROFILE_COLLECTION).document(old).delete();
     }
 
+
 }

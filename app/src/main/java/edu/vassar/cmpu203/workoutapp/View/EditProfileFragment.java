@@ -39,18 +39,6 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
-        this.binding.setUsernameButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //For Username
-                Editable profileUsernameEditable = EditProfileFragment.this.binding.EditUsernameText.getText();
-                String username = profileUsernameEditable.toString();
-
-                profileUsernameEditable.clear();
-
-                EditProfileFragment.this.listener.onEditedUsername(username, EditProfileFragment.this);
-            }
-        });
 
         this.binding.setPasswordButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -86,8 +74,4 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
         });
     }
 
-    @Override
-    public void onUsernameAlreadyExists(){
-        Snackbar.make(this.binding.getRoot(), "This username is already take. Please choose another", Snackbar.LENGTH_LONG).show();
-    }
 }

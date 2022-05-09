@@ -132,31 +132,6 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void onEditedUsername(String username, IEditProfileView editProfileView) {
-        String old = this.curUser.getUsername();
-
-        this.persistenceFacade.retrieveProfile(username, new IPersistenceFacade.DataListener<Profile>() {
-            @Override
-            public void onDataReceived(@NonNull Profile data) {
-                editProfileView.onUsernameAlreadyExists();
-            }
-
-            @Override
-            public void onNoDataFound() {
-                curUser.setUsername(username);
-                MainActivity.this.persistenceFacade.editProfile(MainActivity.this.curUser, old);
-                for(Post post : MainActivity.this.curUser.getPosts().feed){
-                    post.setProd_id(username);
-                }
-            }
-
-
-        });
-
-
-    }
-
-    @Override
     public void onEditedPassword(String password, IEditProfileView editProfileView) {
         curUser.setPasswordFromString(password);
         this.persistenceFacade.saveProfile(this.curUser);

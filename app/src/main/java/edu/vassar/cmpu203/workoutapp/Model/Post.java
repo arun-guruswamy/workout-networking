@@ -59,7 +59,7 @@ public class Post implements Serializable {
 
     public String toString() {
 
-        return "\nWorkout: " + workout + "\n\n" + caption;
+        return this.prod_id + "\nWorkout: " + workout + "\n\n" + caption;
     }
 
     public int getCAPnum() {
