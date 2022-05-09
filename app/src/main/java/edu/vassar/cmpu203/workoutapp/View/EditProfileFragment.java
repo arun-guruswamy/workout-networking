@@ -49,6 +49,11 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
 
                 profilePasswordEditable.clear();
 
+                if (password.length() == 0){
+                    Snackbar.make(v, "Can't have an empty Password!", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
                 EditProfileFragment.this.listener.onEditedPassword(password, EditProfileFragment.this);
             }
         });
@@ -61,6 +66,11 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
                 String bio = profileBioEditable.toString();
 
                 profileBioEditable.clear();
+
+                if (bio.length() == 0){
+                    Snackbar.make(v, "Can't have an empty bio!", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
 
                 EditProfileFragment.this.listener.onEditedBio(bio, EditProfileFragment.this);
             }
