@@ -82,5 +82,7 @@ public class Post implements Serializable {
           return workout;
     }
 
-
+    public void setProd_id(String prod_id) {
+        this.prod_id = prod_id;
+    }
 }

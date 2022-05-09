@@ -145,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             public void onNoDataFound() {
                 curUser.setUsername(username);
                 MainActivity.this.persistenceFacade.editProfile(MainActivity.this.curUser, old);
+                for(Post post : MainActivity.this.curUser.getPosts().feed){
+                    post.setProd_id(username);
+                }
             }
         });
 
