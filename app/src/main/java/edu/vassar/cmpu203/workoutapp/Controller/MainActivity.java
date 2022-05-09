@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onEditedUsername(String username, IEditProfileView editProfileView) {
+        String old = this.curUser.getUsername();
+
         this.persistenceFacade.retrieveProfile(username, new IPersistenceFacade.DataListener<Profile>() {
             @Override
             public void onDataReceived(@NonNull Profile data) {
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             @Override
             public void onNoDataFound() {
                 curUser.setUsername(username);
-                MainActivity.this.persistenceFacade.saveProfile(MainActivity.this.curUser);
+                MainActivity.this.persistenceFacade.editProfile(MainActivity.this.curUser, old);
             }
         });
 

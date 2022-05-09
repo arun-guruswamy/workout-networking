@@ -23,4 +23,5 @@ public interface IPersistenceFacade {
     void savePost(Post post);
     void saveProfile(@NonNull Profile p);
     void retrieveProfile(@NonNull String Username, @NonNull DataListener<Profile> listener);
+    void editProfile(Profile profile, String old);
 }

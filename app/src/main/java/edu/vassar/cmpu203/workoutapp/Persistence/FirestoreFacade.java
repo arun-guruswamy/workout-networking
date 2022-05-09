@@ -125,4 +125,9 @@ public class FirestoreFacade implements IPersistenceFacade {
         db.collection(PROFILE_COLLECTION).document(p.getUsername()).set(p);
     }
 
+    @Override
+    public void editProfile(Profile p, String old){
+        db.collection(PROFILE_COLLECTION).document(old).set(p);
+    }
+
 }
