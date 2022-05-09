@@ -149,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
                     post.setProd_id(username);
                 }
             }
+
+
         });
 
 
