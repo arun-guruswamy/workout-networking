@@ -29,7 +29,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private boolean[] WorkoutAttributes;
     private int workoutType = 0;
     int workoutLength = 0;
-    private Workout workout = new Workout();
+    private Workout workout;
     private Post post;
     int signal = 0;
 

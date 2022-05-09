@@ -44,7 +44,7 @@ public class FeedFragment extends Fragment implements IFeedView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ) {
 
-        feed = this.listener.getFeed();
+        feed = this.listener.getCurFeed();
 
         onFeedUpdated(this.feed);
 

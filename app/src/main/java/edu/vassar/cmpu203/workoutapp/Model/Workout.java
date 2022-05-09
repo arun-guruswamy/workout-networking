@@ -9,7 +9,7 @@ public class Workout implements Serializable {
     protected String sportFocus;
     int workoutType;
 
-    public Workout() {};
+    public Workout() {}
 
     public void setDescription(String description) {
         this.description = description;
@@ -41,6 +41,22 @@ public class Workout implements Serializable {
     public String toString() {
         return this.description + "\n" + this.length + "\n" + this.difficulty;
     }
+
+/*
+    public String toString() {
+        if (this.workoutType == 1){
+            return Cardio.class.toString();
+        }
+        else if (this.workoutType == 2){
+            return Strength.class.toString();
+        }
+        else if (this.workoutType == 3){
+            return Mobility.class.toString();
+        }
+        else
+            return this.description + "\n" + this.length + "\n" + this.difficulty;
+    }
+*/
 
     public int getDifficulty() {
         return difficulty;

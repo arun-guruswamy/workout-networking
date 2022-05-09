@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener, IFollowRequestView.Listener {
 
     private IMainView mainView;
-    private Feed feed;
+    private Feed curFeed;
+    private Feed unFeed = new Feed();
     private Feed filteredFeed = new Feed();
     private Profile curUser;
     private Post curPost;
@@ -39,20 +40,21 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         super.onCreate(savedInstanceState);
 
         if(savedInstanceState == null) {
-            this.feed = new Feed();
+            this.curFeed = new Feed();
         }
         else {
-            this.feed = (Feed) savedInstanceState.getSerializable("FEED");
+            this.curFeed = (Feed) savedInstanceState.getSerializable("FEED");
             this.curUser = (Profile) savedInstanceState.getSerializable("CUR_USER");
         }
 
         this.persistenceFacade.retrieveFeed(new IPersistenceFacade.DataListener<Feed>() {
             @Override
             public void onDataReceived(@NonNull Feed feed) {
-                MainActivity.this.feed = feed;
+                MainActivity.this.unFeed = feed;
+                MainActivity.this.curFeed = unFeed;
                 Fragment curFrag = MainActivity.this.mainView.getCurrentFragment();
                 if(curFrag instanceof IFeedView)
-                    ((IFeedView) curFrag).onFeedUpdated(feed);
+                    ((IFeedView) curFrag).onFeedUpdated(curFeed);
             }
 
 
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onPostButton() {
-        this.feed.feed.add(this.curPost);
+        this.unFeed.feed.add(this.curPost);
         this.curUser.posts.addPosts(this.curPost);
         this.curUser.setNumPosts();
         this.persistenceFacade.savePost(this.curPost);
@@ -184,24 +186,30 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onAddPost() {
         Post post = new Post(this.curUser);
-        Workout workout = new Workout();
+        //Workout workout = new Workout();
         curPost = post;
-        curWorkout = workout;
+        //curWorkout = workout;
         this.mainView.displayFragment(Create_Post_Fragment.class, null, false);
     }
 
     @Override
     public void CardioButton() {
+        Cardio w = new Cardio();
+        this.curWorkout = w;
         this.mainView.displayFragment(CardioFragment.class, null, false);
     }
 
     @Override
     public void StrengthButton() {
+        Strength w = new Strength();
+        this.curWorkout = w;
         this.mainView.displayFragment(StrengthFragment.class, null, false);
     }
 
     @Override
     public void MobilityButton() {
+        Mobility w = new Mobility();
+        this.curWorkout = w;
         this.mainView.displayFragment(MobilityFragment.class, null, false);
     }
 
@@ -228,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onSetFilter(int length, int difficulty, int workoutType, String sport) {
-        filteredFeed.feed = new ArrayList(feed.feed);
+        filteredFeed.feed = new ArrayList(this.curFeed.feed);
         Filter len = new Length(length, filteredFeed);
         filteredFeed.feed = len.filter();
         Filter diff = new Difficulty(difficulty, filteredFeed);
@@ -237,11 +245,15 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         filteredFeed.feed = type.filter();
         Filter sprt = new Sport(sport, filteredFeed);
         filteredFeed.feed = sprt.filter();
-        this.mainView.displayFragment(new FeedFragment(this, filteredFeed), false);
+
+        this.curFeed = filteredFeed;
+
+        this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
     @Override
     public void removeFilters() {
+        this.curFeed = unFeed;
         this.mainView.displayFragment(FeedFragment.class, null, false);
     }
 
@@ -345,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     protected void onSaveInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putBoolean("IN_PROGRESS", true);
-        outState.putSerializable("FEED", this.feed);
+        outState.putSerializable("FEED", this.curFeed);
         outState.putSerializable("CUR_USER", curUser);
     }
 
@@ -370,8 +382,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public Feed getFeed() {
-        return feed;
+    public Feed getCurFeed() {
+        return curFeed;
     }
 
 

@@ -2,9 +2,13 @@ package edu.vassar.cmpu203.workoutapp.Persistence;
 
 import androidx.annotation.NonNull;
 
+import edu.vassar.cmpu203.workoutapp.Model.Cardio;
 import edu.vassar.cmpu203.workoutapp.Model.Feed;
+import edu.vassar.cmpu203.workoutapp.Model.Mobility;
 import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
+import edu.vassar.cmpu203.workoutapp.Model.Strength;
+import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +35,33 @@ public class FirestoreFacade implements IPersistenceFacade {
                     public void onSuccess(QuerySnapshot qsnap) {
                         Feed feed = new Feed();
                         for(DocumentSnapshot dsnap : qsnap){
+
                             Post post = dsnap.toObject(Post.class);
+
+                            if(post.getWorkout().getWorkoutType() == 1) {
+                              Cardio cardio = new Cardio(post.getWorkout());
+                              cardio.setAgilityFocus(dsnap.getBoolean("workout.agilityFocus"));
+                              cardio.setEnduranceFocus(dsnap.getBoolean("workout.enduranceFocus"));
+                              cardio.setSpeedFocus(dsnap.getBoolean("workout.speedFocus"));
+                              post.setWorkout(cardio);
+                            }
+                            else if (post.getWorkout().getWorkoutType() == 2 ){
+                                Strength strength = new Strength(post.getWorkout());
+                                strength.setBodyWeightFocus(dsnap.getBoolean("workout.bodyWeightFocus"));
+                                strength.setFullBodyFocus(dsnap.getBoolean("workout.fullBodyFocus"));
+                                strength.setUpperBodyFocus(dsnap.getBoolean("workout.upperBodyFocus"));
+                                strength.setLowerBodyFocus(dsnap.getBoolean("workout.lowerBodyFocus"));
+                                post.setWorkout(strength);
+                            }
+                            else if (post.getWorkout().getWorkoutType() == 3) {
+                                Mobility mobility = new Mobility(post.getWorkout());
+                                mobility.setDynamicFocus(dsnap.getBoolean("workout.dynamicStretching"));
+                                mobility.setStaticFocus(dsnap.getBoolean("workout.staticStretching"));
+                                mobility.setYogaFocus(dsnap.getBoolean("workout.yoga"));
+                                post.setWorkout(mobility);
+                            }
+
+
                             feed.addPosts(post);
                         }
                         listener.onDataReceived(feed);
@@ -94,76 +124,5 @@ public class FirestoreFacade implements IPersistenceFacade {
     public void saveProfile(Profile p) {
         db.collection(PROFILE_COLLECTION).document(p.getUsername()).set(p);
     }
-
-    public void setPostNum(Profile profile){
-        DocumentReference documentReference = db.document(""+PROFILE_COLLECTION+"/"+profile.getUsername());
-        //documentReference.set()
-    }
-
-//    public void getProfile(String prof_id) {
-//        db.collection("Profiles").get()
-//            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                @Override
-//                public void onSuccess(QuerySnapshot qsnap) {
-//                    Profile ledger = new Ledger();
-//                    for (DocumentSnapshot dsnap : qsnap){
-//                        Sale sale = dsnap.toObject(Sale.class);
-//                        ledger.addSale(sale);
-//                    }
-//                    listener.onDataReceived(ledger);
-//                }
-//            });
-//
-//    }
-
-//    @Override
-//    public void createUserIfNotExists(@NonNull User user, @NonNull BinaryResultListener listener) {
-//
-//        String username = user.getUsername();
-//
-//        this.retrieveUser(username, new DataListener<User>() {
-//            @Override
-//            public void onDataReceived(@NonNull User data) {
-//                listener.onNoResult();
-//            }
-//
-//            @Override
-//            public void onNoDataFound() {
-//                db.collection(USERS_COLLECTION).document(username).
-//                        set(user).
-//                        addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                listener.onYesResult();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        listener.onNoResult();
-//                    }
-//                });
-//
-//            }
-//        });
-//
-//    }
-//
-  /*  @Override
-    public void retrieveUser(@NonNull String username, @NonNull DataListener<Profile> listener) {
-
-        db.collection("Profiles").document(username).get().
-                addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                         @Override
-                                         public void onSuccess(DocumentSnapshot dsnap) {
-                                             if (dsnap.exists()){
-                                                 Profile user = dsnap.toObject(Profile.class);
-                                                 listener.onDataReceived(user);
-                                             } else // no user found
-                                                 listener.onNoDataFound();
-                                         }
-                                     }
-                );
-
-    }*/
 
 }

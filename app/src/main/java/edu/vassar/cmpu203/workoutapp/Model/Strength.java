@@ -17,6 +17,14 @@ public class Strength extends Workout implements Serializable {
         FullBodyFocus = Attributes[3];
     }
 
+    public Strength(Workout workout) {
+        this.description = workout.description;
+        this.difficulty = workout.difficulty;
+        this.length = workout.length;
+        this.sportFocus = workout.sportFocus;
+        this.workoutType = workout.workoutType;
+    }
+
     public void setBodyWeightFocus(boolean bodyWeightFocus) {
         BodyWeightFocus = bodyWeightFocus;
     }

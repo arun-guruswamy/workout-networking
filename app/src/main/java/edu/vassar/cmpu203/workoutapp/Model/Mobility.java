@@ -15,6 +15,14 @@ public class Mobility extends Workout implements Serializable {
         Yoga = Attributes[2];
     }
 
+    public Mobility(Workout workout){
+        this.description = workout.description;
+        this.difficulty = workout.difficulty;
+        this.length = workout.length;
+        this.sportFocus = workout.sportFocus;
+        this.workoutType = workout.workoutType;
+    }
+
     public void setStaticFocus(boolean staticStretching) {
         StaticStretching = staticStretching;
     }

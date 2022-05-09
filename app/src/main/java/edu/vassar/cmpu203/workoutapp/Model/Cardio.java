@@ -15,6 +15,18 @@ public class Cardio extends Workout implements Serializable {
         SpeedFocus = Attributes[2];
     }
 
+
+    public Cardio(Workout workout){
+        this.description = workout.description;
+        this.difficulty = workout.difficulty;
+        this.length = workout.length;
+        this.sportFocus = workout.sportFocus;
+        this.workoutType = workout.workoutType;
+
+
+    }
+
+
     public void setAgilityFocus(boolean agilityFocus) {
         AgilityFocus = agilityFocus;
     }
