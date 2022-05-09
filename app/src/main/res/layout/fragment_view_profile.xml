@@ -192,6 +192,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/EditProfile" />
+
+        <Button
+            android:id="@+id/LogoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/logout" />
     </LinearLayout>
 
 

@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void onAddedWorkout(int length, int difficulty, String descr, String sport) {
-   /*    if (workoutType == 1)
-            this.curWorkout = new Cardio(WorkoutAttributes);
-      else if (workoutType == 2)
-            this.curWorkout = new Strength(WorkoutAttributes);
-      else
-          this.curWorkout = new Mobility(WorkoutAttributes);*/
+//        if (workoutType == 1)
+//            this.curWorkout = new Cardio(WorkoutAttributes);
+//      else if (workoutType == 2)
+//            this.curWorkout = new Strength(WorkoutAttributes);
+//      else
+//          this.curWorkout = new Mobility(WorkoutAttributes);
 
         this.curWorkout.setDescription(descr);
         this.curWorkout.setLength(length);
@@ -191,29 +191,65 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void CardioButton() {
+    public void CardioButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(CardioFragment.class, null, false);
     }
 
     @Override
-    public void StrengthButton() {
+    public void StrengthButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(StrengthFragment.class, null, false);
     }
 
     @Override
-    public void MobilityButton() {
+    public void MobilityButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(MobilityFragment.class, null, false);
     }
 
     @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType) {
+        Cardio c;
+        Strength s;
+        Mobility m;
+        if (workoutType == 1) {
+            c = new Cardio(Attributes);
+            c.setLength(curWorkout.getLength());
+            c.setDifficulty(curWorkout.getDifficulty());
+            c.setDescription(curWorkout.getDescription());
+            c.setSport(curWorkout.getSportFocus());
+            this.curWorkout = c;
+        }
+        else if (workoutType == 2) {
+            s = new Strength(Attributes);
+            s.setLength(curWorkout.getLength());
+            s.setDifficulty(curWorkout.getDifficulty());
+            s.setDescription(curWorkout.getDescription());
+            s.setSport(curWorkout.getSportFocus());
+            this.curWorkout = s;
+        }
 
-        if (workoutType == 1)
-            this.curWorkout = new Cardio(Attributes);
-        else if (workoutType == 2)
-            this.curWorkout = new Strength(Attributes);
-        else
-            this.curWorkout = new Mobility(Attributes);
+        else {
+            m = new Mobility(Attributes);
+            m.setLength(curWorkout.getLength());
+            m.setDifficulty(curWorkout.getDifficulty());
+            m.setDescription(curWorkout.getDescription());
+            m.setSport(curWorkout.getSportFocus());
+            this.curWorkout = m;
+        }
 
         this.curWorkout.setType(workoutType);
 
@@ -383,6 +419,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public Workout getCurWorkout() {
         return curWorkout;
+    }
+
+    @Override
+    public void logout() {
+        curUser = null;
+        this.mainView.displayFragment(HomeScreenFragment.class, null, false);
     }
 }
 

@@ -81,15 +81,6 @@
             android:layout_weight="1"
             android:max="5" />
 
-        <EditText
-            android:id="@+id/DiffDisplay"
-            android:layout_width="15dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/length_input" />
-
     </LinearLayout>
 
     <LinearLayout

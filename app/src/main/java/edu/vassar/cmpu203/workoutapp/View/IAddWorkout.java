@@ -11,11 +11,11 @@ public interface IAddWorkout {
 
     interface Listener{
         void onAddedWorkout(int length, int difficulty, String description, String sport);
-        void CardioButton();
-        void StrengthButton();
-        void MobilityButton();
+        void CardioButton(int length, int difficulty, String description, String sport);
+        void StrengthButton(int length, int difficulty, String description, String sport);
+        void MobilityButton(int length, int difficulty, String description, String sport);
         Workout getCurWorkout();
     }
 
-    void onWorkoutSelected();
+    void onWorkoutSelected(int workoutType);
 }

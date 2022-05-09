@@ -70,5 +70,11 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
                 ViewProfileFragment.this.listener.onFollowRequests();
             }
         });
+
+        this.binding.LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { ViewProfileFragment.this.listener.logout(); }
+        });
     }
+
 }

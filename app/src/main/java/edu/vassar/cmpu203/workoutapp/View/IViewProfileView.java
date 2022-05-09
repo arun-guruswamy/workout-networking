@@ -11,6 +11,7 @@ public interface IViewProfileView {
         void onGoBack();
         void onFollowRequests();
         Profile getCurUser();
+        void logout();
 
     }
 }

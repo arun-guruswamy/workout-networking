@@ -9,6 +9,9 @@ public class Post implements Serializable {
     private int WRKnum;
     private int CAPnum;
     public Workout workout;
+    Cardio c;
+    Strength s;
+    Mobility m;
 
     public Post(){}
 
@@ -58,7 +61,21 @@ public class Post implements Serializable {
 
 
     public String toString() {
-
+//        Cardio c;
+//        Strength s;
+//        Mobility m;
+////        if (workout.workoutType == 1) {
+////            c = new Cardio(workout);
+////            return "\nWorkout: " + c + "\n\n" + caption;
+////        }
+////        else if (workout.workoutType == 2) {
+////
+////            return "\nWorkout: " + s + "\n\n" + caption;
+////        }
+////        else{
+////            m = new Mobility(workout);
+////            return "\nWorkout: " + m + "\n\n" + caption;
+////        }
         return "\nWorkout: " + workout + "\n\n" + caption;
     }
 

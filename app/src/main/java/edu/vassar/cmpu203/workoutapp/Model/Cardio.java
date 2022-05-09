@@ -15,6 +15,16 @@ public class Cardio extends Workout implements Serializable {
         SpeedFocus = Attributes[2];
     }
 
+//    public Cardio(Workout w) {
+//        this.length = w.getLength();
+//        this.difficulty = w.getDifficulty();
+//        this.description = w.getDescription();
+//        this.sportFocus = w.getSportFocus();
+//        this.AgilityFocus = w.AgilityFocus;
+//        this.EnduranceFocus = w.EnduranceFocus;
+//        this.SpeedFocus = w.SpeedFocus;
+//    }
+
     public void setAgilityFocus(boolean agilityFocus) {
         AgilityFocus = agilityFocus;
     }
