@@ -186,42 +186,72 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public void onAddPost() {
         Post post = new Post(this.curUser);
-        //Workout workout = new Workout();
+        Workout workout = new Workout();
         curPost = post;
-        //curWorkout = workout;
+        curWorkout = workout;
         this.mainView.displayFragment(Create_Post_Fragment.class, null, false);
     }
 
     @Override
-    public void CardioButton() {
-        Cardio w = new Cardio();
-        this.curWorkout = w;
+    public void CardioButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(CardioFragment.class, null, false);
     }
 
     @Override
-    public void StrengthButton() {
-        Strength w = new Strength();
-        this.curWorkout = w;
+    public void StrengthButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(StrengthFragment.class, null, false);
     }
 
     @Override
-    public void MobilityButton() {
-        Mobility w = new Mobility();
-        this.curWorkout = w;
+    public void MobilityButton(int length, int difficulty, String descr, String sport) {
+        this.curWorkout.setDescription(descr);
+        this.curWorkout.setLength(length);
+        // this.curWorkout.setType(workoutType);
+        this.curWorkout.setDifficulty(difficulty);
+        this.curWorkout.setSport(sport);
         this.mainView.displayFragment(MobilityFragment.class, null, false);
     }
 
     @Override
     public void onAddedAttributes(boolean[] Attributes, int workoutType) {
+        Cardio c;
+        Strength s;
+        Mobility m;
+        if (workoutType == 1) {
+            c = new Cardio(Attributes);
+            c.setLength(curWorkout.getLength());
+            c.setDifficulty(curWorkout.getDifficulty());
+            c.setDescription(curWorkout.getDescription());
+            c.setSport(curWorkout.getSportFocus());
+            this.curWorkout = c;
+        }
+        else if (workoutType == 2) {
+            s = new Strength(Attributes);
+            s.setLength(curWorkout.getLength());
+            s.setDifficulty(curWorkout.getDifficulty());
+            s.setDescription(curWorkout.getDescription());
+            s.setSport(curWorkout.getSportFocus());
+            this.curWorkout = s;
+        }
 
-        if (workoutType == 1)
-            this.curWorkout = new Cardio(Attributes);
-        else if (workoutType == 2)
-            this.curWorkout = new Strength(Attributes);
-        else
-            this.curWorkout = new Mobility(Attributes);
+        else {
+            m = new Mobility(Attributes);
+            m.setLength(curWorkout.getLength());
+            m.setDifficulty(curWorkout.getDifficulty());
+            m.setDescription(curWorkout.getDescription());
+            m.setSport(curWorkout.getSportFocus());
+            this.curWorkout = m;
+        }
 
         this.curWorkout.setType(workoutType);
 
@@ -395,6 +425,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     @Override
     public Workout getCurWorkout() {
         return curWorkout;
+    }
+
+    @Override
+    public void logout() {
+        curUser = null;
+        this.mainView.displayFragment(HomeScreenFragment.class, null, false);
     }
 }
 

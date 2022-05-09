@@ -102,6 +102,7 @@ public class FeedFragment extends Fragment implements IFeedView {
             linearLayout.addView(b);
             TextView tv = new TextView(getContext());
             tv.setText(post.toString());
+            tv.setTextColor(Color.BLACK);
             linearLayout.addView(tv);
         }
     }

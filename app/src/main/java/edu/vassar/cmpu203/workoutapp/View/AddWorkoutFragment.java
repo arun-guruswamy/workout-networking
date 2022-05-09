@@ -1,5 +1,6 @@
 package edu.vassar.cmpu203.workoutapp.View;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private Post post;
     int signal = 0;
 
+
     private boolean workoutSet = false;
     private final static String WRK_SET = "WRK_SET";
     private final static  String WRK = "WRK";
@@ -44,7 +46,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     private final static String DIFF = "DIFF";
 
     public AddWorkoutFragment(Listener listener) {
+
         this.listener = listener;
+        this.workout = listener.getCurWorkout();
     }
 
     public AddWorkoutFragment(Listener listener, Workout workout, Post post) {
@@ -64,9 +68,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     public AddWorkoutFragment(Listener listener, Workout w) {
         this.listener = listener;
-        workout.length = w.length;
-        workout.difficulty = w.difficulty;
-        workout.description = w.description;
+        workout.length = w.getLength();
+        workout.difficulty = w.getDifficulty();
+        workout.description = w.getDescription();
         this.signal = 1;
         //this.binding.spinner2.set(w.length);
     }
@@ -111,11 +115,15 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
-//        if(signal == 1 || signal == 0) {
-//            this.binding.WorkoutLengthInput.setText("23");
-//            this.binding.WorkoutDifficultyInput.setProgress(workout.difficulty);
-//            this.binding.WorkoutDescriptionInput.setText(workout.description);
-//        }
+
+        onWorkoutSelected(workout.getWorkoutType());
+
+        if (workout.getLength() != 0)
+            this.binding.WorkoutLengthInput.setText(workout.getLength() + "");
+        this.binding.WorkoutDifficultyInput.setProgress(workout.getDifficulty());
+        this.binding.WorkoutDescriptionInput.setText(workout.getDescription());
+        this.binding.spinner2.setSelection(getSportPos(workout.getSportFocus()));
+
         //this.binding.spinner2.set(w.length);
  /*          if(savedInstanceState != null) {
                String length = savedInstanceState.getString(LENGTH);
@@ -182,33 +190,23 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             @Override
             public void onClick(View v) {
 
-//                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
-//                String workoutLengthStr = workoutLengthEditable.toString();
-//
-//                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
-//                String workoutDescStr = workoutDescEditable.toString();
-//
-//                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
-//
-//                String workoutSport = binding.spinner2.getSelectedItem().toString();
-//
-//
-//                try {
-//                    workoutLength = Integer.parseInt(workoutLengthStr);
-//                } catch (NumberFormatException e) {
-//                    Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
-//                    return;
-//                }
-//
-//                workoutLengthEditable.clear();
-//                workoutDescEditable.clear();
-//
-//                workout.setDescription(workoutDescStr);
-//                workout.setLength(workoutLength);
-//                workout.setDifficulty(workoutDifficulty);
-//                workout.setSport(workoutSport);
+                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
+                String workoutLengthStr = workoutLengthEditable.toString();
 
-                AddWorkoutFragment.this.listener.CardioButton();
+                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
+                String workoutDescStr = workoutDescEditable.toString();
+
+                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
+
+                String workoutSport = binding.spinner2.getSelectedItem().toString();
+
+                workoutLength = Integer.parseInt(workoutLengthStr);
+
+                workoutLengthEditable.clear();
+                workoutDescEditable.clear();
+
+
+                AddWorkoutFragment.this.listener.CardioButton(workoutLength, workoutDifficulty, workoutDescStr, workoutSport);
 
             }
         });
@@ -217,34 +215,22 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             @Override
             public void onClick(View v) {
 
-//                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
-//                String workoutLengthStr = workoutLengthEditable.toString();
-//
-//                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
-//                String workoutDescStr = workoutDescEditable.toString();
-//
-//                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
-//
-//                String workoutSport = binding.spinner2.getSelectedItem().toString();
-//
-//
-//                try {
-//                    workoutLength = Integer.parseInt(workoutLengthStr);
-//                } catch (NumberFormatException e) {
-//                    Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
-//                    return;
-//                }
-//
-//                workoutLengthEditable.clear();
-//                workoutDescEditable.clear();
-//
-//
-//                workout.setDescription(workoutDescStr);
-//                workout.setLength(workoutLength);
-//                workout.setDifficulty(workoutDifficulty);
-//                workout.setSport(workoutSport);
+                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
+                String workoutLengthStr = workoutLengthEditable.toString();
 
-                AddWorkoutFragment.this.listener.StrengthButton();
+                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
+                String workoutDescStr = workoutDescEditable.toString();
+
+                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
+
+                String workoutSport = binding.spinner2.getSelectedItem().toString();
+
+                workoutLength = Integer.parseInt(workoutLengthStr);
+
+                workoutLengthEditable.clear();
+                workoutDescEditable.clear();
+
+                AddWorkoutFragment.this.listener.StrengthButton(workoutLength, workoutDifficulty, workoutDescStr, workoutSport);
 
             }
         });
@@ -253,33 +239,23 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             @Override
             public void onClick(View v) {
 
-//                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
-//                String workoutLengthStr = workoutLengthEditable.toString();
-//
-//                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
-//                String workoutDescStr = workoutDescEditable.toString();
-//
-//                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
-//
-//                String workoutSport = binding.spinner2.getSelectedItem().toString();
-//
-//
-//                try {
-//                    workoutLength = Integer.parseInt(workoutLengthStr);
-//                } catch (NumberFormatException e) {
-//                    Snackbar.make(v, "Please enter a number for length", Snackbar.LENGTH_LONG).show();
-//                    return;
-//                }
-//
-//                workoutLengthEditable.clear();
-//                workoutDescEditable.clear();
-//
-//                workout.setDescription(workoutDescStr);
-//                workout.setLength(workoutLength);
-//                workout.setDifficulty(workoutDifficulty);
-//                workout.setSport(workoutSport);
+                Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
+                String workoutLengthStr = workoutLengthEditable.toString();
 
-                AddWorkoutFragment.this.listener.MobilityButton();
+                Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
+                String workoutDescStr = workoutDescEditable.toString();
+
+                int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
+
+                String workoutSport = binding.spinner2.getSelectedItem().toString();
+
+                workoutLength = Integer.parseInt(workoutLengthStr);
+
+                workoutLengthEditable.clear();
+                workoutDescEditable.clear();
+
+
+                AddWorkoutFragment.this.listener.MobilityButton(workoutLength, workoutDifficulty, workoutDescStr, workoutSport);
             }
         });
 
@@ -331,16 +307,56 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         }
 
         if(workoutSet) {
-           onWorkoutSelected();
+           onWorkoutSelected(workoutType);
         }
 
     }
 
     @Override
-    public void onWorkoutSelected() {
-        this.binding.CardioButton.setEnabled(false);
-        this.binding.StrengthButton.setEnabled(false);
-        this.binding.MobilityButton.setEnabled(false);
+    public void onWorkoutSelected(int workoutType) {
+        if (workoutType == 0) {
+            this.binding.CardioButton.setBackgroundColor(Color.BLUE);
+            this.binding.StrengthButton.setBackgroundColor(Color.BLUE);
+            this.binding.MobilityButton.setBackgroundColor(Color.BLUE);
+        }
+        if (workoutType == 1) {
+            this.binding.CardioButton.setBackgroundColor(Color.BLUE);
+            this.binding.StrengthButton.setBackgroundColor(Color.GRAY);
+            this.binding.MobilityButton.setBackgroundColor(Color.GRAY);
+        }
+        if (workoutType == 02) {
+            this.binding.CardioButton.setBackgroundColor(Color.GRAY);
+            this.binding.StrengthButton.setBackgroundColor(Color.BLUE);
+            this.binding.MobilityButton.setBackgroundColor(Color.GRAY);
+        }
+        if (workoutType == 3) {
+            this.binding.CardioButton.setBackgroundColor(Color.GRAY);
+            this.binding.StrengthButton.setBackgroundColor(Color.GRAY);
+            this.binding.MobilityButton.setBackgroundColor(Color.BLUE);
+        }
+    }
+
+    public int getSportPos(String sport) {
+        if (sport.equals("None"))
+            return 0;
+        else if (sport.equals("tennis"))
+            return 1;
+        else if (sport.equals("Lacrosse"))
+            return 2;
+        else if (sport.equals("Baseball"))
+            return 3;
+        else if (sport.equals("Soccer"))
+            return 4;
+        else if (sport.equals("Track and Field"))
+            return 5;
+        else if (sport.equals("Basketball"))
+            return 6;
+        else if (sport.equals("Rugby"))
+            return 7;
+        else if (sport.equals("Rowing"))
+            return 8;
+        else
+            return 9;
     }
 
 }

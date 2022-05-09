@@ -108,4 +108,5 @@
     <string name="backToProfile">Back</string>
     <string name="accept">Request Accepted!</string>
     <string name="decline">Request Declined!</string>
+    <string name="logout">Logout</string>
 </resources>

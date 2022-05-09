@@ -33,13 +33,6 @@ public class Post implements Serializable {
 
 
     public void setWorkout(Workout workout){
-  /*      if(this.workout.getWorkoutType() == 1)
-            this.workout = (Cardio) workout;
-        else if (this.workout.getWorkoutType() == 2)
-            this.workout = (Strength) workout;
-        else if (this.workout.getWorkoutType() == 3)
-            this.workout = (Mobility) workout;
-        else*/
         this.workout = workout;
         this.WRKnum = 1;
     }
@@ -66,7 +59,7 @@ public class Post implements Serializable {
 
     public String toString() {
 
-            return "\nWorkout: " + workout + "\n\n" + caption;
+        return "\nWorkout: " + workout + "\n\n" + caption;
     }
 
     public int getCAPnum() {
@@ -88,5 +81,6 @@ public class Post implements Serializable {
     public Workout getWorkout() {
           return workout;
     }
+
 
 }

@@ -6,7 +6,7 @@ public class Workout implements Serializable {
     public int length = 0;
     public int difficulty = 0;
     public String description = "";
-    protected String sportFocus;
+    protected String sportFocus = "None";
     int workoutType;
 
     public Workout() {}
@@ -61,7 +61,7 @@ public class Workout implements Serializable {
     public int getDifficulty() {
         return difficulty;
     }
-    public int getLength() {return this.length;}
+    public int getLength() { return this.length;}
     public String getDescription(){return this.description;}
     public String getSportFocus(){return this.sportFocus;}
 
