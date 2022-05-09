@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
                 curUser.setUsername(username);
                 MainActivity.this.persistenceFacade.editProfile(MainActivity.this.curUser, old);
             }
+
+
         });
 
 
