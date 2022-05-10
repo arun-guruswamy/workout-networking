@@ -29,7 +29,6 @@ import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 public class AddMiscThings {
 
     protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
-    protected Post curPost;
 
     /**
      * navigates the add workout screens and creates a workout to help with the testing
