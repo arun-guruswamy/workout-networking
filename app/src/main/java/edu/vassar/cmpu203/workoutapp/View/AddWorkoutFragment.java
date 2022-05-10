@@ -37,13 +37,6 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     private boolean workoutSet = false;
     private final static String WRK_SET = "WRK_SET";
-    private final static  String WRK = "WRK";
-    private final static String POST = "POST";
-    private final static String ATRB = "ATRB";
-    private final static String TYPE = "TYPE";
-    private final static  String LENGTH = "LENGTH";
-    private final static String DESC = "DESC";
-    private final static String DIFF = "DIFF";
 
     public AddWorkoutFragment(Listener listener) {
 
@@ -51,58 +44,6 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.workout = listener.getCurWorkout();
     }
 
-    public AddWorkoutFragment(Listener listener, Workout workout, Post post) {
-        this.listener = listener;
-        this.workout = workout;
-        this.post = post;
-        this.signal = 0;
-    }
-
-    public AddWorkoutFragment(Listener listener, boolean[] WorkoutAttributes, int workoutType, Post post) {
-        this.listener = listener;
-        this.WorkoutAttributes = WorkoutAttributes;
-        this.workoutType = workoutType;
-        this.post = post;
-        this.signal = 0;
-    }
-
-    public AddWorkoutFragment(Listener listener, Workout w) {
-        this.listener = listener;
-        workout.length = w.getLength();
-        workout.difficulty = w.getDifficulty();
-        workout.description = w.getDescription();
-        this.signal = 1;
-        //this.binding.spinner2.set(w.length);
-    }
-
-    public static Bundle makeArgsBundle(Workout workout, Post post){
-        Bundle args = new Bundle();
-        args.putSerializable(WRK, workout);
-        args.putSerializable(POST, post);
-        return args;
-    }
-
-    public static Bundle makeArgsBundle2(boolean[] workoutAttributes, int workoutType, Post post){
-        Bundle args = new Bundle();
-        args.putSerializable(POST, post);
-        args.putBooleanArray(ATRB, workoutAttributes);
-        args.putInt(TYPE, workoutType);
-        return args;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-
-        Bundle args = this.getArguments();
-        if(args != null){
-            this.workout = (Workout) args.getSerializable("WRK");
-            this.post = (Post) args.getSerializable("POST");
-            this.WorkoutAttributes = args.getBooleanArray("ATRB");
-            this.workoutType = args.getInt("TYPE");
-
-        }
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -124,23 +65,16 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         this.binding.WorkoutDescriptionInput.setText(workout.getDescription());
         this.binding.spinner2.setSelection(getSportPos(workout.getSportFocus()));
 
-        //this.binding.spinner2.set(w.length);
- /*          if(savedInstanceState != null) {
-               String length = savedInstanceState.getString(LENGTH);
-               this.binding.WorkoutLengthInput.setText(length);
-               String description = savedInstanceState.getString(DESC);
-               this.binding.WorkoutDescriptionInput.setText(description);
-               int difficulty = savedInstanceState.getInt(DIFF);
-               this.binding.WorkoutDifficultyInput.setProgress(difficulty);
-           }*/
-
-
         // onViewCreated is responsible for wiring up the event handlers
 
         // add listener to be called when the add button is pressed
 
         this.workout = this.listener.getCurWorkout();
 
+        /**
+         * sets the click of the add workout button, makes sure that we have all needed data and the
+         * data has been inputted normally
+         */
         this.binding.AddWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,6 +120,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
+        /**
+         * sets the click for the cardio workout button
+         */
         this.binding.CardioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,6 +152,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
+        /**
+         * sets the click for the strength workout button
+         */
         this.binding.StrengthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +183,9 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
+        /**
+         * sets the click for the mobility workout button
+         */
         this.binding.MobilityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,41 +214,12 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
             }
         });
 
-//        this.binding.WorkoutDifficultyInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-//
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        }
-
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(WRK_SET, this.workoutSet);
-
-        Editable workoutLengthEditable = AddWorkoutFragment.this.binding.WorkoutLengthInput.getText();
-        String workoutLengthStr = workoutLengthEditable.toString();
-        outState.putString(LENGTH, workoutLengthStr);
-
-        Editable workoutDescEditable = AddWorkoutFragment.this.binding.WorkoutDescriptionInput.getText();
-        String workoutDescStr = workoutDescEditable.toString();
-        outState.putString(DESC, workoutDescStr);
-
-        int workoutDifficulty = binding.WorkoutDifficultyInput.getProgress();
-        outState.putInt(DIFF, workoutDifficulty);
-
 
     }
 
@@ -324,6 +238,10 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
     }
 
+    /**
+     * sets the functionality of the buttons based on the workout type
+     * @param workoutType the type of the workout
+     */
     @Override
     public void onWorkoutSelected(int workoutType) {
         if (workoutType == 0) {
@@ -348,6 +266,11 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         }
     }
 
+    /**
+     * helps save the data of the spinner
+     * @param sport the sport that someone has selected as the focus
+     * @return an int that represents the number of the option of the spinner
+     */
     public int getSportPos(String sport) {
         if (sport.equals("None"))
             return 0;

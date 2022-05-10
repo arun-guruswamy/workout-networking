@@ -36,6 +36,10 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        /**
+         * sets the click for the login button, will display a message if someone does
+         * not enter all the required information
+         */
         this.binding.logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +61,9 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
             }
         });
 
+        /**
+         * sets the click for the sign up button
+         */
         this.binding.signUpButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -65,14 +72,24 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
         });
     }
 
+    /**
+     * displays a message when someone logs in with invalid credentials
+     */
     @Override
     public void onInvalidCredentials(){
         displayMessage(R.string.invalidCredentials);
     }
 
+    /**
+     * displays a message when someone logs in successfully
+     */
     @Override
     public void successfulLogIn(){displayMessage(R.string.login);}
 
+    /**
+     * displays a message as a snackbar
+     * @param msgRid the location in string.xml of th desired string
+     */
     private void displayMessage(int msgRid){
         Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }

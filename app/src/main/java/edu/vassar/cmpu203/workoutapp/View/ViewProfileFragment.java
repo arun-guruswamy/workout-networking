@@ -29,12 +29,6 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
         this.curUser = this.listener.getCurUser();
     }
 
-    public ViewProfileFragment(Listener listener, Profile curUser) {
-
-        this.listener = listener;
-        this.curUser = curUser;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,12 +40,16 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        // set the contents of the screen using the information from the current user
         this.binding.viewUsername.setText(curUser.getUsername());
         this.binding.ProfileViewBio.setText(curUser.getBio());
         this.binding.FollowerDisplay.setText(""+ curUser.getNumFollowers());
         this.binding.FollowingDisplay.setText("" + curUser.getNumFollowing());
         this.binding.PostNumberDisplay.setText("" + curUser.getNumPosts());
 
+        /**
+         * sets the click for the edit profile button
+         */
         this.binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +57,9 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
             }
         });
 
+        /**
+         * sets the click for the go back button
+         */
         this.binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +67,9 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
             }
         });
 
+        /**
+         * sets the click for the view follow request button
+         */
         this.binding.button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,12 +77,18 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
             }
         });
 
+        /**
+         * sets the click for the logout button
+         */
         this.binding.LogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { ViewProfileFragment.this.listener.logout(ViewProfileFragment.this); }
         });
     }
 
+    /**
+     * displays a message when someone successfully logs out
+     */
     @Override
     public void onSuccessfulLogOut(){
         Snackbar.make(this.binding.getRoot(), "Logout successful", Snackbar.LENGTH_LONG).show();

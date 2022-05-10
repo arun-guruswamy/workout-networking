@@ -24,7 +24,6 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
     private IViewOtherProfileView.Listener listener;
     private FragmentViewOtherProfileBinding binding;
     private Profile profile;
-    private Profile curUser;
     private boolean request = false;
     private final static String REQUEST = "REQUEST";
 
@@ -33,11 +32,6 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
 
         this.listener = listener;
         this.profile = this.listener.getUser2();
-    }
-
-    public ViewOtherProfileFragment(Listener listener, Profile profile){
-        this.listener = listener;
-        this.profile = profile;
     }
 
 
@@ -51,12 +45,16 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        // sets the text of the screen with the information from the user's profile
         this.binding.OtherProfileUsername.setText(profile.getUsername());
         this.binding.OtherProfileViewBio.setText(profile.getBio());
         this.binding.PostNumberDisplay.setText(""+ profile.getNumPosts());
         this.binding.FollowerDisplay.setText(""+profile.getNumFollowers());
         this.binding.FollowingDisplay.setText(""+profile.getNumFollowing());
 
+        /**
+         * sets the click for the request follow button, sets the state of the screen
+         */
         this.binding.requestFollowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +64,9 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
         });
 
 
+        /**
+         * sets the click of the back button
+         */
         this.binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +75,10 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
         });
     }
 
+    /**
+     * saves the state of the screen
+     * @param outState the bundle where the state is stored
+     */
     @Override
     public void onSaveInstanceState(@Nullable Bundle outState){
         super.onSaveInstanceState(outState);
@@ -81,6 +86,10 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
         outState.putBoolean(REQUEST, request);
     }
 
+    /**
+     * controls what happens when the state is recreated
+     * @param savedInstanceState the bundle where the state information is coming from
+     */
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState){
         super.onViewStateRestored(savedInstanceState);
@@ -94,17 +103,28 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
         }
     }
 
+    /**
+     * makes it so that the user cannot click on the follow request button
+     */
     @Override
     public void onRequest(){
         this.binding.requestFollowButton.setEnabled(false);
     }
 
+    /**
+     * displays a message if a user requests to follow someone they have already requested
+     * sets the button to not be enabled
+     */
     @Override
     public void onAlreadyRequested(){
         this.binding.requestFollowButton.setEnabled(false);
         Snackbar.make(this.binding.getRoot(), "You already requested this person", Snackbar.LENGTH_LONG).show();
     }
 
+    /**
+     * displays a message if someone tries to follow a person that they already follow
+     * sets the follow button to not enabled
+     */
     @Override
     public void onAlreadyFollowed(){
         this.binding.requestFollowButton.setEnabled(false);

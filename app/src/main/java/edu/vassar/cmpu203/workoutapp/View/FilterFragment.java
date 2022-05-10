@@ -18,7 +18,6 @@ public class FilterFragment extends Fragment implements IFilterView {
 
     private FragmentFilterBinding binding;
     private Listener listener;
-    private Feed feed;
     public FilterFragment(Listener listener) {
         this.listener = listener;
     }
@@ -37,6 +36,10 @@ public class FilterFragment extends Fragment implements IFilterView {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState ) {
 
+        /**
+         * sets the click for the filter set button
+         * displays a warning message if the values are not entered in the correct way
+         */
         this.binding.FilterSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
