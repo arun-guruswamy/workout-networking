@@ -117,16 +117,21 @@ participant "view" as view
 participant "Controller" as controller 
 participant "Filter" as filter
 participant "Length" as length
+participant "Type" as type 
+participant "Sport" as sport
 participant "Difficulty" as difficulty
 participant "feed : Feed" as feed 
+
 
 lurker -> view : Filter 
 view -> controller: onFilter() 
 controller -> length: Length(length, feed)
 controller -> difficulty: Difficulty(difficulty, feed)
+controller -> type : Type(type, feed)
+controller -> sport : Sport(sport, feed)
 controller <- length: filter()
 controller <- difficulty: filter()
-controller -> feed : filteredFeed(length, difficulty)
+controller -> feed : filteredFeed(length, difficulty, type, sport)
 feed -> view : toString()
 @enduml
 ```
@@ -169,6 +174,13 @@ class StrengthWorkout {
 createWorkout() 
 }
 
+class MobilityWorkout{
+-Boolean dynamicStreching
+-Boolean staticStreching
+-Boolean yoga
+--
+createWorkout()
+}
 class Feed {
 ArrayList<Post> feed
 --
@@ -209,10 +221,25 @@ Array<post> feed
 filter()
 }
 
+class Type {
+int type
+Array<post> feed
+--
+filter()
+}
+
+class Sport {
+String sport 
+Array<post> feed 
+--
+filter ()
+}
+
 Feed *-"(1..*) Posts \n{ordered, Stack}\n Can be filtered or not" Post : \t\t\t\t\t\t\t
 Post -> "1 (workout)" Workout : \t\t\t
 Workout <|-- CardioWorkout
 Workout <|-- StrengthWorkout
+Workout <|-- MobilityWorkout
 Controller -- Post 
 Controller -- Feed
 Controller -- Profile
@@ -221,6 +248,8 @@ View -- Controller
 Filter <|-- Length
 Filter <|-- Difficulty
 Filter -- Feed
+Filter <|-- Type
+Filter <|-- Sport
 Controller -- Filter
 @enduml
 ```
