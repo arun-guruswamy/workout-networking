@@ -16,15 +16,18 @@ import org.hamcrest.Matcher;
 
 import edu.vassar.cmpu203.workoutapp.Model.Cardio;
 import edu.vassar.cmpu203.workoutapp.Model.Mobility;
+import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
 import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
 import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
+import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 
 public class AddMiscThings {
 
     protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
+    protected Post curPost;
 
     /**
      * navigates the add workout screens and creates a workout to help with the testing

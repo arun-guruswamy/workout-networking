@@ -432,5 +432,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         viewProfileView.onSuccessfulLogOut();
         this.mainView.displayFragment(HomeScreenFragment.class, null, false);
     }
+
+
 }
 

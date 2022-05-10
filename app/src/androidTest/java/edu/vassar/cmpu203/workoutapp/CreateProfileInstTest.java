@@ -20,7 +20,7 @@ import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 
 @RunWith(AndroidJUnit4.class)
-public class CreateProfileInstTest {
+public class CreateProfileInstTest extends AddMiscThings {
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
@@ -31,24 +31,38 @@ public class CreateProfileInstTest {
     @Test
     public void createProfileTest() {
 
-        //checks the username default text and type in a new username
+        // click the signup button on the home screen
+        ViewInteraction signUpButton = Espresso.onView(ViewMatchers.withId(R.id.signUpButton));
+        signUpButton.perform(ViewActions.click());
+
+        //type in a new username
         ViewInteraction usernameVi = Espresso.onView(ViewMatchers.withId(R.id.UsernameText));
-        usernameVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.usernameText)));
         usernameVi.perform(ViewActions.replaceText("ymi456"));
 
-        //checks the password default text and types in password
+        //types in password
         ViewInteraction passwordVi = Espresso.onView(ViewMatchers.withId(R.id.passwordEditText));
-        passwordVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.passText)));
         passwordVi.perform((ViewActions.replaceText("abcdefg123!!")));
 
-        // checks the bio default text and type new bio
+        // type new bio
         ViewInteraction bioVi = Espresso.onView(ViewMatchers.withId(R.id.bioEditText));
-        bioVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.bioEdit)));
         bioVi.perform(ViewActions.replaceText("I love to workout"));
 
         //click the create button to make sure that we can get to the new screen
         ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVi.perform(ViewActions.click());
+
+        // allow for retrieval
+        SystemClock.sleep(2000);
+
+        Profile profile = new Profile();
+        profile.setUsername("ymi456");
+
+        // check that snackbar appears
+        Matcher<View> snackbarMatcher0 = ViewMatchers.withText(R.string.CreationSuccessful);
+        ViewInteraction snackBarVi0 = Espresso.onView(snackbarMatcher0);
+        snackBarVi0.check(ViewAssertions.matches(snackbarMatcher0));
+
+        this.persistenceFacade.removeUser(profile);
 
     }
 
@@ -58,9 +72,18 @@ public class CreateProfileInstTest {
      */
     @Test
     public void testSnackbar() {
+
+        // click the signup button on the home screen
+        ViewInteraction signUpButton = Espresso.onView(ViewMatchers.withId(R.id.signUpButton));
+        signUpButton.perform(ViewActions.click());
+
         //Enter a blank username but has a password and a bio
         ViewInteraction usernameVi = Espresso.onView(ViewMatchers.withId(R.id.UsernameText));
         usernameVi.perform(ViewActions.replaceText(""));
+        ViewInteraction passwordVi = Espresso.onView(ViewMatchers.withId(R.id.passwordEditText));
+        passwordVi.perform(ViewActions.replaceText("password"));
+        ViewInteraction bioVi = Espresso.onView(ViewMatchers.withId(R.id.bioEditText));
+        bioVi.perform(ViewActions.replaceText("I love to workout"));
         ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVi.perform(ViewActions.click());
 
@@ -70,19 +93,17 @@ public class CreateProfileInstTest {
        snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
        //sleep between each test so that the snackbar will go away
-       SystemClock.sleep(3500);
+       SystemClock.sleep(5000);
 
        //Have entered a bio and username but no password
-        ViewInteraction bioVi = Espresso.onView(ViewMatchers.withId(R.id.bioEditText));
         bioVi.perform(ViewActions.replaceText("Bio"));
-        ViewInteraction passwordVi = Espresso.onView(ViewMatchers.withId(R.id.passwordEditText));
         passwordVi.perform((ViewActions.replaceText("")));
         usernameVi.perform(ViewActions.replaceText("Username"));
         createButtonVi.perform(ViewActions.click());
 
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
-        SystemClock.sleep(3500);
+        SystemClock.sleep(5000);
 
         //entered user name and password but no bio
         bioVi.perform(ViewActions.replaceText(""));
@@ -91,32 +112,42 @@ public class CreateProfileInstTest {
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
-        SystemClock.sleep(3500);
+        SystemClock.sleep(5000);
 
         //did not enter any of the required data
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
-        SystemClock.sleep(3500);
+        SystemClock.sleep(5000);
 
         //entered just a password
         passwordVi.perform(ViewActions.replaceText("password"));
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
-        SystemClock.sleep(3500);
+        SystemClock.sleep(5000);
 
         //only entered a username
         usernameVi.perform(ViewActions.replaceText("Username"));
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
-        SystemClock.sleep(3500);
+        SystemClock.sleep(5000);
 
         //only entered a username
         bioVi.perform(ViewActions.replaceText("Bio"));
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
+
+        // enter the same username of an existing user
+        usernameVi.perform(ViewActions.replaceText("Arun"));
+        bioVi.perform(ViewActions.replaceText("Bio"));
+        passwordVi.perform(ViewActions.replaceText("password"));
+        createButtonVi.perform(ViewActions.click());
+
+        Matcher<View> snackbarMatcher0 = ViewMatchers.withText(R.string.userExists);
+        ViewInteraction snackBarVi0 = Espresso.onView(snackbarMatcher0);
+        snackBarVi0.check(ViewAssertions.matches(snackbarMatcher0));
 
 
     }
