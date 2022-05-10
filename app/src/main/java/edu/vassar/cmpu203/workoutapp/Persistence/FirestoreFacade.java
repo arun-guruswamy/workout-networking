@@ -28,6 +28,11 @@ public class FirestoreFacade implements IPersistenceFacade {
 
     public FirestoreFacade(){}
 
+    /**
+     * retrieve the entire post collection from the interface and stores the workouts of each post as the
+     * correct workout type
+     * @param listener interface to determine what to do when data is found
+     */
     @Override
     public void retrieveFeed(DataListener<Feed> listener) {
         db.collection(POST_COLLECTION).get()
@@ -70,6 +75,11 @@ public class FirestoreFacade implements IPersistenceFacade {
                 });
     }
 
+    /**
+     * adds a profile to the database if it does not already exist
+     * @param profile the profile ot be added
+     * @param listener interface to determine what happens if data is found
+     */
     @Override
     public void addProfile(@NonNull Profile profile, @NonNull BinaryResultListener listener) {
         String username = profile.getUsername();
@@ -98,6 +108,11 @@ public class FirestoreFacade implements IPersistenceFacade {
         });
     }
 
+    /**
+     * saves a post to the data base and returns the id that it is stored under
+     * @param post the post to be saved
+     * @return a string representing the id that the post is saved under
+     */
     @Override
     public String savePost(Post post) {
         CollectionReference colref = db.collection(POST_COLLECTION);
@@ -110,11 +125,21 @@ public class FirestoreFacade implements IPersistenceFacade {
         return docId;
     }
 
+    /**
+     * edit a post in the database
+     * @param post the post ot be edited
+     * @param id the id that the post is saved under
+     */
     @Override
     public void editPost(Post post, String id){
         db.collection(POST_COLLECTION).document(id).set(post);
     }
 
+    /**
+     * retrieves a profile from the database
+     * @param username the username of the profile
+     * @param listener interface for when the data is received or not
+     */
     @Override
     public void retrieveProfile(@NonNull String username, @NonNull DataListener<Profile> listener) {
 
@@ -134,6 +159,10 @@ public class FirestoreFacade implements IPersistenceFacade {
     }
 
 
+    /**
+     * saves a profile to the data base
+     * @param p the profile to be saved
+     */
     @Override
     public void saveProfile(Profile p) {
         db.collection(PROFILE_COLLECTION).document(p.getUsername()).set(p);
@@ -142,6 +171,9 @@ public class FirestoreFacade implements IPersistenceFacade {
 
     //These methods will help with rerunning tests
 
+    /**
+     * removes all the posts from database
+     */
   @Override
     public void removePosts() {
 
@@ -155,6 +187,10 @@ public class FirestoreFacade implements IPersistenceFacade {
         });
   }
 
+    /**
+     * removes a single profile from the database
+     * @param profile the profile to be removed
+     */
     @Override
     public void removeUser(Profile profile) {
         db.collection(PROFILE_COLLECTION).document(profile.getUsername()).delete();
