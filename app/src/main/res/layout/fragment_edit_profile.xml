@@ -54,7 +54,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:text="@string/passText"
+            android:text="@string/empty"
             app:layout_constraintStart_toEndOf="@+id/passwordText"
             app:layout_constraintTop_toBottomOf="@+id/editProfileText" />
 
@@ -87,7 +87,7 @@
             android:layout_marginTop="11dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/bioEdit"
+            android:text="@string/empty"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bioText" />
 

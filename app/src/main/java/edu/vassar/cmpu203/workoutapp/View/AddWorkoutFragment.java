@@ -200,7 +200,11 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
                 String workoutSport = binding.spinner2.getSelectedItem().toString();
 
-                workoutLength = Integer.parseInt(workoutLengthStr);
+                try {
+                    workoutLength = Integer.parseInt(workoutLengthStr);
+                } catch (NumberFormatException e) {
+                    workoutLength = 0;
+                }
 
                 workoutLengthEditable.clear();
                 workoutDescEditable.clear();
@@ -225,7 +229,11 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
                 String workoutSport = binding.spinner2.getSelectedItem().toString();
 
-                workoutLength = Integer.parseInt(workoutLengthStr);
+                try {
+                    workoutLength = Integer.parseInt(workoutLengthStr);
+                } catch (NumberFormatException e) {
+                    workoutLength = 0;
+                }
 
                 workoutLengthEditable.clear();
                 workoutDescEditable.clear();
@@ -249,7 +257,11 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
 
                 String workoutSport = binding.spinner2.getSelectedItem().toString();
 
-                workoutLength = Integer.parseInt(workoutLengthStr);
+                try {
+                    workoutLength = Integer.parseInt(workoutLengthStr);
+                } catch (NumberFormatException e) {
+                    workoutLength = 0;
+                }
 
                 workoutLengthEditable.clear();
                 workoutDescEditable.clear();
