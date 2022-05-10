@@ -40,6 +40,9 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
 
+        /**
+         * sets the click for the password set button, makes sure that it is not empty
+         */
         this.binding.setPasswordButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,6 +61,9 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
             }
         });
 
+        /**
+         * sets the click for the bio set button, makes sure that it is not empty
+         */
         this.binding.setBioButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -76,6 +82,9 @@ public class EditProfileFragment extends Fragment implements IEditProfileView {
             }
         });
 
+        /**
+         * sets the click for the done button, will take them back to the feed
+         */
         this.binding.doneButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

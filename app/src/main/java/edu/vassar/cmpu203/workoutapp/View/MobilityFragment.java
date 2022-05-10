@@ -16,25 +16,15 @@ import edu.vassar.cmpu203.workoutapp.databinding.FragmentCardioBinding;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentMobilityBinding;
 
 /**
- * Class that creates helps create a Mobility Workout
+ * Class that helps create a Mobility Workout
  */
 public class MobilityFragment extends Fragment implements IWorkoutType {
 
     private FragmentMobilityBinding binding;
     private IWorkoutType.Listener listener;
     private boolean[] AttributeList  = new boolean[3];
-    private Post post;
-    private Workout workout;
-
-    public MobilityFragment(IWorkoutType.Listener listener, Post post, Workout workout) {
-        this.listener = listener;
-        this.post = post;
-        this.workout = workout;
-    }
 
     public MobilityFragment(Listener listener){this.listener = listener;}
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,9 +35,14 @@ public class MobilityFragment extends Fragment implements IWorkoutType {
         return this.binding.getRoot();
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
+        /**
+         * when set button clicked sets the attributes of the workout based on
+         * if the radio buttons are clicked
+         */
         this.binding.MobilitySetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

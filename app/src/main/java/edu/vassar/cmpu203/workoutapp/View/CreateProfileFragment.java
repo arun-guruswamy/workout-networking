@@ -43,6 +43,9 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+        /**
+         * sets the click for the create button, makes sure that all fields have a value in them
+         */
         this.binding.createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -52,7 +55,6 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
 
                 profileUsernameEditable.clear();
 
-                //CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
 
                 //For Password
                 Editable profilePasswordEditable = CreateProfileFragment.this.binding.passwordEditText.getText();
@@ -71,9 +73,6 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
                     return;
                 }
 
-/*              CreateProfileFragment.this.listener.onAddedUsername(username, CreateProfileFragment.this);
-                CreateProfileFragment.this.listener.onAddedPassword(password, CreateProfileFragment.this);
-                CreateProfileFragment.this.listener.onAddedBio(bio, CreateProfileFragment.this);*/
                 CreateProfileFragment.this.listener.onCreateButton(username, password, bio, CreateProfileFragment.this);
 
 
@@ -82,42 +81,28 @@ public class CreateProfileFragment extends Fragment implements ICreateProfileVie
         });
     }
 
-//    @Override
-//    public void onProfileUpdated(Feed feed) {
-//        LinearLayout linearLayout = this.binding.feedLayout;
-//
-//        for(Post post : feed.feed) {
-//            Button b = new Button(getContext());
-//            b.setBackgroundColor(Color.BLUE);
-//            b.setText(post.getProd_id());
-//            b.setTextColor(Color.WHITE);
-//            b.setId(View.generateViewId());
-//            b.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    // match the text of button to prod_id of a user
-//                    String prod_ID =  (String) b.getText();
-//                    FeedFragment.this.listener.onProfileClick(prod_ID);
-//                    // display new screen of their profile
-//                }
-//            });
-//            linearLayout.addView(b);
-//            TextView tv = new TextView(getContext());
-//            tv.setText(post.toString());
-//            linearLayout.addView(tv);
-//        }
-//    }
 
+    /**
+     * displays a message when the creation of a profile is successful
+     */
     @Override
     public void onCreateSuccess(){
         displayMessage(R.string.CreationSuccessful);
     }
 
+    /**
+     * displays a message when the user attempts to create a profile
+     * with a username that already exists
+     */
     @Override
     public void onUserAlreadyExists() {
         displayMessage(R.string.userExists);
     }
 
+    /**
+     * creates a snackbar that will be used to display messages
+     * @param msgRid the location of the message in the strings.xml file
+     */
     private void displayMessage(int msgRid){
         Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }

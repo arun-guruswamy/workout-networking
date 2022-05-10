@@ -142,11 +142,18 @@ public class FirestoreFacade implements IPersistenceFacade {
 
     //These methods will help with rerunning tests
 
-  /*  @Override
+  @Override
     public void removePosts() {
 
-        db.collection(POST_COLLECTION).;
-    }*/
+        db.collection(POST_COLLECTION).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot qSnap) {
+                for(DocumentSnapshot dsnap : qSnap){
+                    dsnap.getReference().delete();
+                }
+            }
+        });
+  }
 
     @Override
     public void removeUser(Profile profile) {

@@ -21,6 +21,7 @@ import edu.vassar.cmpu203.workoutapp.View.StrengthFragment;
 import edu.vassar.cmpu203.workoutapp.View.ViewOtherProfileFragment;
 import edu.vassar.cmpu203.workoutapp.View.ViewProfileFragment;
 
+
 public class WorkoutAppFragFactory extends FragmentFactory {
 
     private MainActivity controller;
@@ -28,6 +29,7 @@ public class WorkoutAppFragFactory extends FragmentFactory {
     public WorkoutAppFragFactory(MainActivity controller) {
         this.controller = controller;
     }
+
 
     @NonNull
     @Override

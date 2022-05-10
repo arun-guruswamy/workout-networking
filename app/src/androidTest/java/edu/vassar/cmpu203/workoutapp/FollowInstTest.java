@@ -255,7 +255,7 @@ public class FollowInstTest extends AddMiscThings {
 
         this.persistenceFacade.removeUser(profile);
         this.persistenceFacade.removeUser(profile2);
-        //this.persistenceFacade.removePost(curPost);
+        this.persistenceFacade.removePosts();
 
     }
 

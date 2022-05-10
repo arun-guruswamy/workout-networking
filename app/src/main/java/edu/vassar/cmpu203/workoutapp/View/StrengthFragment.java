@@ -22,14 +22,7 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
     private FragmentStrengthBinding binding;
     private IWorkoutType.Listener listener;
     private boolean[] AttributeList  = new boolean[4];
-    private Post post;
-    private Workout workout;
 
-    public StrengthFragment(Listener listener, Post post, Workout workout) {
-        this.listener = listener;
-        this.post = post;
-        this.workout = workout;
-    }
 
     public StrengthFragment(Listener listener){this.listener = listener;}
 
@@ -45,6 +38,10 @@ public class StrengthFragment extends Fragment implements IWorkoutType {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
+        /**
+         * when set button clicked sets the attributes of the workout based on
+         * if the radio buttons are clicked
+         */
         this.binding.StrengthSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

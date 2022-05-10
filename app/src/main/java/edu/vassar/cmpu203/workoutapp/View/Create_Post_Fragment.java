@@ -19,17 +19,11 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
     private FragmentCreatePostBinding binding;
     private ICreatePostView.Listener listener;
     private Workout w;
-    private Post post;
 
     public Create_Post_Fragment(Listener listener) {
         this.listener = listener;
     }
 
-    public Create_Post_Fragment(Listener listener, Workout w, Post post) {
-        this.listener = listener;
-        this.post = post;
-        this.w = w;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,13 +38,17 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
         w = this.listener.getCurWorkout();
 
-
+        // if the workout does not have any values yet
         if(w == null) {
             this.binding.postWorkout.setText("No workout added!");
         }
         else
             this.binding.postWorkout.setText(w.toString());
 
+        /**
+         * when clicking on the caption button, will add caption to post
+         * based on what is in the caption text box
+         */
         this.binding.captionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -66,6 +64,9 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
             }
         });
 
+        /**
+         * sets click of add Workout button, will take user to add workout screen
+         */
         this.binding.addWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +77,9 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
         });
 
+        /**
+         * sets the click for the post button, will post the new post
+         */
         this.binding.postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +87,9 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
             }
         });
 
+        /**
+         * sets the click for the cancel button, takes user back to feed
+         */
         this.binding.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +100,10 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
 
     }
 
+    /**
+     * updates the caption in the workout preview
+     * @param caption the new caption
+     */
     @Override
     public void updateCaption(String caption) {
 

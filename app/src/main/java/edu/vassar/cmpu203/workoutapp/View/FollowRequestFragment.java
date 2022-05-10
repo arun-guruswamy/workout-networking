@@ -64,6 +64,7 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
 
         LinearLayout ll = this.binding.followRequestLinear;
 
+        // print out the follow requests when the view is created
         for(Profile p : this.curUser.getFollowRequests().values()) {
             TextView tv = new TextView(getContext());
             tv.setText(p.getUsername() + " wants to follow you!");
@@ -80,6 +81,10 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
             decline.setTextColor(Color.WHITE);
             decline.setBackgroundColor(Color.BLUE);
 
+            /**
+             * sets the click for when someone accepts a follow request,
+             * display a message that the follow request was accepted
+             */
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,6 +94,10 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
                     displayMessage(R.string.accept);
                 }
             });
+            /**
+             * sets the click for when some declines a follow request,
+             * displays a message that the request was declined
+             */
             decline.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -102,6 +111,9 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
             ll.addView(decline);
         }
 
+        /**
+         * sets the click for the back to profile button
+         */
         this.binding.backToProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,12 +122,23 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
         });
     }
 
+    /**
+     * removes the follow request from the view
+     * @param ll follow request linear layout
+     * @param tv the text view for the request
+     * @param b1 accept button
+     * @param b2 decline button
+     */
     private void answerGiven(LinearLayout ll, View tv, View b1, View b2){
         ll.removeView(tv);
         ll.removeView(b1);
         ll.removeView(b2);
     }
 
+    /**
+     * displays a message as a snackbar
+     * @param msgRid the location in string.xml of th desired string
+     */
     private void displayMessage(int msgRid){
         Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }

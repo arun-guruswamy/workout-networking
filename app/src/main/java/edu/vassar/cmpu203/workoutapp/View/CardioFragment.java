@@ -22,20 +22,10 @@ public class CardioFragment extends Fragment implements IWorkoutType {
     private FragmentCardioBinding binding;
     private IWorkoutType.Listener listener;
     private boolean[] AttributeList  = new boolean[3];
-    private Post post;
-    private Workout workout;
-
-    public CardioFragment(Listener listener, Post post, Workout workout) {
-        this.listener = listener;
-        this.post = post;
-        this.workout = workout;
-    }
 
     public CardioFragment(Listener listener){
         this.listener = listener;
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +39,10 @@ public class CardioFragment extends Fragment implements IWorkoutType {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
+        /**
+         * when set button clicked sets the attributes of the workout based on
+         * if the radio buttons are clicked
+         */
         this.binding.CardioSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

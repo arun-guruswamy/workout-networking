@@ -48,6 +48,9 @@ public class FeedFragment extends Fragment implements IFeedView {
 
         onFeedUpdated(this.feed);
 
+        /**
+         * sets the click for the add post button
+         */
         this.binding.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +59,9 @@ public class FeedFragment extends Fragment implements IFeedView {
             }
         });
 
+        /**
+         * sets the click for the filter button
+         */
         this.binding.FeedFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +69,10 @@ public class FeedFragment extends Fragment implements IFeedView {
                 FeedFragment.this.listener.onFilter();
             }
         });
+
+        /**
+         * sets the click for the remove filters button
+         */
         this.binding.RemoveFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +81,9 @@ public class FeedFragment extends Fragment implements IFeedView {
             }
         });
 
+        /**
+         * sets the click for the view profile button
+         */
         this.binding.ViewProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +93,11 @@ public class FeedFragment extends Fragment implements IFeedView {
         });
     }
 
+    /**
+     * when the feed is updated, print out each post that is present in the feed
+     * dynamically create the views that will be used to display the feed
+     * @param feed the feed be printed out
+     */
     @Override
     public void onFeedUpdated(Feed feed) {
         LinearLayout linearLayout = this.binding.feedLayout;
