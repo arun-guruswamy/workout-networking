@@ -149,6 +149,7 @@ public class AddMiscThings {
         ViewInteraction SportVi = onView(withId(R.id.spinner2));
         SportVi.perform(ViewActions.click());
         onData(anything()).atPosition(getSportPos(sport)).perform(ViewActions.click());
+        workout.setSport(sport);
 
         //click the create workout button on the add workout screen
         ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));

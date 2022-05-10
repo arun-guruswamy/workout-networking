@@ -387,6 +387,9 @@ public class FilterFeedInstTest extends AddMiscThings{
         workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "Tennis");
         post.setWorkout(workout);
 
+        //check that the workout is displaying correctly in the create post screen
+        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+
         //create post screen, check to see of default text for caption is there
         //enter new caption
         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
@@ -404,6 +407,7 @@ public class FilterFeedInstTest extends AddMiscThings{
 
         //checks to see if the post1 text in the feed is the same as the post that was just created
         ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
+        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
 
 
         // START OF SECOND POST
@@ -438,7 +442,10 @@ public class FilterFeedInstTest extends AddMiscThings{
         postButtonVi.perform(ViewActions.click());
 
         //checks that the posts are displayed like they are supposed to
+        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
         ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
+        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
+
         // START OF THIRD POST
 
         addPostButtonVi.perform(ViewActions.click());
