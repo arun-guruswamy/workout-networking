@@ -30,7 +30,7 @@ public class Workout implements Serializable {
 
 
     public String toString() {
-        return this.description + "\n" + this.length + "\n" + this.difficulty;
+        return this.description + "\n" + this.length + "\n" + this.difficulty + "\n" + this.sportFocus;
     }
 
 

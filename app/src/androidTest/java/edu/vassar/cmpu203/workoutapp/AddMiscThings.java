@@ -1,5 +1,10 @@
 package edu.vassar.cmpu203.workoutapp;
 
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.anything;
+
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.SeekBar;
@@ -42,7 +47,7 @@ public class AddMiscThings {
      * @param description the description of the workout being created
      * @return a workout that is going to be used for comparison to make sure the app is displaying the data properly
      */
-    public static Workout addWorkoutTests(int type, Workout workout, boolean[] values, String length, int difficulty, String description) {
+    public static Workout addWorkoutTests(int type, Workout workout, boolean[] values, String length, int difficulty, String description, String sport) {
         //clicks the add workout button on the create post screen
         ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));
         addWorkoutButtonVi.perform(ViewActions.click());
@@ -73,7 +78,7 @@ public class AddMiscThings {
             workout = new Cardio(values);
         }
         // if the workout is a strength workout
-        else if (type == 2) {
+        else if (type == 2){
             ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
             strengthButtonVi.perform(ViewActions.click());
 
@@ -102,47 +107,27 @@ public class AddMiscThings {
             workout = new Strength(values);
         }
         else {
-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
-            mobilityButton.perform(ViewActions.click());
+            ViewInteraction mobilityButtonVi = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+            mobilityButtonVi.perform(ViewActions.click());
 
-            if(values[0]) {
-                ViewInteraction staticRadio = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));
-                staticRadio.perform(ViewActions.click());
+            if(values[0]){
+                ViewInteraction StaticButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));
+                StaticButtonVi.perform(ViewActions.click());
             }
 
             if(values[1]){
-                ViewInteraction dynamicRadio = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));
-                dynamicRadio.perform(ViewActions.click());
+                ViewInteraction DynamicButtonVi = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));
+                DynamicButtonVi.perform(ViewActions.click());
             }
 
-            if(values[2]){
-                ViewInteraction yogaRadio = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));
-                yogaRadio.perform(ViewActions.click());
+            if(values[2]) {
+                ViewInteraction YogaButtonVi = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));
+                YogaButtonVi.perform(ViewActions.click());
             }
 
             ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.MobilitySetButton));
             setButton.perform(ViewActions.click());
             workout = new Mobility(values);
-        }
-
-
-        if(type == 1){
-            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
-            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
-            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
-        }
-        else if(type == 2){
-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
-            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
-            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
-            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
-        }
-        else {
-            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
-            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
-            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
-            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
         }
 
         // add the length
@@ -160,9 +145,15 @@ public class AddMiscThings {
         workoutDescriptionVi.perform(ViewActions.replaceText(description));
         workout.setDescription(description);
 
+        //set sport
+        ViewInteraction SportVi = onView(withId(R.id.spinner2));
+        SportVi.perform(ViewActions.click());
+        onData(anything()).atPosition(getSportPos(sport)).perform(ViewActions.click());
+
         //click the create workout button on the add workout screen
         ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));
         createWorkoutButtonVi.perform(ViewActions.click());
+
 
         return workout;
 
@@ -224,6 +215,29 @@ public class AddMiscThings {
         logInButton.perform(ViewActions.click());
 
 
+    }
+
+    public static int getSportPos(String sport) {
+        if (sport.equals("None"))
+            return 0;
+        else if (sport.equals("Tennis"))
+            return 1;
+        else if (sport.equals("Lacrosse"))
+            return 2;
+        else if (sport.equals("Baseball"))
+            return 3;
+        else if (sport.equals("Soccer"))
+            return 4;
+        else if (sport.equals("Track and Field"))
+            return 5;
+        else if (sport.equals("Basketball"))
+            return 6;
+        else if (sport.equals("Rugby"))
+            return 7;
+        else if (sport.equals("Rowing"))
+            return 8;
+        else
+            return 9;
     }
 
 }

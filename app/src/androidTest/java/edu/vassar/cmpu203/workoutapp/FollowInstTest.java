@@ -58,7 +58,7 @@ public class FollowInstTest extends AddMiscThings {
         boolean[] values = new boolean[3];
         values[1] = true;
 
-        workout = addWorkoutTests(1, workout, values, "20", 4, "A run");
+        workout = addWorkoutTests(1, workout, values, "20", 4, "A run", "None");
         post.setWorkout(workout);
 
 

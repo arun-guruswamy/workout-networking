@@ -22,6 +22,7 @@ public class FilterTest {
         workout.setDescription("FUN");
         workout.setLength(5);
         workout.setDifficulty(2);
+        workout.setSport("Lacrosse");
         post.setWorkout(workout);
 
         f.feed.add(post);
@@ -35,6 +36,7 @@ public class FilterTest {
         workout1.setDescription("FUN");
         workout1.setLength(3);
         workout1.setDifficulty(2);
+        workout1.setSport("None");
         post1.setWorkout(workout1);
 
         f.feed.add(post1);
@@ -44,10 +46,12 @@ public class FilterTest {
         profile2.setUsername("TestMan");
         Post post2 = new Post(profile2);
         post2.addCaption("fire workout");
-        Workout workout2 = new Workout();
+        Workout workout2 = new Cardio();
         workout2.setDescription("Intense");
         workout2.setLength(3);
         workout2.setDifficulty(1);
+        workout2.setSport("Tennis");
+        workout2.setType(1);
         post2.setWorkout(workout2);
 
         f.feed.add(post2);
@@ -57,7 +61,13 @@ public class FilterTest {
         f.feed = l.filter();
         Filter d = new Difficulty(1, f);
         f.feed = d.filter();
+        Filter t = new Type(1, f);
+        f.feed = t.filter();
+        Filter s = new Sport("Tennis", f);
+        f.feed = s.filter();
 
-        assertEquals("\nTestMan\nWorkout: Intense\n3\n1\n\nfire workout" + "\n\n", f.toString());
+
+
+        assertEquals("\nWorkout: Intense\n\nLength: 3, Difficulty: 1, Sport Focus: Tennis\nEndurance Focus: false\nAgility Focus: false\nSpeed Focus: false\n\nfire workout\n\n", f.toString());
     }
 }

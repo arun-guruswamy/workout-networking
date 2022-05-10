@@ -274,7 +274,7 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
     public int getSportPos(String sport) {
         if (sport.equals("None"))
             return 0;
-        else if (sport.equals("tennis"))
+        else if (sport.equals("Tennis"))
             return 1;
         else if (sport.equals("Lacrosse"))
             return 2;

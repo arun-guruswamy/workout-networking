@@ -20,7 +20,7 @@ class CardioTest {
         cardio.setDifficulty(2);
 
         //makes sure that the created cardio workout matches the expected string
-        assertEquals("FUN\n\nLength: 5, Difficulty: 2\nEndurance Focus: false\nAgility Focus: true\nSpeed Focus: false", cardio.toString());
+        assertEquals("FUN\n\nLength: 5, Difficulty: 2, Sport Focus: None\nEndurance Focus: false\nAgility Focus: true\nSpeed Focus: false", cardio.toString());
 
 
     }

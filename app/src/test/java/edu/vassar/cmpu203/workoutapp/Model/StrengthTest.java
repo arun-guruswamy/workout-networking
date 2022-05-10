@@ -20,7 +20,7 @@ class StrengthTest {
         strength.setDifficulty(2);
 
         //testing that the create workout matches what is expected
-        assertEquals("FUN\n\nLength: 5, Difficulty: 2\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false" +
+        assertEquals("FUN\n\nLength: 5, Difficulty: 2, Sport Focus: None\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false" +
                 "\nBodyWeight Focus: false", strength.toString());
     }
 }

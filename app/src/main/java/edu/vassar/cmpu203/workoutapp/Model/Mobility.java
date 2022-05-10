@@ -35,7 +35,7 @@ public class Mobility extends Workout implements Serializable {
 
     @Override
     public String toString() {
-        return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nStatic Stretching Focus: " + StaticStretching
+        return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nStatic Stretching: " + StaticStretching
                 + "\nDynamic Stretching: " + DynamicStretching + "\nYoga: " + Yoga;
     }
 

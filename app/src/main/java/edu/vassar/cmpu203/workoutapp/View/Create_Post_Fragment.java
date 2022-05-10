@@ -39,8 +39,8 @@ public class Create_Post_Fragment extends Fragment implements ICreatePostView {
         w = this.listener.getCurWorkout();
 
         // if the workout does not have any values yet
-        if(w == null) {
-            this.binding.postWorkout.setText("No workout added!");
+        if(w.length == 0) {
+            this.binding.postWorkout.setText("No workout added");
         }
         else
             this.binding.postWorkout.setText(w.toString());
