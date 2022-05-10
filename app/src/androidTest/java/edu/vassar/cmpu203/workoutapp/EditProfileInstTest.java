@@ -24,6 +24,12 @@ public class EditProfileInstTest extends AddMiscThings{
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
+    /**
+     * a test that goes to the profile screen and attempts to edit
+     * the current User's profile
+     * Attempts are made to set bio and password to nothing
+     * and the success of a change is tested
+     */
     @Test
     public void editProfileTest(){
         //Step 1:
@@ -93,6 +99,8 @@ public class EditProfileInstTest extends AddMiscThings{
         Matcher<View> snackbarMatcher2 = ViewMatchers.withText(R.string.login);
         ViewInteraction snackBarVi2 = Espresso.onView(snackbarMatcher2);
         snackBarVi2.check(ViewAssertions.matches(snackbarMatcher2));
+
+        this.persistenceFacade.removeUser(profile);
     }
 
 }

@@ -23,7 +23,7 @@ public interface IPersistenceFacade {
     String savePost(Post post);
     void saveProfile(@NonNull Profile p);
     void retrieveProfile(@NonNull String Username, @NonNull DataListener<Profile> listener);
-    void removePost(Post post);
+    void removePosts();
     void removeUser(Profile profile);
     void editPost(Post post, String id);
 }

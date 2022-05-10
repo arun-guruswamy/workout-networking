@@ -24,6 +24,11 @@ public class LogInLogOutInstTest extends AddMiscThings {
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
+    /**
+     * this test creates a profile and then attempts to login with that profile
+     * on login it makes sure the profile displayed matches the current user.
+     * Inadequate methods of logging in are tested to ensure they will not work.
+     */
     @Test
     public void logTest() {
         //Step 1:

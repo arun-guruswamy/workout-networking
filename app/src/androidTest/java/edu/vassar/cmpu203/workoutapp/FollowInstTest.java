@@ -20,12 +20,17 @@ import edu.vassar.cmpu203.workoutapp.Model.Post;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
+
 @RunWith(AndroidJUnit4.class)
 public class FollowInstTest extends AddMiscThings {
 
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
+    /**
+     * a test that creates two profiles and has one follow the other
+     * makes sure that a follow request can be both declined and accepted
+     */
     @Test
     public void followingTest(){
         //step 1:
@@ -247,9 +252,10 @@ public class FollowInstTest extends AddMiscThings {
 
         //DONE!!!!
 
+
         this.persistenceFacade.removeUser(profile);
         this.persistenceFacade.removeUser(profile2);
-        //this.persistenceFacade.removePost(post);
+        //this.persistenceFacade.removePost(curPost);
 
     }
 

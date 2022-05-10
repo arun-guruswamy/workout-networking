@@ -24,6 +24,8 @@ import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
 import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
 import edu.vassar.cmpu203.workoutapp.Controller.MainActivity;
 
+
+
 public class AddMiscThings {
 
     protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
@@ -209,6 +211,11 @@ public class AddMiscThings {
         return profile;
     }
 
+    /**
+     * logs into the system using the given username and password
+     * @param username the username of the profile logging in
+     * @param password the password of the profile logging in
+     */
     public static void logIn(String username, String password){
         ViewInteraction usernameInput = Espresso.onView(ViewMatchers.withId(R.id.usernameField));
         usernameInput.perform(ViewActions.replaceText(username));

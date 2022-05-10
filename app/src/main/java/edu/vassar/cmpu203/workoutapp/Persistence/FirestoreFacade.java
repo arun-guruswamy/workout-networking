@@ -142,11 +142,11 @@ public class FirestoreFacade implements IPersistenceFacade {
 
     //These methods will help with rerunning tests
 
-    @Override
-    public void removePost(Post post) {
+  /*  @Override
+    public void removePosts() {
 
-        db.collection(POST_COLLECTION).document(post.getId()).delete();
-    }
+        db.collection(POST_COLLECTION).;
+    }*/
 
     @Override
     public void removeUser(Profile profile) {
