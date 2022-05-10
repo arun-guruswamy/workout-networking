@@ -24,6 +24,6 @@ class PostTest {
 
 
         //seeing that the created post matches what is expected
-        assertEquals("\nCoolDude\nWorkout: FUN\n5\n2\n\nNice workout",post.toString());
+        assertEquals("\nWorkout: FUN\n5\n2\n\nNice workout",post.toString());
     }
 }

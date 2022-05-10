@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.R;
 import edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;
@@ -73,8 +75,13 @@ public class ViewProfileFragment extends Fragment implements IViewProfileView{
 
         this.binding.LogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { ViewProfileFragment.this.listener.logout(); }
+            public void onClick(View v) { ViewProfileFragment.this.listener.logout(ViewProfileFragment.this); }
         });
+    }
+
+    @Override
+    public void onSuccessfulLogOut(){
+        Snackbar.make(this.binding.getRoot(), "Logout successful", Snackbar.LENGTH_LONG).show();
     }
 
 }

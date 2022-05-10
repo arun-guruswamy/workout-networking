@@ -70,6 +70,9 @@ public class HomeScreenFragment extends Fragment implements IHomeScreenView{
         displayMessage(R.string.invalidCredentials);
     }
 
+    @Override
+    public void successfulLogIn(){displayMessage(R.string.login);}
+
     private void displayMessage(int msgRid){
         Snackbar.make(this.binding.getRoot(), msgRid, Snackbar.LENGTH_LONG).show();
     }

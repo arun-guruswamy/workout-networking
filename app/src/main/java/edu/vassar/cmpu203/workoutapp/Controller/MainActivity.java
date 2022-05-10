@@ -291,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
             public void onDataReceived(@NonNull Profile data) {
                 if (data.validatePassword(password)) {
                     MainActivity.this.curUser = data;
+                    homeScreenView.successfulLogIn();
                     MainActivity.this.mainView.displayFragment(FeedFragment.class, null, false );
                 } else {
                     homeScreenView.onInvalidCredentials();
@@ -426,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
     }
 
     @Override
-    public void logout() {
+    public void logout(IViewProfileView viewProfileView) {
         curUser = null;
         this.mainView.displayFragment(HomeScreenFragment.class, null, false);
     }

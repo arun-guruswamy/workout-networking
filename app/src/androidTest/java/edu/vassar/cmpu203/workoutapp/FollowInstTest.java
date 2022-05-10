@@ -68,11 +68,13 @@ public class FollowInstTest extends AddMiscThings {
 
         profileButton.perform(ViewActions.click());
         logoutButton.perform(ViewActions.click());
+        SystemClock.sleep(5000);
 
         //Step 2:
         // log back in as first account (1), click on post made by other user to go to that person's(2) profile
         // check to make sure the information matches that person (2)
         logIn("tester1", "1");
+        SystemClock.sleep(5000);
 
         ViewInteraction profileClick = Espresso.onView(ViewMatchers.withText("tester2"));
         profileClick.perform(ViewActions.click());
@@ -116,6 +118,7 @@ public class FollowInstTest extends AddMiscThings {
 
         profileButton.perform(ViewActions.click());
         logoutButton.perform(ViewActions.click());
+        SystemClock.sleep(5000);
 
         //Step 4:
         // log in to account (2) click on view profile
@@ -123,6 +126,7 @@ public class FollowInstTest extends AddMiscThings {
         // ensure that the follow request is present
 
         logIn("tester2", "1");
+        SystemClock.sleep(5000);
 
         profileButton.perform(ViewActions.click());
         ViewInteraction viewRequests = Espresso.onView(ViewMatchers.withId(R.id.button5));
@@ -159,6 +163,7 @@ public class FollowInstTest extends AddMiscThings {
         userFollowers.check(ViewAssertions.matches(ViewMatchers.withText("0")));
 
         logoutButton.perform(ViewActions.click());
+        SystemClock.sleep(5000);
 
 
         //Step 7:
@@ -167,12 +172,14 @@ public class FollowInstTest extends AddMiscThings {
         // log out
 
         logIn("tester1", "1");
+        SystemClock.sleep(5000);
 
         profileClick.perform(ViewActions.click());
         requestFollow.perform(ViewActions.click());
         otherProfileBackButton.perform(ViewActions.click());
         profileButton.perform(ViewActions.click());
         logoutButton.perform(ViewActions.click());
+        SystemClock.sleep(5000);
 
 
         //Step 8:
@@ -182,6 +189,7 @@ public class FollowInstTest extends AddMiscThings {
         // click on accept, make sure snackbar appears
 
         logIn("tester2", "1");
+        SystemClock.sleep(5000);
 
         profileButton.perform(ViewActions.click());
         viewRequests.perform(ViewActions.click());
@@ -206,6 +214,7 @@ public class FollowInstTest extends AddMiscThings {
         backtoProfile.perform(ViewActions.click());
         userFollowers.check(ViewAssertions.matches(ViewMatchers.withText("1")));
         logoutButton.perform(ViewActions.click());
+        SystemClock.sleep(5000);
 
 
         //Step 10:
@@ -213,6 +222,7 @@ public class FollowInstTest extends AddMiscThings {
         // check proflie to see that number of following has increased
 
         logIn("tester1", "1");
+        SystemClock.sleep(5000);
 
         profileButton.perform(ViewActions.click());
         ViewInteraction userFollowing = Espresso.onView(ViewMatchers.withId(R.id.FollowingDisplay));

@@ -8,4 +8,5 @@ public interface IHomeScreenView {
     }
 
     void onInvalidCredentials();
+    void successfulLogIn();
 }
