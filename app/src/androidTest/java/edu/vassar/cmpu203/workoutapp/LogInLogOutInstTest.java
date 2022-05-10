@@ -64,8 +64,23 @@ public class LogInLogOutInstTest extends AddMiscThings {
 
         SystemClock.sleep(5000);
 
-        // log out
+        // check that logged in account shows up when looking at profile
         profileButton.perform(ViewActions.click());
+
+        ViewInteraction profUsername = Espresso.onView(ViewMatchers.withId(R.id.viewUsername));
+        profUsername.check(ViewAssertions.matches(ViewMatchers.withText(profile.getUsername())));
+        ViewInteraction profBio = Espresso.onView(ViewMatchers.withId(R.id.ProfileViewBio));
+        profBio.check(ViewAssertions.matches(ViewMatchers.withText(profile.getBio())));
+        ViewInteraction profPosts = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
+        profPosts.check(ViewAssertions.matches(ViewMatchers.withText(""+profile.getNumPosts())));
+        ViewInteraction profFollowers = Espresso.onView(ViewMatchers.withId(R.id.FollowerDisplay));
+        profFollowers.check(ViewAssertions.matches(ViewMatchers.withText(""+ profile.getNumFollowers())));
+        ViewInteraction profFollowing = Espresso.onView(ViewMatchers.withId(R.id.FollowingDisplay));
+        profFollowing.check(ViewAssertions.matches(ViewMatchers.withText(""+profile.getNumFollowing())));
+
+
+
+        // log out
         logoutButton.perform(ViewActions.click());
 
         //Step 3:

@@ -50,11 +50,6 @@ public class CreateProfileInstTest {
         ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVi.perform(ViewActions.click());
 
-//        Profile profile = new Profile();
-//        profile.setUsername("ymi456");
-//        profile.setPassword("abcdefg123!!");
-//        profile.setBio("I love to workout");
-//        return profile;
     }
 
     /**
