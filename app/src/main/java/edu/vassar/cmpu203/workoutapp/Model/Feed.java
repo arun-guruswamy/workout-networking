@@ -21,6 +21,10 @@ public class Feed implements Serializable {
         return res;
     }
 
+    /**
+     * adds a post to the feed
+     * @param post the post to be added
+     */
     public void addPosts(Post post) {
         this.feed.add(post);
     }

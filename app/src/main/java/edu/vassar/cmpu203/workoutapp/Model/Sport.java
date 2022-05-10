@@ -12,6 +12,10 @@ public class Sport implements Filter {
         filtered = f.feed;
     }
 
+    /**
+     * filters the list based on the sport focus
+     * @return the new filtered list
+     */
     public List<Post> filter() {
         filtered.removeIf(post -> (post.workout == null) || (!(post.workout.sportFocus.equals(sport)) && !(sport.equals("None"))));
         return filtered;

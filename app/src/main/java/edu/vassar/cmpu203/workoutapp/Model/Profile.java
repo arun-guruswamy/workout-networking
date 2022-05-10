@@ -57,6 +57,11 @@ public class Profile implements Serializable {
     public Map<String, Profile> getFollowRequests(){return this.followRequests;}
     public Map<String, Profile> getFollowers(){return this.followers;}
 
+    /**
+     * validates that the password is correct
+     * @param password the password to be validated
+     * @return a boolean representing if the password was validated or not
+     */
     public boolean validatePassword(String password){
         return this.password.validatePassword(password);
     }

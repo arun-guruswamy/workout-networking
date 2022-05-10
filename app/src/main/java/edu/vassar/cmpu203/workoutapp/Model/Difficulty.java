@@ -12,6 +12,10 @@ public class Difficulty implements Filter {
         filtered = f.feed;
     }
 
+    /**
+     * filters the list based on the difficulty
+     * @return the new filtered list
+     */
     public List<Post> filter() {
         filtered.removeIf(post -> (post.workout == null) || (post.workout.difficulty != difficulty && difficulty != 0));
         return filtered;

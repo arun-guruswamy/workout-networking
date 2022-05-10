@@ -12,6 +12,10 @@ public class Type implements Filter{
         filtered = f.feed;
     }
 
+    /**
+     * filters the post based on the type
+     * @return the new filter list
+     */
     public List<Post> filter() {
         filtered.removeIf(post -> (post.workout == null) || (post.workout.workoutType != type && type != 0));
         return filtered;

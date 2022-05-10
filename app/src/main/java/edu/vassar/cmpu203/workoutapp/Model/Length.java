@@ -12,6 +12,10 @@ public class Length implements Filter {
         filtered = f.feed;
     }
 
+    /**
+     * filters the list based on the length
+     * @return the new filtered list
+     */
     public List<Post> filter() {
         filtered.removeIf(post -> (post.workout == null) || (post.workout.length != length && length != 0));
         return filtered;

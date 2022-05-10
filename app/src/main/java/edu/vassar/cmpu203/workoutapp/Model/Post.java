@@ -19,20 +19,6 @@ public class Post implements Serializable {
         CAPnum = 0;
     }
 
-//    public Workout addWorkout(String type) {
-//        Workout w;
-//
-//            if (type.equalsIgnoreCase("cardio"))
-//                w = new Cardio();
-//            else
-//                w = new Strength();
-//        this.workout = w;
-//        this.WRKnum = 1;
-//
-//        return w;
-//    }
-
-
     public void setWorkout(Workout workout){
         this.workout = workout;
         this.WRKnum = 1;
@@ -55,7 +41,6 @@ public class Post implements Serializable {
         w.setDifficulty(difficulty);
     }
 
-    // void addWorkoutSport(Workout w, String s) { w.setSport(s); }
 
 
     public String toString() {

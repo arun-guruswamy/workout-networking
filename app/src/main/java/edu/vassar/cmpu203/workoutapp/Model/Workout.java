@@ -28,35 +28,11 @@ public class Workout implements Serializable {
     public void setType(int type) { workoutType = type; }
 
 
-   // public boolean setAttribute(String name) {
-     //  boolean attribute = false;
-       // String a = scan.next();
-        //if (a.equalsIgnoreCase("yes"))
-          //  attribute = true;
-        //return attribute;
-    //}
-
-   // abstract void setSpecificAttributes();
 
     public String toString() {
         return this.description + "\n" + this.length + "\n" + this.difficulty;
     }
 
-/*
-    public String toString() {
-        if (this.workoutType == 1){
-            return Cardio.class.toString();
-        }
-        else if (this.workoutType == 2){
-            return Strength.class.toString();
-        }
-        else if (this.workoutType == 3){
-            return Mobility.class.toString();
-        }
-        else
-            return this.description + "\n" + this.length + "\n" + this.difficulty;
-    }
-*/
 
     public int getDifficulty() {
         return difficulty;
