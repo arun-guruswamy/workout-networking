@@ -333,17 +333,17 @@ public class AddWorkoutFragment extends Fragment implements IAddWorkout {
         }
         if (workoutType == 1) {
             this.binding.CardioButton.setBackgroundColor(Color.BLUE);
-            this.binding.StrengthButton.setBackgroundColor(Color.GRAY);
-            this.binding.MobilityButton.setBackgroundColor(Color.GRAY);
+            this.binding.StrengthButton.setEnabled(false);
+            this.binding.MobilityButton.setEnabled(false);
         }
         if (workoutType == 02) {
-            this.binding.CardioButton.setBackgroundColor(Color.GRAY);
+            this.binding.CardioButton.setEnabled(false);
             this.binding.StrengthButton.setBackgroundColor(Color.BLUE);
-            this.binding.MobilityButton.setBackgroundColor(Color.GRAY);
+            this.binding.MobilityButton.setEnabled(false);
         }
         if (workoutType == 3) {
-            this.binding.CardioButton.setBackgroundColor(Color.GRAY);
-            this.binding.StrengthButton.setBackgroundColor(Color.GRAY);
+            this.binding.CardioButton.setEnabled(false);
+            this.binding.StrengthButton.setEnabled(false);
             this.binding.MobilityButton.setBackgroundColor(Color.BLUE);
         }
     }

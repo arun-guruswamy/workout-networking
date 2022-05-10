@@ -20,7 +20,10 @@ public interface IPersistenceFacade {
 
     void retrieveFeed(@NonNull DataListener<Feed> listener);
     void addProfile(@NonNull Profile profile, @NonNull BinaryResultListener listener);
-    void savePost(Post post);
+    String savePost(Post post);
     void saveProfile(@NonNull Profile p);
     void retrieveProfile(@NonNull String Username, @NonNull DataListener<Profile> listener);
+    void removePost(Post post);
+    void removeUser(Profile profile);
+    void editPost(Post post, String id);
 }

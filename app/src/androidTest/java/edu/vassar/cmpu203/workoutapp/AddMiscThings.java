@@ -1,5 +1,6 @@
 package edu.vassar.cmpu203.workoutapp;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.SeekBar;
 
@@ -14,11 +15,16 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import org.hamcrest.Matcher;
 
 import edu.vassar.cmpu203.workoutapp.Model.Cardio;
+import edu.vassar.cmpu203.workoutapp.Model.Mobility;
 import edu.vassar.cmpu203.workoutapp.Model.Profile;
 import edu.vassar.cmpu203.workoutapp.Model.Strength;
 import edu.vassar.cmpu203.workoutapp.Model.Workout;
+import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
+import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
 
 public class AddMiscThings {
+
+    protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
     /**
      * navigates the add workout screens and creates a workout to help with the testing
@@ -63,7 +69,7 @@ public class AddMiscThings {
             workout = new Cardio(values);
         }
         // if the workout is a strength workout
-        else {
+        else if (type == 2) {
             ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
             strengthButtonVi.perform(ViewActions.click());
 
@@ -91,6 +97,49 @@ public class AddMiscThings {
             setButton.perform(ViewActions.click());
             workout = new Strength(values);
         }
+        else {
+            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+            mobilityButton.perform(ViewActions.click());
+
+            if(values[0]) {
+                ViewInteraction staticRadio = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));
+                staticRadio.perform(ViewActions.click());
+            }
+
+            if(values[1]){
+                ViewInteraction dynamicRadio = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));
+                dynamicRadio.perform(ViewActions.click());
+            }
+
+            if(values[2]){
+                ViewInteraction yogaRadio = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));
+                yogaRadio.perform(ViewActions.click());
+            }
+
+            ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.MobilitySetButton));
+            setButton.perform(ViewActions.click());
+            workout = new Mobility(values);
+        }
+
+
+        if(type == 1){
+            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
+            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+        }
+        else if(type == 2){
+            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
+            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+        }
+        else {
+            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
+            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
+            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+        }
 
         // add the length
         ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutLengthInput));
@@ -104,7 +153,6 @@ public class AddMiscThings {
 
         // add the description
         ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDescriptionInput));
-        workoutDescriptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.input_workout)));
         workoutDescriptionVi.perform(ViewActions.replaceText(description));
         workout.setDescription(description);
 
@@ -139,31 +187,34 @@ public class AddMiscThings {
      * navigates the create profile screen
      * @return a default profile to be used to testing
      */
-    public static Profile createProfile() {
+    public static Profile createProfile(String user, String password, String bio) {
+        ViewInteraction signUpButtonVi = Espresso.onView(ViewMatchers.withId(R.id.signUpButton));
+        signUpButtonVi.perform(ViewActions.click());
+        ViewInteraction usernameTextField = Espresso.onView(ViewMatchers.withId(R.id.UsernameText));
+        usernameTextField.perform(ViewActions.replaceText(user));
+        ViewInteraction passwordTextField = Espresso.onView(ViewMatchers.withId(R.id.passwordEditText));
+        passwordTextField.perform(ViewActions.replaceText(password));
+        ViewInteraction bioTextField = Espresso.onView(ViewMatchers.withId(R.id.bioEditText));
+        bioTextField.perform(ViewActions.replaceText(bio));
         ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVi.perform(ViewActions.click());
         Profile profile = new Profile();
-        profile.setUsername("Username");
+        profile.setUsername(user);
+        profile.setPasswordFromString(password);
+        profile.setBio(bio);
 
         return profile;
     }
 
-   /* public static Post addPostCaption(Post post, String caption) {
-
-      //create post screen, check to see of default text for caption is there
-        //enter new caption
-        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
-        postCapEdVi.perform(ViewActions.replaceText(caption));
-
-        //click the caption button and checks to see that the caption text has changed
-        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
-        captionButtonVi.perform(ViewActions.click());
-        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(caption)));
-        post.addCaption(caption);
+    public static void logIn(String username, String password){
+        ViewInteraction usernameInput = Espresso.onView(ViewMatchers.withId(R.id.usernameField));
+        usernameInput.perform(ViewActions.replaceText(username));
+        ViewInteraction passwordInput = Espresso.onView(ViewMatchers.withId(R.id.passwordField));
+        passwordInput.perform(ViewActions.replaceText(password));
+        ViewInteraction logInButton = Espresso.onView(ViewMatchers.withId(R.id.logInButton));
+        logInButton.perform(ViewActions.click());
 
 
-        return post;
-    }*/
+    }
+
 }

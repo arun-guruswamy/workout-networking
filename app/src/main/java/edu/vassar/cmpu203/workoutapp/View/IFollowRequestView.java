@@ -8,6 +8,7 @@ public interface IFollowRequestView {
         void onBack();
         void onAccept(Profile profile);
         void onDecline(Profile profile);
+        void onAddedFollower(Profile profile);
         Profile getCurUser();
     }
 }

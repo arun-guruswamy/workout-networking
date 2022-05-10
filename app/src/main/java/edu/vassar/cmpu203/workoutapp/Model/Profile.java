@@ -16,10 +16,12 @@ public class Profile implements Serializable {
     private int numFollowing;
     private int numPosts;
     private Map<String, Profile> followRequests;
+    private Map<String, Profile> followers;
 
     public Profile() {
         this.posts = new Feed();
         this.followRequests = new LinkedHashMap<>();
+        this.followers = new LinkedHashMap<>();
     }
 
     public void setUsername(String username) {
@@ -53,6 +55,7 @@ public class Profile implements Serializable {
     public int getNumFollowing() { return numFollowing; }
     public int getNumPosts(){ return this.numPosts; }
     public Map<String, Profile> getFollowRequests(){return this.followRequests;}
+    public Map<String, Profile> getFollowers(){return this.followers;}
 
     public boolean validatePassword(String password){
         return this.password.validatePassword(password);

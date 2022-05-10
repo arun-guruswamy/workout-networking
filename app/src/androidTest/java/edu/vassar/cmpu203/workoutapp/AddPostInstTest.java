@@ -27,14 +27,14 @@ import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
 @RunWith(AndroidJUnit4.class)
 public class AddPostInstTest extends AddMiscThings {
-
+/*
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    /**
+    *//**
      * Test to see if someone is able to post with a Cardio Workout
      * while creating a post to compare the results of the app too
-     */
+     *//*
     @Test
     public void addCardioPostTest() {
         //create profile screen -> leaves default values and clicks create
@@ -89,9 +89,9 @@ public class AddPostInstTest extends AddMiscThings {
 
     }
 
-    /**
+    *//**
      * Creating a post that contains a strength workout
-     */
+     *//*
     @Test
     public void addStrengthPostTest() {
         //create profile screen -> leaves default values and clicks create
@@ -148,10 +148,10 @@ public class AddPostInstTest extends AddMiscThings {
 
     }
 
-    /**
+    *//**
      * Adding multiple posts to the feed to test that we can view multiple posts at once
      * --Create posts using much of the same logic as above
-     */
+     *//*
     @Test
     public void addMultiplePostsTest() {
         //create profile screen -> leaves default values and clicks create
@@ -285,9 +285,9 @@ public class AddPostInstTest extends AddMiscThings {
         post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(post2.toString())));
     }
 
-    /**
+    *//**
      * Makes sure that someone can post only text post with no workout
-     */
+     *//*
     @Test
     public void addPostNoWorkoutTest() {
         //navigate the create profile screen
@@ -316,11 +316,11 @@ public class AddPostInstTest extends AddMiscThings {
 
     }
 
-    /**
+    *//**
      * This is a test to make sure that someone can post a workout
      * with no caption
      * -- follows much of the same logic as above tests
-     */
+     *//*
     @Test
     public void addPostNoCaption() {
         //create profile screen -> leaves default values and clicks create
@@ -366,10 +366,10 @@ public class AddPostInstTest extends AddMiscThings {
 
     }
 
-    /**
+    *//**
      * Testing that the snackbars will appear when they are supposed to when
      * incorrect values are entered
-     */
+     *//*
     @Test
     public void testSnackBars(){
         //create profile screen -> leaves default values and clicks create
@@ -558,6 +558,6 @@ public class AddPostInstTest extends AddMiscThings {
 
 
 
-    }
+    }*/
 
 }

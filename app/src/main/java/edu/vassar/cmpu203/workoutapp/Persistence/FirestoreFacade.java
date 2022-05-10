@@ -12,6 +12,7 @@ import edu.vassar.cmpu203.workoutapp.Model.Workout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -98,8 +99,20 @@ public class FirestoreFacade implements IPersistenceFacade {
     }
 
     @Override
-    public void savePost(Post post) {
-        db.collection(POST_COLLECTION).add(post);
+    public String savePost(Post post) {
+        CollectionReference colref = db.collection(POST_COLLECTION);
+        DocumentReference docref = colref.document();
+        String docId = docref.getId();
+
+
+        db.collection(POST_COLLECTION).document(docId).set(post);
+
+        return docId;
+    }
+
+    @Override
+    public void editPost(Post post, String id){
+        db.collection(POST_COLLECTION).document(id).set(post);
     }
 
     @Override
@@ -120,9 +133,24 @@ public class FirestoreFacade implements IPersistenceFacade {
                 });
     }
 
+
     @Override
     public void saveProfile(Profile p) {
         db.collection(PROFILE_COLLECTION).document(p.getUsername()).set(p);
+    }
+
+
+    //These methods will help with rerunning tests
+
+    @Override
+    public void removePost(Post post) {
+
+        db.collection(POST_COLLECTION).document(post.getId()).delete();
+    }
+
+    @Override
+    public void removeUser(Profile profile) {
+        db.collection(PROFILE_COLLECTION).document(profile.getUsername()).delete();
     }
 
 

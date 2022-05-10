@@ -11,5 +11,6 @@ public interface IViewOtherProfileView {
     }
 
     void onRequest();
-    void onAlreadyFollowing();
+    void onAlreadyRequested();
+    void onAlreadyFollowed();
 }

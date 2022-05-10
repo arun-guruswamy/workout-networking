@@ -84,6 +84,7 @@ public class FollowRequestFragment extends Fragment implements IFollowRequestVie
                 @Override
                 public void onClick(View view) {
                     FollowRequestFragment.this.listener.onAccept(p);
+                    FollowRequestFragment.this.listener.onAddedFollower(p);
                     answerGiven(ll, tv, accept, decline);
                     displayMessage(R.string.accept);
                 }

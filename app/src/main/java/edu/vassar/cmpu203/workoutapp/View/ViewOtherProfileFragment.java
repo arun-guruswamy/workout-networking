@@ -100,7 +100,13 @@ public class ViewOtherProfileFragment extends Fragment implements IViewOtherProf
     }
 
     @Override
-    public void onAlreadyFollowing(){
+    public void onAlreadyRequested(){
+        this.binding.requestFollowButton.setEnabled(false);
+        Snackbar.make(this.binding.getRoot(), "You already requested this person", Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAlreadyFollowed(){
         this.binding.requestFollowButton.setEnabled(false);
         Snackbar.make(this.binding.getRoot(), "You already follow this profile", Snackbar.LENGTH_LONG).show();
     }

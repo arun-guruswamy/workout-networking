@@ -9,6 +9,7 @@ public class Post implements Serializable {
     private int WRKnum;
     private int CAPnum;
     public Workout workout;
+    private String id;
 
     public Post(){}
 
@@ -84,5 +85,13 @@ public class Post implements Serializable {
 
     public void setProd_id(String prod_id) {
         this.prod_id = prod_id;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

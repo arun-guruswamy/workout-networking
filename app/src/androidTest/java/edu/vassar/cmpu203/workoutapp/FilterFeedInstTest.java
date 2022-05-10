@@ -29,10 +29,13 @@ public class FilterFeedInstTest extends AddMiscThings{
     @org.junit.Rule
     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    /**
+/*
+    */
+/**
      * Adds two posts, and then specifies a length filter that produces a feed with
      * only the desired length
-     */
+     *//*
+
     @Test
     public void FilterLengthTest() {
         //create profile screen -> leaves default values and clicks create
@@ -138,10 +141,12 @@ public class FilterFeedInstTest extends AddMiscThings{
         onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
     }
 
-    /**
+    */
+/**
      * Adds two posts, and then specifies a difficulty filter that produces a feed with
      * only the desired difficulty
-     */
+     *//*
+
     @Test
     public void FilterDifficultyTest() {
         //create profile screen -> leaves default values and clicks create
@@ -247,10 +252,12 @@ public class FilterFeedInstTest extends AddMiscThings{
         onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
         onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
     }
-    /**
+    */
+/**
      * Adds two posts, and then specifies a length and difficulty filter that produces a feed with
      * only the desired length and difficulty
-     */
+     *//*
+
     @Test
     public void FilterLengthAndDifficulty() {
         //create profile screen -> leaves default values and clicks create
@@ -361,10 +368,12 @@ public class FilterFeedInstTest extends AddMiscThings{
         onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
     }
 
-    /**
+    */
+/**
      * Test to make sure that the snackbar will pop up
      * when length is left empty
-     */
+     *//*
+
     @Test
     public void testFilterSnackbar() {
         Profile profile = createProfile();
@@ -395,5 +404,6 @@ public class FilterFeedInstTest extends AddMiscThings{
 
 
     }
+*/
 
 }

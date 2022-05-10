@@ -15,6 +15,7 @@ import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
 import edu.vassar.cmpu203.workoutapp.View.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ICreatePostView.Listener, IAddWorkout.Listener, ICreateProfileView.Listener, IFeedView.Listener, IWorkoutType.Listener, IFilterView.Listener, IHomeScreenView.Listener, IViewProfileView.Listener, IEditProfileView.Listener, IViewOtherProfileView.Listener, IFollowRequestView.Listener {
 
@@ -121,9 +122,15 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         this.unFeed.feed.add(this.curPost);
         this.curUser.posts.addPosts(this.curPost);
         this.curUser.setNumPosts();
-        this.persistenceFacade.savePost(this.curPost);
+        String id = this.persistenceFacade.savePost(this.curPost);
+        updatePostId(id);
         this.persistenceFacade.saveProfile(this.curUser);
         this.mainView.displayFragment(FeedFragment.class, null, false);
+    }
+
+    private void updatePostId(String id){
+        this.curPost.setId(id);
+        this.persistenceFacade.editPost(this.curPost, id);
     }
 
     @Override
@@ -350,9 +357,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
 
     @Override
     public void requestFollow(Profile profile, IViewOtherProfileView iViewOtherProfileView){
-        // what if I already follow this person
+        // what if I already requested to follow this person
         if(profile.getFollowRequests().containsKey(this.curUser.getUsername()))
-            iViewOtherProfileView.onAlreadyFollowing();
+            iViewOtherProfileView.onAlreadyRequested();
+        // what if I already follow this person
+        else if(profile.getFollowers().containsKey(this.curUser.getUsername()))
+            iViewOtherProfileView.onAlreadyFollowed();
 
         iViewOtherProfileView.onRequest();
         profile.getFollowRequests().put(this.curUser.getUsername(), curUser);
@@ -384,6 +394,12 @@ public class MainActivity extends AppCompatActivity implements ICreatePostView.L
         profile.setNumFollowing();
         this.persistenceFacade.saveProfile(profile);
         this.curUser.getFollowRequests().remove(profile.getUsername(), profile);
+        this.persistenceFacade.saveProfile(this.curUser);
+    }
+
+    @Override
+    public void onAddedFollower(Profile profile){
+        this.curUser.getFollowers().put(profile.getUsername(), profile);
         this.persistenceFacade.saveProfile(this.curUser);
     }
 
