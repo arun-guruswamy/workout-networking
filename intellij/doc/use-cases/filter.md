@@ -16,12 +16,13 @@ Existence of followers for user to produce initial feed
 List of workouts presented that match User's interest
 
 ## Main Success Scenario
-### 1. Click search bar to enter workout interest
-### 2. System presents workouts that best match keywords used
-### 3. Generates a list based on access-content use case.
+### 1. Click on filter button to access filter options
+### 2. Select preferences and click set to see workouts that match interest
+### 3. Remove filters by clicking the remove filter button
 
 ## Extensions:
-### 1a. If nothing is related to search, nothing shows up and user is prompted to search again
+### 2a. If no workouts match filters, take user back to initial list
+
 
 ## Special Requirements
 

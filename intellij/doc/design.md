@@ -131,6 +131,42 @@ feed -> view : toString()
 @enduml
 ```
 
+### Following a Profile:
+```plantuml
+@startuml
+hide footbox
+actor Producer as producer
+participant ": View" as view 
+participant ": Controller" as controller 
+participant ": Feed" as feed
+participant ": Profile" as profile
+ 
+view -> controller : onProfileClick()
+controller -> feed : ViewProfileView(Post.Profile)
+view <- profile : OtherProfileView
+producer -> profile : requestFollow(profile, otherProfileView)
+@enduml
+```
+
+### Accepting a Follow Request:
+```plantuml
+@startuml
+hide footbox
+actor Producer as producer
+participant ": View" as view 
+participant ": Controller" as controller 
+participant ": Feed" as feed
+participant ": Profile" as profile
+participant ": FollowRequest" as requests
+ 
+view -> controller : viewProfile()
+controller -> feed : ViewProfileView(producer.profile)
+producer -> profile : onFollowRequests()
+controller -> view : FollowRequestView()
+producer -> requests : onAccept(profile)
+@enduml
+```
+
 ## Class Diagram 
 
 ```plantuml

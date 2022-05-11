@@ -17,26 +17,30 @@ Grant permission to storage for media
 - Data of post is stored
 
 ## Main Success Scenario:
-### 1. Select option to post
-### 2. Select type of media to post
-- Text post (Only type in current version)
-### 3. Asks producer to fill specific details about workout
-- type (Cardio or Strength)
+### 1. Asks producer to fill specific details about workout
+- type (Cardio or Strength or Mobility)
 - difficulty
 - length of workout
-### 5. System adds post once it is confirmed by user
+- Sport focus
+- Description
+### 2. Once workout is added, caption can be added
+### 3. Once all information is filled workout can be posted
 
 ## Extensions: 
 ### 2a. Return error if size of the media 
-### 3a. If workout is Cardio, fill following fields
+### 1a. If workout is Cardio, fill following fields
 - EnduranceFocus
 - AgilityFocus
 - SpeedFocus
-### 3b. If workout is Strength, fill following fields
+### 1b. If workout is Strength, fill following fields
 - UpperBodyFocus
 - LowerBodyFocus
 - FullBodyFocus
 - BodyWeightFocus
+### 1c. If workout is Mobility, fill following fields
+- Static Stretching
+- Dynamic Stretching
+- Yoga
 
 ## Special requirements: 
 
