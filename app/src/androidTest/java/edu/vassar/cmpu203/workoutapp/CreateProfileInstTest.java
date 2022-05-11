@@ -139,6 +139,25 @@ public class CreateProfileInstTest extends AddMiscThings {
         createButtonVi.perform(ViewActions.click());
         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
 
+        // create an account
+        usernameVi.perform(ViewActions.replaceText("Arun"));
+        bioVi.perform(ViewActions.replaceText("Bio"));
+        passwordVi.perform(ViewActions.replaceText("password"));
+        createButtonVi.perform(ViewActions.click());
+        Profile profile = new Profile();
+        profile.setUsername("Arun");
+
+        SystemClock.sleep(5000);
+
+        ViewInteraction profileButton = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
+        profileButton.perform(ViewActions.click());
+        ViewInteraction logoutButton = Espresso.onView(ViewMatchers.withId(R.id.LogoutButton));
+        logoutButton.perform(ViewActions.click());
+
+        SystemClock.sleep(5000);
+
+        signUpButton.perform(ViewActions.click());
+
         // enter the same username of an existing user
         usernameVi.perform(ViewActions.replaceText("Arun"));
         bioVi.perform(ViewActions.replaceText("Bio"));
@@ -148,6 +167,8 @@ public class CreateProfileInstTest extends AddMiscThings {
         Matcher<View> snackbarMatcher0 = ViewMatchers.withText(R.string.userExists);
         ViewInteraction snackBarVi0 = Espresso.onView(snackbarMatcher0);
         snackBarVi0.check(ViewAssertions.matches(snackbarMatcher0));
+
+        this.persistenceFacade.removeUser(profile);
 
 
     }
