@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string-array name="diff_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="sport_array">
+        <item>None</item>
+        <item>Tennis</item>
+        <item>Lacrosse</item>
+        <item>Baseball</item>
+        <item>Soccer</item>
+        <item>Track and Field</item>
+        <item>Basketball</item>
+        <item>Rugby</item>
+        <item>Rowing</item>
+        <item>Swimming</item>
+    </string-array>
+    <string-array name="typeArray">
+        <item>Any</item>
+        <item>Cardio</item>
+        <item>Strength</item>
+        <item>Mobility</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="AgilityFocus">Agility Focus</string>
+    <string name="BodyWeightFocus">Body Weight Focus</string>
+    <string name="CardioTitle">Cardio Workout</string>
+    <string name="CreationSuccessful">Creation Successful</string>
+    <string name="DiffFilter">Difficulty</string>
+    <string name="EditProfile">Edit Profile</string>
+    <string name="EnduranceFocus">Endurance Focus</string>
+    <string name="FilterInfo">Leave field as zero if no preference</string>
+    <string name="FollowRequests">View Follow Requests</string>
+    <string name="Followers">Followers</string>
+    <string name="Following">Following</string>
+    <string name="FullBodyFocus">Full Body Focus</string>
+    <string name="LogInButton">Log In</string>
+    <string name="LowerBodyFocus">Lower Body Focus</string>
+    <string name="MobilityTitle">Mobility Workout</string>
+    <string name="NewUserMessage">Don\'t have an account?</string>
+    <string name="PasswordButton">Confirm</string>
+    <string name="PasswordText">Enter Password:</string>
+    <string name="Post1">Post</string>
+    <string name="Post2">Post</string>
+    <string name="Post3">Post</string>
+    <string name="Posts">Posts</string>
+    <string name="RemoveFilter">Remove Filters</string>
+    <string name="RequestFollow">Request Follow</string>
+    <string name="SetButton">Set</string>
+    <string name="SignUpButton">Sign Up</string>
+    <string name="SpeedFocus">Speed Focus</string>
+    <string name="StrengthTitle">Strength Workout</string>
+    <string name="UpperBodyFocus">Upper Body Focus</string>
+    <string name="UsernameButton">Confirm</string>
+    <string name="WelcomeMessage">Ultimate Social media app for Workouts</string>
+    <string name="accept">Request Accepted!</string>
+    <string name="addButton">Add Post</string>
+    <string name="addWorkoutButton">Add Workout</string>
+    <string name="app_name">WorkoutApp</string>
+    <string name="backToProfile">Back</string>
+    <string name="bioButton">Confirm</string>
+    <string name="bioEdit">Bio</string>
+    <string name="bioText">Enter Bio:</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="caption">Add Caption:</string>
+    <string name="captionButton">Add</string>
+    <string name="captionTextBox">Enter Caption</string>
+    <string name="cardioButton">Cardio</string>
+    <string name="createButton">Create</string>
+    <string name="createPost">Create Post</string>
+    <string name="createProfileText">Create Profile</string>
+    <string name="decline">Request Declined!</string>
+    <string name="default_web_client_id" translatable="false">893570534908-gp37feb98n7illlks5r2ckfohrniinhk.apps.googleusercontent.com</string>
+    <string name="diff_input">1 to 5</string>
+    <string name="diff_label">Workout Difficulty</string>
+    <string name="done">Done</string>
+    <string name="dynamic">Dynamic Stretching</string>
+    <string name="empty"/>
+    <string name="experienceLevelText">Enter Experience Level:</string>
+    <string name="feedButton">Feed</string>
+    <string name="filterTitle">Filters</string>
+    <string name="gcm_defaultSenderId" translatable="false">893570534908</string>
+    <string name="goback">Go Back</string>
+    <string name="google_api_key" translatable="false">AIzaSyDEWzP-hSj5H2PjqzdyScSieTKthfuvwGU</string>
+    <string name="google_app_id" translatable="false">1:893570534908:android:ad17a0b533f949aa56f679</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDEWzP-hSj5H2PjqzdyScSieTKthfuvwGU</string>
+    <string name="google_storage_bucket" translatable="false">team-h-7d1f3.appspot.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_workout">Describe workout here</string>
+    <string name="invalidCredentials">Incorrect Username or Password. Try again!</string>
+    <string name="lengthFilter">Length</string>
+    <string name="length_input">0</string>
+    <string name="length_label">Workout Length (Min)</string>
+    <string name="login">LogIn successful</string>
+    <string name="logout">Logout</string>
+    <string name="mobility">Mobility</string>
+    <string name="passText">Password</string>
+    <string name="postButton">Post</string>
+    <string name="postCaption">Caption</string>
+    <string name="postWorkout">Workout</string>
+    <string name="profile">Profile</string>
+    <string name="profileButton">Profile</string>
+    <string name="project_id" translatable="false">team-h-7d1f3</string>
+    <string name="setBio">Set Bio</string>
+    <string name="setPassword">Set Password</string>
+    <string name="setUsername">Set Username</string>
+    <string name="sport">Sport Focus</string>
+    <string name="staticStretching">Static Stretching</string>
+    <string name="strengthButton">Strength</string>
+    <string name="titleWorkout">Add a Workout</string>
+    <string name="userExists">Sorry, this user already exists. Pick a new username.</string>
+    <string name="userText">Enter Username:</string>
+    <string name="usernameText">Username</string>
+    <string name="workoutType">Workout Type</string>
+    <string name="workout_description">Workout description:</string>
+    <string name="yoga">Yoga</string>
+    <style name="Theme.WorkoutApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
+        
+    </style>
+    <style name="Theme.WorkoutApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.WorkoutApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.WorkoutApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>

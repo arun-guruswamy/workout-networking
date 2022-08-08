@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_feed.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_feed.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_follow_requests.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_follow_requests.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_mobility.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_mobility.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_view_other_profile.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_view_other_profile.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_add_workout.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_add_workout.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_view_profile.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_view_profile.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_filter.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_filter.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home_screen.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_home_screen.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_cardio.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_cardio.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_edit_profile.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_edit_profile.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_create_profile.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_create_profile.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\main.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_strength.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_strength.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_follow_request.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_follow_request.xml"
+    },
+    {
+        "merged": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_create__post_.xml",
+        "source": "C:\\Documents\\College\\Sophomore year\\Spring\\CMPU 203\\team-h\\app\\src\\main\\res\\layout\\fragment_create__post_.xml"
+    }
+]

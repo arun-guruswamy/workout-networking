@@ -1,0 +1,382 @@
+05-10 19:19:47.723  6282  6308 I TestRunner: started: addMultiplePostsTest(edu.vassar.cmpu203.workoutapp.AddPostInstTest)
+05-10 19:19:47.735   383   489 D goldfish-address-space: claimShared: Ask to claim region [0x3f4000000 0x3f4965000]
+05-10 19:19:47.762  6282  6308 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+05-10 19:19:47.779   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f4965000 0x3f52ca000]
+05-10 19:19:47.809  2334  2334 I GsaVoiceInteractionSrv: Handling ACTION_START_HOTWORD
+05-10 19:19:47.809  2334  2334 I GsaVoiceInteractionSrv: disregardVoiceMatch: false
+05-10 19:19:47.810  2334  2334 I GsaVoiceInteractionSrv: Cannot start hotword, hotword has been explicitly disabled.
+05-10 19:19:47.813  8201  9184 I OpenGLRenderer: Davey! duration=111823ms; Flags=1, FrameTimelineVsyncId=283507, IntendedVsync=41672352299444, Vsync=41672352299444, InputEventId=0, HandleInputStart=41672353393400, AnimationStart=41672353424400, PerformTraversalsStart=41672353462100, DrawStart=41672415853600, FrameDeadline=41672385632776, FrameInterval=41672353376300, FrameStartTime=16666666, SyncQueued=41672416314000, SyncStart=41672420054700, IssueDrawCommandsStart=41672421258700, SwapBuffers=41672421543600, FrameCompleted=41784179316500, DequeueBufferDuration=38300, QueueBufferDuration=5097100, GpuCompleted=41784179316500, SwapBuffersCompleted=41672451058300, DisplayPresentTime=0,
+05-10 19:19:47.891   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f5356000 0x3f5cbb000]
+05-10 19:19:47.952   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3fb09d000 0x3fba02000]
+05-10 19:19:47.962   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f8000000 0x3f8965000]
+05-10 19:19:47.981  1065  1128 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.991   565  1545 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:47.992   565  1545 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.039  2334  2334 I GsaVoiceInteractionSrv: Handling ACTION_STOP_HOTWORD
+05-10 19:19:48.039  2334  2334 E HwDetectorWithState: a: 3
+05-10 19:19:48.074   565  1907 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.075   565  1907 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.076   565  1907 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.076   565  1907 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.076   565  1907 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.077   565  1907 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:19:48.115  8201  8201 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=66, right=0, bottom=44}
+05-10 19:19:48.115  8201  8201 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=66, right=0, bottom=44}
+05-10 19:19:48.122  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: PRE_ON_CREATE
+05-10 19:19:48.122  6282  6282 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+05-10 19:19:48.127  6282  6304 V FA      : onActivityCreated
+05-10 19:19:48.170  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: CREATED
+05-10 19:19:48.171  6282  6282 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659
+05-10 19:19:48.253  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: STARTED
+05-10 19:19:48.254  6282  6282 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659
+05-10 19:19:48.256  6282  6310 V FA      : Activity resumed, time: 41784699
+05-10 19:19:48.257  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: RESUMED
+05-10 19:19:48.257  6282  6282 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659
+05-10 19:19:48.318   817   880 D EGL_emulation: app_time_stats: avg=4268.37ms min=12.50ms max=80220.28ms count=19
+05-10 19:19:48.332  9468  6333 V FA-SVC  : Logging event: origin=auto,name=screen_view(_vs),params=Bundle[{ga_event_origin(_o)=auto, ga_previous_class(_pc)=MainActivity, ga_previous_id(_pi)=-9150921589328402064, ga_screen_class(_sc)=MainActivity, ga_screen_id(_si)=-9150921589328402063}]
+05-10 19:19:48.335   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f0000000 0x3f0965000]
+05-10 19:19:48.340  9468  6333 V FA-SVC  : Upload scheduled in approximately ms: 2320563
+05-10 19:19:48.341  9468  6333 V FA-SVC  : Unscheduling upload
+05-10 19:19:48.364  9468  6333 V FA-SVC  : Scheduling upload, millis: 2320563
+05-10 19:19:48.365  9468  6333 V FA-SVC  : Background event processing time, ms: 33
+05-10 19:19:48.371  8242  6255 W NetworkScheduler: Error inserting flex_time=2320000 job_id=-1 period=4642000 source=16 requires_charging=0 preferred_network_type=1 target_class=com.google.android.gms.measurement.PackageMeasurementTaskService user_id=0 target_package=com.google.android.gms tag=Measurement.PackageMeasurementTaskService.UPLOAD_TASK_TAG task_type=0 required_idleness_state=0 service_kind=0 source_version=221514000 persistence_level=1 preferred_charging_state=1 required_network_type=0 runtime=1652224788367 retry_strategy={"maximum_backoff_seconds":{"3600":0},"initial_backoff_seconds":{"30":0},"retry_policy":{"0":0}} last_runtime=0, error message: UNIQUE constraint failed: pending_ops.tag, pending_ops.target_class, pending_ops.target_package, pending_ops.user_id (code 2067 SQLITE_CONSTRAINT_UNIQUE) [CONTEXT service_id=218 ]
+05-10 19:19:48.381   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f5cbb000 0x3f6620000]
+05-10 19:19:48.394   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f6620000 0x3f6f85000]
+05-10 19:19:48.417   565   600 I ActivityTaskManager: Displayed edu.vassar.cmpu203.workoutapp/.Controller.MainActivity: +648ms
+05-10 19:19:48.439  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3269
+05-10 19:19:48.441  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1947
+05-10 19:19:48.445  8377  8377 I DeviceUnlockedTag: DeviceUnlockedTag.notifyDeviceLockStatusChanged():79 Notify device unlocked.
+05-10 19:19:49.427   817   880 D EGL_emulation: app_time_stats: avg=175.87ms min=8.09ms max=960.17ms count=6
+05-10 19:19:49.439   565  2504 W InputManager-JNI: Input channel object '7a34be6 edu.vassar.cmpu203.workoutapp.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+05-10 19:19:49.450   817  2050 I OpenGLRenderer: Davey! duration=959ms; Flags=0, FrameTimelineVsyncId=288731, IntendedVsync=41784885628276, Vsync=41784885628276, InputEventId=0, HandleInputStart=41784895344900, AnimationStart=41784895367600, PerformTraversalsStart=41784895624200, DrawStart=41784895741300, FrameDeadline=41784918961608, FrameInterval=41784895333700, FrameStartTime=16666666, SyncQueued=41784895772400, SyncStart=41784924589400, IssueDrawCommandsStart=41784924656900, SwapBuffers=41784926165800, FrameCompleted=41785873805500, DequeueBufferDuration=36300, QueueBufferDuration=3625200, GpuCompleted=41785873805500, SwapBuffersCompleted=41785871552100, DisplayPresentTime=0,
+05-10 19:19:49.460  6282  6295 I OpenGLRenderer: Davey! duration=977ms; Flags=0, FrameTimelineVsyncId=288737, IntendedVsync=41784918961608, Vsync=41784918961608, InputEventId=0, HandleInputStart=41784920650200, AnimationStart=41784920677500, PerformTraversalsStart=41784921190800, DrawStart=41784921319600, FrameDeadline=41784952294940, FrameInterval=41784920632900, FrameStartTime=16666666, SyncQueued=41784922028200, SyncStart=41784924947800, IssueDrawCommandsStart=41784925134100, SwapBuffers=41784926048600, FrameCompleted=41785899193200, DequeueBufferDuration=24941100, QueueBufferDuration=3656500, GpuCompleted=41785873766400, SwapBuffersCompleted=41785899193200, DisplayPresentTime=0,
+05-10 19:19:49.462  6282  6282 I Choreographer: Skipped 57 frames!  The application may be doing too much work on its main thread.
+05-10 19:19:49.465   817   876 I Choreographer: Skipped 59 frames!  The application may be doing too much work on its main thread.
+05-10 19:19:49.472   817   880 D EGL_emulation: app_time_stats: avg=494.76ms min=24.67ms max=997.64ms count=3
+05-10 19:19:49.475   817   817 I Choreographer: Skipped 59 frames!  The application may be doing too much work on its main thread.
+05-10 19:19:49.478  6282  6345 D EGL_emulation: app_time_stats: avg=168.35ms min=4.86ms max=946.37ms count=6
+05-10 19:19:49.533   565  2504 W InputManager-JNI: Input channel object 'e18dfd2 Splash Screen edu.vassar.cmpu203.workoutapp.test (client)' was disposed without first being removed with the input manager!
+05-10 19:19:49.540   817  2050 I OpenGLRenderer: Davey! duration=1015ms; Flags=0, FrameTimelineVsyncId=288740, IntendedVsync=41784935628274, Vsync=41785918961568, InputEventId=0, HandleInputStart=41785920211700, AnimationStart=41785921116500, PerformTraversalsStart=41785923722200, DrawStart=41785923844000, FrameDeadline=41784968961606, FrameInterval=41785919486200, FrameStartTime=16666666, SyncQueued=41785923914500, SyncStart=41785933889500, IssueDrawCommandsStart=41785933986000, SwapBuffers=41785943330800, FrameCompleted=41785960938100, DequeueBufferDuration=8449300, QueueBufferDuration=879500, GpuCompleted=41785952361700, SwapBuffersCompleted=41785960938100, DisplayPresentTime=0,
+05-10 19:19:49.540  6282  6295 I OpenGLRenderer: Davey! duration=993ms; Flags=0, FrameTimelineVsyncId=288742, IntendedVsync=41784952294940, Vsync=41785902294902, InputEventId=0, HandleInputStart=41785905915700, AnimationStart=41785905948300, PerformTraversalsStart=41785907380800, DrawStart=41785907767400, FrameDeadline=41784985628272, FrameInterval=41785905631100, FrameStartTime=16666666, SyncQueued=41785908210700, SyncStart=41785923240500, IssueDrawCommandsStart=41785923366100, SwapBuffers=41785931564800, FrameCompleted=41785960736000, DequeueBufferDuration=17767500, QueueBufferDuration=3222500, GpuCompleted=41785942700600, SwapBuffersCompleted=41785960736000, DisplayPresentTime=0,
+05-10 19:19:50.479   817   880 D EGL_emulation: app_time_stats: avg=6.99ms min=3.00ms max=61.98ms count=51
+05-10 19:19:53.340  6282  6310 V FA      : Inactivity, disconnecting from the service
+05-10 19:19:58.261  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296739/edu.vassar.cmpu203.workoutapp:id/signUpButton>
+05-10 19:19:58.284  6282  6345 D EGL_emulation: app_time_stats: avg=4393.71ms min=20.01ms max=8767.41ms count=2
+05-10 19:19:58.307   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:19:58.349  9468  9468 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+05-10 19:19:58.445   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:19:58.568  6282  6282 I ViewInteraction: Performing 'replace text(Username)' action on view view.getId() is <2131296313/edu.vassar.cmpu203.workoutapp:id/UsernameText>
+05-10 19:19:58.584  6282  6282 I AssistStructure: Flattened final assist data: 2756 bytes, containing 1 windows, 16 views
+05-10 19:19:58.586  6282  6282 I ViewInteraction: Performing 'replace text(Password)' action on view view.getId() is <2131296679/edu.vassar.cmpu203.workoutapp:id/passwordEditText>
+05-10 19:19:58.599  6282  6282 I ViewInteraction: Performing 'replace text(Bio)' action on view view.getId() is <2131296405/edu.vassar.cmpu203.workoutapp:id/bioEditText>
+05-10 19:19:58.612  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296457/edu.vassar.cmpu203.workoutapp:id/createButton>
+05-10 19:19:58.687   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:19:58.823   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:19:58.901  6282  6291 I u203.workoutap: Background concurrent copying GC freed 203109(7430KB) AllocSpace objects, 9(308KB) LOS objects, 49% free, 7379KB/14MB, paused 404us,60us total 130.579ms
+05-10 19:19:59.285  6282  6345 D EGL_emulation: app_time_stats: avg=15.33ms min=1.90ms max=137.91ms count=50
+05-10 19:19:59.483  6282  6282 I Choreographer: Skipped 49 frames!  The application may be doing too much work on its main thread.
+05-10 19:19:59.533  6282  6297 I OpenGLRenderer: Davey! duration=852ms; Flags=0, FrameTimelineVsyncId=289004, IntendedVsync=41795102294534, Vsync=41795918961168, InputEventId=-981000439, HandleInputStart=41795927216900, AnimationStart=41795927240800, PerformTraversalsStart=41795927509100, DrawStart=41795939328500, FrameDeadline=41795135627866, FrameInterval=41795927093500, FrameStartTime=16666666, SyncQueued=41795942214100, SyncStart=41795945430200, IssueDrawCommandsStart=41795945580500, SwapBuffers=41795946659700, FrameCompleted=41795957562000, DequeueBufferDuration=8265500, QueueBufferDuration=1534100, GpuCompleted=41795948890800, SwapBuffersCompleted=41795957562000, DisplayPresentTime=-10682368,
+05-10 19:20:00.412   817   880 D EGL_emulation: app_time_stats: avg=56294.65ms min=56294.65ms max=56294.65ms count=1
+05-10 19:20:01.381  6282  6345 D EGL_emulation: app_time_stats: avg=45.94ms min=1.95ms max=1433.04ms count=38
+05-10 19:20:02.735  6282  6345 D EGL_emulation: app_time_stats: avg=78.60ms min=11.20ms max=1070.05ms count=17
+05-10 19:20:05.555  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296378/edu.vassar.cmpu203.workoutapp:id/addButton>
+05-10 19:20:05.585  6282  6345 D EGL_emulation: app_time_stats: avg=558.47ms min=4.76ms max=2752.38ms count=5
+05-10 19:20:05.613   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:05.749   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:05.878  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "No workout added"}' assertion on view view.getId() is <2131296693/edu.vassar.cmpu203.workoutapp:id/postWorkout>
+05-10 19:20:05.879  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296379/edu.vassar.cmpu203.workoutapp:id/addWorkoutButton>
+05-10 19:20:05.932   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:06.060   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:06.254  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296263/edu.vassar.cmpu203.workoutapp:id/CardioButton>
+05-10 19:20:06.308   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:06.451   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:06.722  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296270/edu.vassar.cmpu203.workoutapp:id/EnduranceOption>
+05-10 19:20:06.749  6282  6345 D EGL_emulation: app_time_stats: avg=27.70ms min=2.37ms max=184.36ms count=34
+05-10 19:20:06.796   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:06.923   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:07.058  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296302/edu.vassar.cmpu203.workoutapp:id/SpeedOption>
+05-10 19:20:07.121   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:07.254   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:07.368  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296264/edu.vassar.cmpu203.workoutapp:id/CardioSetButton>
+05-10 19:20:07.431   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:07.567   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:07.819  6282  6282 I ViewInteraction: Performing 'replace text(100)' action on view view.getId() is <2131296318/edu.vassar.cmpu203.workoutapp:id/WorkoutLengthInput>
+05-10 19:20:07.832  6282  6282 I ViewInteraction: Performing 'Set a progress on a SeekBar' action on view view.getId() is <2131296317/edu.vassar.cmpu203.workoutapp:id/WorkoutDifficultyInput>
+05-10 19:20:07.837  6282  6345 D EGL_emulation: app_time_stats: avg=11.31ms min=3.20ms max=190.35ms count=50
+05-10 19:20:07.857  6282  6282 I ViewInteraction: Performing 'replace text(Five sprints)' action on view view.getId() is <2131296316/edu.vassar.cmpu203.workoutapp:id/WorkoutDescriptionInput>
+05-10 19:20:07.883  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296751/edu.vassar.cmpu203.workoutapp:id/spinner2>
+05-10 19:20:08.030   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f18cd000 0x3f1c01000]
+05-10 19:20:08.065   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1c01000 0x3f1f35000]
+05-10 19:20:08.070   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1f35000 0x3f2269000]
+05-10 19:20:08.456  6282  6282 I ViewInteraction: Performing 'load adapter data' action on view is assignable from class <class android.widget.AdapterView>
+05-10 19:20:08.465  6282  6282 I ViewInteraction: Performing 'single click' action on view  displaying data matching: ANYTHING within adapter view matching: is assignable from class <class android.widget.AdapterView>
+05-10 19:20:08.594   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:08.648  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3269
+05-10 19:20:08.649  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1947
+05-10 19:20:08.651  8377  8377 I DeviceUnlockedTag: DeviceUnlockedTag.notifyDeviceLockStatusChanged():79 Notify device unlocked.
+05-10 19:20:08.724   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:08.868  6282  6345 D EGL_emulation: app_time_stats: avg=21.27ms min=4.14ms max=58.90ms count=41
+05-10 19:20:08.956  6282  6345 D OpenGLRenderer: endAllActiveAnimators on 0x7996f82bd770 (DropDownListView) with handle 0x7996082bdc80
+05-10 19:20:08.959   565  2504 W InputManager-JNI: Input channel object 'fd7868c PopupWindow:5e76b13 (client)' was disposed without first being removed with the input manager!
+05-10 19:20:08.966  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296257/edu.vassar.cmpu203.workoutapp:id/AddWorkoutButton>
+05-10 19:20:09.025   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:09.162   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:09.430  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "Five sprints\n\nLength: 100, Difficulty: 1, Sport Focus: None\nEndurance Focus: true\nAgility Focus: false\nSpeed Focus: true"}' assertion on view view.getId() is <2131296693/edu.vassar.cmpu203.workoutapp:id/postWorkout>
+05-10 19:20:09.436  6282  6282 I ViewInteraction: Performing 'replace text(Did some sprints today)' action on view view.getId() is <2131296422/edu.vassar.cmpu203.workoutapp:id/captionTextBox>
+05-10 19:20:09.449  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296421/edu.vassar.cmpu203.workoutapp:id/captionButton>
+05-10 19:20:09.525   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:09.657   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:09.797  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "Did some sprints today"}' assertion on view view.getId() is <2131296691/edu.vassar.cmpu203.workoutapp:id/postCaption>
+05-10 19:20:09.802  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296690/edu.vassar.cmpu203.workoutapp:id/postButton>
+05-10 19:20:09.874  6282  6345 D EGL_emulation: app_time_stats: avg=17.91ms min=3.47ms max=167.48ms count=39
+05-10 19:20:09.967   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:10.089   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:10.540  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Five sprints\n\nLength: 100, Difficulty: 1, Sport Focus: None\nEndurance Focus: true\nAgility Focus: false\nSpeed Focus: true\n\nDid some sprints today"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "Did some sprints today"
+05-10 19:20:10.544  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296378/edu.vassar.cmpu203.workoutapp:id/addButton>
+05-10 19:20:10.665   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:10.800   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:10.897  6282  6345 D EGL_emulation: app_time_stats: avg=22.49ms min=4.57ms max=248.81ms count=27
+05-10 19:20:11.081  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296379/edu.vassar.cmpu203.workoutapp:id/addWorkoutButton>
+05-10 19:20:11.151   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:11.296   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:11.808  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296305/edu.vassar.cmpu203.workoutapp:id/StrengthButton>
+05-10 19:20:11.907  6282  6345 D EGL_emulation: app_time_stats: avg=26.19ms min=6.25ms max=250.21ms count=24
+05-10 19:20:11.933   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:11.938   444   525 D AF::Track: interceptBuffer: took 2966us to intercept 0 tracks
+05-10 19:20:11.968   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(7)
+05-10 19:20:12.036   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:12.306  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296311/edu.vassar.cmpu203.workoutapp:id/UpperBodyOption>
+05-10 19:20:12.471   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:12.473   444   525 D AF::Track: interceptBuffer: took 1892us to intercept 0 tracks
+05-10 19:20:12.590   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:12.697  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296261/edu.vassar.cmpu203.workoutapp:id/BodyWeightOption>
+05-10 19:20:12.749   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:12.877   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:12.920  6282  6345 D EGL_emulation: app_time_stats: avg=14.49ms min=3.70ms max=191.00ms count=32
+05-10 19:20:13.003  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296306/edu.vassar.cmpu203.workoutapp:id/StrengthSetButton>
+05-10 19:20:13.148   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:13.255   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:13.605  6282  6282 I ViewInteraction: Performing 'replace text(40)' action on view view.getId() is <2131296318/edu.vassar.cmpu203.workoutapp:id/WorkoutLengthInput>
+05-10 19:20:13.634  6282  6282 I ViewInteraction: Performing 'Set a progress on a SeekBar' action on view view.getId() is <2131296317/edu.vassar.cmpu203.workoutapp:id/WorkoutDifficultyInput>
+05-10 19:20:13.663  6282  6282 I ViewInteraction: Performing 'replace text(Lots and lots of push-ups)' action on view view.getId() is <2131296316/edu.vassar.cmpu203.workoutapp:id/WorkoutDescriptionInput>
+05-10 19:20:13.690  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296751/edu.vassar.cmpu203.workoutapp:id/spinner2>
+05-10 19:20:13.938  6282  6345 D EGL_emulation: app_time_stats: avg=28.95ms min=4.82ms max=241.23ms count=25
+05-10 19:20:14.116   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f18cd000 0x3f1c01000]
+05-10 19:20:14.177   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1c01000 0x3f1f35000]
+05-10 19:20:14.203   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1f35000 0x3f2269000]
+05-10 19:20:14.607  6282  6282 I Choreographer: Skipped 34 frames!  The application may be doing too much work on its main thread.
+05-10 19:20:14.952  6282  6345 D EGL_emulation: app_time_stats: avg=84.89ms min=5.91ms max=350.69ms count=10
+05-10 19:20:15.238  6282  6282 I ViewInteraction: Performing 'load adapter data' action on view is assignable from class <class android.widget.AdapterView>
+05-10 19:20:15.247  6282  6282 I ViewInteraction: Performing 'single click' action on view  displaying data matching: ANYTHING within adapter view matching: is assignable from class <class android.widget.AdapterView>
+05-10 19:20:15.394   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:15.489   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(6)
+05-10 19:20:15.551   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:15.618  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3269
+05-10 19:20:15.619  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1947
+05-10 19:20:15.628  8377  8377 I DeviceUnlockedTag: DeviceUnlockedTag.notifyDeviceLockStatusChanged():79 Notify device unlocked.
+05-10 19:20:15.636  6282  6345 D EGL_emulation: app_time_stats: avg=85.17ms min=4.03ms max=265.62ms count=13
+05-10 19:20:15.836   565  2721 W InputManager-JNI: Input channel object 'ac2aca7 PopupWindow:ae16f79 (client)' was disposed without first being removed with the input manager!
+05-10 19:20:16.064  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296257/edu.vassar.cmpu203.workoutapp:id/AddWorkoutButton>
+05-10 19:20:16.139  6282  6345 D EGL_emulation: app_time_stats: avg=128.03ms min=15.01ms max=378.17ms count=9
+05-10 19:20:16.202   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:16.209   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(10)
+05-10 19:20:16.264   444   525 D AF::Track: interceptBuffer: took 1277us to intercept 0 tracks
+05-10 19:20:16.291   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(19)
+05-10 19:20:16.364   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:16.833  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "Lots and lots of push-ups\n\nLength: 40, Difficulty: 2, Sport Focus: None\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false\nBodyWeight Focus: true"}' assertion on view view.getId() is <2131296693/edu.vassar.cmpu203.workoutapp:id/postWorkout>
+05-10 19:20:16.852  6282  6282 I ViewInteraction: Performing 'replace text(My arms are sore)' action on view view.getId() is <2131296422/edu.vassar.cmpu203.workoutapp:id/captionTextBox>
+05-10 19:20:16.894  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296421/edu.vassar.cmpu203.workoutapp:id/captionButton>
+05-10 19:20:17.022   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:17.143   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:17.163  6282  6345 D EGL_emulation: app_time_stats: avg=34.34ms min=3.25ms max=228.89ms count=22
+05-10 19:20:17.287  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "My arms are sore"}' assertion on view view.getId() is <2131296691/edu.vassar.cmpu203.workoutapp:id/postCaption>
+05-10 19:20:17.306  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296690/edu.vassar.cmpu203.workoutapp:id/postButton>
+05-10 19:20:17.430   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:17.433   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(33)
+05-10 19:20:17.548   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:17.798  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Five sprints\n\nLength: 100, Difficulty: 1, Sport Focus: None\nEndurance Focus: true\nAgility Focus: false\nSpeed Focus: true\n\nDid some sprints today"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "Did some sprints today"
+05-10 19:20:17.802  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Lots and lots of push-ups\n\nLength: 40, Difficulty: 2, Sport Focus: None\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false\nBodyWeight Focus: true\n\nMy arms are sore"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "My arms are sore"
+05-10 19:20:17.805  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296378/edu.vassar.cmpu203.workoutapp:id/addButton>
+05-10 19:20:17.882   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:18.017   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:18.177  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296379/edu.vassar.cmpu203.workoutapp:id/addWorkoutButton>
+05-10 19:20:18.226  6282  6345 D EGL_emulation: app_time_stats: avg=20.95ms min=2.95ms max=184.51ms count=33
+05-10 19:20:18.304   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:18.435   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:18.502  6282  6291 I u203.workoutap: Background young concurrent copying GC freed 134446(5149KB) AllocSpace objects, 0(0B) LOS objects, 33% free, 9856KB/14MB, paused 3.310ms,89us total 117.156ms
+05-10 19:20:18.752  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296305/edu.vassar.cmpu203.workoutapp:id/StrengthButton>
+05-10 19:20:18.847   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:18.850   444   525 D AudioFlinger: mixer(0x7e498e10ba60) throttle end: throttle time(36)
+05-10 19:20:18.968   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:19.226  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296284/edu.vassar.cmpu203.workoutapp:id/LowerBodyOption>
+05-10 19:20:19.249  6282  6345 D EGL_emulation: app_time_stats: avg=30.66ms min=4.17ms max=184.53ms count=25
+05-10 19:20:19.298   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:19.428   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:19.514  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296279/edu.vassar.cmpu203.workoutapp:id/FullBodyOption>
+05-10 19:20:19.567   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:19.705   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:19.812  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296306/edu.vassar.cmpu203.workoutapp:id/StrengthSetButton>
+05-10 19:20:19.934   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:20.074   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:20.445  6282  6282 I ViewInteraction: Performing 'replace text(30)' action on view view.getId() is <2131296318/edu.vassar.cmpu203.workoutapp:id/WorkoutLengthInput>
+05-10 19:20:20.463  6282  6282 I ViewInteraction: Performing 'Set a progress on a SeekBar' action on view view.getId() is <2131296317/edu.vassar.cmpu203.workoutapp:id/WorkoutDifficultyInput>
+05-10 19:20:20.467  6282  6345 D EGL_emulation: app_time_stats: avg=15.63ms min=3.10ms max=202.50ms count=46
+05-10 19:20:20.482  6282  6282 I ViewInteraction: Performing 'replace text(Some good weights and what not)' action on view view.getId() is <2131296316/edu.vassar.cmpu203.workoutapp:id/WorkoutDescriptionInput>
+05-10 19:20:20.497  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296751/edu.vassar.cmpu203.workoutapp:id/spinner2>
+05-10 19:20:20.651   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f18cd000 0x3f1c01000]
+05-10 19:20:20.671   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1c01000 0x3f1f35000]
+05-10 19:20:20.677   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f1f35000 0x3f2269000]
+05-10 19:20:21.150  6282  6282 I ViewInteraction: Performing 'load adapter data' action on view is assignable from class <class android.widget.AdapterView>
+05-10 19:20:21.171  6282  6282 I ViewInteraction: Performing 'single click' action on view  displaying data matching: ANYTHING within adapter view matching: is assignable from class <class android.widget.AdapterView>
+05-10 19:20:21.374   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:21.437  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3269
+05-10 19:20:21.438  8377  8377 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1947
+05-10 19:20:21.440  8377  8377 I DeviceUnlockedTag: DeviceUnlockedTag.notifyDeviceLockStatusChanged():79 Notify device unlocked.
+05-10 19:20:21.470  6282  6345 D EGL_emulation: app_time_stats: avg=21.16ms min=4.96ms max=58.13ms count=35
+05-10 19:20:21.536   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:21.757   565  1939 W InputManager-JNI: Input channel object 'ea40131 PopupWindow:c9bb302 (client)' was disposed without first being removed with the input manager!
+05-10 19:20:21.894  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296257/edu.vassar.cmpu203.workoutapp:id/AddWorkoutButton>
+05-10 19:20:22.023   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:22.104   444   525 D AF::Track: interceptBuffer: took 875us to intercept 0 tracks
+05-10 19:20:22.150   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:22.480  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "Some good weights and what not\n\nLength: 30, Difficulty: 4, Sport Focus: None\nUpperBody Focus: false\nLowerBody Focus: true\nFullBodyFocus: true\nBodyWeight Focus: false"}' assertion on view view.getId() is <2131296693/edu.vassar.cmpu203.workoutapp:id/postWorkout>
+05-10 19:20:22.487  6282  6282 I ViewInteraction: Performing 'replace text(My legs are sore)' action on view view.getId() is <2131296422/edu.vassar.cmpu203.workoutapp:id/captionTextBox>
+05-10 19:20:22.509  6282  6345 D EGL_emulation: app_time_stats: avg=40.81ms min=4.11ms max=280.28ms count=20
+05-10 19:20:22.511  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296421/edu.vassar.cmpu203.workoutapp:id/captionButton>
+05-10 19:20:22.572   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:22.743   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:22.806  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: is "My legs are sore"}' assertion on view view.getId() is <2131296691/edu.vassar.cmpu203.workoutapp:id/postCaption>
+05-10 19:20:22.817  6282  6282 I ViewInteraction: Performing 'single click' action on view view.getId() is <2131296690/edu.vassar.cmpu203.workoutapp:id/postButton>
+05-10 19:20:22.952   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:23.090   372   526 E android.hardware.audio@7.0-impl.ranchu: device/generic/goldfish/audio/stream_out.cpp:updateSourceMetadata:377 failure: Result::NOT_SUPPORTED
+05-10 19:20:23.361  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Five sprints\n\nLength: 100, Difficulty: 1, Sport Focus: None\nEndurance Focus: true\nAgility Focus: false\nSpeed Focus: true\n\nDid some sprints today"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "Did some sprints today"
+05-10 19:20:23.366  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Lots and lots of push-ups\n\nLength: 40, Difficulty: 2, Sport Focus: None\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false\nBodyWeight Focus: true\n\nMy arms are sore"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "My arms are sore"
+05-10 19:20:23.371  6282  6282 I ViewInteraction: Checking 'MatchesViewAssertion{viewMatcher=an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "\nWorkout: Some good weights and what not\n\nLength: 30, Difficulty: 4, Sport Focus: None\nUpperBody Focus: false\nLowerBody Focus: true\nFullBodyFocus: true\nBodyWeight Focus: false\n\nMy legs are sore"}' assertion on view an instance of android.widget.TextView and view.getText() with or without transformation to match: a string containing "My legs are sore"
+05-10 19:20:23.406  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: PAUSED
+05-10 19:20:23.407  6282  6282 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659
+05-10 19:20:23.412  6282  6430 V FA      : Recording user engagement, ms: 35152
+05-10 19:20:23.427   565  1939 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.427   565  1939 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.428   565  1939 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.429   565  1939 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.429   565  1939 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.429   565  1939 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.429   565  1939 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.430   565  1939 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.431   565  1939 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.511  6282  6345 D EGL_emulation: app_time_stats: avg=22.49ms min=4.27ms max=229.78ms count=28
+05-10 19:20:23.538  6282  6430 V FA      : Connecting to remote service
+05-10 19:20:23.561   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f18cd000 0x3f2232000]
+05-10 19:20:23.569  9468  9468 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+05-10 19:20:23.569  9468  9468 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+05-10 19:20:23.579  6282  6430 V FA      : Connection attempt already in progress
+05-10 19:20:23.582  6282  6430 V FA      : Activity paused, time: 41819851
+05-10 19:20:23.593   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f2232000 0x3f2b97000]
+05-10 19:20:23.623   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f2b97000 0x3f34fc000]
+05-10 19:20:23.712  6282  6430 D FA      : Connected to remote service
+05-10 19:20:23.718  6282  6430 V FA      : Processing queued up service tasks: 2
+05-10 19:20:23.735   565  2721 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.736   565  2721 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.737   565  2721 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.737   565  2721 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.738   565  2721 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.738   565  2721 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.739   565  2721 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.742   565  2721 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.744   565  2721 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.745   565  2721 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.746   565  2721 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.747   565  2721 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.748   565  2721 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.749   565  2721 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.751   565  2721 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.753   565  2721 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.753   565  2721 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.755   565  2721 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.755   565  2721 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.756   565  2721 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:23.800  9468  6439 V FA-SVC  : Logging event: origin=auto,name=user_engagement(_e),params=Bundle[{ga_event_origin(_o)=auto, engagement_time_msec(_et)=35152, ga_screen_class(_sc)=MainActivity, ga_screen_id(_si)=-9150921589328402063}]
+05-10 19:20:23.857  9468  6439 V FA-SVC  : Upload scheduled in approximately ms: 2285046
+05-10 19:20:23.859  9468  6439 V FA-SVC  : Unscheduling upload
+05-10 19:20:23.888  9468  6439 V FA-SVC  : Scheduling upload, millis: 2285046
+05-10 19:20:23.910  9468  6439 V FA-SVC  : Background event processing time, ms: 105
+05-10 19:20:23.957   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f5356000 0x3f5cbb000]
+05-10 19:20:24.014  8242  5747 W NetworkScheduler: Error inserting flex_time=2285000 job_id=-1 period=4571000 source=16 requires_charging=0 preferred_network_type=1 target_class=com.google.android.gms.measurement.PackageMeasurementTaskService user_id=0 target_package=com.google.android.gms tag=Measurement.PackageMeasurementTaskService.UPLOAD_TASK_TAG task_type=0 required_idleness_state=0 service_kind=0 source_version=221514000 persistence_level=1 preferred_charging_state=1 required_network_type=0 runtime=1652224823939 retry_strategy={"maximum_backoff_seconds":{"3600":0},"initial_backoff_seconds":{"30":0},"retry_policy":{"0":0}} last_runtime=0, error message: UNIQUE constraint failed: pending_ops.tag, pending_ops.target_class, pending_ops.target_package, pending_ops.user_id (code 2067 SQLITE_CONSTRAINT_UNIQUE) [CONTEXT service_id=218 ]
+05-10 19:20:24.043   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f4000000 0x3f4965000]
+05-10 19:20:24.120   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f4965000 0x3f52ca000]
+05-10 19:20:24.327   565   600 I ActivityTaskManager: Displayed edu.vassar.cmpu203.workoutapp.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity: +726ms
+05-10 19:20:24.585   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f2232000 0x3f2835000]
+05-10 19:20:24.596  6282  6345 D OpenGLRenderer: endAllActiveAnimators on 0x7996f8339ca0 (RippleDrawable) with handle 0x7996082c7d00
+05-10 19:20:24.597  6282  6345 D OpenGLRenderer: endAllActiveAnimators on 0x7996f8334f60 (RippleDrawable) with handle 0x7996082df760
+05-10 19:20:24.779   565  1939 W InputManager-JNI: Input channel object 'b5bdc9e edu.vassar.cmpu203.workoutapp.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+05-10 19:20:24.839   565  1939 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.840   565  1939 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.840   565  1939 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.841   565  1939 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.843   565  1939 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.845   565  1939 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.846   565  1939 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.846   565  1939 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.846   565  1939 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.846   565  1939 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.847   565  1939 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.847   565  1939 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.847   565  1939 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.852   565  1939 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.852   565  1939 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.854   565  1939 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.855   565  1939 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.856   565  1939 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.857   565  1939 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.859   565  1939 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+05-10 19:20:24.869  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: STOPPED
+05-10 19:20:24.883  6282  6282 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659
+05-10 19:20:24.912  6282  6282 D LifecycleMonitor: Lifecycle status change: edu.vassar.cmpu203.workoutapp.Controller.MainActivity@dee6659 in: DESTROYED
+05-10 19:20:24.913  6282  6282 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+05-10 19:20:24.919  8201  8201 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=66, right=0, bottom=44}
+05-10 19:20:24.919  8201  8201 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=66, right=0, bottom=44}
+05-10 19:20:24.926   383   417 D goldfish-address-space: claimShared: Ask to claim region [0x3f18cd000 0x3f2232000]
+05-10 19:20:24.934  6282  6308 I TestRunner: finished: addMultiplePostsTest(edu.vassar.cmpu203.workoutapp.AddPostInstTest)
