@@ -1,3 +1,3 @@
 # Social Networking App for workouts!
 
-# made using AndroidStudio and IntelliJ
+# Made using AndroidStudio and IntelliJ
