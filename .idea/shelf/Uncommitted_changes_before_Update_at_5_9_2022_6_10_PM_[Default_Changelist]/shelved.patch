@@ -1,0 +1,264 @@
+Index: app/src/main/java/edu/vassar/cmpu203/workoutapp/View/EditProfileFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.View;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.text.Editable;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport com.google.android.material.snackbar.Snackbar;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.R;\r\nimport edu.vassar.cmpu203.workoutapp.databinding.FragmentCreateProfileBinding;\r\nimport edu.vassar.cmpu203.workoutapp.databinding.FragmentEditProfileBinding;\r\n\r\n\r\npublic class EditProfileFragment extends Fragment implements IEditProfileView {\r\n\r\n    private FragmentEditProfileBinding binding;\r\n    private IEditProfileView.Listener listener;\r\n\r\n    public EditProfileFragment(Listener listener) {\r\n        this.listener = listener;\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n\r\n        this.binding = FragmentEditProfileBinding.inflate(inflater);\r\n        return this.binding.getRoot();\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){\r\n\r\n        this.binding.setUsernameButton.setOnClickListener(new View.OnClickListener(){\r\n            @Override\r\n            public void onClick(View v) {\r\n                //For Username\r\n                Editable profileUsernameEditable = EditProfileFragment.this.binding.EditUsernameText.getText();\r\n                String username = profileUsernameEditable.toString();\r\n\r\n                profileUsernameEditable.clear();\r\n\r\n                EditProfileFragment.this.listener.onEditedUsername(username, EditProfileFragment.this);\r\n            }\r\n        });\r\n\r\n        this.binding.setPasswordButton.setOnClickListener(new View.OnClickListener(){\r\n            @Override\r\n            public void onClick(View v) {\r\n                //For Password\r\n                Editable profilePasswordEditable = EditProfileFragment.this.binding.EditPasswordText.getText();\r\n                String password = profilePasswordEditable.toString();\r\n\r\n                profilePasswordEditable.clear();\r\n\r\n                EditProfileFragment.this.listener.onEditedPassword(password, EditProfileFragment.this);\r\n            }\r\n        });\r\n\r\n        this.binding.setBioButton.setOnClickListener(new View.OnClickListener(){\r\n            @Override\r\n            public void onClick(View v) {\r\n                //For Bio\r\n                Editable profileBioEditable = EditProfileFragment.this.binding.EditBioText.getText();\r\n                String bio = profileBioEditable.toString();\r\n\r\n                profileBioEditable.clear();\r\n\r\n                EditProfileFragment.this.listener.onEditedBio(bio, EditProfileFragment.this);\r\n            }\r\n        });\r\n\r\n        this.binding.doneButton.setOnClickListener(new View.OnClickListener(){\r\n            @Override\r\n            public void onClick(View v) {\r\n                EditProfileFragment.this.listener.onDoneButton();\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public void onUsernameAlreadyExists(){\r\n        Snackbar.make(this.binding.getRoot(), \"This username is already take. Please choose another\", Snackbar.LENGTH_LONG).show();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/EditProfileFragment.java b/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/EditProfileFragment.java
+--- a/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/EditProfileFragment.java	(revision b72ad145abdf7b1bc791b707864e81b1e377b516)
++++ b/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/EditProfileFragment.java	(date 1652131190580)
+@@ -48,7 +48,14 @@
+ 
+                 profileUsernameEditable.clear();
+ 
++                if (username.length() == 0){
++                    Snackbar.make(v, "Can't have an empty Username!", Snackbar.LENGTH_LONG).show();
++                    return;
++                }
++
+                 EditProfileFragment.this.listener.onEditedUsername(username, EditProfileFragment.this);
++
++
+             }
+         });
+ 
+@@ -61,6 +68,11 @@
+ 
+                 profilePasswordEditable.clear();
+ 
++                if (password.length() == 0){
++                    Snackbar.make(v, "Can't have an empty Password!", Snackbar.LENGTH_LONG).show();
++                    return;
++                }
++
+                 EditProfileFragment.this.listener.onEditedPassword(password, EditProfileFragment.this);
+             }
+         });
+@@ -74,6 +86,11 @@
+ 
+                 profileBioEditable.clear();
+ 
++                if (bio.length() == 0){
++                    Snackbar.make(v, "Can't have an empty bio!", Snackbar.LENGTH_LONG).show();
++                    return;
++                }
++
+                 EditProfileFragment.this.listener.onEditedBio(bio, EditProfileFragment.this);
+             }
+         });
+Index: app/src/main/res/layout/fragment_edit_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".View.CreateProfileFragment\">\r\n\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/editProfileText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"163dp\"\r\n            android:layout_marginTop=\"8dp\"\r\n            android:layout_marginEnd=\"163dp\"\r\n            android:layout_marginBottom=\"704dp\"\r\n            android:text=\"@string/EditProfile\"\r\n            android:textColor=\"#3949AB\"\r\n            android:textSize=\"24sp\"\r\n            android:textStyle=\"bold\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintHorizontal_bias=\"0.671\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            app:layout_constraintVertical_bias=\"0.0\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/UserText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginTop=\"84dp\"\r\n            android:layout_marginEnd=\"41dp\"\r\n            android:text=\"@string/setUsername\"\r\n            android:textColor=\"#3949AB\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/UsernameText\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/EditUsernameText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"20dp\"\r\n            android:layout_marginTop=\"32dp\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\"\r\n            android:minHeight=\"48dp\"\r\n            android:text=\"@string/usernameText\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/UserText\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/editProfileText\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/setUsernameButton\"\r\n            android:layout_width=\"69dp\"\r\n            android:layout_height=\"48dp\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"74dp\"\r\n            android:layout_marginBottom=\"43dp\"\r\n            android:text=\"@string/SetButton\"\r\n            app:layout_constraintBottom_toTopOf=\"@+id/setPasswordButton\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintHorizontal_bias=\"0.0\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/EditUsernameText\"\r\n            app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/passwordText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginTop=\"66dp\"\r\n            android:layout_marginEnd=\"21dp\"\r\n            android:text=\"@string/setPassword\"\r\n            android:textColor=\"#5E35B1\"\r\n            app:layout_constraintEnd_toStartOf=\"@+id/passwordEditText\"\r\n            app:layout_constraintHorizontal_bias=\"0.0\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/UserText\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/EditPasswordText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"24dp\"\r\n            android:layout_marginTop=\"36dp\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPassword\"\r\n            android:minHeight=\"48dp\"\r\n            android:text=\"@string/passText\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/passwordText\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/EditUsernameText\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/setPasswordButton\"\r\n            android:layout_width=\"69dp\"\r\n            android:layout_height=\"48dp\"\r\n            android:layout_marginStart=\"8dp\"\r\n            android:layout_marginTop=\"32dp\"\r\n            android:text=\"@string/SetButton\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintHorizontal_bias=\"0.0\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/EditUsernameText\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/setUsernameButton\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/bioText\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginBottom=\"11dp\"\r\n            android:text=\"@string/setBio\"\r\n            android:textColor=\"@color/purple_500\"\r\n            app:layout_constraintBottom_toTopOf=\"@+id/EditBioText\"\r\n            app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/EditBioText\"\r\n            android:layout_width=\"382dp\"\r\n            android:layout_height=\"123dp\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginTop=\"11dp\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\"\r\n            android:text=\"@string/bioEdit\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/bioText\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/setBioButton\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginTop=\"28dp\"\r\n            android:layout_marginEnd=\"301dp\"\r\n            android:layout_marginBottom=\"251dp\"\r\n            android:text=\"@string/SetButton\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/EditBioText\" />\r\n\r\n        <Button\r\n            android:id=\"@+id/doneButton\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginStart=\"158dp\"\r\n            android:layout_marginTop=\"176dp\"\r\n            android:layout_marginEnd=\"159dp\"\r\n            android:layout_marginBottom=\"104dp\"\r\n            android:text=\"@string/done\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toBottomOf=\"@+id/EditBioText\" />\r\n\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_edit_profile.xml b/app/src/main/res/layout/fragment_edit_profile.xml
+--- a/app/src/main/res/layout/fragment_edit_profile.xml	(revision b72ad145abdf7b1bc791b707864e81b1e377b516)
++++ b/app/src/main/res/layout/fragment_edit_profile.xml	(date 1652134196801)
+@@ -4,11 +4,13 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:textAlignment="viewStart"
+     tools:context=".View.CreateProfileFragment">
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent">
++        android:layout_height="match_parent"
++        android:textAlignment="viewStart">
+ 
+         <TextView
+             android:id="@+id/editProfileText"
+@@ -29,84 +31,42 @@
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintVertical_bias="0.0" />
+ 
+-        <TextView
+-            android:id="@+id/UserText"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="16dp"
+-            android:layout_marginTop="84dp"
+-            android:layout_marginEnd="41dp"
+-            android:text="@string/setUsername"
+-            android:textColor="#3949AB"
+-            app:layout_constraintEnd_toStartOf="@+id/UsernameText"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toTopOf="parent" />
+-
+-        <EditText
+-            android:id="@+id/EditUsernameText"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="20dp"
+-            android:layout_marginTop="32dp"
+-            android:ems="10"
+-            android:inputType="textPersonName"
+-            android:minHeight="48dp"
+-            android:text="@string/usernameText"
+-            app:layout_constraintStart_toEndOf="@+id/UserText"
+-            app:layout_constraintTop_toBottomOf="@+id/editProfileText" />
+-
+-        <Button
+-            android:id="@+id/setUsernameButton"
+-            android:layout_width="69dp"
+-            android:layout_height="48dp"
+-            android:layout_marginStart="8dp"
+-            android:layout_marginTop="74dp"
+-            android:layout_marginBottom="43dp"
+-            android:text="@string/SetButton"
+-            app:layout_constraintBottom_toTopOf="@+id/setPasswordButton"
+-            app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintHorizontal_bias="0.0"
+-            app:layout_constraintStart_toEndOf="@+id/EditUsernameText"
+-            app:layout_constraintTop_toTopOf="parent" />
+-
+         <TextView
+             android:id="@+id/passwordText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+-            android:layout_marginTop="66dp"
++            android:layout_marginTop="170dp"
+             android:layout_marginEnd="21dp"
+             android:text="@string/setPassword"
+             android:textColor="#5E35B1"
+             app:layout_constraintEnd_toStartOf="@+id/passwordEditText"
+             app:layout_constraintHorizontal_bias="0.0"
+             app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toBottomOf="@+id/UserText" />
++            app:layout_constraintTop_toTopOf="parent" />
+ 
+         <EditText
+             android:id="@+id/EditPasswordText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="24dp"
+-            android:layout_marginTop="36dp"
++            android:layout_marginTop="117dp"
+             android:ems="10"
+             android:inputType="textPassword"
+             android:minHeight="48dp"
+             android:text="@string/passText"
+             app:layout_constraintStart_toEndOf="@+id/passwordText"
+-            app:layout_constraintTop_toBottomOf="@+id/EditUsernameText" />
++            app:layout_constraintTop_toBottomOf="@+id/editProfileText" />
+ 
+         <Button
+             android:id="@+id/setPasswordButton"
+             android:layout_width="69dp"
+             android:layout_height="48dp"
+-            android:layout_marginStart="8dp"
+-            android:layout_marginTop="32dp"
++            android:layout_marginTop="154dp"
+             android:text="@string/SetButton"
++            android:textAlignment="viewStart"
+             app:layout_constraintEnd_toEndOf="parent"
+-            app:layout_constraintHorizontal_bias="0.0"
+-            app:layout_constraintStart_toEndOf="@+id/EditUsernameText"
+-            app:layout_constraintTop_toBottomOf="@+id/setUsernameButton" />
++            app:layout_constraintTop_toTopOf="parent" />
+ 
+         <TextView
+             android:id="@+id/bioText"
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/ProfileTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/ProfileTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/ProfileTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865322)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/ProfileTest.java	(date 1652132865322)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp.Model;
++
++public class ProfileTest {
++}
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865357)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java	(date 1652132865357)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp.Model;
++
++public class MobilityTest {
++}
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/AuthenticationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/AuthenticationTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/AuthenticationTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865303)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/AuthenticationTest.java	(date 1652132865303)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp.Model;
++
++public class AuthenticationTest {
++}
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/SignUpInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/SignUpInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/SignUpInstTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865297)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/SignUpInstTest.java	(date 1652132865297)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp;
++
++public class SignUpInstTest {
++}
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/EditProfileInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/EditProfileInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/EditProfileInstTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865345)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/EditProfileInstTest.java	(date 1652132865345)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp;
++
++public class EditProfileInstTest {
++}
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865331)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java	(date 1652132865331)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp;
++
++public class FollowInstTest {
++}
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/LogInLogOutInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/LogInLogOutInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/LogInLogOutInstTest.java
+new file mode 100644
+--- /dev/null	(date 1652132865339)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/LogInLogOutInstTest.java	(date 1652132865339)
+@@ -0,0 +1,4 @@
++package edu.vassar.cmpu203.workoutapp;
++
++public class LogInLogOutInstTest {
++}

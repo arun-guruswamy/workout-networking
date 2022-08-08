@@ -1,0 +1,1852 @@
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddMiscThings.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp;\r\n\r\nimport android.os.SystemClock;\r\nimport android.view.View;\r\nimport android.widget.SeekBar;\r\n\r\nimport androidx.test.espresso.Espresso;\r\nimport androidx.test.espresso.UiController;\r\nimport androidx.test.espresso.ViewAction;\r\nimport androidx.test.espresso.ViewInteraction;\r\nimport androidx.test.espresso.action.ViewActions;\r\nimport androidx.test.espresso.assertion.ViewAssertions;\r\nimport androidx.test.espresso.matcher.ViewMatchers;\r\n\r\nimport org.hamcrest.Matcher;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Model.Cardio;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Mobility;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Post;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Profile;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Strength;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Workout;\r\nimport edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;\r\nimport edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;\r\nimport edu.vassar.cmpu203.workoutapp.Controller.MainActivity;\r\n\r\n\r\n\r\npublic class AddMiscThings {\r\n\r\n    protected IPersistenceFacade persistenceFacade = new FirestoreFacade();\r\n    protected Post curPost;\r\n\r\n    /**\r\n     * navigates the add workout screens and creates a workout to help with the testing\r\n     * makes it easier to create different types of workouts\r\n     *\r\n     * @param type the type of workout\r\n     * @param workout the workout that is being worked on for comparison\r\n     * @param values the values for the workout, determines which radio buttons are pressed\r\n     * @param length the length of the workout being created\r\n     * @param difficulty the difficulty of the workout being created\r\n     * @param description the description of the workout being created\r\n     * @return a workout that is going to be used for comparison to make sure the app is displaying the data properly\r\n     */\r\n    public static Workout addWorkoutTests(int type, Workout workout, boolean[] values, String length, int difficulty, String description) {\r\n        //clicks the add workout button on the create post screen\r\n        ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));\r\n        addWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //if the workout type is a cardio workout and adds the correct values\r\n        if(type == 1) {\r\n            ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));\r\n            cardioButtonVi.perform(ViewActions.click());\r\n\r\n\r\n            if(values[0]){\r\n                ViewInteraction agilityVi = Espresso.onView(ViewMatchers.withId(R.id.AgilityOption));\r\n                agilityVi.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[1]){\r\n                ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.EnduranceOption));\r\n                enduranceButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[2]) {\r\n                ViewInteraction speedButtonVi = Espresso.onView(ViewMatchers.withId(R.id.SpeedOption));\r\n                speedButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));\r\n            setVi.perform(ViewActions.click());\r\n            workout = new Cardio(values);\r\n        }\r\n        // if the workout is a strength workout\r\n        else if (type == 2) {\r\n            ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));\r\n            strengthButtonVi.perform(ViewActions.click());\r\n\r\n            if(values[0]){\r\n                ViewInteraction upperBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.UpperBodyOption));\r\n                upperBodyButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[1]){\r\n                ViewInteraction lowerBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.LowerBodyOption));\r\n                lowerBodyButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[2]) {\r\n                ViewInteraction bodyweightButtonVi = Espresso.onView(ViewMatchers.withId(R.id.BodyWeightOption));\r\n                bodyweightButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[3]){\r\n                ViewInteraction fullBodyButtonVi = Espresso.onView(ViewMatchers.withId(R.id.FullBodyOption));\r\n                fullBodyButtonVi.perform(ViewActions.click());\r\n            }\r\n\r\n            ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthSetButton));\r\n            setButton.perform(ViewActions.click());\r\n            workout = new Strength(values);\r\n        }\r\n        else {\r\n            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));\r\n            mobilityButton.perform(ViewActions.click());\r\n\r\n            if(values[0]) {\r\n                ViewInteraction staticRadio = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));\r\n                staticRadio.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[1]){\r\n                ViewInteraction dynamicRadio = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));\r\n                dynamicRadio.perform(ViewActions.click());\r\n            }\r\n\r\n            if(values[2]){\r\n                ViewInteraction yogaRadio = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));\r\n                yogaRadio.perform(ViewActions.click());\r\n            }\r\n\r\n            ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.MobilitySetButton));\r\n            setButton.perform(ViewActions.click());\r\n            workout = new Mobility(values);\r\n        }\r\n\r\n\r\n        if(type == 1){\r\n            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));\r\n            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));\r\n            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n        }\r\n        else if(type == 2){\r\n            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));\r\n            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));\r\n            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n        }\r\n        else {\r\n            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));\r\n            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));\r\n            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n        }\r\n\r\n        // add the length\r\n        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutLengthInput));\r\n        lengthVi.perform(ViewActions.replaceText(length));\r\n        workout.setLength(Integer.parseInt(length));\r\n\r\n        //add the difficulty\r\n        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDifficultyInput));\r\n        difficultyVi.perform(setProgress(difficulty));\r\n        workout.setDifficulty(difficulty);\r\n\r\n        // add the description\r\n        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDescriptionInput));\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(description));\r\n        workout.setDescription(description);\r\n\r\n        //click the create workout button on the add workout screen\r\n        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        return workout;\r\n\r\n    }\r\n\r\n    //helps set the seekbar to different values\r\n    public static ViewAction setProgress(final int progress) {\r\n        return new ViewAction() {\r\n            @Override\r\n            public void perform(UiController uiController, View view) {\r\n                SeekBar seekBar = (SeekBar) view;\r\n                seekBar.setProgress(progress);\r\n            }\r\n            @Override\r\n            public String getDescription() {\r\n                return \"Set a progress on a SeekBar\";\r\n            }\r\n            @Override\r\n            public Matcher<View> getConstraints() {\r\n                return ViewMatchers.isAssignableFrom(SeekBar.class);\r\n            }\r\n        };\r\n    }\r\n\r\n    /**\r\n     * navigates the create profile screen\r\n     * @return a default profile to be used to testing\r\n     */\r\n    public static Profile createProfile(String user, String password, String bio) {\r\n        ViewInteraction signUpButtonVi = Espresso.onView(ViewMatchers.withId(R.id.signUpButton));\r\n        signUpButtonVi.perform(ViewActions.click());\r\n        ViewInteraction usernameTextField = Espresso.onView(ViewMatchers.withId(R.id.UsernameText));\r\n        usernameTextField.perform(ViewActions.replaceText(user));\r\n        ViewInteraction passwordTextField = Espresso.onView(ViewMatchers.withId(R.id.passwordEditText));\r\n        passwordTextField.perform(ViewActions.replaceText(password));\r\n        ViewInteraction bioTextField = Espresso.onView(ViewMatchers.withId(R.id.bioEditText));\r\n        bioTextField.perform(ViewActions.replaceText(bio));\r\n        ViewInteraction createButtonVi = Espresso.onView(ViewMatchers.withId(R.id.createButton));\r\n        createButtonVi.perform(ViewActions.click());\r\n        Profile profile = new Profile();\r\n        profile.setUsername(user);\r\n        profile.setPasswordFromString(password);\r\n        profile.setBio(bio);\r\n\r\n        return profile;\r\n    }\r\n\r\n    /**\r\n     * logs into the system using the given username and password\r\n     * @param username the username of the profile logging in\r\n     * @param password the password of the profile logging in\r\n     */\r\n    public static void logIn(String username, String password){\r\n        ViewInteraction usernameInput = Espresso.onView(ViewMatchers.withId(R.id.usernameField));\r\n        usernameInput.perform(ViewActions.replaceText(username));\r\n        ViewInteraction passwordInput = Espresso.onView(ViewMatchers.withId(R.id.passwordField));\r\n        passwordInput.perform(ViewActions.replaceText(password));\r\n        ViewInteraction logInButton = Espresso.onView(ViewMatchers.withId(R.id.logInButton));\r\n        logInButton.perform(ViewActions.click());\r\n\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddMiscThings.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddMiscThings.java
+--- a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddMiscThings.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddMiscThings.java	(date 1652222848451)
+@@ -1,5 +1,10 @@
+ package edu.vassar.cmpu203.workoutapp;
+ 
++import static androidx.test.espresso.Espresso.onData;
++import static androidx.test.espresso.Espresso.onView;
++import static androidx.test.espresso.matcher.ViewMatchers.withId;
++import static org.hamcrest.Matchers.anything;
++
+ import android.os.SystemClock;
+ import android.view.View;
+ import android.widget.SeekBar;
+@@ -43,7 +48,7 @@
+      * @param description the description of the workout being created
+      * @return a workout that is going to be used for comparison to make sure the app is displaying the data properly
+      */
+-    public static Workout addWorkoutTests(int type, Workout workout, boolean[] values, String length, int difficulty, String description) {
++    public static Workout addWorkoutTests(int type, Workout workout, boolean[] values, String length, int difficulty, String description, String sport) {
+         //clicks the add workout button on the create post screen
+         ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));
+         addWorkoutButtonVi.perform(ViewActions.click());
+@@ -74,7 +79,7 @@
+             workout = new Cardio(values);
+         }
+         // if the workout is a strength workout
+-        else if (type == 2) {
++        else if (type == 2){
+             ViewInteraction strengthButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
+             strengthButtonVi.perform(ViewActions.click());
+ 
+@@ -103,22 +108,22 @@
+             workout = new Strength(values);
+         }
+         else {
+-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+-            mobilityButton.perform(ViewActions.click());
++            ViewInteraction mobilityButtonVi = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
++            mobilityButtonVi.perform(ViewActions.click());
+ 
+-            if(values[0]) {
+-                ViewInteraction staticRadio = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));
+-                staticRadio.perform(ViewActions.click());
++            if(values[0]){
++                ViewInteraction StaticButtonVi = Espresso.onView(ViewMatchers.withId(R.id.StaticOption));
++                StaticButtonVi.perform(ViewActions.click());
+             }
+ 
+             if(values[1]){
+-                ViewInteraction dynamicRadio = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));
+-                dynamicRadio.perform(ViewActions.click());
++                ViewInteraction DynamicButtonVi = Espresso.onView(ViewMatchers.withId(R.id.DynamicOption));
++                DynamicButtonVi.perform(ViewActions.click());
+             }
+ 
+-            if(values[2]){
+-                ViewInteraction yogaRadio = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));
+-                yogaRadio.perform(ViewActions.click());
++            if(values[2]) {
++                ViewInteraction YogaButtonVi = Espresso.onView(ViewMatchers.withId(R.id.YogaOption));
++                YogaButtonVi.perform(ViewActions.click());
+             }
+ 
+             ViewInteraction setButton = Espresso.onView(ViewMatchers.withId(R.id.MobilitySetButton));
+@@ -126,26 +131,6 @@
+             workout = new Mobility(values);
+         }
+ 
+-
+-        if(type == 1){
+-            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
+-            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+-            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-        }
+-        else if(type == 2){
+-            ViewInteraction mobilityButton = Espresso.onView(ViewMatchers.withId(R.id.MobilityButton));
+-            mobilityButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
+-            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-        }
+-        else {
+-            ViewInteraction cardioButton = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));
+-            cardioButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-            ViewInteraction strengthButton = Espresso.onView(ViewMatchers.withId(R.id.StrengthButton));
+-            strengthButton.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));
+-        }
+-
+         // add the length
+         ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutLengthInput));
+         lengthVi.perform(ViewActions.replaceText(length));
+@@ -161,10 +146,16 @@
+         workoutDescriptionVi.perform(ViewActions.replaceText(description));
+         workout.setDescription(description);
+ 
++        //set sport
++        ViewInteraction SportVi = onView(withId(R.id.spinner2));
++        SportVi.perform(ViewActions.click());
++        onData(anything()).atPosition(getSportPos(sport)).perform(ViewActions.click());
++
+         //click the create workout button on the add workout screen
+         ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));
+         createWorkoutButtonVi.perform(ViewActions.click());
+ 
++
+         return workout;
+ 
+     }
+@@ -227,4 +218,27 @@
+ 
+     }
+ 
++    public static int getSportPos(String sport) {
++        if (sport.equals("None"))
++            return 0;
++        else if (sport.equals("tennis"))
++            return 1;
++        else if (sport.equals("Lacrosse"))
++            return 2;
++        else if (sport.equals("Baseball"))
++            return 3;
++        else if (sport.equals("Soccer"))
++            return 4;
++        else if (sport.equals("Track and Field"))
++            return 5;
++        else if (sport.equals("Basketball"))
++            return 6;
++        else if (sport.equals("Rugby"))
++            return 7;
++        else if (sport.equals("Rowing"))
++            return 8;
++        else
++            return 9;
++    }
++
+ }
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp;\r\n\r\nimport android.os.SystemClock;\r\nimport android.view.View;\r\n\r\nimport androidx.test.espresso.Espresso;\r\nimport androidx.test.espresso.ViewInteraction;\r\nimport androidx.test.espresso.action.ViewActions;\r\nimport androidx.test.espresso.assertion.ViewAssertions;\r\nimport androidx.test.espresso.matcher.ViewMatchers;\r\nimport androidx.test.ext.junit.rules.ActivityScenarioRule;\r\nimport androidx.test.ext.junit.runners.AndroidJUnit4;\r\n\r\nimport org.hamcrest.Matcher;\r\nimport org.junit.Test;\r\nimport org.junit.runner.RunWith;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Controller.MainActivity;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Post;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Profile;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Workout;\r\n\r\n\r\n@RunWith(AndroidJUnit4.class)\r\npublic class FollowInstTest extends AddMiscThings {\r\n\r\n    @org.junit.Rule\r\n    public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);\r\n\r\n    /**\r\n     * a test that creates two profiles and has one follow the other\r\n     * makes sure that a follow request can be both declined and accepted\r\n     */\r\n    @Test\r\n    public void followingTest(){\r\n        //step 1:\r\n        // create an account (1), log out to go back to home screen\r\n        // create another account (2), add a post, and log out\r\n\r\n        Profile profile = createProfile(\"tester1\", \"1\", \"hi\");\r\n        SystemClock.sleep(5000);\r\n\r\n\r\n        ViewInteraction profileButton = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));\r\n        profileButton.perform(ViewActions.click());\r\n\r\n        ViewInteraction logoutButton = Espresso.onView(ViewMatchers.withId(R.id.LogoutButton));\r\n        logoutButton.perform(ViewActions.click());\r\n\r\n        Profile profile2 = createProfile(\"tester2\", \"1\", \"hi\");\r\n        SystemClock.sleep(5000);\r\n\r\n\r\n        ViewInteraction addPostbutton = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostbutton.perform(ViewActions.click());\r\n        Post post = new Post();\r\n        Workout workout = new Workout();\r\n        boolean[] values = new boolean[3];\r\n        values[1] = true;\r\n\r\n        workout = addWorkoutTests(1, workout, values, \"20\", 4, \"A run\");\r\n        post.setWorkout(workout);\r\n\r\n\r\n\r\n        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        profileButton.perform(ViewActions.click());\r\n        logoutButton.perform(ViewActions.click());\r\n        SystemClock.sleep(5000);\r\n\r\n        //Step 2:\r\n        // log back in as first account (1), click on post made by other user to go to that person's(2) profile\r\n        // check to make sure the information matches that person (2)\r\n        logIn(\"tester1\", \"1\");\r\n        SystemClock.sleep(5000);\r\n\r\n        ViewInteraction profileClick = Espresso.onView(ViewMatchers.withText(\"tester2\"));\r\n        profileClick.perform(ViewActions.click());\r\n\r\n        ViewInteraction postNumberDisplay = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));\r\n        postNumberDisplay.check(ViewAssertions.matches(ViewMatchers.withText(\"1\")));\r\n        ViewInteraction followersDisplay = Espresso.onView(ViewMatchers.withId(R.id.FollowerDisplay));\r\n        followersDisplay.check(ViewAssertions.matches(ViewMatchers.withText(\"0\")));\r\n        ViewInteraction followingDisplay = Espresso.onView(ViewMatchers.withId(R.id.FollowingDisplay));\r\n        followingDisplay.check(ViewAssertions.matches(ViewMatchers.withText(\"0\")));\r\n\r\n        ViewInteraction profileUser = Espresso.onView(ViewMatchers.withId(R.id.OtherProfileUsername));\r\n        profileUser.check(ViewAssertions.matches(ViewMatchers.withText(profile2.getUsername())));\r\n        ViewInteraction profileBio = Espresso.onView(ViewMatchers.withId(R.id.OtherProfileViewBio));\r\n        profileBio.check(ViewAssertions.matches(ViewMatchers.withText(profile.getBio())));\r\n\r\n        //Step 3:\r\n        // click on request follow, check to make sure the button is not enabled\r\n        // go back to feed and then click on profile again\r\n        // click on request follow again\r\n        // see that snackbar appear\r\n        // log out of this account (1)\r\n\r\n        ViewInteraction requestFollow = Espresso.onView(ViewMatchers.withId(R.id.requestFollowButton));\r\n        requestFollow.perform(ViewActions.click());\r\n        requestFollow.check(ViewAssertions.matches(ViewMatchers.isNotEnabled()));\r\n\r\n        ViewInteraction otherProfileBackButton = Espresso.onView(ViewMatchers.withId(R.id.backButton));\r\n        otherProfileBackButton.perform(ViewActions.click());\r\n\r\n        profileClick.perform(ViewActions.click());\r\n        requestFollow.perform(ViewActions.click());\r\n\r\n        Matcher<View> snackbarMatcher0 = ViewMatchers.withText(\"You already requested this person\");\r\n        ViewInteraction snackBarVi0 = Espresso.onView(snackbarMatcher0);\r\n        snackBarVi0.check(ViewAssertions.matches(snackbarMatcher0));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        otherProfileBackButton.perform(ViewActions.click());\r\n\r\n        profileButton.perform(ViewActions.click());\r\n        logoutButton.perform(ViewActions.click());\r\n        SystemClock.sleep(5000);\r\n\r\n        //Step 4:\r\n        // log in to account (2) click on view profile\r\n        // click on view follow requests\r\n        // ensure that the follow request is present\r\n\r\n        logIn(\"tester2\", \"1\");\r\n        SystemClock.sleep(5000);\r\n\r\n        profileButton.perform(ViewActions.click());\r\n        ViewInteraction viewRequests = Espresso.onView(ViewMatchers.withId(R.id.button5));\r\n        viewRequests.perform(ViewActions.click());\r\n\r\n        /*ViewInteraction requestText = Espresso.onView(ViewMatchers.withText(\"tester1\"));\r\n        requestText.check(ViewAssertions.matches(ViewMatchers.withText()));*/\r\n        ViewInteraction acceptButton = Espresso.onView(ViewMatchers.withText(\"Accept\"));\r\n        acceptButton.check(ViewAssertions.matches(ViewMatchers.withText(\"Accept\")));\r\n        ViewInteraction declineButton = Espresso.onView(ViewMatchers.withText(\"Decline\"));\r\n        declineButton.check(ViewAssertions.matches(ViewMatchers.withText(\"Decline\")));\r\n\r\n\r\n        //Step 5:\r\n        // click on decline\r\n        // check that snackbar appears\r\n\r\n        declineButton.perform(ViewActions.click());\r\n        Matcher<View> snackbarMatcher1 = ViewMatchers.withText(R.string.decline);\r\n        ViewInteraction snackBarVi1 = Espresso.onView(snackbarMatcher1);\r\n        snackBarVi1.check(ViewAssertions.matches(snackbarMatcher1));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n\r\n        //Step 6:\r\n        // View profile(2), make sure all values are the same\r\n        // log out\r\n\r\n        ViewInteraction backtoProfile = Espresso.onView(ViewMatchers.withId(R.id.backToProfileButton));\r\n        backtoProfile.perform(ViewActions.click());\r\n\r\n        ViewInteraction userFollowers = Espresso.onView(ViewMatchers.withId(R.id.FollowerDisplay));\r\n        userFollowers.check(ViewAssertions.matches(ViewMatchers.withText(\"0\")));\r\n\r\n        logoutButton.perform(ViewActions.click());\r\n        SystemClock.sleep(5000);\r\n\r\n\r\n        //Step 7:\r\n        // log back into first account (1)\r\n        // click on account (2) profile, click on request follow\r\n        // log out\r\n\r\n        logIn(\"tester1\", \"1\");\r\n        SystemClock.sleep(5000);\r\n\r\n        profileClick.perform(ViewActions.click());\r\n        requestFollow.perform(ViewActions.click());\r\n        otherProfileBackButton.perform(ViewActions.click());\r\n        profileButton.perform(ViewActions.click());\r\n        logoutButton.perform(ViewActions.click());\r\n        SystemClock.sleep(5000);\r\n\r\n\r\n        //Step 8:\r\n        // log in to account (2)\r\n        // go to view follow requests\r\n        // see that the request is there\r\n        // click on accept, make sure snackbar appears\r\n\r\n        logIn(\"tester2\", \"1\");\r\n        SystemClock.sleep(5000);\r\n\r\n        profileButton.perform(ViewActions.click());\r\n        viewRequests.perform(ViewActions.click());\r\n\r\n        //requestText.check(ViewAssertions.matches(ViewMatchers.withText(profile.getUsername() + \" wants to follow you!\")));\r\n        acceptButton.check(ViewAssertions.matches(ViewMatchers.withText(\"Accept\")));\r\n        declineButton.check(ViewAssertions.matches(ViewMatchers.withText(\"Decline\")));\r\n\r\n        acceptButton.perform(ViewActions.click());\r\n\r\n        Matcher<View> snackbarMatcher2 = ViewMatchers.withText(R.string.accept);\r\n        ViewInteraction snackBarVi2 = Espresso.onView(snackbarMatcher2);\r\n        snackBarVi2.check(ViewAssertions.matches(snackbarMatcher2));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n\r\n        // Step 9:\r\n        // go to view profile, see that follower number has increased\r\n        // log out\r\n\r\n        backtoProfile.perform(ViewActions.click());\r\n        userFollowers.check(ViewAssertions.matches(ViewMatchers.withText(\"1\")));\r\n        logoutButton.perform(ViewActions.click());\r\n        SystemClock.sleep(5000);\r\n\r\n\r\n        //Step 10:\r\n        // log in to account (1)\r\n        // check proflie to see that number of following has increased\r\n\r\n        logIn(\"tester1\", \"1\");\r\n        SystemClock.sleep(5000);\r\n\r\n        profileButton.perform(ViewActions.click());\r\n        ViewInteraction userFollowing = Espresso.onView(ViewMatchers.withId(R.id.FollowingDisplay));\r\n        userFollowing.check(ViewAssertions.matches(ViewMatchers.withText(\"1\")));\r\n\r\n\r\n        //Step 11:\r\n        // go to feed click on account(2) post\r\n        // click on request follow\r\n        // check that snackbar appears saying you already follow\r\n\r\n        ViewInteraction backToFeed = Espresso.onView(ViewMatchers.withId(R.id.button3));\r\n        backToFeed.perform(ViewActions.click());\r\n        profileClick.perform(ViewActions.click());\r\n\r\n        requestFollow.perform(ViewActions.click());\r\n        Matcher<View> snackbarMatcher3 = ViewMatchers.withText(\"You already follow this profile\");\r\n        ViewInteraction snackBarVi3 = Espresso.onView(snackbarMatcher3);\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //DONE!!!!\r\n\r\n\r\n        this.persistenceFacade.removeUser(profile);\r\n        this.persistenceFacade.removeUser(profile2);\r\n        this.persistenceFacade.removePosts();\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java
+--- a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FollowInstTest.java	(date 1652222703894)
+@@ -58,7 +58,7 @@
+         boolean[] values = new boolean[3];
+         values[1] = true;
+ 
+-        workout = addWorkoutTests(1, workout, values, "20", 4, "A run");
++        workout = addWorkoutTests(1, workout, values, "20", 4, "A run", "None");
+         post.setWorkout(workout);
+ 
+ 
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FilterFeedInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp;\r\n\r\nimport static androidx.test.espresso.Espresso.onData;\r\nimport static androidx.test.espresso.Espresso.onView;\r\nimport static androidx.test.espresso.matcher.ViewMatchers.withId;\r\n\r\nimport androidx.test.espresso.Espresso;\r\nimport androidx.test.espresso.ViewInteraction;\r\nimport androidx.test.espresso.action.ViewActions;\r\nimport androidx.test.espresso.assertion.ViewAssertions;\r\nimport androidx.test.espresso.matcher.ViewMatchers;\r\nimport androidx.test.ext.junit.rules.ActivityScenarioRule;\r\nimport static org.hamcrest.Matchers.anything;\r\n\r\n\r\nimport android.view.View;\r\n\r\nimport org.hamcrest.Matcher;\r\nimport org.junit.Test;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Controller.MainActivity;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Feed;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Post;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Profile;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Workout;\r\n\r\n\r\npublic class FilterFeedInstTest extends AddMiscThings{\r\n    @org.junit.Rule\r\n    public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);\r\n\r\n/*\r\n    */\r\n/**\r\n     * Adds two posts, and then specifies a length filter that produces a feed with\r\n     * only the desired length\r\n     *//*\r\n\r\n    @Test\r\n    public void FilterLengthTest() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        ViewInteraction createButtonVi = onView(withId(R.id.createButton));\r\n        createButtonVi.perform(ViewActions.click());\r\n        Profile profile = new Profile();\r\n        profile.setUsername(\"Username\");\r\n\r\n        ViewInteraction post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n        Feed f = new Feed();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        boolean[] attributes = new boolean[3];\r\n        attributes[0] = true;\r\n        workout = addWorkoutTests(1, workout, attributes, \"5\", 5, \"5 mile run\");\r\n        post.setWorkout(workout);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = onView(withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        // START OF SECOND POST\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post2Vi = onView(withId(R.id.Post2));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post1 = new Post(profile);\r\n        Workout workout1 = new Workout();\r\n\r\n        boolean[] attributes1 = new boolean[4];\r\n        attributes[0] = true;\r\n        attributes[2] = true;\r\n        workout1 = addWorkoutTests(2, workout1, attributes1, \"3\", 5, \"5 mile run\");\r\n        post1.setWorkout(workout1);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post1.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //Clicks filter button\r\n        ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));\r\n        filterButtonVi.perform(ViewActions.click());\r\n\r\n        //Enter length filter\r\n        ViewInteraction filterLengthVi = onView(withId(R.id.LengthInput));\r\n        filterLengthVi.perform(ViewActions.typeText(\"3\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n\r\n        //Set filters\r\n        onView(withId(R.id.FilterSet)).perform(ViewActions.click());\r\n\r\n        //Check if only second post is shown\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n\r\n        //Remove Filters and check if both posts are there\r\n        onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n    }\r\n\r\n    */\r\n/**\r\n     * Adds two posts, and then specifies a difficulty filter that produces a feed with\r\n     * only the desired difficulty\r\n     *//*\r\n\r\n    @Test\r\n    public void FilterDifficultyTest() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        ViewInteraction createButtonVi = onView(withId(R.id.createButton));\r\n        createButtonVi.perform(ViewActions.click());\r\n        Profile profile = new Profile();\r\n        profile.setUsername(\"Username\");\r\n\r\n        ViewInteraction post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n        Feed f = new Feed();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        boolean[] attributes = new boolean[3];\r\n        attributes[0] = true;\r\n        workout = addWorkoutTests(1, workout, attributes, \"5\", 3, \"5 mile run\");\r\n        post.setWorkout(workout);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = onView(withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        // START OF SECOND POST\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post2Vi = onView(withId(R.id.Post2));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post1 = new Post(profile);\r\n        Workout workout1 = new Workout();\r\n\r\n        boolean[] attributes1 = new boolean[4];\r\n        attributes[0] = true;\r\n        attributes[2] = true;\r\n        workout1 = addWorkoutTests(2, workout1, attributes1, \"5\", 5, \"5 mile run\");\r\n        post1.setWorkout(workout1);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post1.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //Clicks filter button\r\n        ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));\r\n        filterButtonVi.perform(ViewActions.click());\r\n\r\n\r\n        //enters the difficulty filter\r\n        ViewInteraction filterDifficultyVi = onView(withId(R.id.diffOptions));\r\n        filterDifficultyVi.perform(ViewActions.click());\r\n        onData(anything()).atPosition(3).perform(ViewActions.click());\r\n        filterDifficultyVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText(\"3\")));\r\n\r\n        //Set filters\r\n        onView(withId(R.id.FilterSet)).perform(ViewActions.click());\r\n\r\n        //Check if only first post is shown\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        //Remove Filters and check if both posts are there\r\n        onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n    }\r\n    */\r\n/**\r\n     * Adds two posts, and then specifies a length and difficulty filter that produces a feed with\r\n     * only the desired length and difficulty\r\n     *//*\r\n\r\n    @Test\r\n    public void FilterLengthAndDifficulty() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        ViewInteraction createButtonVi = onView(withId(R.id.createButton));\r\n        createButtonVi.perform(ViewActions.click());\r\n        Profile profile = new Profile();\r\n        profile.setUsername(\"Username\");\r\n\r\n        ViewInteraction post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n        Feed f = new Feed();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        boolean[] attributes = new boolean[3];\r\n        attributes[0] = true;\r\n        workout = addWorkoutTests(1, workout, attributes, \"4\", 3, \"5 mile run\");\r\n        post.setWorkout(workout);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = onView(withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi = onView(withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        // START OF SECOND POST\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post2Vi = onView(withId(R.id.Post2));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post1 = new Post(profile);\r\n        Workout workout1 = new Workout();\r\n\r\n        boolean[] attributes1 = new boolean[4];\r\n        attributes[0] = true;\r\n        attributes[2] = true;\r\n        workout1 = addWorkoutTests(2, workout1, attributes1, \"5\", 5, \"5 mile run\");\r\n        post1.setWorkout(workout1);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post1.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //Clicks filter button\r\n        ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));\r\n        filterButtonVi.perform(ViewActions.click());\r\n\r\n        //Enter length filter\r\n        ViewInteraction filterLengthVi = onView(withId(R.id.LengthInput));\r\n        filterLengthVi.perform(ViewActions.typeText(\"4\"));\r\n        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());\r\n\r\n        //enters the difficulty filter\r\n        ViewInteraction filterDifficultyVi = onView(withId(R.id.diffOptions));\r\n        filterDifficultyVi.perform(ViewActions.click());\r\n        onData(anything()).atPosition(3).perform(ViewActions.click());\r\n        filterDifficultyVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText(\"3\")));\r\n\r\n        //Set filters\r\n        onView(withId(R.id.FilterSet)).perform(ViewActions.click());\r\n\r\n        //Check if only first post is shown\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        //Remove Filters and check if both posts are there\r\n        onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());\r\n        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n    }\r\n\r\n    */\r\n/**\r\n     * Test to make sure that the snackbar will pop up\r\n     * when length is left empty\r\n     *//*\r\n\r\n    @Test\r\n    public void testFilterSnackbar() {\r\n        Profile profile = createProfile();\r\n\r\n        ViewInteraction feedVi = Espresso.onView(ViewMatchers.withId(R.id.FeedFilter));\r\n        feedVi.perform(ViewActions.click());\r\n\r\n        //Enter a blank length input\r\n        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.LengthInput));\r\n        lengthVi.perform(ViewActions.replaceText(\"\"));\r\n        ViewInteraction setButtonVi = Espresso.onView(ViewMatchers.withId(R.id.FilterSet));\r\n        setButtonVi.perform(ViewActions.click());\r\n\r\n        //the snackbar matcher\r\n        Matcher<View> snackbarMatcher = ViewMatchers.withText(\"Input for length mandatory!\");\r\n        ViewInteraction snackBarVi = Espresso.onView(snackbarMatcher);\r\n        snackBarVi.check(ViewAssertions.matches(snackbarMatcher));\r\n\r\n\r\n        //Test for a non-numeric input\r\n        lengthVi.perform(ViewActions.replaceText(\"This shouldn't be here\"));\r\n        setButtonVi.perform(ViewActions.click());\r\n\r\n        //the snackbar matcher\r\n        snackbarMatcher = ViewMatchers.withText(\"Please enter a number for length\");\r\n        snackBarVi = Espresso.onView(snackbarMatcher);\r\n        snackBarVi.check(ViewAssertions.matches(snackbarMatcher));\r\n\r\n\r\n    }\r\n*/\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FilterFeedInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FilterFeedInstTest.java
+--- a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FilterFeedInstTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/FilterFeedInstTest.java	(date 1652222703927)
+@@ -3,6 +3,8 @@
+ import static androidx.test.espresso.Espresso.onData;
+ import static androidx.test.espresso.Espresso.onView;
+ import static androidx.test.espresso.matcher.ViewMatchers.withId;
++import static androidx.test.espresso.matcher.ViewMatchers.withSubstring;
++import static androidx.test.espresso.matcher.ViewMatchers.withText;
+ 
+ import androidx.test.espresso.Espresso;
+ import androidx.test.espresso.ViewInteraction;
+@@ -13,6 +15,7 @@
+ import static org.hamcrest.Matchers.anything;
+ 
+ 
++import android.os.SystemClock;
+ import android.view.View;
+ 
+ import org.hamcrest.Matcher;
+@@ -22,110 +25,157 @@
+ import edu.vassar.cmpu203.workoutapp.Model.Feed;
+ import edu.vassar.cmpu203.workoutapp.Model.Post;
+ import edu.vassar.cmpu203.workoutapp.Model.Profile;
++import edu.vassar.cmpu203.workoutapp.Model.Strength;
+ import edu.vassar.cmpu203.workoutapp.Model.Workout;
++import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
++import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
+ 
+ 
+ public class FilterFeedInstTest extends AddMiscThings{
++
++    protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
++
+     @org.junit.Rule
+     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
+ 
+-/*
+-    */
+-/**
+-     * Adds two posts, and then specifies a length filter that produces a feed with
++    /**
++     * Adds three posts, and then specifies a length filter that produces a feed with
+      * only the desired length
+-     *//*
+-
++     */
+     @Test
+     public void FilterLengthTest() {
++
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        ViewInteraction createButtonVi = onView(withId(R.id.createButton));
+-        createButtonVi.perform(ViewActions.click());
+-        Profile profile = new Profile();
+-        profile.setUsername("Username");
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++        //START OF FIRST POST
+ 
+-        ViewInteraction post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+-        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+         Workout workout = new Workout();
+-        Feed f = new Feed();
+ 
+         //create post screen, checks that default caption text is there
+-        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
++        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+ 
+         // checks that the default workout text is there
+-        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+-        boolean[] attributes = new boolean[3];
+-        attributes[0] = true;
+-        workout = addWorkoutTests(1, workout, attributes, "5", 5, "5 mile run");
++        //create the values for the new workout
++        boolean[] values = new boolean[3];
++        values[1] = true;
++        values[2] = true;
++
++        //add the workout ot the post
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "None");
+         post.setWorkout(workout);
+ 
++        //check that the workout is displaying correctly in the create post screen
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+-        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post.addCaption("A fun workout");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("Did some sprints today")));
++        post.addCaption("Did some sprints today");
+ 
+         // clicks on the post button
+-        ViewInteraction postButtonVi = onView(withId(R.id.postButton));
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
+ 
+         // START OF SECOND POST
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post2Vi = onView(withId(R.id.Post2));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post1 = new Post(profile);
+-        Workout workout1 = new Workout();
++        Workout workout1;
+ 
+-        boolean[] attributes1 = new boolean[4];
+-        attributes[0] = true;
+-        attributes[2] = true;
+-        workout1 = addWorkoutTests(2, workout1, attributes1, "3", 5, "5 mile run");
++        //create the values for the new workout
++        boolean[] values1 = new boolean[4];
++        values1[0] = true;
++        values1[2] = true;
++        workout1 = new Strength(values1);
++
++        //add the new workout to the post
++        workout1 = addWorkoutTests(2, workout1, values1, "20", 2, "Lots and lots of push-ups", "None");
+         post1.setWorkout(workout1);
+ 
++        //check that the workout is displayed in the add post screen as intended
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
++        post1.addCaption("My arms are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that the posts are displayed like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++
++        // START OF THIRD POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post2 = new Post(profile);
++        Workout workout2;
++
++        //create values for the workout
++        boolean[] values2 = new boolean[4];
++        values2[1] = true;
++        values2[3] = true;
++        workout2 = new Strength(values2);
++
++        //add the workout
++        workout2 = addWorkoutTests(2, workout2, values2, "30", 4, "Some good weights and what not", "None");
++        post2.setWorkout(workout2);
++
++        //check that the workout is displaying in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post1.addCaption("A fun workout");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My legs are sore")));
++        post2.addCaption("My legs are sore");
+ 
+         // clicks on the post button
+         postButtonVi.perform(ViewActions.click());
+ 
++        //checks that all of the posts are displaying like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
+         //Clicks filter button
+         ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));
+         filterButtonVi.perform(ViewActions.click());
+ 
+         //Enter length filter
+         ViewInteraction filterLengthVi = onView(withId(R.id.LengthInput));
+-        filterLengthVi.perform(ViewActions.typeText("3"));
++        filterLengthVi.perform(ViewActions.typeText("20"));
+         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
+ 
+ 
+@@ -133,103 +183,148 @@
+         onView(withId(R.id.FilterSet)).perform(ViewActions.click());
+ 
+         //Check if only second post is shown
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
+ 
+-        //Remove Filters and check if both posts are there
++        //Remove Filters and check if all posts are there
+         onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+-        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    */
+-/**
+-     * Adds two posts, and then specifies a difficulty filter that produces a feed with
++    /**
++     * Adds three posts, and then specifies a difficulty filter that produces a feed with
+      * only the desired difficulty
+-     *//*
+-
++     */
+     @Test
+     public void FilterDifficultyTest() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        ViewInteraction createButtonVi = onView(withId(R.id.createButton));
+-        createButtonVi.perform(ViewActions.click());
+-        Profile profile = new Profile();
+-        profile.setUsername("Username");
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++        //START OF FIRST POST
+ 
+-        ViewInteraction post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+-        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+         Workout workout = new Workout();
+-        Feed f = new Feed();
+ 
+         //create post screen, checks that default caption text is there
+-        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
++        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+ 
+         // checks that the default workout text is there
+-        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+-        boolean[] attributes = new boolean[3];
+-        attributes[0] = true;
+-        workout = addWorkoutTests(1, workout, attributes, "5", 3, "5 mile run");
++        //create the values for the new workout
++        boolean[] values = new boolean[3];
++        values[1] = true;
++        values[2] = true;
++
++        //add the workout ot the post
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "None");
+         post.setWorkout(workout);
+ 
++        //check that the workout is displaying correctly in the create post screen
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+-        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post.addCaption("A fun workout");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("Did some sprints today")));
++        post.addCaption("Did some sprints today");
+ 
+         // clicks on the post button
+-        ViewInteraction postButtonVi = onView(withId(R.id.postButton));
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
+ 
+         // START OF SECOND POST
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post2Vi = onView(withId(R.id.Post2));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post1 = new Post(profile);
+-        Workout workout1 = new Workout();
++        Workout workout1;
+ 
+-        boolean[] attributes1 = new boolean[4];
+-        attributes[0] = true;
+-        attributes[2] = true;
+-        workout1 = addWorkoutTests(2, workout1, attributes1, "5", 5, "5 mile run");
++        //create the values for the new workout
++        boolean[] values1 = new boolean[4];
++        values1[0] = true;
++        values1[2] = true;
++        workout1 = new Strength(values1);
++
++        //add the new workout to the post
++        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups", "None");
+         post1.setWorkout(workout1);
+ 
++        //check that the workout is displayed in the add post screen as intended
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
++        post1.addCaption("My arms are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that the posts are displayed like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++
++        // START OF THIRD POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post2 = new Post(profile);
++        Workout workout2;
++
++        //create values for the workout
++        boolean[] values2 = new boolean[4];
++        values2[1] = true;
++        values2[3] = true;
++        workout2 = new Strength(values2);
++
++        //add the workout
++        workout2 = addWorkoutTests(2, workout2, values2, "30", 3, "Some good weights and what not", "None");
++        post2.setWorkout(workout2);
++
++        //check that the workout is displaying in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post1.addCaption("A fun workout");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My legs are sore")));
++        post2.addCaption("My legs are sore");
+ 
+         // clicks on the post button
+         postButtonVi.perform(ViewActions.click());
+ 
++        //checks that all of the posts are displaying like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
+         //Clicks filter button
+         ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));
+         filterButtonVi.perform(ViewActions.click());
+@@ -244,103 +339,455 @@
+         //Set filters
+         onView(withId(R.id.FilterSet)).perform(ViewActions.click());
+ 
++        //Check if only second post is shown
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        //Remove Filters and check if all posts are there
++        onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++
++    }
++
++    /**
++     * Adds two posts, and then specifies a sport filter that produces a feed with
++     * only the desired sport focus
++     */
++    @Test
++    public void FilterSportTest() {
++        //create profile screen -> leaves default values and clicks create
++        //creates a new Profile and sets the Username to default
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++        //START OF FIRST POST
++
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
++        addPostButtonVi.perform(ViewActions.click());
++        Post post = new Post(profile);
++        Workout workout = new Workout();
++
++        //create post screen, checks that default caption text is there
++        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
++
++        // checks that the default workout text is there
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
++
++        //create the values for the new workout
++        boolean[] values = new boolean[3];
++        values[1] = true;
++        values[2] = true;
++
++        //add the workout ot the post
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "Tennis");
++        post.setWorkout(workout);
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
++
++        //click the caption button and checks to see that the caption text has changed
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("Did some sprints today")));
++        post.addCaption("Did some sprints today");
++
++        // clicks on the post button
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
++        postButtonVi.perform(ViewActions.click());
++
++        //checks to see if the post1 text in the feed is the same as the post that was just created
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++
++
++        // START OF SECOND POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post1 = new Post(profile);
++        Workout workout1;
++
++        //create the values for the new workout
++        boolean[] values1 = new boolean[4];
++        values1[0] = true;
++        values1[2] = true;
++        workout1 = new Strength(values1);
++
++        //add the new workout to the post
++        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups", "None");
++        post1.setWorkout(workout1);
++
++        //check that the workout is displayed in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
++        post1.addCaption("My arms are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that the posts are displayed like they are supposed to
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        // START OF THIRD POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post2 = new Post(profile);
++        Workout workout2;
++
++        //create values for the workout
++        boolean[] values2 = new boolean[4];
++        values2[1] = true;
++        values2[3] = true;
++        workout2 = new Strength(values2);
++
++        //add the workout
++        workout2 = addWorkoutTests(2, workout2, values2, "30", 3, "Some good weights and what not", "None");
++        post2.setWorkout(workout2);
++
++        //check that the workout is displaying in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My legs are sore")));
++        post2.addCaption("My legs are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that all of the posts are displaying like they are supposed to
++        //post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        //Clicks filter button
++        ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));
++        filterButtonVi.perform(ViewActions.click());
++
++
++        //enters the sport filter
++        ViewInteraction filterSportVi = onView(withId(R.id.sportOptions));
++        filterSportVi.perform(ViewActions.click());
++        onData(anything()).atPosition(1).perform(ViewActions.click());
++        filterSportVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText("Tennis")));
++
++        //Set filters
++        onView(withId(R.id.FilterSet)).perform(ViewActions.click());
++
++        //Check if only second post is shown
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
++        //Remove Filters and check if all posts are there
++        onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++
++    }
++
++    /**
++     * Adds three posts, and then specifies a type filter that produces a feed with
++     * only the desired workout type
++     */
++    @Test
++    public void FilterTypeTest() {
++        //create profile screen -> leaves default values and clicks create
++        //creates a new Profile and sets the Username to default
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++        //START OF FIRST POST
++
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
++        addPostButtonVi.perform(ViewActions.click());
++        Post post = new Post(profile);
++        Workout workout = new Workout();
++
++        //create post screen, checks that default caption text is there
++        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
++
++        // checks that the default workout text is there
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
++
++        //create the values for the new workout
++        boolean[] values = new boolean[3];
++        values[1] = true;
++        values[2] = true;
++
++        //add the workout ot the post
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "None");
++        post.setWorkout(workout);
++
++        //check that the workout is displaying correctly in the create post screen
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
++
++        //click the caption button and checks to see that the caption text has changed
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("Did some sprints today")));
++        post.addCaption("Did some sprints today");
++
++        // clicks on the post button
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
++        postButtonVi.perform(ViewActions.click());
++
++        //checks to see if the post1 text in the feed is the same as the post that was just created
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
++
++        // START OF SECOND POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post1 = new Post(profile);
++        Workout workout1;
++
++        //create the values for the new workout
++        boolean[] values1 = new boolean[4];
++        values1[0] = true;
++        values1[2] = true;
++        workout1 = new Strength(values1);
++
++        //add the new workout to the post
++        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups", "None");
++        post1.setWorkout(workout1);
++
++        //check that the workout is displayed in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
++        post1.addCaption("My arms are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that the posts are displayed like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++
++        // START OF THIRD POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post2 = new Post(profile);
++        Workout workout2;
++
++        //create values for the workout
++        boolean[] values2 = new boolean[4];
++        values2[1] = true;
++        values2[3] = true;
++        workout2 = new Strength(values2);
++
++        //add the workout
++        workout2 = addWorkoutTests(2, workout2, values2, "30", 3, "Some good weights and what not", "None");
++        post2.setWorkout(workout2);
++
++        //check that the workout is displaying in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My legs are sore")));
++        post2.addCaption("My legs are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that all of the posts are displaying like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        //Clicks filter button
++        ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));
++        filterButtonVi.perform(ViewActions.click());
++
++
++        //enters the Type filter
++        ViewInteraction filterTypeVi = onView(withId(R.id.TypeOptions));
++        filterTypeVi.perform(ViewActions.click());
++        onData(anything()).atPosition(1).perform(ViewActions.click());
++        filterTypeVi.check(ViewAssertions.matches(ViewMatchers.withSpinnerText("Cardio")));
++
++        //Set filters
++        onView(withId(R.id.FilterSet)).perform(ViewActions.click());
++
+         //Check if only first post is shown
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
+ 
+-        //Remove Filters and check if both posts are there
++        //Remove Filters and check if all posts are there
+         onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+-        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++
+     }
+-    */
+-/**
++
++    /**
+      * Adds two posts, and then specifies a length and difficulty filter that produces a feed with
+      * only the desired length and difficulty
+-     *//*
++     */
+ 
+     @Test
+     public void FilterLengthAndDifficulty() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        ViewInteraction createButtonVi = onView(withId(R.id.createButton));
+-        createButtonVi.perform(ViewActions.click());
+-        Profile profile = new Profile();
+-        profile.setUsername("Username");
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++        //START OF FIRST POST
+ 
+-        ViewInteraction post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+-        ViewInteraction addPostButtonVi = onView(withId(R.id.addButton));
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+         Workout workout = new Workout();
+-        Feed f = new Feed();
+ 
+-        //create post screen, checks that default caption text is there
+-        ViewInteraction postCaptionVi = onView(withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+ 
+         // checks that the default workout text is there
+-        ViewInteraction postWorkoutVi = onView(withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+-        boolean[] attributes = new boolean[3];
+-        attributes[0] = true;
+-        workout = addWorkoutTests(1, workout, attributes, "4", 3, "5 mile run");
++        //create the values for the new workout
++        boolean[] values = new boolean[3];
++        values[1] = true;
++        values[2] = true;
++
++        //add the workout ot the post
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "None");
+         post.setWorkout(workout);
+ 
++        //check that the workout is displaying correctly in the create post screen
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        ViewInteraction postCapEdVi = onView(withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+-        ViewInteraction captionButtonVi = onView(withId(R.id.captionButton));
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post.addCaption("A fun workout");
++        post.addCaption("Did some sprints today");
+ 
+         // clicks on the post button
+-        ViewInteraction postButtonVi = onView(withId(R.id.postButton));
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi = onView(withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
+ 
+         // START OF SECOND POST
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post2Vi = onView(withId(R.id.Post2));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post1 = new Post(profile);
+-        Workout workout1 = new Workout();
++        Workout workout1;
+ 
+-        boolean[] attributes1 = new boolean[4];
+-        attributes[0] = true;
+-        attributes[2] = true;
+-        workout1 = addWorkoutTests(2, workout1, attributes1, "5", 5, "5 mile run");
++        //create the values for the new workout
++        boolean[] values1 = new boolean[4];
++        values1[0] = true;
++        values1[2] = true;
++        workout1 = new Strength(values1);
++
++        //add the new workout to the post
++        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups", "None");
+         post1.setWorkout(workout1);
+ 
++        //check that the workout is displayed in the add post screen as intended
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+-        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard());
++        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++
++        //click the caption button and checks to see that the caption text has changed
++        captionButtonVi.perform(ViewActions.click());
++        post1.addCaption("My arms are sore");
++
++        // clicks on the post button
++        postButtonVi.perform(ViewActions.click());
++
++        //checks that the posts are displayed like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++
++        // START OF THIRD POST
++
++        addPostButtonVi.perform(ViewActions.click());
++        Post post2 = new Post(profile);
++        Workout workout2;
++
++        //create values for the workout
++        boolean[] values2 = new boolean[4];
++        values2[1] = true;
++        values2[3] = true;
++        workout2 = new Strength(values2);
++
++        //add the workout
++        workout2 = addWorkoutTests(2, workout2, values2, "4", 3, "Some good weights and what not", "None");
++        post2.setWorkout(workout2);
++
++        //check that the workout is displaying in the add post screen as intended
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));
++
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post1.addCaption("A fun workout");
++        post2.addCaption("My legs are sore");
+ 
+         // clicks on the post button
+         postButtonVi.perform(ViewActions.click());
+ 
++        //checks that all of the posts are displaying like they are supposed to
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
+         //Clicks filter button
+         ViewInteraction filterButtonVi = onView(withId(R.id.FeedFilter));
+         filterButtonVi.perform(ViewActions.click());
+@@ -359,24 +806,27 @@
+         //Set filters
+         onView(withId(R.id.FilterSet)).perform(ViewActions.click());
+ 
+-        //Check if only first post is shown
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
+ 
+-        //Remove Filters and check if both posts are there
++        //Remove Filters and check if all posts are there
+         onView(withId(R.id.RemoveFilter)).perform(ViewActions.click());
+-        onView(withId(R.id.Post1)).check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+-        onView(withId(R.id.Post2)).check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
++        onView(withSubstring("Did some sprints today")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        onView(withSubstring("My arms are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        onView(withSubstring("My legs are sore")).check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    */
+-/**
++    /**
+      * Test to make sure that the snackbar will pop up
+      * when length is left empty
+-     *//*
+-
++     */
+     @Test
+     public void testFilterSnackbar() {
+-        Profile profile = createProfile();
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
+ 
+         ViewInteraction feedVi = Espresso.onView(ViewMatchers.withId(R.id.FeedFilter));
+         feedVi.perform(ViewActions.click());
+@@ -402,8 +852,8 @@
+         snackBarVi = Espresso.onView(snackbarMatcher);
+         snackBarVi.check(ViewAssertions.matches(snackbarMatcher));
+ 
+-
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+-*/
+ 
+ }
+Index: app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddPostInstTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp;\r\n\r\nimport android.os.SystemClock;\r\nimport android.view.View;\r\nimport android.widget.SeekBar;\r\n\r\nimport androidx.test.espresso.Espresso;\r\nimport androidx.test.espresso.UiController;\r\nimport androidx.test.espresso.ViewAction;\r\nimport androidx.test.espresso.ViewInteraction;\r\nimport androidx.test.espresso.action.ViewActions;\r\nimport androidx.test.espresso.assertion.ViewAssertions;\r\nimport androidx.test.espresso.matcher.ViewMatchers;\r\nimport androidx.test.ext.junit.rules.ActivityScenarioRule;\r\nimport androidx.test.ext.junit.runners.AndroidJUnit4;\r\n\r\nimport org.hamcrest.Matcher;\r\nimport org.junit.Test;\r\nimport org.junit.runner.RunWith;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Controller.MainActivity;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Cardio;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Post;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Profile;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Strength;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Workout;\r\n\r\n@RunWith(AndroidJUnit4.class)\r\npublic class AddPostInstTest extends AddMiscThings {\r\n/*\r\n    @org.junit.Rule\r\n    public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);\r\n\r\n    *//**\r\n     * Test to see if someone is able to post with a Cardio Workout\r\n     * while creating a post to compare the results of the app too\r\n     *//*\r\n    @Test\r\n    public void addCardioPostTest() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        Profile profile = createProfile();\r\n\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create the values for the workout to be passed\r\n        boolean[] values = new boolean[3];\r\n        values[0] = true;\r\n\r\n        //create and add the workout\r\n        workout = addWorkoutTests(1, workout,values,\"50\",3,\"A hard workout\");\r\n        post.setWorkout(workout);\r\n\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n    }\r\n\r\n    *//**\r\n     * Creating a post that contains a strength workout\r\n     *//*\r\n    @Test\r\n    public void addStrengthPostTest() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        Profile profile = createProfile();\r\n\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create the values for the workout\r\n        boolean[] values = new boolean[4];\r\n        values[0] = true;\r\n        values[2] = true;\r\n\r\n        //create and add the workout\r\n        workout = addWorkoutTests(2, workout,values,\"20\",4,\"pushups and what not\");\r\n        post.setWorkout(workout);\r\n\r\n        //make sure the workout matches the\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"A fun workout\"));\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"A fun workout\")));\r\n        post.addCaption(\"A fun workout\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n    }\r\n\r\n    *//**\r\n     * Adding multiple posts to the feed to test that we can view multiple posts at once\r\n     * --Create posts using much of the same logic as above\r\n     *//*\r\n    @Test\r\n    public void addMultiplePostsTest() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        Profile profile = createProfile();\r\n\r\n        //START OF FIRST POST\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create the values for the new workout\r\n        boolean[] values = new boolean[3];\r\n        values[1] = true;\r\n        values[2] = true;\r\n\r\n        //add the workout ot the post\r\n        workout = addWorkoutTests(1, workout,values, \"100\", 1, \"Five sprints\");\r\n        post.setWorkout(workout);\r\n\r\n        //check that the workout is displaying correctly in the create post screen\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));\r\n        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"Did some sprints today\"));\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"Did some sprints today\")));\r\n        post.addCaption(\"Did some sprints today\");\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n        // START OF SECOND POST\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withId(R.id.Post2));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post1 = new Post(profile);\r\n        Workout workout1;\r\n\r\n        //create the values for the new workout\r\n        boolean[] values1 = new boolean[4];\r\n        values1[0] = true;\r\n        values1[2] = true;\r\n        workout1 = new Strength(values1);\r\n\r\n        //add the new workout to the post\r\n        workout1 = addWorkoutTests(2, workout1, values1, \"40\", 2, \"Lots and lots of push-ups\");\r\n        post1.setWorkout(workout1);\r\n\r\n        //check that the workout is displayed in the add post screen as intended\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout1.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        postCapEdVi.perform(ViewActions.replaceText(\"My arms are sore\"));\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"My arms are sore\")));\r\n        post1.addCaption(\"My arms are sore\");\r\n\r\n        // clicks on the post button\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks that the posts are displayed like they are supposed to\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n\r\n        // START OF THIRD POST\r\n\r\n        //click the add post button on the feed screen\r\n        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withId(R.id.Post3));\r\n        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post3)));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post2 = new Post(profile);\r\n        Workout workout2;\r\n\r\n        //create values for the workout\r\n        boolean[] values2 = new boolean[4];\r\n        values2[1] = true;\r\n        values2[3] = true;\r\n        workout2 = new Strength(values2);\r\n\r\n        //add the workout\r\n        workout2 = addWorkoutTests(2, workout2, values2, \"30\", 4, \"Some good weights and what not\");\r\n        post2.setWorkout(workout2);\r\n\r\n        //check that the workout is displaying in the add post screen as intended\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout2.toString())));\r\n\r\n        //create post screen, check to see of default text for caption is there\r\n        //enter new caption\r\n        postCapEdVi.perform(ViewActions.replaceText(\"My arms are sore\"));\r\n\r\n        //click the caption button and checks to see that the caption text has changed\r\n        captionButtonVi.perform(ViewActions.click());\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(\"My arms are sore\")));\r\n        post2.addCaption(\"My arms are sore\");\r\n\r\n        // clicks on the post button\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks that all of the posts are displaying like they are supposed to\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));\r\n        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(post2.toString())));\r\n    }\r\n\r\n    *//**\r\n     * Makes sure that someone can post only text post with no workout\r\n     *//*\r\n    @Test\r\n    public void addPostNoWorkoutTest() {\r\n        //navigate the create profile screen\r\n        Profile profile = createProfile();\r\n\r\n        //click on the add post button on the feed screen\r\n        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n\r\n        //enter a new caption and click the add caption button\r\n        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));\r\n        postCapEdVi.perform(ViewActions.replaceText(\"This is pretty chill\"));\r\n        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));\r\n        captionButtonVi.perform(ViewActions.click());\r\n        post.addCaption(\"This is pretty chill\");\r\n\r\n        // click on the post button\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //check to make sure that the post is displaying like it is supposed to\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n\r\n    }\r\n\r\n    *//**\r\n     * This is a test to make sure that someone can post a workout\r\n     * with no caption\r\n     * -- follows much of the same logic as above tests\r\n     *//*\r\n    @Test\r\n    public void addPostNoCaption() {\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        Profile profile = createProfile();\r\n\r\n\r\n        //Feed screen, checks that Post1 has the default text, clicks on the add post button\r\n        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n        Post post = new Post(profile);\r\n        Workout workout = new Workout();\r\n\r\n        //create post screen, checks that default caption text is there\r\n        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));\r\n        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));\r\n\r\n        // checks that the default workout text is there\r\n        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n        //create the values for the workout to be passed\r\n        boolean[] values = new boolean[3];\r\n        values[1] = true;\r\n\r\n        //create and add the workout\r\n        workout = addWorkoutTests(1, workout,values,\"50\",3,\"Im running sprints\");\r\n        post.setWorkout(workout);\r\n\r\n        //check that the workout in the add post screen is displaying correctly\r\n        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));\r\n\r\n\r\n        // clicks on the post button\r\n        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));\r\n        postButtonVi.perform(ViewActions.click());\r\n\r\n        //checks to see if the post1 text in the feed is the same as the post that was just created\r\n        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));\r\n\r\n\r\n    }\r\n\r\n    *//**\r\n     * Testing that the snackbars will appear when they are supposed to when\r\n     * incorrect values are entered\r\n     *//*\r\n    @Test\r\n    public void testSnackBars(){\r\n        //create profile screen -> leaves default values and clicks create\r\n        //creates a new Profile and sets the Username to default\r\n        Profile profile = createProfile();\r\n\r\n        //click on the add post button on the feed screen\r\n        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));\r\n        addPostButtonVi.perform(ViewActions.click());\r\n\r\n        //click on the add workout button on the create post screen\r\n        ViewInteraction addWorkoutButtonVi = Espresso.onView((ViewMatchers.withId(R.id.addWorkoutButton)));\r\n        addWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //TEST 1: Seeing if snackbar appears if no workout type is chosen\r\n\r\n        //set the length of the workout\r\n        ViewInteraction lengthVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutLengthInput));\r\n        lengthVi.perform(ViewActions.replaceText(\"20\"));\r\n\r\n        //set the difficulty of the workout\r\n        ViewInteraction difficultyVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDifficultyInput));\r\n        difficultyVi.perform(ViewActions.swipeRight());\r\n\r\n        //set the description for the workout\r\n        ViewInteraction workoutDescriptionVi = Espresso.onView(ViewMatchers.withId(R.id.WorkoutDescriptionInput));\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"Description\"));\r\n\r\n        //click the create workout button\r\n        ViewInteraction createWorkoutButtonVi = Espresso.onView(ViewMatchers.withId(R.id.AddWorkoutButton));\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check that the snackbar appears\r\n        Matcher<View> snackbarMatcher1 = ViewMatchers.withText(\"Choosing a workout type is mandatory!\");\r\n        ViewInteraction snackBarVi1 = Espresso.onView(snackbarMatcher1);\r\n        snackBarVi1.check(ViewAssertions.matches(snackbarMatcher1));\r\n\r\n        //sleep between each test so that the snackbar will go away\r\n        SystemClock.sleep(3500);\r\n\r\n        //TEST 2: Make sure a snackbar appears when a number is not entered for length\r\n\r\n        //click on cardio button and add some attributes\r\n        ViewInteraction cardioButtonVi = Espresso.onView(ViewMatchers.withId(R.id.CardioButton));\r\n        cardioButtonVi.perform(ViewActions.click());\r\n        ViewInteraction enduranceButtonVi = Espresso.onView(ViewMatchers.withId(R.id.EnduranceOption));\r\n        enduranceButtonVi.perform(ViewActions.click());\r\n        ViewInteraction setVi = Espresso.onView(ViewMatchers.withId(R.id.CardioSetButton));\r\n        setVi.perform(ViewActions.click());\r\n\r\n        //enter a string for the length\r\n        lengthVi.perform(ViewActions.replaceText(\"adadfkad\"));\r\n\r\n        //enter a description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"Description\"));\r\n\r\n        //set difficulty\r\n        difficultyVi.perform(ViewActions.swipeRight());\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //test that the snackbar has appeared\r\n        Matcher<View> snackbarMatcher2 = ViewMatchers.withText(\"Please enter a number for length\");\r\n        ViewInteraction snackBarVi2 = Espresso.onView(snackbarMatcher2);\r\n        snackBarVi2.check(ViewAssertions.matches(snackbarMatcher2));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //TEST 3: Checking that snackbar will appear if length, description or difficulty is not present\r\n\r\n        //NO DIFFICULTY\r\n\r\n        //set length to a number\r\n        lengthVi.perform(ViewActions.replaceText(\"5\"));\r\n\r\n        //unset difficulty\r\n        difficultyVi.perform(ViewActions.swipeLeft());\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"Description\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        Matcher<View> snackbarMatcher3 = ViewMatchers.withText(\"Length, difficulty and description are mandatory!\");\r\n        ViewInteraction snackBarVi3 = Espresso.onView(snackbarMatcher3);\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //NO LENGTH\r\n\r\n        //set length to a nothing\r\n        lengthVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //set difficulty\r\n        difficultyVi.perform(ViewActions.swipeRight());\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"Description\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //NO DESCRIPTION\r\n\r\n        //set the length\r\n        lengthVi.perform(ViewActions.replaceText(\"5\"));\r\n\r\n        //difficulty stays set\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //ONLY LENGTH\r\n\r\n        //set the length\r\n        lengthVi.perform(ViewActions.replaceText(\"5\"));\r\n\r\n        //unset difficulty\r\n        difficultyVi.perform(ViewActions.swipeLeft());\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //ONLY DIFFICULTY\r\n\r\n        //set length to a nothing\r\n        lengthVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //set difficulty\r\n        difficultyVi.perform(ViewActions.swipeRight());\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n        //ONLY DESCRIPTION\r\n\r\n        //set length to a nothing\r\n        lengthVi.perform(ViewActions.replaceText(\"\"));\r\n\r\n        //unset difficulty\r\n        difficultyVi.perform(ViewActions.swipeLeft());\r\n\r\n        //set description\r\n        workoutDescriptionVi.perform(ViewActions.replaceText(\"Description\"));\r\n\r\n        //click add workout\r\n        createWorkoutButtonVi.perform(ViewActions.click());\r\n\r\n        //check for snackbar\r\n        snackBarVi3.check(ViewAssertions.matches(snackbarMatcher3));\r\n\r\n        SystemClock.sleep(3500);\r\n\r\n\r\n\r\n    }*/\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddPostInstTest.java b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddPostInstTest.java
+--- a/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddPostInstTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/androidTest/java/edu/vassar/cmpu203/workoutapp/AddPostInstTest.java	(date 1652222703903)
+@@ -24,27 +24,29 @@
+ import edu.vassar.cmpu203.workoutapp.Model.Profile;
+ import edu.vassar.cmpu203.workoutapp.Model.Strength;
+ import edu.vassar.cmpu203.workoutapp.Model.Workout;
++import edu.vassar.cmpu203.workoutapp.Persistence.FirestoreFacade;
++import edu.vassar.cmpu203.workoutapp.Persistence.IPersistenceFacade;
+ 
+ @RunWith(AndroidJUnit4.class)
+ public class AddPostInstTest extends AddMiscThings {
+-/*
++
++    protected IPersistenceFacade persistenceFacade = new FirestoreFacade();
++
+     @org.junit.Rule
+     public ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
+ 
+-    *//**
++    /**
+      * Test to see if someone is able to post with a Cardio Workout
+      * while creating a post to compare the results of the app too
+-     *//*
++     */
+     @Test
+     public void addCardioPostTest() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        Profile profile = createProfile();
++        Profile profile = createProfile("Username", "Password", "Bio");
+ 
++        SystemClock.sleep(5000);
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+@@ -52,18 +54,17 @@
+ 
+         //create post screen, checks that default caption text is there
+         ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+ 
+         // checks that the default workout text is there
+         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+         //create the values for the workout to be passed
+         boolean[] values = new boolean[3];
+         values[0] = true;
+ 
+         //create and add the workout
+-        workout = addWorkoutTests(1, workout,values,"50",3,"A hard workout");
++        workout = addWorkoutTests(1, workout,values,"50",3,"A hard workout", "None");
+         post.setWorkout(workout);
+ 
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+@@ -71,7 +72,6 @@
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+         postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+@@ -85,23 +85,35 @@
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("A fun workout"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
++        //Check if number of posts is updated
++        ViewInteraction ProfileButtonVi = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
++        ProfileButtonVi.perform(ViewActions.click());
++        ViewInteraction postsNumberVi = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
++        postsNumberVi.check(ViewAssertions.matches(ViewMatchers.withText("1")));
++
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++        SystemClock.sleep(5000);
+ 
+     }
+ 
+-    *//**
++    /**
+      * Creating a post that contains a strength workout
+-     *//*
++     */
+     @Test
+     public void addStrengthPostTest() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        Profile profile = createProfile();
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
+ 
++        SystemClock.sleep(5000);
+ 
+         //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+@@ -109,19 +121,81 @@
+ 
+         //create post screen, checks that default caption text is there
+         ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+-
+         // checks that the default workout text is there
+         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
++
++        //create the values for the workout
++        boolean[] values = new boolean[4];
++        values[0] = true;
++        values[2] = true;
++
++        //create and add the workout
++        workout = addWorkoutTests(2, workout,values,"20",4,"pushups and what not", "None");
++        post.setWorkout(workout);
++
++        //make sure the workout matches the
+         postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+ 
++        //create post screen, check to see of default text for caption is there
++        //enter new caption
++        ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
++        postCapEdVi.perform(ViewActions.replaceText("A funny workout"));
++
++        //click the caption button and checks to see that the caption text has changed
++        ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
++        captionButtonVi.perform(ViewActions.click());
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A funny workout")));
++        post.addCaption("A funny workout");
++
++        // clicks on the post button
++        ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
++        postButtonVi.perform(ViewActions.click());
++
++        //checks to see if the post1 text in the feed is the same as the post that was just created
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("A funny workout"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
++        //Check if number of posts is updated
++        ViewInteraction ProfileButtonVi = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
++        ProfileButtonVi.perform(ViewActions.click());
++        ViewInteraction postsNumberVi = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
++        postsNumberVi.check(ViewAssertions.matches(ViewMatchers.withText("1")));
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++        SystemClock.sleep(5000);
++    }
++
++    /**
++     * Creating a post that contains a Mobility workout
++     */
++    @Test
++    public void addMobilityPostTest() {
++        //create profile screen -> leaves default values and clicks create
++        //creates a new Profile and sets the Username to default
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
++
++        ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
++        addPostButtonVi.perform(ViewActions.click());
++        Post post = new Post(profile);
++        Workout workout = new Workout();
++
++        //create post screen, checks that default caption text is there
++        ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
++
++        // checks that the default workout text is there
++        ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
++
+         //create the values for the workout
+-        boolean[] values = new boolean[4];
++        boolean[] values = new boolean[3];
+         values[0] = true;
+         values[2] = true;
+ 
+         //create and add the workout
+-        workout = addWorkoutTests(2, workout,values,"20",4,"pushups and what not");
++        workout = addWorkoutTests(3, workout, values,"20",4,"stretching and what not", "None");
+         post.setWorkout(workout);
+ 
+         //make sure the workout matches the
+@@ -130,39 +204,45 @@
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+-        postCapEdVi.perform(ViewActions.replaceText("A fun workout"));
++        postCapEdVi.perform(ViewActions.replaceText("A fundamental workout"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+         ViewInteraction captionButtonVi = Espresso.onView(ViewMatchers.withId(R.id.captionButton));
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fun workout")));
+-        post.addCaption("A fun workout");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("A fundamental workout")));
++        post.addCaption("A fundamental workout");
+ 
+         // clicks on the post button
+         ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("A fundamental workout"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
+ 
++        //Check if number of posts is updated
++        ViewInteraction ProfileButtonVi = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
++        ProfileButtonVi.perform(ViewActions.click());
++        ViewInteraction postsNumberVi = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
++        postsNumberVi.check(ViewAssertions.matches(ViewMatchers.withText("1")));
++
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    *//**
++    /**
+      * Adding multiple posts to the feed to test that we can view multiple posts at once
+      * --Create posts using much of the same logic as above
+-     *//*
++     */
+     @Test
+     public void addMultiplePostsTest() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        Profile profile = createProfile();
+-
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
+         //START OF FIRST POST
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+@@ -170,11 +250,10 @@
+ 
+         //create post screen, checks that default caption text is there
+         ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+ 
+         // checks that the default workout text is there
+         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+         //create the values for the new workout
+         boolean[] values = new boolean[3];
+@@ -182,7 +261,7 @@
+         values[2] = true;
+ 
+         //add the workout ot the post
+-        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints");
++        workout = addWorkoutTests(1, workout,values, "100", 1, "Five sprints", "None");
+         post.setWorkout(workout);
+ 
+         //check that the workout is displaying correctly in the create post screen
+@@ -191,7 +270,6 @@
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+         ViewInteraction postCapEdVi = Espresso.onView(ViewMatchers.withId(R.id.captionTextBox));
+-        postCapEdVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.captionTextBox)));
+         postCapEdVi.perform(ViewActions.replaceText("Did some sprints today"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+@@ -205,13 +283,12 @@
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Did some sprints today"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++
+ 
+         // START OF SECOND POST
+ 
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withId(R.id.Post2));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post2)));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post1 = new Post(profile);
+         Workout workout1;
+@@ -223,7 +300,7 @@
+         workout1 = new Strength(values1);
+ 
+         //add the new workout to the post
+-        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups");
++        workout1 = addWorkoutTests(2, workout1, values1, "40", 2, "Lots and lots of push-ups", "None");
+         post1.setWorkout(workout1);
+ 
+         //check that the workout is displayed in the add post screen as intended
+@@ -242,14 +319,12 @@
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks that the posts are displayed like they are supposed to
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        ViewInteraction post2Vi = Espresso.onView(ViewMatchers.withSubstring("My arms are sore"));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
+ 
+         // START OF THIRD POST
+ 
+-        //click the add post button on the feed screen
+-        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withId(R.id.Post3));
+-        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post3)));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post2 = new Post(profile);
+         Workout workout2;
+@@ -261,7 +336,7 @@
+         workout2 = new Strength(values2);
+ 
+         //add the workout
+-        workout2 = addWorkoutTests(2, workout2, values2, "30", 4, "Some good weights and what not");
++        workout2 = addWorkoutTests(2, workout2, values2, "30", 4, "Some good weights and what not", "None");
+         post2.setWorkout(workout2);
+ 
+         //check that the workout is displaying in the add post screen as intended
+@@ -269,32 +344,34 @@
+ 
+         //create post screen, check to see of default text for caption is there
+         //enter new caption
+-        postCapEdVi.perform(ViewActions.replaceText("My arms are sore"));
++        postCapEdVi.perform(ViewActions.replaceText("My legs are sore"));
+ 
+         //click the caption button and checks to see that the caption text has changed
+         captionButtonVi.perform(ViewActions.click());
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My arms are sore")));
+-        post2.addCaption("My arms are sore");
++        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText("My legs are sore")));
++        post2.addCaption("My legs are sore");
+ 
+         // clicks on the post button
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks that all of the posts are displaying like they are supposed to
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
+-        post2Vi.check(ViewAssertions.matches(ViewMatchers.withText(post1.toString())));
+-        post3Vi.check(ViewAssertions.matches(ViewMatchers.withText(post2.toString())));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
++        post2Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post1.toString())));
++        ViewInteraction post3Vi = Espresso.onView(ViewMatchers.withSubstring("My legs are sore"));
++        post3Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post2.toString())));
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    *//**
++    /**
+      * Makes sure that someone can post only text post with no workout
+-     *//*
++     */
+     @Test
+     public void addPostNoWorkoutTest() {
+         //navigate the create profile screen
+-        Profile profile = createProfile();
+-
+-        //click on the add post button on the feed screen
+-        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+@@ -311,26 +388,33 @@
+         postButtonVi.perform(ViewActions.click());
+ 
+         //check to make sure that the post is displaying like it is supposed to
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        //checks to see if the post1 text in the feed is the same as the post that was just created
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("This is pretty chill"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
+ 
++        //Check if number of posts is updated
++        ViewInteraction ProfileButtonVi = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
++        ProfileButtonVi.perform(ViewActions.click());
++        ViewInteraction postsNumberVi = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
++        postsNumberVi.check(ViewAssertions.matches(ViewMatchers.withText("1")));
+ 
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    *//**
++    /**
+      * This is a test to make sure that someone can post a workout
+      * with no caption
+      * -- follows much of the same logic as above tests
+-     *//*
++     */
+     @Test
+     public void addPostNoCaption() {
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        Profile profile = createProfile();
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
+ 
+-
+-        //Feed screen, checks that Post1 has the default text, clicks on the add post button
+-        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withId(R.id.Post1));
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.Post1)));
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+         Post post = new Post(profile);
+@@ -338,44 +422,48 @@
+ 
+         //create post screen, checks that default caption text is there
+         ViewInteraction postCaptionVi = Espresso.onView(ViewMatchers.withId(R.id.postCaption));
+-        postCaptionVi.check(ViewAssertions.matches(ViewMatchers.withText(R.string.postCaption)));
+-
+         // checks that the default workout text is there
+         ViewInteraction postWorkoutVi = Espresso.onView(ViewMatchers.withId(R.id.postWorkout));
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
++        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText("No workout added")));
+ 
+         //create the values for the workout to be passed
+         boolean[] values = new boolean[3];
+         values[1] = true;
+ 
+         //create and add the workout
+-        workout = addWorkoutTests(1, workout,values,"50",3,"Im running sprints");
++        workout = addWorkoutTests(1, workout,values,"50",3,"Im running sprints", "None");
+         post.setWorkout(workout);
+ 
+-        //check that the workout in the add post screen is displaying correctly
+-        postWorkoutVi.check(ViewAssertions.matches(ViewMatchers.withText(workout.toString())));
+-
+ 
+         // clicks on the post button
+         ViewInteraction postButtonVi = Espresso.onView(ViewMatchers.withId(R.id.postButton));
+         postButtonVi.perform(ViewActions.click());
+ 
+         //checks to see if the post1 text in the feed is the same as the post that was just created
+-        post1Vi.check(ViewAssertions.matches(ViewMatchers.withText(post.toString())));
++        ViewInteraction post1Vi = Espresso.onView(ViewMatchers.withSubstring("Im running sprints"));
++        post1Vi.check(ViewAssertions.matches(ViewMatchers.withSubstring(post.toString())));
+ 
++        //Check if number of posts is updated
++        ViewInteraction ProfileButtonVi = Espresso.onView(ViewMatchers.withId(R.id.ViewProfileButton));
++        ProfileButtonVi.perform(ViewActions.click());
++        ViewInteraction postsNumberVi = Espresso.onView(ViewMatchers.withId(R.id.PostNumberDisplay));
++        postsNumberVi.check(ViewAssertions.matches(ViewMatchers.withText("1")));
+ 
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
+     }
+ 
+-    *//**
++    /**
+      * Testing that the snackbars will appear when they are supposed to when
+      * incorrect values are entered
+-     *//*
++     */
+     @Test
+     public void testSnackBars(){
+         //create profile screen -> leaves default values and clicks create
+         //creates a new Profile and sets the Username to default
+-        Profile profile = createProfile();
+-
++        SystemClock.sleep(10000);
++        Profile profile = createProfile("Username", "Password", "Bio");
++        SystemClock.sleep(5000);
+         //click on the add post button on the feed screen
+         ViewInteraction addPostButtonVi = Espresso.onView(ViewMatchers.withId(R.id.addButton));
+         addPostButtonVi.perform(ViewActions.click());
+@@ -557,7 +645,8 @@
+         SystemClock.sleep(3500);
+ 
+ 
+-
+-    }*/
++        persistenceFacade.removeUser(profile);
++        persistenceFacade.removePosts();
++    }
+ 
+ }
+Index: app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Workout.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\nimport java.io.Serializable;\r\n\r\npublic class Workout implements Serializable {\r\n    public int length = 0;\r\n    public int difficulty = 0;\r\n    public String description = \"\";\r\n    protected String sportFocus = \"None\";\r\n    int workoutType;\r\n\r\n    public Workout() {}\r\n\r\n    public void setDescription(String description) {\r\n        this.description = description;\r\n    }\r\n\r\n    public void setSport(String sport) { this.sportFocus = sport;}\r\n\r\n    public void setLength(int length) {\r\n        this.length = length;\r\n    }\r\n\r\n    public void setDifficulty(int difficulty) {\r\n        this.difficulty = difficulty;\r\n    }\r\n\r\n    public void setType(int type) { workoutType = type; }\r\n\r\n\r\n   // public boolean setAttribute(String name) {\r\n     //  boolean attribute = false;\r\n       // String a = scan.next();\r\n        //if (a.equalsIgnoreCase(\"yes\"))\r\n          //  attribute = true;\r\n        //return attribute;\r\n    //}\r\n\r\n   // abstract void setSpecificAttributes();\r\n\r\n    public String toString() {\r\n        return this.description + \"\\n\" + this.length + \"\\n\" + this.difficulty;\r\n    }\r\n\r\n/*\r\n    public String toString() {\r\n        if (this.workoutType == 1){\r\n            return Cardio.class.toString();\r\n        }\r\n        else if (this.workoutType == 2){\r\n            return Strength.class.toString();\r\n        }\r\n        else if (this.workoutType == 3){\r\n            return Mobility.class.toString();\r\n        }\r\n        else\r\n            return this.description + \"\\n\" + this.length + \"\\n\" + this.difficulty;\r\n    }\r\n*/\r\n\r\n    public int getDifficulty() {\r\n        return difficulty;\r\n    }\r\n    public int getLength() { return this.length;}\r\n    public String getDescription(){return this.description;}\r\n    public String getSportFocus(){return this.sportFocus;}\r\n\r\n    public int getWorkoutType() {\r\n        return workoutType;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Workout.java b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Workout.java
+--- a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Workout.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Workout.java	(date 1652221151726)
+@@ -39,7 +39,7 @@
+    // abstract void setSpecificAttributes();
+ 
+     public String toString() {
+-        return this.description + "\n" + this.length + "\n" + this.difficulty;
++        return this.description + "\n" + this.length + "\n" + this.difficulty + "\n" + this.sportFocus;
+     }
+ 
+ /*
+Index: app/src/main/java/edu/vassar/cmpu203/workoutapp/Persistence/FirestoreFacade.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Persistence;\r\n\r\nimport androidx.annotation.NonNull;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Model.Cardio;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Feed;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Mobility;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Post;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Profile;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Strength;\r\nimport edu.vassar.cmpu203.workoutapp.Model.Workout;\r\n\r\nimport com.google.android.gms.tasks.OnFailureListener;\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.firebase.firestore.CollectionReference;\r\nimport com.google.firebase.firestore.DocumentReference;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.google.firebase.firestore.QuerySnapshot;\r\n\r\n\r\npublic class FirestoreFacade implements IPersistenceFacade {\r\n\r\n    private static final String POST_COLLECTION = \"POST_COLLECTION\";\r\n    private static final String PROFILE_COLLECTION = \"PROFILE_COLLECTION\";\r\n\r\n    private FirebaseFirestore db = FirebaseFirestore.getInstance();\r\n\r\n    public FirestoreFacade(){}\r\n\r\n    @Override\r\n    public void retrieveFeed(DataListener<Feed> listener) {\r\n        db.collection(POST_COLLECTION).get()\r\n                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {\r\n                    @Override\r\n                    public void onSuccess(QuerySnapshot qsnap) {\r\n                        Feed feed = new Feed();\r\n                        for(DocumentSnapshot dsnap : qsnap){\r\n\r\n                            Post post = dsnap.toObject(Post.class);\r\n\r\n                            if(post.getWorkout().getWorkoutType() == 1) {\r\n                              Cardio cardio = new Cardio(post.getWorkout());\r\n                              cardio.setAgilityFocus(dsnap.getBoolean(\"workout.agilityFocus\"));\r\n                              cardio.setEnduranceFocus(dsnap.getBoolean(\"workout.enduranceFocus\"));\r\n                              cardio.setSpeedFocus(dsnap.getBoolean(\"workout.speedFocus\"));\r\n                              post.setWorkout(cardio);\r\n                            }\r\n                            else if (post.getWorkout().getWorkoutType() == 2 ){\r\n                                Strength strength = new Strength(post.getWorkout());\r\n                                strength.setBodyWeightFocus(dsnap.getBoolean(\"workout.bodyWeightFocus\"));\r\n                                strength.setFullBodyFocus(dsnap.getBoolean(\"workout.fullBodyFocus\"));\r\n                                strength.setUpperBodyFocus(dsnap.getBoolean(\"workout.upperBodyFocus\"));\r\n                                strength.setLowerBodyFocus(dsnap.getBoolean(\"workout.lowerBodyFocus\"));\r\n                                post.setWorkout(strength);\r\n                            }\r\n                            else if (post.getWorkout().getWorkoutType() == 3) {\r\n                                Mobility mobility = new Mobility(post.getWorkout());\r\n                                mobility.setDynamicFocus(dsnap.getBoolean(\"workout.dynamicStretching\"));\r\n                                mobility.setStaticFocus(dsnap.getBoolean(\"workout.staticStretching\"));\r\n                                mobility.setYogaFocus(dsnap.getBoolean(\"workout.yoga\"));\r\n                                post.setWorkout(mobility);\r\n                            }\r\n\r\n\r\n                            feed.addPosts(post);\r\n                        }\r\n                        listener.onDataReceived(feed);\r\n                    }\r\n                });\r\n    }\r\n\r\n    @Override\r\n    public void addProfile(@NonNull Profile profile, @NonNull BinaryResultListener listener) {\r\n        String username = profile.getUsername();\r\n\r\n        this.retrieveProfile(username, new DataListener<Profile>() {\r\n            @Override\r\n            public void onDataReceived(@NonNull Profile data) {\r\n                listener.onNoResult();\r\n            }\r\n\r\n            @Override\r\n            public void onNoDataFound() {\r\n                db.collection(PROFILE_COLLECTION).document(username).\r\n                        set(profile).addOnSuccessListener(new OnSuccessListener<Void>() {\r\n                    @Override\r\n                    public void onSuccess(Void unused) {\r\n                        listener.onYesResult();\r\n                    }\r\n                }).addOnFailureListener(new OnFailureListener() {\r\n                    @Override\r\n                    public void onFailure(@NonNull Exception e) {\r\n                        listener.onNoResult();\r\n                    }\r\n                });\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public String savePost(Post post) {\r\n        CollectionReference colref = db.collection(POST_COLLECTION);\r\n        DocumentReference docref = colref.document();\r\n        String docId = docref.getId();\r\n\r\n\r\n        db.collection(POST_COLLECTION).document(docId).set(post);\r\n\r\n        return docId;\r\n    }\r\n\r\n    @Override\r\n    public void editPost(Post post, String id){\r\n        db.collection(POST_COLLECTION).document(id).set(post);\r\n    }\r\n\r\n    @Override\r\n    public void retrieveProfile(@NonNull String username, @NonNull DataListener<Profile> listener) {\r\n\r\n        db.collection(PROFILE_COLLECTION).document(username).get().\r\n                addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {\r\n                    @Override\r\n                    public void onSuccess(DocumentSnapshot documentSnapshot) {\r\n                        if (documentSnapshot.exists()){\r\n                            Profile profile = documentSnapshot.toObject(Profile.class);\r\n                            listener.onDataReceived(profile);\r\n                        }\r\n                        else {\r\n                            listener.onNoDataFound();\r\n                        }\r\n                    }\r\n                });\r\n    }\r\n\r\n\r\n    @Override\r\n    public void saveProfile(Profile p) {\r\n        db.collection(PROFILE_COLLECTION).document(p.getUsername()).set(p);\r\n    }\r\n\r\n\r\n    //These methods will help with rerunning tests\r\n\r\n  @Override\r\n    public void removePosts() {\r\n\r\n        db.collection(POST_COLLECTION).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {\r\n            @Override\r\n            public void onSuccess(QuerySnapshot qSnap) {\r\n                for(DocumentSnapshot dsnap : qSnap){\r\n                    dsnap.getReference().delete();\r\n                }\r\n            }\r\n        });\r\n  }\r\n\r\n    @Override\r\n    public void removeUser(Profile profile) {\r\n        db.collection(PROFILE_COLLECTION).document(profile.getUsername()).delete();\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Persistence/FirestoreFacade.java b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Persistence/FirestoreFacade.java
+--- a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Persistence/FirestoreFacade.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Persistence/FirestoreFacade.java	(date 1652217170215)
+@@ -155,6 +155,7 @@
+         });
+   }
+ 
++
+     @Override
+     public void removeUser(Profile profile) {
+         db.collection(PROFILE_COLLECTION).document(profile.getUsername()).delete();
+Index: app/src/main/java/edu/vassar/cmpu203/workoutapp/View/Create_Post_Fragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.View;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.text.Editable;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport edu.vassar.cmpu203.workoutapp.Model.*;\r\nimport edu.vassar.cmpu203.workoutapp.databinding.FragmentCreatePostBinding;\r\n\r\n\r\npublic class Create_Post_Fragment extends Fragment implements ICreatePostView {\r\n\r\n    private FragmentCreatePostBinding binding;\r\n    private ICreatePostView.Listener listener;\r\n    private Workout w;\r\n\r\n    public Create_Post_Fragment(Listener listener) {\r\n        this.listener = listener;\r\n    }\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n\r\n        this.binding = FragmentCreatePostBinding.inflate(inflater);\r\n        return this.binding.getRoot();\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){\r\n\r\n        w = this.listener.getCurWorkout();\r\n\r\n        // if the workout does not have any values yet\r\n        if(w == null) {\r\n            this.binding.postWorkout.setText(\"No workout added!\");\r\n        }\r\n        else\r\n            this.binding.postWorkout.setText(w.toString());\r\n\r\n        /**\r\n         * when clicking on the caption button, will add caption to post\r\n         * based on what is in the caption text box\r\n         */\r\n        this.binding.captionButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v){\r\n\r\n                Editable postCaptionEditable = Create_Post_Fragment.this.binding.captionTextBox.getText();\r\n                String postCaption = postCaptionEditable.toString();\r\n\r\n                postCaptionEditable.clear();\r\n\r\n                Create_Post_Fragment.this.listener.onAddedCaption(postCaption, Create_Post_Fragment.this);\r\n\r\n\r\n            }\r\n        });\r\n\r\n        /**\r\n         * sets click of add Workout button, will take user to add workout screen\r\n         */\r\n        this.binding.addWorkoutButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n\r\n                Create_Post_Fragment.this.listener.onWorkoutButton();\r\n\r\n            }\r\n\r\n        });\r\n\r\n        /**\r\n         * sets the click for the post button, will post the new post\r\n         */\r\n        this.binding.postButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Create_Post_Fragment.this.listener.onPostButton();\r\n            }\r\n        });\r\n\r\n        /**\r\n         * sets the click for the cancel button, takes user back to feed\r\n         */\r\n        this.binding.cancelButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Create_Post_Fragment.this.listener.onCancelButton();\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n\r\n    /**\r\n     * updates the caption in the workout preview\r\n     * @param caption the new caption\r\n     */\r\n    @Override\r\n    public void updateCaption(String caption) {\r\n\r\n        this.binding.postCaption.setText(caption);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/Create_Post_Fragment.java b/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/Create_Post_Fragment.java
+--- a/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/Create_Post_Fragment.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/main/java/edu/vassar/cmpu203/workoutapp/View/Create_Post_Fragment.java	(date 1652217065303)
+@@ -39,8 +39,8 @@
+         w = this.listener.getCurWorkout();
+ 
+         // if the workout does not have any values yet
+-        if(w == null) {
+-            this.binding.postWorkout.setText("No workout added!");
++        if(w.length == 0) {
++            this.binding.postWorkout.setText("No workout added");
+         }
+         else
+             this.binding.postWorkout.setText(w.toString());
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/FilterTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\nimport static org.junit.jupiter.api.Assertions.assertEquals;\r\n\r\nimport org.junit.jupiter.api.Test;\r\n\r\npublic class FilterTest {\r\n\r\n    /**\r\n     * Adds three posts and then uses filter() to filter through the posts and check if the remaining post is the expected one\r\n     */\r\n    @Test\r\n    void testFilteredFeed() {\r\n        Feed f = new Feed();\r\n\r\n        //Add workout to feed\r\n        Profile profile = new Profile();\r\n        profile.setUsername(\"CoolDude\");\r\n        Post post = new Post(profile);\r\n        post.addCaption(\"Nice workout\");\r\n        Workout workout = new Workout();\r\n        workout.setDescription(\"FUN\");\r\n        workout.setLength(5);\r\n        workout.setDifficulty(2);\r\n        post.setWorkout(workout);\r\n\r\n        f.feed.add(post);\r\n\r\n        //Add second workout to feed\r\n        Profile profile1 = new Profile();\r\n        profile1.setUsername(\"CoolDude\");\r\n        Post post1 = new Post(profile1);\r\n        post1.addCaption(\"Nice workout\");\r\n        Workout workout1 = new Workout();\r\n        workout1.setDescription(\"FUN\");\r\n        workout1.setLength(3);\r\n        workout1.setDifficulty(2);\r\n        post1.setWorkout(workout1);\r\n\r\n        f.feed.add(post1);\r\n\r\n        //Add third workout to feed\r\n        Profile profile2 = new Profile();\r\n        profile2.setUsername(\"TestMan\");\r\n        Post post2 = new Post(profile2);\r\n        post2.addCaption(\"fire workout\");\r\n        Workout workout2 = new Workout();\r\n        workout2.setDescription(\"Intense\");\r\n        workout2.setLength(3);\r\n        workout2.setDifficulty(1);\r\n        post2.setWorkout(workout2);\r\n\r\n        f.feed.add(post2);\r\n\r\n        //Create Filters for feed\r\n        Filter l = new Length(3, f);\r\n        f.feed = l.filter();\r\n        Filter d = new Difficulty(1, f);\r\n        f.feed = d.filter();\r\n\r\n        assertEquals(\"\\nTestMan\\nWorkout: Intense\\n3\\n1\\n\\nfire workout\" + \"\\n\\n\", f.toString());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/FilterTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/FilterTest.java
+--- a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/FilterTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/FilterTest.java	(date 1652217065308)
+@@ -22,6 +22,7 @@
+         workout.setDescription("FUN");
+         workout.setLength(5);
+         workout.setDifficulty(2);
++        workout.setSport("Lacrosse");
+         post.setWorkout(workout);
+ 
+         f.feed.add(post);
+@@ -35,6 +36,7 @@
+         workout1.setDescription("FUN");
+         workout1.setLength(3);
+         workout1.setDifficulty(2);
++        workout1.setSport("None");
+         post1.setWorkout(workout1);
+ 
+         f.feed.add(post1);
+@@ -44,10 +46,12 @@
+         profile2.setUsername("TestMan");
+         Post post2 = new Post(profile2);
+         post2.addCaption("fire workout");
+-        Workout workout2 = new Workout();
++        Workout workout2 = new Cardio();
+         workout2.setDescription("Intense");
+         workout2.setLength(3);
+         workout2.setDifficulty(1);
++        workout2.setSport("Tennis");
++        workout2.setType(1);
+         post2.setWorkout(workout2);
+ 
+         f.feed.add(post2);
+@@ -57,7 +61,13 @@
+         f.feed = l.filter();
+         Filter d = new Difficulty(1, f);
+         f.feed = d.filter();
++        Filter t = new Type(1, f);
++        f.feed = t.filter();
++        Filter s = new Sport("Tennis", f);
++        f.feed = s.filter();
++
+ 
+-        assertEquals("\nTestMan\nWorkout: Intense\n3\n1\n\nfire workout" + "\n\n", f.toString());
++
++        assertEquals("\nWorkout: Intense\n\nLength: 3, Difficulty: 1, Sport Focus: Tennis\nEndurance Focus: false\nAgility Focus: false\nSpeed Focus: false\n\nfire workout\n\n", f.toString());
+     }
+ }
+Index: app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Mobility.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\nimport java.io.Serializable;\r\n\r\npublic class Mobility extends Workout implements Serializable {\r\n    private boolean StaticStretching = false;\r\n    private boolean DynamicStretching = false;\r\n    private boolean Yoga = false;\r\n\r\n    public Mobility() {}\r\n\r\n    public Mobility(boolean[] Attributes) {\r\n        StaticStretching = Attributes[0];\r\n        DynamicStretching = Attributes[1];\r\n        Yoga = Attributes[2];\r\n    }\r\n\r\n    public Mobility(Workout workout){\r\n        this.description = workout.description;\r\n        this.difficulty = workout.difficulty;\r\n        this.length = workout.length;\r\n        this.sportFocus = workout.sportFocus;\r\n        this.workoutType = workout.workoutType;\r\n    }\r\n\r\n    public void setStaticFocus(boolean staticStretching) {\r\n        StaticStretching = staticStretching;\r\n    }\r\n\r\n    public void setDynamicFocus(boolean dynamicStretching) { DynamicStretching = dynamicStretching; }\r\n\r\n    public void setYogaFocus(boolean yoga) {\r\n        Yoga = yoga;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return description + \"\\n\\n\" + \"Length: \" + this.length + \", Difficulty: \" + this.difficulty + \", Sport Focus: \" + this.sportFocus + \"\\nStatic Stretching Focus: \" + StaticStretching\r\n                + \"\\nDynamic Stretching: \" + DynamicStretching + \"\\nYoga: \" + Yoga;\r\n    }\r\n\r\n    public boolean isStaticStretching() {\r\n        return StaticStretching;\r\n    }\r\n\r\n    public boolean isDynamicStretching() {\r\n        return DynamicStretching;\r\n    }\r\n\r\n    public boolean isYoga() {\r\n        return Yoga;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Mobility.java b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Mobility.java
+--- a/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Mobility.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/main/java/edu/vassar/cmpu203/workoutapp/Model/Mobility.java	(date 1652217065313)
+@@ -35,7 +35,7 @@
+ 
+     @Override
+     public String toString() {
+-        return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nStatic Stretching Focus: " + StaticStretching
++        return description + "\n\n" + "Length: " + this.length + ", Difficulty: " + this.difficulty + ", Sport Focus: " + this.sportFocus + "\nStatic Stretching: " + StaticStretching
+                 + "\nDynamic Stretching: " + DynamicStretching + "\nYoga: " + Yoga;
+     }
+ 
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/StrengthTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nimport org.junit.jupiter.api.Test;\r\n\r\nclass StrengthTest {\r\n\r\n    /**\r\n     * Testing the toString for a strength workout\r\n     */\r\n    @Test\r\n    void testToString() {\r\n        //creating a strength workout\r\n        boolean[] values = new boolean[4];\r\n        values[0] = true;\r\n        Workout strength = new Strength(values);\r\n        strength.setDescription(\"FUN\");\r\n        strength.setLength(5);\r\n        strength.setDifficulty(2);\r\n\r\n        //testing that the create workout matches what is expected\r\n        assertEquals(\"FUN\\n\\nLength: 5, Difficulty: 2\\nUpperBody Focus: true\\nLowerBody Focus: false\\nFullBodyFocus: false\" +\r\n                \"\\nBodyWeight Focus: false\", strength.toString());\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/StrengthTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/StrengthTest.java
+--- a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/StrengthTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/StrengthTest.java	(date 1652217065422)
+@@ -20,7 +20,7 @@
+         strength.setDifficulty(2);
+ 
+         //testing that the create workout matches what is expected
+-        assertEquals("FUN\n\nLength: 5, Difficulty: 2\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false" +
++        assertEquals("FUN\n\nLength: 5, Difficulty: 2, Sport Focus: None\nUpperBody Focus: true\nLowerBody Focus: false\nFullBodyFocus: false" +
+                 "\nBodyWeight Focus: false", strength.toString());
+     }
+ }
+\ No newline at end of file
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\npublic class MobilityTest {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java
+--- a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/MobilityTest.java	(date 1652217065426)
+@@ -1,4 +1,26 @@
+ package edu.vassar.cmpu203.workoutapp.Model;
+ 
+-public class MobilityTest {
++import static org.junit.jupiter.api.Assertions.*;
++
++import org.junit.jupiter.api.Test;
++
++class MobilityTest {
++
++    /**
++     * Tests that the toString methods works for a Cardio workout
++     */
++    @Test
++    void testToString() {
++        //creates a cardio workout to test against
++        boolean[] values = new boolean[3];
++        values[0] = true;
++        Workout mobility = new Mobility(values);
++        mobility.setDescription("FUN");
++        mobility.setLength(5);
++        mobility.setDifficulty(2);
++
++        //makes sure that the created cardio workout matches the expected string
++        assertEquals("FUN\n\nLength: 5, Difficulty: 2, Sport Focus: None\nStatic Stretching: true\nDynamic Stretching: false\nYoga: false", mobility.toString());
++
++    }
+ }
+Index: app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/CardioTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.vassar.cmpu203.workoutapp.Model;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nimport org.junit.jupiter.api.Test;\r\n\r\nclass CardioTest {\r\n\r\n    /**\r\n     * Tests that the toString methods works for a Cardio workout\r\n     */\r\n    @Test\r\n    void testToString() {\r\n        //creates a cardio workout to test against\r\n        boolean[] values = new boolean[3];\r\n        values[0] = true;\r\n        Workout cardio = new Cardio(values);\r\n        cardio.setDescription(\"FUN\");\r\n        cardio.setLength(5);\r\n        cardio.setDifficulty(2);\r\n\r\n        //makes sure that the created cardio workout matches the expected string\r\n        assertEquals(\"FUN\\n\\nLength: 5, Difficulty: 2\\nEndurance Focus: false\\nAgility Focus: true\\nSpeed Focus: false\", cardio.toString());\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/CardioTest.java b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/CardioTest.java
+--- a/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/CardioTest.java	(revision 2476b91e5260d4e7dacefb70891a671e7002d959)
++++ b/app/src/test/java/edu/vassar/cmpu203/workoutapp/Model/CardioTest.java	(date 1652217065430)
+@@ -20,7 +20,7 @@
+         cardio.setDifficulty(2);
+ 
+         //makes sure that the created cardio workout matches the expected string
+-        assertEquals("FUN\n\nLength: 5, Difficulty: 2\nEndurance Focus: false\nAgility Focus: true\nSpeed Focus: false", cardio.toString());
++        assertEquals("FUN\n\nLength: 5, Difficulty: 2, Sport Focus: None\nEndurance Focus: false\nAgility Focus: true\nSpeed Focus: false", cardio.toString());
+ 
+ 
+     }

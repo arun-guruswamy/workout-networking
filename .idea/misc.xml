@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/activity_add_workout.xml" value="0.11302083333333333" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_add_workout.xml" value="0.264" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_cardio.xml" value="0.2" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_create__post_.xml" value="0.20208333333333334" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_create_profile.xml" value="0.24909420289855072" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_edit_profile.xml" value="0.264" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_feed.xml" value="0.2" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_filter.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_follow_requests.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_home_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_mobility.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_strength.xml" value="0.2" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_view_other_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/fragment_view_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Documents/College/Sophomore year/Spring/CMPU 203/team-h/app/src/main/res/layout/main.xml" value="0.20208333333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>
