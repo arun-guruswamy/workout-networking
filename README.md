@@ -1,18 +1,3 @@
-# Team H
+# Social Networking App for workouts!
 
-Questions to ask:
-
-- Homescreen
-- 
-
-Testing:
-
-Filter
-SignUptest/CreateProfile
-AddPost
-EditProfile
-
-Unit Tests:
-Mobility
-Filter
-Workout
+# made using AndroidStudio and IntelliJ
